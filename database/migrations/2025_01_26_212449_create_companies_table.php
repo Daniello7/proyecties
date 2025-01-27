@@ -1,7 +1,5 @@
 <?php
 
-use App\Models\Comment;
-use App\Models\Company;
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
@@ -12,13 +10,10 @@ return new class extends Migration {
      */
     public function up(): void
     {
-        Schema::create('people', function (Blueprint $table) {
+        Schema::create('companies', function (Blueprint $table) {
             $table->id();
             $table->string('name');
-            $table->string('last_name');
-            $table->string('document_number')->unique();
-            $table->foreignIdFor(Company::class);
-            $table->foreignIdFor(Comment::class)->nullable(); // Quién recibe el comentario
+            $table->string('type');
             $table->timestamps();
         });
     }
@@ -28,6 +23,6 @@ return new class extends Migration {
      */
     public function down(): void
     {
-        Schema::dropIfExists('people');
+        Schema::dropIfExists('companies');
     }
 };
