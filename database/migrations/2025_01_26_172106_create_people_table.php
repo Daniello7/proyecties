@@ -1,7 +1,6 @@
 <?php
 
 use App\Models\Comment;
-use App\Models\Company;
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
@@ -17,7 +16,7 @@ return new class extends Migration {
             $table->string('name');
             $table->string('last_name');
             $table->string('document_number')->unique();
-            $table->foreignIdFor(Company::class);
+            $table->string('company');
             $table->foreignIdFor(Comment::class)->nullable(); // Quién recibe el comentario
             $table->timestamps();
         });

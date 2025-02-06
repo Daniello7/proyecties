@@ -18,11 +18,11 @@ return new class extends Migration {
             $table->foreignIdFor(User::class, 'created_by_user_id');
             $table->foreignIdFor(User::class, 'contact_user_id');
             $table->foreignIdFor(Person::class);
-            $table->foreignIdFor(Comment::class);
+            $table->foreignIdFor(Comment::class)->nullable();
             $table->string('reason');
             $table->timestamp('arrival_time');
-            $table->timestamp('entry_time');
-            $table->timestamp('exit_time');
+            $table->timestamp('entry_time')->nullable();
+            $table->timestamp('exit_time')->nullable();
             $table->timestamps();
         });
     }
