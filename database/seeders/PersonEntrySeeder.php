@@ -2,13 +2,13 @@
 
 namespace Database\Seeders;
 
-use App\Models\Person;
+use App\Models\PersonEntry;
 use Illuminate\Database\Seeder;
 
-class PersonSeeder extends Seeder
+class PersonEntrySeeder extends Seeder
 {
     public function run(): void
     {
-        Person::factory(500)->create();
+        PersonEntry::factory(300)->create();
     }
 }

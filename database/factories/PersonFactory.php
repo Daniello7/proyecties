@@ -2,6 +2,8 @@
 
 namespace Database\Factories;
 
+use App\Models\Comment;
+use App\Models\User;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 /**
@@ -17,7 +19,11 @@ class PersonFactory extends Factory
     public function definition(): array
     {
         return [
-            //
+            'name' => $this->faker->name(),
+            'last_name' => $this->faker->lastName(),
+            'document_number' => $this->faker->randomNumber(8) . strtoupper($this->faker->randomLetter()),
+            'company' => $this->faker->company(),
+            'comment_id' => Comment::factory()->create(),
         ];
     }
 }

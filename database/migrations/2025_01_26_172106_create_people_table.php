@@ -17,7 +17,7 @@ return new class extends Migration {
             $table->string('last_name');
             $table->string('document_number')->unique();
             $table->string('company');
-            $table->foreignIdFor(Comment::class)->nullable(); // Quién recibe el comentario
+            $table->foreignIdFor(Comment::class)->unique(); // Quién recibe el comentario
             $table->timestamps();
         });
     }

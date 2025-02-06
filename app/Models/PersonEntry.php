@@ -13,6 +13,15 @@ class PersonEntry extends Model
 
     protected $fillable = ['person_id', 'entry_time', 'exit_time'];
 
+    const REASONS = [
+        'Charge',
+        'Discharge',
+        'Work in Facilities',
+        'Cleaning',
+        'Urgency',
+        'Visit',
+    ];
+
     public function person(): BelongsTo
     {
         return $this->belongsTo(Person::class);
