@@ -5,6 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\Relations\HasOne;
 
 class PersonEntry extends Model
 {
@@ -22,8 +23,23 @@ class PersonEntry extends Model
         'Visit',
     ];
 
+    public function user(): BelongsTo
+    {
+        return $this->belongsTo(User::class);
+    }
+
     public function person(): BelongsTo
     {
         return $this->belongsTo(Person::class);
+    }
+
+    public function internalPerson(): BelongsTo
+    {
+        return $this->BelongsTo(InternalPerson::class);
+    }
+
+    public function comment(): BelongsTo
+    {
+        return $this->BelongsTo(Comment::class);
     }
 }

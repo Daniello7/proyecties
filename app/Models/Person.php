@@ -5,6 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\Relations\HasOne;
 
 class Person extends Model
@@ -28,5 +29,15 @@ class Person extends Model
     public function comment(): HasOne
     {
         return $this->hasOne(Comment::class);
+    }
+
+    public function internalPerson(): HasOne
+    {
+        return $this->hasOne(InternalPerson::class);
+    }
+
+    public function personEntries(): HasMany
+    {
+        return $this->hasMany(PersonEntry::class);
     }
 }
