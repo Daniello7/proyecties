@@ -32,6 +32,7 @@ class PersonEntryTable extends Component
             ->with($relations)
             ->select($this->select)
             ->whereNull($allInfo ? null : 'exit_time')
+            ->whereNotNull($allInfo ? 'exit_time' : null)
             ->get();
     }
 

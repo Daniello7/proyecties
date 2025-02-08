@@ -19,7 +19,7 @@ class CommentFactory extends Factory
     {
         return [
             'user_id' => User::inRandomOrder()->firstOrFail()->id,
-            'content' => $this->faker->randomElement([null, null, $this->faker->realTextBetween(20, 80)]),
+            'content' => $this->faker->randomElement([null, null, $this->faker->realTextBetween(20, 40)]),
         ];
     }
 }

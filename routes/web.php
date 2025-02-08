@@ -1,5 +1,7 @@
 <?php
 
+use App\Http\Controllers\ControlAccessController;
+use App\Http\Controllers\PersonEntryController;
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 
@@ -7,9 +9,9 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::get('/control-access', function () {
-    return view('control-access.index');
-})->name('control-access');
+Route::get('/control-access', ControlAccessController::class)->name('control-access');
+
+Route::get('/person-entries', [PersonEntryController::class, 'index'])->name('person-entries');
 
 Route::get('/dashboard', function () {
     return view('dashboard');

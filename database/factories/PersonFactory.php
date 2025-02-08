@@ -19,7 +19,7 @@ class PersonFactory extends Factory
     public function definition(): array
     {
         return [
-            'name' => $this->faker->name(),
+            'name' => $this->faker->firstName(),
             'last_name' => $this->faker->lastName(),
             'document_number' => $this->faker->randomNumber(8) . strtoupper($this->faker->randomLetter()),
             'company' => $this->faker->company(),

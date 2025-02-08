@@ -29,7 +29,7 @@ class PersonEntryFactory extends Factory
             'reason' => $this->faker->randomElement(PersonEntry::REASONS),
             'arrival_time' => $this->faker->dateTime(),
             'entry_time' => $this->faker->randomElement([$this->faker->dateTime(), $this->faker->dateTime(), $this->faker->dateTime(), null]),
-            'exit_time' => $this->faker->randomElement([$this->faker->dateTime(), $this->faker->dateTime(), $this->faker->dateTime(), $this->faker->dateTime(), null]),
+            'exit_time' => $this->faker->randomElement([$this->faker->dateTime(), $this->faker->dateTime(), $this->faker->dateTime(), $this->faker->dateTime(),$this->faker->dateTime(), $this->faker->dateTime(), $this->faker->dateTime(), $this->faker->dateTime(),$this->faker->dateTime(), $this->faker->dateTime(), $this->faker->dateTime(), $this->faker->dateTime(), null]),
         ];
     }
 }
