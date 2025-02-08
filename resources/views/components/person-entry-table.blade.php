@@ -58,4 +58,4 @@
         </tr>
     @endforeach
     </tbody>
-</table>
+</table>{{ $rows->links() }}

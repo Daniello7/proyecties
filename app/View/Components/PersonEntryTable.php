@@ -13,7 +13,7 @@ class PersonEntryTable extends Component
     public $columns = ['Name', 'Company', 'Contact', 'Reason', 'Comment', 'Actions'];
     public $select = ['person_id', 'internal_person_id', 'reason', 'comment_id', 'entry_time'];
 
-    public function __construct(bool $allInfo = false)
+    public function __construct(string $info = '')
     {
         $relations = [
             'person:id,name,last_name,company',
@@ -22,18 +22,26 @@ class PersonEntryTable extends Component
             'comment:id,content'
         ];
 
-        if ($allInfo) {
+        if ($info === 'last_entries') {
             array_unshift($this->columns, 'Porter', 'Arrival', 'Entry', 'Exit');
             array_unshift($this->select, 'user_id', 'arrival_time', 'exit_time');
             array_unshift($relations, 'user:id,name');
+
+            $this->rows = PersonEntry::query()
+                ->with($relations)
+                ->select($this->select)
+                ->whereNotNull('exit_time')
+                ->orderByDesc('exit_time')
+                ->paginate(20);
+        } else {
+            $this->rows = PersonEntry::query()
+                ->with($relations)
+                ->select($this->select)
+                ->whereNull('exit_time')
+                ->get();
         }
 
-        $this->rows = PersonEntry::query()
-            ->with($relations)
-            ->select($this->select)
-            ->whereNull($allInfo ? null : 'exit_time')
-            ->whereNotNull($allInfo ? 'exit_time' : null)
-            ->get();
+
     }
 
     /**
