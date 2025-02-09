@@ -27,10 +27,18 @@ class PersonEntryTable extends Component
             array_unshift($this->select, 'user_id', 'arrival_time', 'exit_time');
             array_unshift($relations, 'user:id,name');
 
+            $latestEntries = PersonEntry::query()
+                ->selectRaw('person_id as group_person_id, MAX(exit_time) as latest_exit_time')
+                ->whereNotNull('exit_time')
+                ->groupBy('person_id');
+
             $this->rows = PersonEntry::query()
                 ->with($relations)
                 ->select($this->select)
-                ->whereNotNull('exit_time')
+                ->joinSub($latestEntries, 'latest_entries', function ($join) {
+                    $join->on('person_entries.person_id', '=', 'latest_entries.group_person_id')
+                        ->on('person_entries.exit_time', '=', 'latest_entries.latest_exit_time');
+                })
                 ->orderByDesc('exit_time')
                 ->paginate(20);
         } else {
@@ -38,6 +46,7 @@ class PersonEntryTable extends Component
                 ->with($relations)
                 ->select($this->select)
                 ->whereNull('exit_time')
+                ->orderBy('arrival_time')
                 ->get();
         }
 

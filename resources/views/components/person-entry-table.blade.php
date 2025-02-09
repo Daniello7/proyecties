@@ -58,4 +58,9 @@
         </tr>
     @endforeach
     </tbody>
-</table>{{ $rows->links() }}
+</table>
+@isset($row->user)
+    <div>
+        {{ $rows->links() }}
+    </div>
+@endisset
