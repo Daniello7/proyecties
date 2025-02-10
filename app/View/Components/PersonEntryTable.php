@@ -11,7 +11,7 @@ class PersonEntryTable extends Component
 {
     public $rows;
     public $columns = ['Name', 'Company', 'Contact', 'Reason', 'Comment', 'Actions'];
-    public $select = ['person_id', 'internal_person_id', 'reason', 'comment_id', 'entry_time'];
+    public $select = ['id', 'person_id', 'internal_person_id', 'reason', 'comment_id', 'entry_time'];
 
     public function __construct(string $info = '')
     {
@@ -58,6 +58,6 @@ class PersonEntryTable extends Component
      */
     public function render(): View|Closure|string
     {
-        return view('components.person-entry-table');
+        return view('person-entry.person-entry-table');
     }
 }

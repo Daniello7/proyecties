@@ -13,6 +13,8 @@ class Person extends Model
     /** @use HasFactory<\Database\Factories\PersonFactory> */
     use HasFactory;
 
+    protected $table = 'people';
+
     protected $fillable = [
         'name',
         'last_name',
@@ -20,11 +22,6 @@ class Person extends Model
         'company',
         'comment'
     ];
-
-    public function company(): BelongsTo
-    {
-        return $this->belongsTo(Company::class);
-    }
 
     public function comment(): HasOne
     {

@@ -11,6 +11,7 @@ class InternalPerson extends Person
     /** @use HasFactory<\Database\Factories\InternalPersonFactory> */
     use HasFactory;
 
+    protected $table = 'internal_people';
     protected $fillable = [
         'person_id',
         'email',
