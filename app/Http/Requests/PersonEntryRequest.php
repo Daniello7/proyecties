@@ -10,14 +10,14 @@ class PersonEntryRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'user_id' => 'required|integer|exists:users,id',
-            'person_id' => 'required|integer|exists:persons,id',
-            'internal_person_id' => 'required|integer|exists:persons,id',
+            'user_id' => 'integer|exists:users,id',
+            'person_id' => 'required|integer|exists:people,id',
+            'internal_person_id' => 'required|integer|exists:internal_people,id',
             'reason' => 'required|string|in:' . join(',', PersonEntry::REASONS),
-            'comment_id' => 'required|integer|exists:comments,id',
-            'arrival_time' => 'required|datetime',
-            'entry_time' => 'datetime',
-            'exit_time' => 'datetime',
+            'comment_id' => 'string|nullable',
+            'arrival_time' => 'date',
+            'entry_time' => 'date',
+            'exit_time' => 'date',
         ];
     }
 

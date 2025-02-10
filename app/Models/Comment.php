@@ -12,6 +12,8 @@ class Comment extends Model
     /** @use HasFactory<\Database\Factories\CommentFactory> */
     use HasFactory;
 
+    protected $fillable = ['user_id', 'content'];
+
     public function person(): HasOne
     {
         return $this->hasOne(Person::class);

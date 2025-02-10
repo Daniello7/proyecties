@@ -5,14 +5,13 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
-use Illuminate\Database\Eloquent\Relations\HasOne;
 
 class PersonEntry extends Model
 {
     /** @use HasFactory<\Database\Factories\PersonEntryFactory> */
     use HasFactory;
 
-    protected $fillable = ['person_id', 'entry_time', 'exit_time'];
+    protected $fillable = ['user_id', 'person_id', 'internal_person_id', 'comment_id', 'reason','arrival_time', 'entry_time', 'exit_time'];
 
     const REASONS = [
         'Charge',
