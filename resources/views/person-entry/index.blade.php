@@ -6,7 +6,7 @@
     </x-slot>
     <div class="py-12">
         <div class="max-w-5xl mx-auto sm:px-6 lg:px-8">
-            <div class="text-gray-800 dark:text-gray-100 border bg-white rounded-lg p-2 shadow-lg">
+            <div class="text-gray-800 dark:text-gray-100 bg-white dark:bg-gray-800 rounded-lg p-2 shadow-lg">
                 <h2 class="text-xl font-semibold px-4 ">
                     {{ __('New Entry') }}
                 </h2>

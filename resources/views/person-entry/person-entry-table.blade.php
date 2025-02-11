@@ -39,7 +39,7 @@
                             <input type="hidden" name="entry_id" value="{{ $personEntry->id }}">
                             <input type="submit" class="text-white bg-green-600 text-xl font-serif font-bold px-3 py-1 rounded cursor-pointer" value="V"/>
                         </form>
-                        <a href="{{ route('person-entries', $personEntry->id) }}" class="text-white bg-blue-600 text-xl font-serif font-bold px-3 py-1 rounded">
+                        <a href="{{ route('person-entries.index', $personEntry->id) }}" class="text-white bg-blue-600 text-xl font-serif font-bold px-3 py-1 rounded">
                             i </a>
                     </div>
                 @else
