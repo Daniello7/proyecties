@@ -10,8 +10,8 @@ use Illuminate\View\Component;
 class PersonEntryTable extends Component
 {
     public $rows;
-    public $columns = ['Name', 'Company', 'Contact', 'Reason', 'Comment', 'Actions'];
-    public $select = ['id', 'person_id', 'internal_person_id', 'reason', 'comment_id', 'entry_time'];
+    public $columns = ['Name', 'Company', 'Contact', 'Comment', 'Actions'];
+    public $select = ['id', 'person_id', 'internal_person_id', 'comment_id', 'entry_time'];
 
     public function __construct(string $info = '')
     {
@@ -23,9 +23,11 @@ class PersonEntryTable extends Component
         ];
 
         if ($info === 'last_entries') {
-            array_unshift($this->columns, 'Porter', 'Arrival', 'Entry', 'Exit');
-            array_unshift($this->select, 'user_id', 'arrival_time', 'exit_time');
-            array_unshift($relations, 'user:id,name');
+            $this->columns[3] = 'Latest Visit';
+            $this->select[3] = 'exit_time';
+            $relations[0] .= ',document_number';
+            array_pop($relations);
+            array_unshift($this->columns, 'DNI');
 
             $latestEntries = PersonEntry::query()
                 ->selectRaw('person_id as group_person_id, MAX(exit_time) as latest_exit_time')
@@ -49,8 +51,6 @@ class PersonEntryTable extends Component
                 ->orderBy('arrival_time')
                 ->get();
         }
-
-
     }
 
     /**

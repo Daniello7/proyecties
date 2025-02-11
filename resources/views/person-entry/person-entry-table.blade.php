@@ -1,28 +1,19 @@
-<table class="border-separate border-spacing-y-2 w-full">
+<table class="border-separate border-spacing-y-2 w-full text-xs sm:text-sm md:text-base">
     <thead class="[&_th:first-child]:rounded-l-lg [&_th:last-child]:rounded-r-lg">
     <tr class="*:cursor-pointer *:transition-colors hover:*:ring-0">
         @foreach($columns as $col)
-            <th class="p-2 text-white bg-emerald-600 ring-1 ring-emerald-600 hover:bg-emerald-500 {{ count($columns) > 7 ? 'w-[14%]' : 'w-[20%]' }} min-w-fit">
-                {{ __($col). ($col != 'Actions' && $col != 'Comment' && $col != 'Reason' ? ' ↓' : '') }}
+            <th class="p-2 text-white bg-emerald-600 ring-1 ring-emerald-600 hover:bg-emerald-500 {{ isset($rows[0]->exit_time) ? 'w-[20%]' : 'w-[25%]' }} min-w-fit">
+                {{ strtoupper(__($col)). ($col != 'Actions' && $col != 'Comment' ? ' ↓' : '') }}
             </th>
         @endforeach
     </tr>
     </thead>
     <tbody class="[&_td:first-child]:rounded-l-lg [&_td:last-child]:rounded-r-lg">
     @foreach($rows as $personEntry)
-        <tr class="{{ isset($personEntry->user) ?: 'ring-2 '. ($personEntry->entry_time != null ? 'ring-emerald-600':'ring-rose-600') }} bg-white dark:bg-gray-800 transition-colors shadow rounded-lg *:text-center">
-            @isset($personEntry->user)
+        <tr class="{{ isset($personEntry->exit_time) ?: 'ring-2 '. ($personEntry->entry_time != null ? 'ring-emerald-600':'ring-rose-600') }} bg-white dark:bg-gray-800 transition-colors shadow rounded-lg *:text-center">
+            @isset($personEntry->person->document_number)
                 <td class="p-2">
-                    {{ $personEntry->user->name }}
-                </td>
-                <td class="p-2">
-                    {{ $personEntry->arrival_time }}
-                </td>
-                <td class="p-2">
-                    {{ $personEntry->entry_time }}
-                </td>
-                <td class="p-2">
-                    {{ $personEntry->exit_time }}
+                    {{ $personEntry->person->document_number }}
                 </td>
             @endisset
             <td class="p-2">
@@ -34,14 +25,15 @@
             <td class="p-2">
                 {{ $personEntry->internalPerson->person->name.' '.$personEntry->internalPerson->person->last_name }}
             </td>
-            <td class="p-2 text-center">
-                {{ __($personEntry->reason) }}
-            </td>
             <td class="p-2">
-                {{ $personEntry->comment->content }}
+                @isset($personEntry->exit_time)
+                    {{ \Carbon\Carbon::parse($personEntry->exit_time)->toDateString() }}
+                @else
+                    {{ $personEntry->comment->content }}
+                @endisset
             </td>
             <td class="p-2 text-center">
-                @if(isset($personEntry->user))
+                @if(isset($personEntry->exit_time))
                     <div class="flex gap-1">
                         <form action="{{ route('person-entries.create') }}" method="GET">
                             <input type="hidden" name="entry_id" value="{{ $personEntry->id }}">
@@ -52,7 +44,7 @@
                     </div>
                 @else
                     <form action="" method="POST">
-                        <div class="flex flex-col gap-2 *:cursor-pointer items-center">
+                        <div class="flex flex-row gap-2 *:cursor-pointer items-center">
                             @if($personEntry->entry_time == null)
                                 @include('person-entry.entry-button')
                             @endif
@@ -65,7 +57,7 @@
     @endforeach
     </tbody>
 </table>
-@isset($personEntry->user)
+@isset($personEntry->exit_time)
     <div>
         {{ $rows->links() }}
     </div>
