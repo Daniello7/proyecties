@@ -9,7 +9,8 @@ use Illuminate\View\Component;
 
 class PersonSelect extends Component
 {
-    public function __construct(public string $oldContact = '', public array $internalPeople = [])
+    public object $internalPeople;
+    public function __construct(public string $oldContact = '')
     {
         $this->internalPeople = InternalPerson::query()
             ->with('person:id,name,last_name')

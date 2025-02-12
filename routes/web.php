@@ -14,15 +14,15 @@ Route::get('/', function () {
 
 Route::get('/control-access', ControlAccessController::class)->name('control-access');
 
-Route::get('/person-entries', [PersonEntryController::class, 'index'])->name('person-entries.index');
+Route::get('/person-entries', [PersonEntryController::class, 'index'])->name('person-entries');
 Route::get('/person-entries/create', [PersonEntryController::class, 'create'])->name('person-entries.create');
 Route::post('/person-entries/store', [PersonEntryController::class, 'store'])->name('person-entries.store');
 
-Route::get('/internal-staff', [InternalPersonController::class, 'index'])->name('internal-staff.index');
+Route::get('/internal-staff', [InternalPersonController::class, 'index'])->name('internal-staff');
 
-Route::get('/package', [PackageController::class, 'index'])->name('package.index');
+Route::get('/package', [PackageController::class, 'index'])->name('package');
 
-Route::get('/key-control', [KeyControlController::class, 'index'])->name('key-control.index');
+Route::get('/key-control', [KeyControlController::class, 'index'])->name('key-control');
 
 Route::get('/dashboard', function () {
     return view('dashboard');

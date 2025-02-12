@@ -2,7 +2,7 @@
     <nav class="py-4 pr-4">
         <ul>
             @foreach ($links as $link)
-                <li class="p-2 my-2 font-semibold transition-all duration-500 {{ request()->routeIs($link['url']) ? 'active-link' : 'not-active-link' }}">
+                <li class="p-2 my-2 font-semibold transition-all duration-500 {{ request()->routeIs($link['url'].'*') ? 'active-link' : 'not-active-link' }}">
                     <a href="{{ route($link['url']) }}" class="block">
                         {{ __($link['name']) }}
                     </a>

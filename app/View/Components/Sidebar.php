@@ -14,10 +14,10 @@ class Sidebar extends Component
     {
         $this->links = [
             ['name' => 'Home', 'url' => 'control-access'],
-            ['name' => 'External Staff', 'url' => 'person-entries.index'],
-            ['name' => 'Internal Staff', 'url' => 'internal-staff.index'],
-            ['name' => 'Package', 'url' => 'package.index'],
-            ['name' => 'Key control', 'url' => 'key-control.index'],
+            ['name' => 'External Staff', 'url' => 'person-entries'],
+            ['name' => 'Internal Staff', 'url' => 'internal-staff'],
+            ['name' => 'Package', 'url' => 'package'],
+            ['name' => 'Key control', 'url' => 'key-control'],
             ['name' => 'Log Out', 'url' => 'logout'],
         ];
     }
