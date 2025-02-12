@@ -1,8 +1,8 @@
 <table class="border-separate border-spacing-y-2 w-full text-xs sm:text-sm md:text-base">
     <thead class="[&_th:first-child]:rounded-l-lg [&_th:last-child]:rounded-r-lg">
-    <tr class="*:cursor-pointer *:transition-colors hover:*:ring-0">
+    <tr class="*:cursor-pointer *:transition-colors">
         @foreach($columns as $col)
-            <th class="p-2 text-white bg-emerald-600 ring-1 ring-emerald-600 hover:bg-emerald-500 {{ isset($rows[0]->exit_time) ? 'w-[20%]' : 'w-[25%]' }} min-w-fit">
+            <th class="p-2 text-white bg-blue-600 hover:bg-gradient-to-r from-blue-600 via-emerald-600 to-blue-600 dark:bg-violet-600 dark:from-violet-600 dark:via-pink-600 dark:to-violet-600 {{ isset($rows[0]->exit_time) ? 'w-[20%]' : 'w-[25%]' }} min-w-fit">
                 {{ strtoupper(__($col)). ($col != 'Actions' && $col != 'Comment' ? ' ↓' : '') }}
             </th>
         @endforeach
@@ -10,7 +10,7 @@
     </thead>
     <tbody class="[&_td:first-child]:rounded-l-lg [&_td:last-child]:rounded-r-lg">
     @foreach($rows as $personEntry)
-        <tr class="{{ isset($personEntry->exit_time) ?: 'ring-2 '. ($personEntry->entry_time != null ? 'ring-emerald-600':'ring-rose-600') }} bg-white dark:bg-gray-800 transition-colors shadow rounded-lg *:text-center">
+        <tr class="{{ isset($personEntry->exit_time) ?: 'ring-1 '. ($personEntry->entry_time != null ? 'ring-emerald-600':'ring-rose-600') }} bg-white dark:bg-gray-800 transition-colors duration-500 shadow rounded-lg *:text-center">
             @isset($personEntry->person->document_number)
                 <td class="p-2">
                     {{ $personEntry->person->document_number }}

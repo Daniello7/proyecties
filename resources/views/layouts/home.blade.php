@@ -15,7 +15,7 @@
 <div class="min-h-screen bg-gray-100 dark:bg-gray-900 transition-colors duration-500">
     <!-- Page Heading -->
     @isset($header)
-        <header class="bg-white dark:bg-gray-800 shadow transition-colors duration-500">
+        <header class="bg-white dark:bg-gray-800 shadow border-l-8 border-l-blue-600 dark:border-l-violet-600 transition-colors duration-500">
             <div class="max-w-7xl mx-auto py-6 px-4 sm:px-6 lg:px-8 flex flex-row justify-between ">
                 {{ $header }}
                 <div>
@@ -27,14 +27,14 @@
             </div>
         </header>
     @endisset
-
-    <!-- Side Bar -->
+    <div class="flex border-l-8 border-l-blue-600 dark:border-l-violet-600">
+        <!-- Side Bar -->
         <x-sidebar/>
-
-    <!-- Page Content -->
-    <main>
-        {{ $slot }}
-    </main>
+        <!-- Page Content -->
+        <main>
+            {{ $slot }}
+        </main>
+    </div>
 </div>
 </body>
 </html>

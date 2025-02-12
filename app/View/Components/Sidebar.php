@@ -13,12 +13,12 @@ class Sidebar extends Component
     public function __construct()
     {
         $this->links = [
-            ['name' => 'Home', 'url' => route('control-access')],
-            ['name' => 'External Staff', 'url' => route('person-entries.index')],
-            ['name' => 'Internal Staff', 'url' => route('internal-staff.index')],
-            ['name' => 'Package', 'url' => route('package.index')],
-            ['name' => 'Key control', 'url' => route('key-control.index')],
-            ['name' => 'Log Out', 'url' => route('logout')],
+            ['name' => 'Home', 'url' => 'control-access'],
+            ['name' => 'External Staff', 'url' => 'person-entries.index'],
+            ['name' => 'Internal Staff', 'url' => 'internal-staff.index'],
+            ['name' => 'Package', 'url' => 'package.index'],
+            ['name' => 'Key control', 'url' => 'key-control.index'],
+            ['name' => 'Log Out', 'url' => 'logout'],
         ];
     }
 
