@@ -64,7 +64,6 @@ export default {
                     borderRadius: '0.5rem',
                     color: '#2563eb',
                     '@apply dark:text-pink-500': {},
-                    transition: 'all 0.3s ease-in-out',
 
                     '&:hover': {
                         color: '#ffffff',

@@ -11,6 +11,9 @@
 |
 */
 
+use App\Models\User;
+use function Pest\Laravel\actingAs;
+
 pest()->extend(Tests\TestCase::class)
     ->use(Illuminate\Foundation\Testing\RefreshDatabase::class)
     ->in('Feature');
@@ -25,6 +28,15 @@ pest()->extend(Tests\TestCase::class)
 | to assert different things. Of course, you may extend the Expectation API at any time.
 |
 */
+
+function loginAsUser(?User $user = null)
+{
+    $user = $user ?? User::factory()->create();
+
+    actingAs($user);
+
+    return $user;
+}
 
 expect()->extend('toBeOne', function () {
     return $this->toBe(1);

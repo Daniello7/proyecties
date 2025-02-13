@@ -8,9 +8,9 @@
         @endforeach
     </tr>
     </thead>
-    <tbody class="[&_td:first-child]:rounded-l-lg [&_td:last-child]:rounded-r-lg">
+    <tbody class="[&_td:first-child]:rounded-l-lg [&_td:last-child]:rounded-r-lg *:transition-colors">
     @foreach($rows as $personEntry)
-        <tr class="{{ isset($personEntry->exit_time) ?: 'ring-1 '. ($personEntry->entry_time != null ? 'ring-emerald-600':'ring-rose-600') }} bg-white dark:bg-gray-800 transition-colors duration-500 shadow rounded-lg *:text-center">
+        <tr class="{{ isset($personEntry->exit_time) ?: 'ring-1 '. ($personEntry->entry_time != null ? 'ring-emerald-600':'ring-rose-600') }} bg-white dark:bg-gray-800 shadow rounded-lg *:text-center">
             @isset($personEntry->person->document_number)
                 <td class="p-2">
                     {{ $personEntry->person->document_number }}
