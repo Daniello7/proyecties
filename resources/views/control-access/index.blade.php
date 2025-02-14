@@ -11,7 +11,7 @@
                     {{ strtoupper(__('External Staff')) }}
                 </h2>
                 <hr class="mx-2 border-blue-600 dark:border-pink-600 text- opacity-50">
-                <x-person-entry-table/>
+                <livewire:person-entry-table/>
             </div>
         </div>
     </div>

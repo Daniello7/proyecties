@@ -9,11 +9,11 @@ use Illuminate\View\Component;
 
 class ReasonSelect extends Component
 {
-    public $reasons = PersonEntry::REASONS;
+    public array $reasons = PersonEntry::REASONS;
 
-    public $oldReason;
+    public string $oldReason;
 
-    public function __construct($oldReason = null)
+    public function __construct(string $oldReason = null)
     {
         $this->oldReason = $oldReason;
     }

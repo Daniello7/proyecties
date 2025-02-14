@@ -1,20 +1,40 @@
 <?php
 
-namespace App\View\Components;
+namespace App\Livewire;
 
-use Closure;
 use App\Models\PersonEntry;
-use Illuminate\Contracts\View\View;
-use Illuminate\View\Component;
+use Livewire\Component;
+use Livewire\WithPagination;
 
 class PersonEntryTable extends Component
 {
-    public $rows;
-    public $columns = ['Name', 'Company', 'Contact', 'Comment', 'Actions'];
-    public $select = ['id', 'person_id', 'internal_person_id', 'comment_id', 'entry_time'];
+    use WithPagination;
 
-    public function __construct(string $info = '')
+    public array $columns = ['Name', 'Company', 'Contact', 'Comment', 'Actions'];
+    public array $select = ['id', 'person_id', 'internal_person_id', 'comment_id', 'entry_time'];
+    private string $sortColumn = 'arrival_time';
+    private string $sortDirection = 'asc';
+    private string $info = '';
+
+    public function mount(string $info = '')
     {
+        $this->info = $info;
+    }
+
+    public function sortBy($column)
+    {
+        if ($this->sortColumn === $column) {
+            $this->sortDirection = $this->sortDirection === 'asc' ? 'desc' : 'asc';
+        } else {
+            $this->sortColumn = $column;
+            $this->sortDirection = 'asc';
+        }
+    }
+
+    public function render()
+    {
+        $rows = [];
+
         $relations = [
             'person:id,name,last_name,company',
             'internalPerson:id,person_id',
@@ -22,7 +42,7 @@ class PersonEntryTable extends Component
             'comment:id,content'
         ];
 
-        if ($info === 'last_entries') {
+        if ($this->info === 'last_entries') {
             $this->columns[3] = 'Latest Visit';
             $this->select[3] = 'exit_time';
             $relations[0] .= ',document_number';
@@ -34,7 +54,7 @@ class PersonEntryTable extends Component
                 ->whereNotNull('exit_time')
                 ->groupBy('person_id');
 
-            $this->rows = PersonEntry::query()
+            $rows = PersonEntry::query()
                 ->with($relations)
                 ->select($this->select)
                 ->joinSub($latestEntries, 'latest_entries', function ($join) {
@@ -44,20 +64,14 @@ class PersonEntryTable extends Component
                 ->orderByDesc('exit_time')
                 ->paginate(20);
         } else {
-            $this->rows = PersonEntry::query()
+            $rows = PersonEntry::query()
                 ->with($relations)
                 ->select($this->select)
                 ->whereNull('exit_time')
                 ->orderBy('arrival_time')
-                ->get();
+                ->paginate(20);
         }
-    }
 
-    /**
-     * Get the view / contents that represent the component.
-     */
-    public function render(): View|Closure|string
-    {
-        return view('person-entry.person-entry-table');
+        return view('livewire.person-entry-table', compact('rows'));
     }
 }
