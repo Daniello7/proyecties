@@ -17,6 +17,11 @@ Route::get('/control-access', ControlAccessController::class)->name('control-acc
 Route::get('/person-entries', [PersonEntryController::class, 'index'])->name('person-entries');
 Route::get('/person-entries/create', [PersonEntryController::class, 'create'])->name('person-entries.create');
 Route::post('/person-entries/store', [PersonEntryController::class, 'store'])->name('person-entries.store');
+Route::get('/person-entries/{id}/edit', [PersonEntryController::class, 'edit'])->name('person-entries.edit');
+Route::put('/person-entries/{id}', [PersonEntryController::class, 'update'])->name('person-entries.update');
+Route::delete('/person-entries/{id}', [PersonEntryController::class, 'destroy'])->name('person-entries.destroy');
+
+Route::get('/external-staff')->name('external-staff');
 
 Route::get('/internal-staff', [InternalPersonController::class, 'index'])->name('internal-staff');
 

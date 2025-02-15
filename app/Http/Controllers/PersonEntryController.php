@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\PersonEntryRequest;
 use App\Models\Comment;
+use App\Models\Person;
 use App\Models\PersonEntry;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
@@ -17,17 +18,20 @@ class PersonEntryController extends Controller
 
     public function create(Request $request)
     {
-        $id = $request->input('entry_id');
+        $person_id = $request->input('person_id');
 
-        $personEntry = PersonEntry::with('person')->findOrFail($id);
+        $person = Person::with(['personEntries' => function ($query) {
+            $query->orderBy('exit_time', 'desc')->first();
+        }])->findOrFail($person_id);
 
-        return view('person-entry.create', compact('personEntry'));
+        $lastEntry = $person->personEntries->first();
+
+        return view('person-entry.create', compact('lastEntry'));
     }
 
     public function store(PersonEntryRequest $request)
     {
 
-//        dd(auth()->user()->id);
         $data = $request->validated();
         $data['user_id'] = auth()->user()->id;
         $data['comment_id'] = Comment::create([

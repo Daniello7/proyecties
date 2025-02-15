@@ -2,6 +2,7 @@
 
 namespace App\Livewire;
 
+use App\Models\Person;
 use App\Models\PersonEntry;
 use Livewire\Component;
 use Livewire\WithPagination;
@@ -113,8 +114,13 @@ class PersonEntryTable extends Component
 
     private function getLatestEntries()
     {
+        $externalPeople = Person::query()
+            ->select('id')
+            ->doesntHave('internalPerson');
+
         $latestEntries = PersonEntry::query()
             ->selectRaw('person_id as group_person_id, MAX(exit_time) as latest_exit_time')
+            ->wherein('person_id', $externalPeople)
             ->whereNotNull('exit_time')
             ->groupBy('person_id');
 
