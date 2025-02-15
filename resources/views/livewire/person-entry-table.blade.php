@@ -3,8 +3,11 @@
         <thead class="[&_th:first-child]:rounded-l-lg [&_th:last-child]:rounded-r-lg">
         <tr class="*:cursor-pointer *:transition-colors">
             @foreach($columns as $col)
-                <th class="p-2 text-white bg-blue-600 hover:bg-gradient-to-r from-blue-600 via-emerald-600 to-blue-600 dark:bg-violet-600 dark:from-violet-600 dark:via-pink-600 dark:to-violet-600 {{ isset($rows[0]->exit_time) ? 'w-[20%]' : 'w-[25%]' }} min-w-fit">
-                    {{ strtoupper(__($col)). ($col != 'Actions' && $col != 'Comment' ? ' ↓' : '') }}
+                <th wire:click="sortBy('{{ $col }}')" class="p-2 uppercase text-white bg-blue-600 hover:bg-gradient-to-r from-blue-600 via-emerald-600 to-blue-600 dark:bg-violet-600 dark:from-violet-600 dark:via-pink-600 dark:to-violet-600 {{ isset($rows[0]->exit_time) ? 'w-[20%]' : 'w-[25%]' }} min-w-fit">
+                    {{ __($col) }}
+                    @if($sortColumn == $columnMap[$col])
+                        {{ $sortDirection === 'asc' ? '↑' : '↓' }}
+                    @endif
                 </th>
             @endforeach
         </tr>
@@ -27,7 +30,7 @@
                     {{ $personEntry->internalPerson->person->name.' '.$personEntry->internalPerson->person->last_name }}
                 </td>
                 <td class="p-2">
-                    @isset($personEntry->exit_time)
+                    @if(isset($personEntry->exit_time))
                         {{ \Carbon\Carbon::parse($personEntry->exit_time)->toDateString() }}
                     @else
                         {{ $personEntry->comment->content }}
@@ -41,8 +44,7 @@
                                 <input type="submit" class="text-white bg-green-600 text-xl font-serif font-bold px-3 py-1 rounded cursor-pointer" value="V"/>
                             </form>
                             <a href="{{ route('person-entries', $personEntry->id) }}" class="text-white bg-blue-600 text-xl font-serif font-bold px-3 py-1 rounded">
-                                i
-                            </a>
+                                i </a>
                         </div>
                     @else
                         <form action="" method="POST">
