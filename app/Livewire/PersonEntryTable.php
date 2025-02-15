@@ -17,6 +17,7 @@ class PersonEntryTable extends Component
     public string $sortDirection;
     public array $relations;
     public string $info;
+    public string $search = '';
 
     public function mount(string $info = '')
     {
@@ -117,7 +118,7 @@ class PersonEntryTable extends Component
             ->whereNotNull('exit_time')
             ->groupBy('person_id');
 
-        return PersonEntry::query()
+        $query = PersonEntry::query()
             ->with($this->relations)
             ->select($this->select)
             ->joinSub($latestEntries, 'latest_entries', function ($join) {
@@ -128,14 +129,18 @@ class PersonEntryTable extends Component
             ->join('internal_people as internalPerson',
                 'person_entries.internal_person_id', '=', 'internalPerson.id')
             ->join('people as internalPerson_personRelation',
-                'internalPerson.person_id', '=', 'internalPerson_personRelation.id')
+                'internalPerson.person_id', '=', 'internalPerson_personRelation.id');
+
+        $this->applySearchFilter($query);
+
+        return $query
             ->orderBy($this->sortColumn, $this->sortDirection)
             ->paginate(20);
     }
 
     private function getActiveEntries()
     {
-        return PersonEntry::query()
+        $query = PersonEntry::query()
             ->with($this->relations)
             ->select($this->select)
             ->join('people as person', 'person_entries.person_id', '=', 'person.id')
@@ -143,9 +148,26 @@ class PersonEntryTable extends Component
                 'person_entries.internal_person_id', '=', 'internalPerson.id')
             ->join('people as internalPerson_personRelation',
                 'internalPerson.person_id', '=', 'internalPerson_personRelation.id')
-            ->whereNull('exit_time')
+            ->whereNull('exit_time');
+
+        $this->applySearchFilter($query);
+
+        return $query
             ->orderBy($this->sortColumn, $this->sortDirection)
             ->paginate(20);
+    }
+
+    public function applySearchFilter($query)
+    {
+        if (!$this->search) return;
+
+        $query->where(function ($q) {
+            foreach ($this->columnMap as $key => $column) {
+                if ($column) {
+                    $q->orWhere($column, 'LIKE', "%{$this->search}%");
+                }
+            }
+        });
     }
 
     public function render()
