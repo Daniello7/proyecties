@@ -1,4 +1,4 @@
-<x-home-layout>
+<x-app-layout>
     <x-slot name="header">
         <h1 class="font-semibold text-3xl custom-gradient-text">
             {{ __('External Staff') }}
@@ -11,13 +11,8 @@
                     {{ __('New Entry') }}
                 </h2>
                 <hr class="mx-2 border-blue-600 dark:border-pink-600 text- opacity-50">
-                <form action="" method="GET" class="text-center py-2">
-                    <label for="search">{{ __('Filter') }}:</label>
-                    <x-text-input id="search" name="search" class="p-1"/>
-                    <x-primary-button type="submit">{{ __('Search') }}</x-primary-button>
-                </form>
                 <livewire:person-entry-table info="last_entries" class="m-4"/>
             </div>
         </div>
     </div>
-</x-home-layout>
+</x-app-layout>

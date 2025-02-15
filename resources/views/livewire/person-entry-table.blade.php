@@ -1,4 +1,9 @@
 <div>
+    <form action="" method="GET" class="text-center py-2">
+        <label for="search">{{ __('Filter') }}:</label>
+        <x-text-input id="search" name="search" class="p-1" wire:model=""/>
+        <x-primary-button type="submit">{{ __('Search') }}</x-primary-button>
+    </form>
     <table class="border-separate border-spacing-y-2 w-full text-xs sm:text-sm md:text-base">
         <thead class="[&_th:first-child]:rounded-l-lg [&_th:last-child]:rounded-r-lg">
         <tr class="*:cursor-pointer *:transition-colors">
