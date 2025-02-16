@@ -18,9 +18,10 @@ class PersonEntryTable extends Component
     public string $sortDirection;
     public array $relations;
     public string $info;
+    public int $person_id;
     public string $search = '';
 
-    public function mount(string $info = '')
+    public function mount(string $info = '', int $person_id = null)
     {
         $this->info = $info;
         $this->applyTableConfiguration();
@@ -32,11 +33,11 @@ class PersonEntryTable extends Component
         $this->configureActiveEntriesView();
 
         switch ($this->info) {
-            case 'last_entries':
+            case 'latest_entries':
                 $this->configureLastEntriesView();
                 break;
-            case 'entries_by_person':
-//                $this->configurePersonEntriesView();
+            case 'show':
+                $this->configurePersonEntriesView();
                 break;
         }
     }
@@ -45,7 +46,6 @@ class PersonEntryTable extends Component
     {
         $this->columns = ['Name', 'Company', 'Contact', 'Comment', 'Actions'];
         $this->select = [
-            'person_entries.id',
             'person_entries.person_id',
             'person_entries.internal_person_id',
             'person_entries.comment_id',
@@ -60,7 +60,6 @@ class PersonEntryTable extends Component
         $this->sortColumn = 'arrival_time';
         $this->sortDirection = 'asc';
         $this->columnMap = [
-            'DNI' => 'person.document_number',
             'Name' => 'person.name',
             'Company' => 'person.company',
             'Contact' => 'internalPerson_personRelation.name',
@@ -84,9 +83,18 @@ class PersonEntryTable extends Component
 
     private function configurePersonEntriesView()
     {
-        $this->columns = ['Entry Time', 'Exit Time', 'Comment', 'Actions'];
-        $this->select = ['id', 'entry_time', 'exit_time', 'comment_id'];
-        $this->relations = ['comment:id,content'];
+        array_splice($this->columns, 0, 2);
+        array_splice($this->columns, 1, 0, ['Reason', 'Porter', 'Arrival', 'Entry', 'Exit']);
+        array_shift($this->select);
+        array_splice($this->select, 1, 0, ['person_entries.user_id', 'reason', 'arrival_time', 'exit_time']);
+        $this->sortColumn = 'exit_time';
+        $this->sortDirection = 'desc';
+        $this->relations[0] = 'user:id,name';
+        $this->columnMap['Reason'] = 'person_entries.reason';
+        $this->columnMap['Porter'] = 'person_entries.user_id';
+        $this->columnMap['Arrival'] = 'arrival_time';
+        $this->columnMap['Entry'] = 'entry_time';
+        $this->columnMap['Exit'] = 'exit_time';
     }
 
     public function sortBy($column)
@@ -105,11 +113,32 @@ class PersonEntryTable extends Component
 
     private function getEntries()
     {
-        if ($this->info === 'last_entries') {
+        if ($this->info === 'latest_entries')
             return $this->getLatestEntries();
-        }
+
+        if ($this->info === 'show')
+            return $this->getPersonEntries();
 
         return $this->getActiveEntries();
+    }
+
+    private function getActiveEntries()
+    {
+        $query = PersonEntry::query()
+            ->with($this->relations)
+            ->select($this->select)
+            ->join('people as person', 'person_entries.person_id', '=', 'person.id')
+            ->join('internal_people as internalPerson',
+                'person_entries.internal_person_id', '=', 'internalPerson.id')
+            ->join('people as internalPerson_personRelation',
+                'internalPerson.person_id', '=', 'internalPerson_personRelation.id')
+            ->whereNull('exit_time');
+
+        $this->applySearchFilter($query);
+
+        return $query
+            ->orderBy($this->sortColumn, $this->sortDirection)
+            ->get();
     }
 
     private function getLatestEntries()
@@ -144,17 +173,16 @@ class PersonEntryTable extends Component
             ->paginate(20);
     }
 
-    private function getActiveEntries()
+    private function getPersonEntries()
     {
         $query = PersonEntry::query()
             ->with($this->relations)
             ->select($this->select)
-            ->join('people as person', 'person_entries.person_id', '=', 'person.id')
             ->join('internal_people as internalPerson',
                 'person_entries.internal_person_id', '=', 'internalPerson.id')
             ->join('people as internalPerson_personRelation',
                 'internalPerson.person_id', '=', 'internalPerson_personRelation.id')
-            ->whereNull('exit_time');
+            ->where('person_entries.person_id', $this->person_id);
 
         $this->applySearchFilter($query);
 

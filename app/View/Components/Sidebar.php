@@ -15,7 +15,7 @@ class Sidebar extends Component
         $this->links = [
             ['name' => 'Home', 'url' => 'control-access'],
             ['name' => 'External Staff', 'url' => 'person-entries'],
-            ['name' => 'Internal Staff', 'url' => 'internal-staff'],
+            ['name' => 'Internal Staff', 'url' => 'internal-person'],
             ['name' => 'Package', 'url' => 'package'],
             ['name' => 'Key control', 'url' => 'key-control'],
             ['name' => 'Log Out', 'url' => 'logout'],

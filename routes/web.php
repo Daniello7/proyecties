@@ -4,6 +4,7 @@ use App\Http\Controllers\ControlAccessController;
 use App\Http\Controllers\InternalPersonController;
 use App\Http\Controllers\KeyControlController;
 use App\Http\Controllers\PackageController;
+use App\Http\Controllers\PersonController;
 use App\Http\Controllers\PersonEntryController;
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
@@ -14,16 +15,15 @@ Route::get('/', function () {
 
 Route::get('/control-access', ControlAccessController::class)->name('control-access');
 
-Route::get('/person-entries', [PersonEntryController::class, 'index'])->name('person-entries');
-Route::get('/person-entries/create', [PersonEntryController::class, 'create'])->name('person-entries.create');
-Route::post('/person-entries/store', [PersonEntryController::class, 'store'])->name('person-entries.store');
-Route::get('/person-entries/{id}/edit', [PersonEntryController::class, 'edit'])->name('person-entries.edit');
-Route::put('/person-entries/{id}', [PersonEntryController::class, 'update'])->name('person-entries.update');
-Route::delete('/person-entries/{id}', [PersonEntryController::class, 'destroy'])->name('person-entries.destroy');
 
-Route::get('/external-staff')->name('external-staff');
+Route::resource('/person/entries', PersonEntryController::class)
+    ->names(['index' => 'person-entries'])
+    ->parameters(['person-entry' => 'person-entry']);
 
-Route::get('/internal-staff', [InternalPersonController::class, 'index'])->name('internal-staff');
+Route::get('/person', [PersonController::class, 'index'])->name('person');
+Route::get('/person/{id}', [PersonController::class, 'show'])->name('person.show');
+
+Route::get('/internal-person', [InternalPersonController::class, 'index'])->name('internal-person');
 
 Route::get('/package', [PackageController::class, 'index'])->name('package');
 
