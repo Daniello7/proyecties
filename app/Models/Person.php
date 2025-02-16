@@ -23,9 +23,9 @@ class Person extends Model
         'comment'
     ];
 
-    public function comment(): HasOne
+    public function comment(): BelongsTo
     {
-        return $this->hasOne(Comment::class);
+        return $this->belongsTo(Comment::class);
     }
 
     public function internalPerson(): HasOne

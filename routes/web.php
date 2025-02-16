@@ -16,9 +16,9 @@ Route::get('/', function () {
 Route::get('/control-access', ControlAccessController::class)->name('control-access');
 
 
-Route::resource('/person/entries', PersonEntryController::class)
+Route::resource('/person-entries', PersonEntryController::class)
     ->names(['index' => 'person-entries'])
-    ->parameters(['person-entry' => 'person-entry']);
+    ->parameters(['person-entries' => 'person-entry']);
 
 Route::get('/person', [PersonController::class, 'index'])->name('person');
 Route::get('/person/{id}', [PersonController::class, 'show'])->name('person.show');

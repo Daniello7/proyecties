@@ -25,11 +25,11 @@
             </div>
         </header>
     @endisset
-    <div class="flex border-l-8 border-l-blue-600 dark:border-l-violet-600">
+    <div class="flex border-l-8 border-l-blue-600 dark:border-l-violet-600 w-full">
         <!-- Side Bar -->
         <x-sidebar/>
         <!-- Page Content -->
-        <main>
+        <main class="w-full">
             {{ $slot }}
         </main>
     </div>

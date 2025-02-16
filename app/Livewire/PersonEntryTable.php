@@ -21,8 +21,9 @@ class PersonEntryTable extends Component
     public int $person_id;
     public string $search = '';
 
-    public function mount(string $info = '', int $person_id = null)
+    public function mount(string $info = '', int $person_id = 0)
     {
+        $this->person_id = $person_id;
         $this->info = $info;
         $this->applyTableConfiguration();
     }
@@ -71,7 +72,7 @@ class PersonEntryTable extends Component
     private function configureLastEntriesView()
     {
         $this->columns[3] = 'Latest Visit';
-        $this->select[3] = 'exit_time';
+        $this->select[2] = 'exit_time';
         $this->relations[0] .= ',document_number';
         $this->sortColumn = 'exit_time';
         $this->sortDirection = 'desc';
@@ -95,6 +96,7 @@ class PersonEntryTable extends Component
         $this->columnMap['Arrival'] = 'arrival_time';
         $this->columnMap['Entry'] = 'entry_time';
         $this->columnMap['Exit'] = 'exit_time';
+        array_splice($this->columnMap, 0, 2);
     }
 
     public function sortBy($column)
@@ -182,7 +184,8 @@ class PersonEntryTable extends Component
                 'person_entries.internal_person_id', '=', 'internalPerson.id')
             ->join('people as internalPerson_personRelation',
                 'internalPerson.person_id', '=', 'internalPerson_personRelation.id')
-            ->where('person_entries.person_id', $this->person_id);
+            ->where('person_entries.person_id', $this->person_id)
+            ->whereNotNull('exit_time');
 
         $this->applySearchFilter($query);
 
