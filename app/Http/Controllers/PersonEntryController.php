@@ -46,4 +46,20 @@ class PersonEntryController extends Controller
         return to_route('control-access')
             ->with('status', 'Entry created successfully');
     }
+
+    public function show($id)
+    {
+    }
+
+    public function edit($id)
+    {
+    }
+
+    public function update(Request $request, $id)
+    {
+    }
+
+    public function destroy($id)
+    {
+    }
 }

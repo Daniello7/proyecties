@@ -4,6 +4,7 @@ namespace App\Livewire;
 
 use App\Models\Person;
 use App\Models\PersonEntry;
+use Carbon\Carbon;
 use Livewire\Component;
 use Livewire\WithPagination;
 
@@ -47,6 +48,7 @@ class PersonEntryTable extends Component
     {
         $this->columns = ['Name', 'Company', 'Contact', 'Comment', 'Actions'];
         $this->select = [
+            'person_entries.id',
             'person_entries.person_id',
             'person_entries.internal_person_id',
             'person_entries.comment_id',
@@ -72,7 +74,7 @@ class PersonEntryTable extends Component
     private function configureLastEntriesView()
     {
         $this->columns[3] = 'Latest Visit';
-        $this->select[2] = 'exit_time';
+        $this->select[3] = 'exit_time';
         $this->relations[0] .= ',document_number';
         $this->sortColumn = 'exit_time';
         $this->sortDirection = 'desc';
@@ -86,8 +88,8 @@ class PersonEntryTable extends Component
     {
         array_splice($this->columns, 0, 2);
         array_splice($this->columns, 1, 0, ['Reason', 'Porter', 'Arrival', 'Entry', 'Exit']);
-        array_shift($this->select);
-        array_splice($this->select, 1, 0, ['person_entries.user_id', 'reason', 'arrival_time', 'exit_time']);
+        array_splice($this->select, 0, 2);
+        array_splice($this->select, 2, 0, ['person_entries.user_id', 'reason', 'arrival_time', 'exit_time']);
         $this->sortColumn = 'exit_time';
         $this->sortDirection = 'desc';
         $this->relations[0] = 'user:id,name';
@@ -126,9 +128,14 @@ class PersonEntryTable extends Component
 
     private function getActiveEntries()
     {
+        $externalPeople = Person::query()
+            ->select('id')
+            ->doesntHave('internalPerson');
+
         $query = PersonEntry::query()
             ->with($this->relations)
             ->select($this->select)
+            ->whereIn('person_entries.person_id', $externalPeople)
             ->join('people as person', 'person_entries.person_id', '=', 'person.id')
             ->join('internal_people as internalPerson',
                 'person_entries.internal_person_id', '=', 'internalPerson.id')
@@ -150,23 +157,20 @@ class PersonEntryTable extends Component
             ->doesntHave('internalPerson');
 
         $latestEntries = PersonEntry::query()
-            ->selectRaw('person_id as group_person_id, MAX(exit_time) as latest_exit_time')
-            ->wherein('person_id', $externalPeople)
-            ->whereNotNull('exit_time')
-            ->groupBy('person_id');
+            ->selectRaw('MAX(person_entries.id)')
+            ->wherein('person_entries.person_id', $externalPeople)
+            ->groupBy('person_entries.person_id');
 
         $query = PersonEntry::query()
             ->with($this->relations)
             ->select($this->select)
-            ->joinSub($latestEntries, 'latest_entries', function ($join) {
-                $join->on('person_entries.person_id', '=', 'latest_entries.group_person_id')
-                    ->on('person_entries.exit_time', '=', 'latest_entries.latest_exit_time');
-            })
+            ->whereIn('person_entries.id', $latestEntries)
             ->join('people as person', 'person_entries.person_id', '=', 'person.id')
             ->join('internal_people as internalPerson',
                 'person_entries.internal_person_id', '=', 'internalPerson.id')
             ->join('people as internalPerson_personRelation',
-                'internalPerson.person_id', '=', 'internalPerson_personRelation.id');
+                'internalPerson.person_id', '=', 'internalPerson_personRelation.id')
+            ->whereNotNull('exit_time');
 
         $this->applySearchFilter($query);
 
@@ -212,5 +216,19 @@ class PersonEntryTable extends Component
         return view('livewire.person-entry-table', [
             'rows' => $this->getEntries(),
         ]);
+    }
+
+    public function updateEntry(int $id)
+    {
+        $personEntry = PersonEntry::find($id);
+
+        $personEntry->update(['entry_time' => Carbon::now()]);
+    }
+
+    public function updateExit(int $id)
+    {
+        $personEntry = PersonEntry::find($id);
+
+        $personEntry->update(['exit_time' => Carbon::now()]);
     }
 }

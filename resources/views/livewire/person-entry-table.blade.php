@@ -44,12 +44,10 @@
                 <td>
                     <div class="flex flex-row flex-wrap gap-2 justify-center">
                         @if(!$info)
-                            <form action="" method="POST" class="flex gap-2 *:cursor-pointer">
-                                @if($personEntry->entry_time == null)
-                                    @include('person-entry.entry-button')
-                                @endif
-                                @include('person-entry.exit-button')
-                            </form>
+                            @if($personEntry->entry_time == null)
+                                <x-entry-button wire:click="updateEntry({{ $personEntry->id }})"/>
+                            @endif
+                            <x-exit-button wire:click="updateExit({{ $personEntry->id }})"/>
                         @endif
                         @if($info === 'latest_entries')
                             <form action="{{ route('person-entries.create') }}" method="GET">
