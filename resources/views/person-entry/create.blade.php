@@ -9,7 +9,7 @@
             <div class="bg-white shadow-lg dark:bg-gray-800">
                 <div class="p-6 text-gray-800 dark:text-gray-100">
                     <form action="{{ route('person-entries.store') }}" method="post">
-                        @include('person-entry.form-fields')
+                        @include('person-entry.create-form-fields')
                         <x-primary-button type="submit">{{ __('Save') }}</x-primary-button>
                         @csrf
                     </form>

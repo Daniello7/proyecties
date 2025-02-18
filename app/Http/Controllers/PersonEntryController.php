@@ -2,7 +2,8 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Requests\PersonEntryRequest;
+use App\Http\Requests\CreatePersonEntryRequest;
+use App\Http\Requests\EditPersonEntryRequest;
 use App\Models\Comment;
 use App\Models\Person;
 use App\Models\PersonEntry;
@@ -29,7 +30,7 @@ class PersonEntryController extends Controller
         return view('person-entry.create', compact('lastEntry'));
     }
 
-    public function store(PersonEntryRequest $request)
+    public function store(CreatePersonEntryRequest $request)
     {
 
         $data = $request->validated();
@@ -49,10 +50,18 @@ class PersonEntryController extends Controller
 
     public function edit($id)
     {
+        $personEntry = PersonEntry::findOrFail($id);
+
+        return view('person-entry.edit', compact('personEntry'));
     }
 
-    public function update(PersonEntryRequest $request, $id)
+    public function update(EditPersonEntryRequest $request, $id)
     {
+        $data = $request->validated();
+        $personEntry = PersonEntry::findOrFail($id);
+        $personEntry->update($data);
+
+        return to_route('control-access')->with('status', 'Entry updated successfully');
     }
 
     public function destroy($id)

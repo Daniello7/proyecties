@@ -1,7 +1,7 @@
 <div class="flex flex-row gap-4 mb-2">
     {{-- Person Info --}}
     <fieldset class="flex-1 border dark:bg-gray-900 dark:border-gray-700 p-2 rounded-lg">
-        <legend class="px-2">{{ __('Person Info') }}</legend>
+        <legend class="font-bold italic text-blue-700 dark:text-violet-500 text-xl ml-4 px-2">{{ __('Person Info') }}</legend>
         <span class="font-bold">DNI:</span>
         <p class="inline-block">{{ $lastEntry->person->document_number }}</p><br> <span class="font-bold">{{ __('Name') }}:</span>
         <p class="inline-block">{{ $lastEntry->person->name.' '.$lastEntry->person->last_name }}</p><br>
@@ -22,7 +22,7 @@
         </div>
         <div>
             <x-input-label for="reason" :value="__('Reason')"/>
-            <x-reason-select id="reason" name="reason" type="text" :old-reason="old('reason', $lastEntry->reason)" class="block w-full mt-1"/>
+            <x-reason-select id="reason" name="reason" :old-reason="old('reason', $lastEntry->reason)" class="block w-full mt-1"/>
             <x-input-error :messages="$errors->get('reason')"/>
         </div>
         <div>

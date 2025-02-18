@@ -5,7 +5,7 @@ namespace App\Http\Requests;
 use App\Models\PersonEntry;
 use Illuminate\Foundation\Http\FormRequest;
 
-class PersonEntryRequest extends FormRequest
+class EditPersonEntryRequest extends FormRequest
 {
     public function rules(): array
     {
@@ -15,9 +15,9 @@ class PersonEntryRequest extends FormRequest
             'internal_person_id' => 'required|integer|exists:internal_people,id',
             'reason' => 'required|string|in:' . join(',', PersonEntry::REASONS),
             'comment_id' => 'string|nullable',
-            'arrival_time' => 'date',
-            'entry_time' => 'date',
-            'exit_time' => 'date',
+            'arrival_time' => 'date|required',
+            'entry_time' => 'date|required',
+            'exit_time' => 'date|required',
         ];
     }
 

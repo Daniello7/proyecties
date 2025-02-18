@@ -88,7 +88,7 @@ class PersonEntryTable extends Component
     {
         array_splice($this->columns, 0, 2);
         array_splice($this->columns, 1, 0, ['Reason', 'Porter', 'Arrival', 'Entry', 'Exit']);
-        array_splice($this->select, 0, 2);
+        array_splice($this->select, 1, 1);
         array_splice($this->select, 2, 0, ['person_entries.user_id', 'reason', 'arrival_time', 'exit_time']);
         $this->sortColumn = 'exit_time';
         $this->sortDirection = 'desc';
@@ -147,7 +147,7 @@ class PersonEntryTable extends Component
 
         return $query
             ->orderBy($this->sortColumn, $this->sortDirection)
-            ->get();
+            ->paginate(50);
     }
 
     private function getLatestEntries()
@@ -223,6 +223,8 @@ class PersonEntryTable extends Component
         $personEntry = PersonEntry::find($id);
 
         $personEntry->update(['entry_time' => Carbon::now()]);
+
+        session()->flash('success', 'Entry updated successfully.');
     }
 
     public function updateExit(int $id)
@@ -230,11 +232,14 @@ class PersonEntryTable extends Component
         $personEntry = PersonEntry::find($id);
 
         $personEntry->update(['exit_time' => Carbon::now()]);
+
+        session()->flash('success', 'Exit updated successfully.');
     }
 
     public function destroyPersonEntry(int $id)
     {
         PersonEntry::destroy($id);
-        $this->render()->with('success', 'Person entry deleted.');
+        session()->flash('success', 'Person entry deleted.');
+
     }
 }

@@ -1,7 +1,14 @@
 <div class="w-full">
-    <div class="text-center py-2">
-        <label for="search">{{ __('Filter') }}:</label>
-        <x-text-input type="search" id="search" name="search" class="p-1" wire:model.live.debounce.300ms="search"/>
+    <div class="flex flex-row justify-between px-8 py-2">
+        <div>
+            <label for="search" class="text-blue-600 dark:text-pink-500 font-bold">{{ __('Filter') }}:</label>
+            <x-text-input type="search" id="search" name="search" class="p-1" wire:model.live.debounce.300ms="search"/>
+        </div>
+        @if(session()->has('success'))
+            <div class="alert alert-success p-1 rounded custom-gradient-text font-bold">
+                {{ session('success') }}
+            </div>
+        @endif
     </div>
     <table class="border-separate border-spacing-y-2 text-xs sm:text-sm md:text-base w-full">
         <thead class="[&_th:first-child]:rounded-l-lg [&_th:last-child]:rounded-r-lg">
@@ -19,6 +26,7 @@
         <tbody class="[&_td:first-child]:rounded-l-lg [&_td:last-child]:rounded-r-lg *:transition-colors">
         @foreach($rows as $personEntry)
             <tr class="{{ isset($personEntry->exit_time) ?: 'ring-1 '. ($personEntry->entry_time != null ? 'ring-emerald-600':'ring-rose-600') }} shadow-md bg-white dark:bg-gray-700 rounded-lg text-center *:p-2">
+                <!-- Fields -->
                 @if($info === 'latest_entries')
                     <td>{{ $personEntry->person->document_number }}</td>
                 @endif
@@ -43,6 +51,10 @@
                 <!-- Actions -->
                 <td>
                     <div class="flex flex-row flex-wrap gap-2 justify-center">
+                        @if($info)
+                            {{--                            @dd($personEntry)--}}
+                            <x-edit-button href="{{ route('person-entries.edit', $personEntry->id) }}"/>
+                        @endif
                         @if(!$info)
                             @if($personEntry->entry_time == null)
                                 <x-entry-button wire:click="updateEntry({{ $personEntry->id }})"/>
@@ -66,7 +78,7 @@
         @endforeach
         </tbody>
     </table>
-    @if($rows instanceof \Illuminate\Pagination\Paginator)
+    @if($rows instanceof \Illuminate\Pagination\Paginator || $rows instanceof \Illuminate\Pagination\LengthAwarePaginator)
         {{ $rows->links() }}
     @endif
 </div>
