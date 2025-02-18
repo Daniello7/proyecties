@@ -1,7 +1,13 @@
-<div class="flex flex-col gap-4 mb-2">
+<div>
+    <h2 class="text-xl font-semibold p-4 custom-gradient-text uppercase">
+        {{ __('Edit Entry').' - '. $personEntry->person->name.' '.$personEntry->person->last_name }}
+    </h2>
+    <hr class="mx-2 border-blue-600 dark:border-pink-600 opacity-50">
+</div>
+<div class="flex flex-col gap-4 mb-2 p-6">
     {{-- Person Info --}}
-    <fieldset class="flex flex-row flex-wrap gap-8 flex-1 border dark:bg-gray-900 dark:border-gray-700 p-2 rounded-lg">
-        <legend class="font-bold italic text-blue-700 dark:text-violet-500 text-xl ml-4 px-2">{{ __('Person Info') }}</legend>
+    <fieldset class="flex flex-row flex-wrap gap-8 flex-1 border shadow-md dark:bg-gray-900 dark:border-gray-700 p-2 rounded-lg">
+        <legend class="font-bold italic text-blue-700 dark:text-violet-500 text-xl ml-4 px-2">{{ __('Information') }}</legend>
         <div class="flex gap-2">
             <h3 class="font-bold text-blue-600 dark:text-pink-500">DNI:</h3>
             <p class="inline-block">{{ $personEntry->person->document_number }}</p>
@@ -17,8 +23,14 @@
         <input type="hidden" name="person_id" value="{{ $personEntry->person_id }}">
     </fieldset>
     {{-- Form Fields --}}
-    <fieldset class="flex-1 lg:flex-[3] flex flex-col  lg:flex-row justify-evenly rounded">
-        <div class="flex flex-col xl:flex-row gap-4">
+    <fieldset class="flex flex-row flex-wrap gap-8 flex-1 border shadow-md dark:bg-gray-900 dark:border-gray-700 p-4 rounded-lg">
+        <legend class="font-bold italic text-blue-700 dark:text-violet-500 text-xl ml-4 px-2">{{ __('Form') }}</legend>
+        <div class="flex flex-col gap-4">
+            <div>
+                <x-input-label for="reason" :value="__('Reason')"/>
+                <x-reason-select id="reason" name="reason" :old-reason="old('reason', $personEntry->reason)" class="block w-full mt-1"/>
+                <x-input-error :messages="$errors->get('reason')"/>
+            </div>
             <div>
                 <x-input-label for="internal_person_id" :value="__('Contact')"/>
                 <x-person-select id="internal_person_id" name="internal_person_id" :old-contact="old('internal_person_id', $personEntry->internal_person_id ?? '')" class="block w-full mt-1"/>
@@ -27,11 +39,6 @@
                     <input id="notify" name="notify" type="checkbox" class="cursor-pointer rounded hover:ring-2 dark:checked:bg-blue-600 dark:bg-transparent dark:border-gray-500"/>
                     <x-input-label for="notify" class="inline-block ml-2">{{ __('Notify Contact') }}</x-input-label>
                 </div>
-            </div>
-            <div>
-                <x-input-label for="reason" :value="__('Reason')"/>
-                <x-reason-select id="reason" name="reason" :old-reason="old('reason', $personEntry->reason)" class="block w-full mt-1"/>
-                <x-input-error :messages="$errors->get('reason')"/>
             </div>
         </div>
         <!-- Time Columns -->

@@ -1,16 +1,30 @@
-<div class="flex flex-row gap-4 mb-2">
+<div>
+    <h2 class="text-xl font-semibold p-4 custom-gradient-text uppercase">
+        {{ __('New Entry').' - '. $lastEntry->person->name.' '.$lastEntry->person->last_name }}
+    </h2>
+    <hr class="mx-2 border-blue-600 dark:border-pink-600 opacity-50">
+</div>
+<div class="flex flex-col gap-4 mb-2 p-6">
     {{-- Person Info --}}
-    <fieldset class="flex-1 border dark:bg-gray-900 dark:border-gray-700 p-2 rounded-lg">
+    <fieldset class="flex flex-row flex-wrap gap-8 flex-1 border shadow-md dark:bg-gray-900 dark:border-gray-700 p-2 rounded-lg">
         <legend class="font-bold italic text-blue-700 dark:text-violet-500 text-xl ml-4 px-2">{{ __('Person Info') }}</legend>
-        <span class="font-bold">DNI:</span>
-        <p class="inline-block">{{ $lastEntry->person->document_number }}</p><br> <span class="font-bold">{{ __('Name') }}:</span>
-        <p class="inline-block">{{ $lastEntry->person->name.' '.$lastEntry->person->last_name }}</p><br>
-        <span class="font-bold">{{ __('Company') }}:</span>
-        <p class="inline-block">{{ $lastEntry->person->company }}</p>
+        <div class="flex gap-2">
+            <h3 class="font-bold text-blue-600 dark:text-pink-500">DNI:</h3>
+            <p class="inline-block">{{ $lastEntry->person->document_number }}</p>
+        </div>
+        <div class="flex gap-2">
+            <h3 class="font-bold text-blue-600 dark:text-pink-500">{{ __('Name') }}:</h3>
+            <p class="inline-block">{{ $lastEntry->person->name.' '.$lastEntry->person->last_name }}</p><br>
+        </div>
+        <div class="flex gap-2">
+            <h3 class="font-bold text-blue-600 dark:text-pink-500">{{ __('Company') }}:</h3>
+            <p class="inline-block">{{ $lastEntry->person->company }}</p>
+        </div>
         <input type="hidden" name="person_id" value="{{ $lastEntry->person_id }}">
     </fieldset>
     {{-- Form Fields --}}
-    <fieldset class="flex-1 lg:flex-[3] flex flex-col lg:flex-row justify-evenly gap-2 rounded">
+    <fieldset class="flex flex-row flex-wrap gap-8 flex-[3] border shadow-md dark:bg-gray-900 dark:border-gray-700 p-2 rounded-lg">
+        <legend class="font-bold italic text-blue-700 dark:text-violet-500 text-xl ml-4 px-2">{{ __('Form') }}</legend>
         <div>
             <x-input-label for="internal_person_id" :value="__('Contact')"/>
             <x-person-select id="internal_person_id" name="internal_person_id" :old-contact="old('internal_person_id', $lastEntry->internal_person_id ?? '')" class="block w-full mt-1"/>
