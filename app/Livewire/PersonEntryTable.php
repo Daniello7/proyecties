@@ -231,4 +231,10 @@ class PersonEntryTable extends Component
 
         $personEntry->update(['exit_time' => Carbon::now()]);
     }
+
+    public function destroyPersonEntry(int $id)
+    {
+        PersonEntry::destroy($id);
+        $this->render()->with('success', 'Person entry deleted.');
+    }
 }

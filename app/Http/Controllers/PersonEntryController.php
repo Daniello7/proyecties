@@ -47,19 +47,19 @@ class PersonEntryController extends Controller
             ->with('status', 'Entry created successfully');
     }
 
-    public function show($id)
-    {
-    }
-
     public function edit($id)
     {
     }
 
-    public function update(Request $request, $id)
+    public function update(PersonEntryRequest $request, $id)
     {
     }
 
     public function destroy($id)
     {
+        PersonEntry::destroy($id);
+
+        return to_route('control-access')
+            ->with('status', 'Post deleted successfully');
     }
 }

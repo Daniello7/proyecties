@@ -7,7 +7,7 @@
         <thead class="[&_th:first-child]:rounded-l-lg [&_th:last-child]:rounded-r-lg">
         <tr class="*:cursor-pointer *:transition-colors">
             @foreach($columns as $col)
-                <th wire:click="sortBy('{{ $col }}')" class="p-2 uppercase text-white bg-blue-600 hover:bg-gradient-to-r from-blue-600 via-emerald-600 to-blue-600 dark:bg-violet-600 dark:from-violet-600 dark:via-pink-600 dark:to-violet-600 min-w-fit w-[10%]">
+                <th wire:click="sortBy('{{ $col }}')" class="p-2 uppercase select-none text-white bg-blue-600 hover:bg-gradient-to-r from-blue-600 via-emerald-600 to-blue-600 dark:bg-violet-600 dark:from-violet-600 dark:via-pink-600 dark:to-violet-600 min-w-fit w-[10%]">
                     {{ __($col) }}
                     @if($sortColumn == $columnMap[$col])
                         {{ $sortDirection === 'asc' ? '↑' : '↓' }}
@@ -48,15 +48,16 @@
                                 <x-entry-button wire:click="updateEntry({{ $personEntry->id }})"/>
                             @endif
                             <x-exit-button wire:click="updateExit({{ $personEntry->id }})"/>
+                            <x-delete-button wire:click="destroyPersonEntry({{ $personEntry->id }})"/>
                         @endif
                         @if($info === 'latest_entries')
                             <form action="{{ route('person-entries.create') }}" method="GET">
                                 <input type="hidden" name="person_id" value="{{ $personEntry->person_id }}">
-                                <input type="submit" class="text-white bg-green-600 text-xl font-serif font-bold px-3 py-1 rounded cursor-pointer" value="V"/>
+                                <x-confirm-button type="submit"/>
                             </form>
                         @endif
                         @if($info != 'show')
-                            <a href="{{ route('person.show', ['id' => $personEntry->person_id]) }}" class="text-white bg-blue-600 text-xl font-serif font-bold px-4 py-1 rounded">
+                            <a href="{{ route('person.show', ['id' => $personEntry->person_id]) }}" class="text-white bg-blue-600 text-xl font-serif font-bold px-3 py-[2px] rounded-lg border-2 border-white dark:border-gray-700 hover:ring-4 hover:ring-blue-600 max-h-max transition">
                                 i </a>
                         @endif
                     </div>

@@ -15,6 +15,9 @@ export default {
             fontFamily: {
                 sans: ['Figtree', ...defaultTheme.fontFamily.sans],
             },
+            animation: {
+                "pulse-fast": "pulse 0.3s ease-in-out infinite",
+            },
         },
     },
 
