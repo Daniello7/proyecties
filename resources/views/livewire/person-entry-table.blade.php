@@ -53,19 +53,19 @@
                     <div class="flex flex-row flex-wrap gap-2 justify-center">
                         @if($info)
                             {{--                            @dd($personEntry)--}}
-                            <x-edit-button href="{{ route('person-entries.edit', $personEntry->id) }}"/>
+                            <x-svg.edit-button href="{{ route('person-entries.edit', $personEntry->id) }}"/>
                         @endif
                         @if(!$info)
                             @if($personEntry->entry_time == null)
-                                <x-entry-button wire:click="updateEntry({{ $personEntry->id }})"/>
+                                <x-svg.entry-button wire:click="updateEntry({{ $personEntry->id }})"/>
                             @endif
-                            <x-exit-button wire:click="updateExit({{ $personEntry->id }})"/>
-                            <x-delete-button wire:click="destroyPersonEntry({{ $personEntry->id }})"/>
+                            <x-svg.exit-button wire:click="updateExit({{ $personEntry->id }})"/>
+                            <x-svg.delete-button wire:click="destroyPersonEntry({{ $personEntry->id }})"/>
                         @endif
                         @if($info === 'latest_entries')
                             <form action="{{ route('person-entries.create') }}" method="GET">
                                 <input type="hidden" name="person_id" value="{{ $personEntry->person_id }}">
-                                <x-confirm-button type="submit"/>
+                                <x-svg.confirm-button type="submit"/>
                             </form>
                         @endif
                         @if($info != 'show')

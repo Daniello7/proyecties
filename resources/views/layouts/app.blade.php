@@ -20,7 +20,7 @@
                 {{ $header }}
                 <div class="flex gap-4">
                     <x-user-dropdown/>
-                    <x-dark-mode-button/>
+                    <x-svg.dark-mode-button/>
                 </div>
             </div>
         </header>
