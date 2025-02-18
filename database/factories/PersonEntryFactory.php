@@ -36,7 +36,7 @@ class PersonEntryFactory extends Factory
 
     public function randomDateTime()
     {
-        $date = $this->faker->dateTimeInInterval('-30 years', '+0 days', 'UTC');
+        $date = $this->faker->dateTimeBetween('-30 years', 'now', 'UTC');
         $exit_time = Carbon::instance($date);
 
         return $exit_time->format('Y-m-d H:i:s');
