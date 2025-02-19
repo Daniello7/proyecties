@@ -20,7 +20,8 @@ Route::resource('/person-entries', PersonEntryController::class)
     ->names(['index' => 'person-entries'])
     ->parameters(['person-entries' => 'id']);
 
-Route::get('/person', [PersonController::class, 'index'])->name('person');
+Route::get('/person', [PersonController::class, 'index'])->name('person.index');
+Route::get('/person/create', [PersonController::class, 'create'])->name('person.create');
 Route::get('/person/{id}', [PersonController::class, 'show'])->name('person.show');
 
 Route::get('/internal-person', [InternalPersonController::class, 'index'])->name('internal-person');
