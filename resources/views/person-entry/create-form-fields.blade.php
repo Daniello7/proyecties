@@ -1,6 +1,6 @@
 <div>
     <h2 class="text-xl font-semibold p-4 custom-gradient-text uppercase">
-        {{ __('New Entry').' - '. $lastEntry->person->name.' '.$lastEntry->person->last_name }}
+        {{ __('New Entry').' - '. $person->name.' '.$person->last_name }}
     </h2>
     <hr class="mx-2 border-blue-600 dark:border-pink-600 opacity-50">
 </div>
@@ -10,17 +10,17 @@
         <legend class="font-bold italic text-blue-700 dark:text-violet-500 text-xl ml-4 px-2">{{ __('Person Info') }}</legend>
         <div class="flex gap-2">
             <h3 class="font-bold text-blue-600 dark:text-pink-500">DNI:</h3>
-            <p class="inline-block">{{ $lastEntry->person->document_number }}</p>
+            <p class="inline-block">{{ $person->document_number }}</p>
         </div>
         <div class="flex gap-2">
             <h3 class="font-bold text-blue-600 dark:text-pink-500">{{ __('Name') }}:</h3>
-            <p class="inline-block">{{ $lastEntry->person->name.' '.$lastEntry->person->last_name }}</p><br>
+            <p class="inline-block">{{ $person->name.' '.$person->last_name }}</p><br>
         </div>
         <div class="flex gap-2">
             <h3 class="font-bold text-blue-600 dark:text-pink-500">{{ __('Company') }}:</h3>
-            <p class="inline-block">{{ $lastEntry->person->company }}</p>
+            <p class="inline-block">{{ $person->company }}</p>
         </div>
-        <input type="hidden" name="person_id" value="{{ $lastEntry->person_id }}">
+        <input type="hidden" name="person_id" value="{{ $person->id }}">
     </fieldset>
     {{-- Form Fields --}}
     <fieldset class="flex flex-row flex-wrap gap-8 flex-[3] border shadow-md dark:bg-gray-900 dark:border-gray-700 p-2 rounded-lg">
@@ -36,7 +36,7 @@
         </div>
         <div>
             <x-input-label for="reason" :value="__('Reason')"/>
-            <x-reason-select id="reason" name="reason" :old-reason="old('reason', $lastEntry->reason)" class="block w-full mt-1"/>
+            <x-reason-select id="reason" name="reason" :old-reason="old('reason', $lastEntry->reason ?? '' )" class="block w-full mt-1"/>
             <x-input-error :messages="$errors->get('reason')"/>
         </div>
         <div>

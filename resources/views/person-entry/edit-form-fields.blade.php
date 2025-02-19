@@ -35,10 +35,6 @@
                 <x-input-label for="internal_person_id" :value="__('Contact')"/>
                 <x-person-select id="internal_person_id" name="internal_person_id" :old-contact="old('internal_person_id', $personEntry->internal_person_id ?? '')" class="block w-full mt-1"/>
                 <x-input-error :messages="$errors->get('internal_person_id')"/>
-                <div class="mt-4">
-                    <input id="notify" name="notify" type="checkbox" class="cursor-pointer rounded hover:ring-2 dark:checked:bg-blue-600 dark:bg-transparent dark:border-gray-500"/>
-                    <x-input-label for="notify" class="inline-block ml-2">{{ __('Notify Contact') }}</x-input-label>
-                </div>
             </div>
         </div>
         <!-- Time Columns -->
