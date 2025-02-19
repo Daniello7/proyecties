@@ -15,18 +15,25 @@ class PersonTable extends Component
     public string $sortColumn;
     public string $sortDirection;
     public array $columnMap;
+    public string $search = '';
+
+    public function mount()
+    {
+        $this->configurePersonView();
+    }
 
     public function configurePersonView()
     {
         $this->columns = ['DNI', 'Name', 'LastName', 'Company', 'Actions'];
-        $this->select = ['id', 'document_number', 'first_name', 'last_name', 'company'];
-        $this->sortColumn = 'first_name';
+        $this->select = ['id', 'document_number', 'name', 'last_name', 'company'];
+        $this->sortColumn = 'name';
         $this->sortDirection = 'asc';
         $this->columnMap = [
             'DNI' => 'document_number',
-            'Name' => 'first_name',
+            'Name' => 'name',
             'LastName' => 'last_name',
             'Company' => 'company',
+            'Actions' => null,
         ];
     }
 
@@ -72,6 +79,7 @@ class PersonTable extends Component
 
     public function render()
     {
-        return view('livewire.person-table');
+//        dd($this->getPeople());
+        return view('livewire.person-table', ['rows' => $this->getPeople()]);
     }
 }
