@@ -20,7 +20,7 @@ class Person extends Model
         'last_name',
         'document_number',
         'company',
-        'comment'
+        'comment_id'
     ];
 
     public function comment(): BelongsTo

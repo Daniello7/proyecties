@@ -2,8 +2,8 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Requests\CreatePersonEntryRequest;
-use App\Http\Requests\EditPersonEntryRequest;
+use App\Http\Requests\PersonEntry\CreatePersonEntryRequest;
+use App\Http\Requests\PersonEntry\EditPersonEntryRequest;
 use App\Models\Comment;
 use App\Models\Person;
 use App\Models\PersonEntry;

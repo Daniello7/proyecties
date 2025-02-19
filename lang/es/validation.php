@@ -150,4 +150,13 @@ return [
     'uppercase'            => 'El campo :attribute debe estar en mayúscula.',
     'url'                  => 'El campo :attribute debe ser una URL válida.',
     'uuid'                 => 'El campo :attribute debe ser un UUID válido.',
+    'attributes' => [
+        'document_number' => 'DNI/NIE',
+        'name' => 'Nombre',
+        'last_name' => 'Apellidos',
+        'company' => 'Empresa',
+        'arrival_time' => 'Entrada',
+        'entry_time' => 'Entrada',
+        'exit_time' => 'Salida',
+    ],
 ];
