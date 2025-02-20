@@ -4,7 +4,7 @@ namespace App\Http\Requests\Person;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class StorePersonRequest extends FormRequest
+class UpdatePersonRequest extends FormRequest
 {
     public function rules(): array
     {
@@ -13,6 +13,7 @@ class StorePersonRequest extends FormRequest
             'name' => 'required|string|max:100',
             'last_name' => 'required|string|max:100',
             'company' => 'required|string|max:100',
+            'comment_id' => 'nullable|string|max:255',
         ];
     }
 

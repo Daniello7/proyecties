@@ -1,3 +1,3 @@
-<svg id="dark-mode-toggle" width="30" height="30" viewBox="0 0 10 10" class="cursor-pointer rounded-full bg-gradient-to-br from-emerald-600 to-blue-600 dark:from-pink-600 dark:to-violet-600 transition-colors duration-500">
+<svg id="dark-mode-toggle" width="40" height="40" viewBox="0 0 10 10" class="cursor-pointer rounded-full border-4 border-white dark:border-gray-800 bg-gradient-to-br from-emerald-600 to-blue-600 dark:from-pink-600 dark:to-violet-600 hover:ring-4 hover:ring-emerald-600 dark:hover:ring-pink-600 transition">
     <circle cx="6.5" cy="4.5" r="4" class="fill-white dark:fill-gray-800 transition-colors"/>
 </svg>

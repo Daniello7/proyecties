@@ -24,11 +24,14 @@
                 @foreach(array_slice($person->toArray(), 1) as $field)
                     <td>{{ $field }}</td>
                 @endforeach
-                <td>
+                <td class="flex flex-row flex-wrap gap-2 justify-center">
+                    <x-svg.edit-button href="{{ route('person.edit', $person->id) }}"/>
                     <form action="{{ route('person-entries.create') }}" method="GET">
                         <input type="hidden" name="person_id" id="person_id" value="{{ $person->id }}">
                         <x-svg.confirm-button type="submit"/>
                     </form>
+                    <a href="{{ route('person.show', ['id' => $person->id]) }}" class="text-white bg-blue-600 text-xl font-serif font-bold px-3 py-[2px] rounded-lg border-2 border-white dark:border-gray-700 hover:ring-4 hover:ring-blue-600 max-h-max transition">
+                        i </a>
                 </td>
             </tr>
         @endforeach

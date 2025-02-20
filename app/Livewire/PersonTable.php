@@ -24,14 +24,14 @@ class PersonTable extends Component
 
     public function configurePersonView()
     {
-        $this->columns = ['DNI', 'Name', 'LastName', 'Company', 'Actions'];
+        $this->columns = ['DNI', 'Name', 'Last Name', 'Company', 'Actions'];
         $this->select = ['id', 'document_number', 'name', 'last_name', 'company'];
         $this->sortColumn = 'name';
         $this->sortDirection = 'asc';
         $this->columnMap = [
             'DNI' => 'document_number',
             'Name' => 'name',
-            'LastName' => 'last_name',
+            'Last Name' => 'last_name',
             'Company' => 'company',
             'Actions' => null,
         ];

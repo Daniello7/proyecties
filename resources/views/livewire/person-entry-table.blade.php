@@ -52,7 +52,6 @@
                 <td>
                     <div class="flex flex-row flex-wrap gap-2 justify-center">
                         @if($info)
-                            {{--                            @dd($personEntry)--}}
                             <x-svg.edit-button href="{{ route('person-entries.edit', $personEntry->id) }}"/>
                         @endif
                         @if(!$info)

@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="{{ str_replace('_', '-', app()->getLocale()) }}" class="{{ session('dark_mode', false) ? 'dark' : '' }}">
+<html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -17,7 +17,10 @@
     @isset($header)
         <header class="bg-white dark:bg-gray-800 shadow border-l-8 border-l-blue-600 dark:border-l-violet-600 transition-colors">
             <div class="mx-auto py-6 px-4 sm:px-6 lg:px-8 flex flex-row justify-between">
-                {{ $header }}
+                <div class="flex gap-4">
+                    <x-application-logo :dark="session('dark_mode', false)"/>
+                    <h1>{{ $header }}</h1>
+                </div>
                 <div class="flex gap-4">
                     <x-user-dropdown/>
                     <x-svg.dark-mode-button/>

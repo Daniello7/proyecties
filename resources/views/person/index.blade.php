@@ -1,7 +1,7 @@
 <x-app-layout>
     <x-slot name="header">
         <h1 class="font-semibold text-3xl custom-gradient-text">
-            {{ __('Control Access') }}
+            {{ __('Person List') }}
         </h1>
     </x-slot>
     <div class="py-8">

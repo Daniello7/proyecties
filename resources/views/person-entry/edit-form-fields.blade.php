@@ -72,7 +72,7 @@
         </div>
         <div>
             <x-input-label for="comment" :value="__('Comment')"/>
-            <x-textarea id="comment" name="comment" cols="30" rows="5"></x-textarea>
+            <x-textarea id="comment" name="comment" cols="30" rows="5">{{ old('comment',$personEntry->comment->content ) }}</x-textarea>
             <x-input-error :messages="$errors->get('comment')"/>
         </div>
     </fieldset>

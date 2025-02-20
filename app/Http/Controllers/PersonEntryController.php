@@ -59,6 +59,11 @@ class PersonEntryController extends Controller
     {
         $data = $request->validated();
         $personEntry = PersonEntry::findOrFail($id);
+        $comment = Comment::findOrFail($personEntry->comment_id);
+        $comment->update([
+            'user_id' => auth()->user()->id,
+            'content' => $request['comment']
+        ]);
         $personEntry->update($data);
 
         return to_route('control-access')->with('status', 'Entry updated successfully');
