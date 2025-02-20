@@ -28,7 +28,7 @@
     @if(request()->routeIs('person.edit'))
         <div class="min-w-60 max-w-72">
             <x-input-label for="comment" :value="__('Comment')"/>
-            <x-textarea cols="30" id="comment" name="comment" class="block w-full mt-1">{{ old('comment', $person->comment->content ?? '' ) }}</x-textarea>
+            <x-textarea cols="30" id="comment" name="comment" class="block w-full mt-1">{{ old('comment', $person->comment ?? '' ) }}</x-textarea>
             <x-input-error :messages="$errors->get('comment')"/>
         </div>
     @endif

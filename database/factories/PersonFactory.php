@@ -2,8 +2,6 @@
 
 namespace Database\Factories;
 
-use App\Models\Comment;
-use App\Models\User;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 /**
@@ -23,7 +21,7 @@ class PersonFactory extends Factory
             'last_name' => $this->faker->lastName(),
             'document_number' => $this->faker->randomNumber(8) . strtoupper($this->faker->randomLetter()),
             'company' => $this->faker->company(),
-            'comment_id' => Comment::factory()->create(),
+            'comment' => $this->faker->randomElement([null, null, $this->faker->realTextBetween(20, 40)]),
         ];
     }
 }

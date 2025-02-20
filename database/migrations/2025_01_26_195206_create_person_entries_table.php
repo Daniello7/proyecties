@@ -1,6 +1,5 @@
 <?php
 
-use App\Models\Comment;
 use App\Models\InternalPerson;
 use App\Models\Person;
 use App\Models\User;
@@ -19,7 +18,7 @@ return new class extends Migration {
             $table->foreignIdFor(User::class);
             $table->foreignIdFor(Person::class);
             $table->foreignIdFor(InternalPerson::class);
-            $table->foreignIdFor(Comment::class);
+            $table->string('comment')->nullable();
             $table->string('reason');
             $table->timestamp('arrival_time');
             $table->timestamp('entry_time')->nullable();

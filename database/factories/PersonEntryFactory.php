@@ -2,7 +2,6 @@
 
 namespace Database\Factories;
 
-use App\Models\Comment;
 use App\Models\InternalPerson;
 use App\Models\Person;
 use App\Models\PersonEntry;
@@ -26,7 +25,7 @@ class PersonEntryFactory extends Factory
             'user_id' => User::inRandomOrder()->firstOrFail()->id,
             'person_id' => Person::inRandomOrder()->firstOrFail()->id,
             'internal_person_id' => InternalPerson::inRandomOrder()->firstOrFail()->id,
-            'comment_id' => Comment::factory()->create(),
+            'comment' => $this->faker->randomElement([null, null, $this->faker->realTextBetween(20, 40)]),
             'reason' => $this->faker->randomElement(PersonEntry::REASONS),
             'arrival_time' => $this->randomDateTime(),
             'entry_time' => $this->faker->randomElement([$this->randomDateTime(), $this->randomDateTime(), $this->randomDateTime(), null]),

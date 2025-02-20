@@ -18,6 +18,6 @@
     {{-- Comments --}}
     <fieldset class="flex-1 border dark:bg-gray-900 dark:border-gray-700 p-2 rounded-lg shadow-md">
         <legend class="font-bold italic text-blue-700 dark:text-violet-500 text-xl ml-4 px-2">{{ __('Comments') }}</legend>
-        <p>{{ $person->comment->content }}</p>
+        <p>{{ $person->comment }}</p>
     </fieldset>
 </div>

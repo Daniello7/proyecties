@@ -44,9 +44,9 @@
                 @isset($personEntry->exit_time)
                     <td>{{ $personEntry->exit_time }}</td>
                 @endisset
-                @isset($personEntry->comment)
-                    <td>{{ $personEntry->comment->content }}</td>
-                @endisset
+                @if($info != 'latest_entries')
+                    <td>{{ $personEntry->comment }}</td>
+                @endif
 
                 <!-- Actions -->
                 <td>

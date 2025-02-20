@@ -51,14 +51,13 @@ class PersonEntryTable extends Component
             'person_entries.id',
             'person_entries.person_id',
             'person_entries.internal_person_id',
-            'person_entries.comment_id',
+            'person_entries.comment',
             'entry_time'
         ];
         $this->relations = [
             'person:id,name,last_name,company',
             'internalPerson:id,person_id',
             'internalPerson.person:id,name,last_name',
-            'comment:id,content'
         ];
         $this->sortColumn = 'arrival_time';
         $this->sortDirection = 'asc';

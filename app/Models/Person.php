@@ -20,13 +20,8 @@ class Person extends Model
         'last_name',
         'document_number',
         'company',
-        'comment_id'
+        'comment'
     ];
-
-    public function comment(): BelongsTo
-    {
-        return $this->belongsTo(Comment::class);
-    }
 
     public function internalPerson(): HasOne
     {

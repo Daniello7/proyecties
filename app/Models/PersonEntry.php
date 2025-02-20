@@ -11,7 +11,7 @@ class PersonEntry extends Model
     /** @use HasFactory<\Database\Factories\PersonEntryFactory> */
     use HasFactory;
 
-    protected $fillable = ['user_id', 'person_id', 'internal_person_id', 'comment_id', 'reason','arrival_time', 'entry_time', 'exit_time'];
+    protected $fillable = ['user_id', 'person_id', 'internal_person_id', 'comment', 'reason', 'arrival_time', 'entry_time', 'exit_time'];
 
     const REASONS = [
         'Charge',
@@ -35,10 +35,5 @@ class PersonEntry extends Model
     public function internalPerson(): BelongsTo
     {
         return $this->BelongsTo(InternalPerson::class);
-    }
-
-    public function comment(): BelongsTo
-    {
-        return $this->BelongsTo(Comment::class);
     }
 }

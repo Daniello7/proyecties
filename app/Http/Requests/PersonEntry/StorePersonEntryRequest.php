@@ -14,7 +14,7 @@ class StorePersonEntryRequest extends FormRequest
             'person_id' => 'required|integer|exists:people,id',
             'internal_person_id' => 'required|integer|exists:internal_people,id',
             'reason' => 'required|string|in:' . join(',', PersonEntry::REASONS),
-            'comment_id' => 'string|nullable',
+            'comment' => 'string|nullable',
         ];
     }
 
