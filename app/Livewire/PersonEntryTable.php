@@ -210,13 +210,6 @@ class PersonEntryTable extends Component
         });
     }
 
-    public function render()
-    {
-        return view('livewire.person-entry-table', [
-            'rows' => $this->getEntries(),
-        ]);
-    }
-
     public function updateEntry(int $id)
     {
         $personEntry = PersonEntry::find($id);
@@ -240,5 +233,12 @@ class PersonEntryTable extends Component
         PersonEntry::destroy($id);
         session()->flash('success', 'Person entry deleted.');
 
+    }
+
+    public function render()
+    {
+        return view('livewire.person-entry-table', [
+            'rows' => $this->getEntries(),
+        ]);
     }
 }
