@@ -54,7 +54,7 @@ class KeyControlTable extends Component
 
         return $query
             ->whereNotNull('entry_time')
-            ->where('entry_time', '>=', now()->subDays(14))
+            ->where('entry_time', '>=', now()->subMonths(2))
             ->orderBy($this->sortColumn, $this->sortDirection)
             ->get();
     }
