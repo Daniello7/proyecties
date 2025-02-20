@@ -27,13 +27,14 @@ class KeyControlFactory extends Factory
             'receiver_user_id' => User::inRandomOrder()->firstOrFail()->id,
             'comment' => $this->faker->randomElement([null, $this->faker->realTextBetween(20, 40)]),
             'exit_time' => $this->randomDateTime(),
-            'entry_time' => $this->faker->randomElement([null, $this->randomDateTime(), $this->randomDateTime(), $this->randomDateTime(), $this->randomDateTime(), $this->randomDateTime(), $this->randomDateTime()]),
+            'entry_time' => $this->faker->randomElement(array_merge([null],
+                array_fill(0, 20, $this->randomDateTime())))
         ];
     }
 
     public function randomDateTime()
     {
-        $date = $this->faker->dateTimeBetween('-30 years', 'now', 'UTC');
+        $date = $this->faker->dateTimeBetween('-15 years', 'now', 'UTC');
         $exit_time = Carbon::instance($date);
 
         return $exit_time->format('Y-m-d H:i:s');

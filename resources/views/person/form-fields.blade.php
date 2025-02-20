@@ -1,6 +1,6 @@
 <div>
     <h2 class="text-xl font-semibold p-4 custom-gradient-text uppercase">
-        {{ __((request()->routeIs('person.edit')) ? 'Edit Person' :'New Person').old('name', isset($person->name) ? " - $person->name" : '' ) }}
+        {{ __((request()->routeIs('person.edit')) ? 'Edit Person' :'New External Person').old('name', isset($person->name) ? " - $person->name" : '' ) }}
     </h2>
     <hr class="mx-2 border-blue-600 dark:border-pink-600 opacity-50">
 </div>
