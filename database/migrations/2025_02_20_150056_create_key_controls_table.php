@@ -1,6 +1,7 @@
 <?php
 
 use App\Models\Comment;
+use App\Models\Key;
 use App\Models\Person;
 use App\Models\User;
 use Illuminate\Database\Migrations\Migration;
@@ -15,13 +16,13 @@ return new class extends Migration {
     {
         Schema::create('key_controls', function (Blueprint $table) {
             $table->id();
-            $table->enum('type', ['entry', 'exit']);
+            $table->foreignIdFor(Key::class);
+            $table->foreignIdFor(Person::class);
             $table->foreignIdFor(User::class, 'deliver_user_id');
             $table->foreignIdFor(User::class, 'receiver_user_id');
-            $table->foreignIdFor(Person::class);
-            $table->string('comment');
+            $table->string('comment')->nullable();
             $table->timestamp('exit_time');
-            $table->timestamp('entry_time');
+            $table->timestamp('entry_time')->nullable();
             $table->timestamps();
         });
     }

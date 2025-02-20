@@ -8,7 +8,7 @@ class KeyControlController extends Controller
 {
     public function index()
     {
-
+        return view('key-control.index');
     }
 
     public function create()

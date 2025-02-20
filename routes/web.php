@@ -28,6 +28,9 @@ Route::get('/internal-person', [InternalPersonController::class, 'index'])->name
 Route::get('/package', [PackageController::class, 'index'])->name('package');
 
 Route::get('/key-control', [KeyControlController::class, 'index'])->name('key-control');
+Route::get('/key-control/create', [KeyControlController::class, 'create'])->name('key-control.create');
+Route::get('/key-control/{id}', [KeyControlController::class, 'show'])->name('key-control.show');
+Route::get('/key-control/{id}/edit', [KeyControlController::class, 'edit'])->name('key-control.edit');
 
 Route::get('/dashboard', function () {
     return view('dashboard');

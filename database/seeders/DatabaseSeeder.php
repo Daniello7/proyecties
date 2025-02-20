@@ -17,6 +17,8 @@ class DatabaseSeeder extends Seeder
             PersonSeeder::class,
             InternalPersonSeeder::class,
             PersonEntrySeeder::class,
+            KeySeeder::class,
+            KeyControlSeeder::class,
         ]);
     }
 }

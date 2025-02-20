@@ -2,6 +2,7 @@
 
 namespace Database\Factories;
 
+use App\Models\Key;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 /**
@@ -17,7 +18,8 @@ class KeyFactory extends Factory
     public function definition(): array
     {
         return [
-            //
+            'zone' => $this->faker->randomElement(Key::ZONES),
+            'name' => $this->faker->words(asText: true),
         ];
     }
 }
