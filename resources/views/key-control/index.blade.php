@@ -12,9 +12,9 @@
                 </h2>
                 <hr class="mx-2 border-blue-600 dark:border-pink-600 opacity-50">
                 <div class="py-6 flex flex-row gap-4 justify-evenly">
-                    <a href="{{ route('person.create') }}">
+                    <a href="{{ route('key-control.create') }}">
                         <x-option-box>{{ __('New Exit') }} ↑</x-option-box>
-                    </a> <a href="{{ route('person.index') }}">
+                    </a> <a href="{{ route('keys.index') }}">
                         <x-option-box>{{ __('Search for Key') }}</x-option-box>
                     </a>
                 </div>

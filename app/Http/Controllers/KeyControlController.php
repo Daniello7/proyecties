@@ -13,6 +13,7 @@ class KeyControlController extends Controller
 
     public function create()
     {
+        return view('key-control.create');
     }
 
     public function store(Request $request)
