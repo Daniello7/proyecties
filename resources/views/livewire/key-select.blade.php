@@ -6,7 +6,7 @@
         </div>
         <div>
             <x-input-label for="key_id" :value="__('Key')"/>
-            <x-key-select id="key_id" name="key_id" :zone="$zone" class="min-w-max w-64"/>
+            <x-key-select id="key_id" name="key_id" :zone="$zone" wire:model.live="key_id" class="min-w-max w-64"/>
             @if($isForm)
                 <x-input-error :messages="$errors->get('key_id')"/>
             @endif
@@ -26,5 +26,7 @@
             </div>
         @endif
     </div>
-{{--    <livewire:key-control-table/>--}}
+    @if(!$isForm)
+        <livewire:key-control-table :key_id="$key_id"/>
+    @endif
 </div>

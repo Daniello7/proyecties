@@ -28,10 +28,12 @@
                 <td>{{ $keyControl->receiver->name }}</td>
                 <td>{{ $keyControl->entry_time }}</td>
                 <td>{{ $keyControl->comment }}</td>
-                <td class="flex flex-row flex-wrap gap-2 justify-center">
-                    <x-svg.edit-button href="{{ route('key-control.edit', $keyControl->id) }}"/>
-                    <a href="{{ route('key-control.show', ['id' => $keyControl->id]) }}" class="text-white bg-blue-600 text-xl font-serif font-bold px-3 py-[2px] rounded-lg border-2 border-white dark:border-gray-700 hover:ring-4 hover:ring-blue-600 max-h-max transition">
-                        i </a>
+                <td>
+                    <div class="flex flex-row flex-wrap gap-2 justify-center">
+                        <x-svg.edit-button href="{{ route('key-control.edit', $keyControl->id) }}"/>
+                        <a href="{{ route('key-control.show', ['id' => $keyControl->id]) }}" class="text-white bg-blue-600 text-xl font-serif font-bold px-3 py-[2px] rounded-lg border-2 border-white dark:border-gray-700 hover:ring-4 hover:ring-blue-600 max-h-max transition">
+                            i </a>
+                    </div>
                 </td>
             </tr>
         @endforeach

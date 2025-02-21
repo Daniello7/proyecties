@@ -14,10 +14,17 @@ class KeyControlTable extends Component
     public string $sortColumn;
     public string $sortDirection;
     public string $search = '';
+    public int $key_id;
+    protected $listeners = ['keyUpdated' => 'updateKeyId'];
 
     public function mount()
     {
         $this->configureKeyControlIndexView();
+    }
+
+    public function updateKeyId($newKeyId)
+    {
+        $this->key_id = $newKeyId;
     }
 
     public function configureKeyControlIndexView()
@@ -52,7 +59,8 @@ class KeyControlTable extends Component
             ->join('keys as key', 'key.id', '=', 'key_controls.key_id')
             ->join('people as person', 'person.id', '=', 'key_controls.person_id')
             ->join('users as deliver', 'deliver.id', '=', 'key_controls.deliver_user_id')
-            ->join('users as receiver', 'receiver.id', '=', 'key_controls.receiver_user_id');
+            ->join('users as receiver', 'receiver.id', '=', 'key_controls.receiver_user_id')
+            ->whereNotNull('entry_time');
 
         $this->applySearchFilter($query);
 
@@ -60,10 +68,12 @@ class KeyControlTable extends Component
             $query->orderBy($this->sortColumn, $this->sortDirection);
         }
 
-        return $query
-            ->whereNotNull('entry_time')
-            ->where('entry_time', '>=', now()->subMonths(2))
-            ->get();
+        if (isset($this->key_id)) {
+            $query->where('key.id', $this->key_id);
+        } else {
+            $query->where('entry_time', '>=', now()->subMonths(2));
+        }
+        return $query->get();
     }
 
     public function applySearchFilter($query)
@@ -71,7 +81,7 @@ class KeyControlTable extends Component
         if (!$this->search) return;
 
         $query->where(function ($q) {
-            foreach ($this->columnMap as $key => $column) {
+            foreach ($this->columnMap as $column) {
                 if ($column) {
                     $q->orWhere($column, 'LIKE', "%{$this->search}%");
                 }
