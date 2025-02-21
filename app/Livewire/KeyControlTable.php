@@ -23,7 +23,7 @@ class KeyControlTable extends Component
     public function configureKeyControlIndexView()
     {
         $this->columns = ['Key', 'Person', 'Deliver', 'Exit', 'Receiver', 'Entry', 'Comment', 'Actions'];
-        $this->select = ['id', 'key_id', 'person_id', 'deliver_user_id', 'exit_time', 'receiver_user_id', 'entry_time', 'comment'];
+        $this->select = ['*'];
         $this->columnMap = [
             'Key' => 'key.name',
             'Person' => 'person.name',
@@ -48,14 +48,21 @@ class KeyControlTable extends Component
     {
         $query = KeyControl::query()
             ->with($this->relations)
-            ->select($this->select);
+            ->select($this->select)
+            ->join('keys as key', 'key.id', '=', 'key_controls.key_id')
+            ->join('people as person', 'person.id', '=', 'key_controls.person_id')
+            ->join('users as deliver', 'deliver.id', '=', 'key_controls.deliver_user_id')
+            ->join('users as receiver', 'receiver.id', '=', 'key_controls.receiver_user_id');
 
         $this->applySearchFilter($query);
+
+        if ($this->sortColumn) {
+            $query->orderBy($this->sortColumn, $this->sortDirection);
+        }
 
         return $query
             ->whereNotNull('entry_time')
             ->where('entry_time', '>=', now()->subMonths(2))
-            ->orderBy($this->sortColumn, $this->sortDirection)
             ->get();
     }
 

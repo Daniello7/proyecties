@@ -21,7 +21,7 @@
         <tbody class="[&_td:first-child]:rounded-l-lg [&_td:last-child]:rounded-r-lg *:transition-colors">
         @foreach($rows as $keyControl)
             <tr class="shadow-md bg-white dark:bg-gray-700 rounded-lg text-center *:p-2">
-                <td>{{ array_search($keyControl->key->zone, \App\Models\Key::ZONES). ' - ' .$keyControl->key->name }}</td>
+                <td>{{ (array_search($keyControl->key->zone, \App\Models\Key::ZONES)+1). '. ' .$keyControl->key->name }}</td>
                 <td>{{ $keyControl->person->name. ' '.$keyControl->person->last_name }}</td>
                 <td>{{ $keyControl->deliver->name }}</td>
                 <td>{{ $keyControl->exit_time }}</td>
