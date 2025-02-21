@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\KeyControl\StoreKeyControlRequest;
+use App\Models\KeyControl;
 use Illuminate\Http\Request;
 
 class KeyControlController extends Controller
@@ -16,8 +18,15 @@ class KeyControlController extends Controller
         return view('key-control.create');
     }
 
-    public function store(Request $request)
+    public function store(StoreKeyControlRequest $request)
     {
+        $data = $request->validated();
+        $data['deliver_user_id'] = auth()->user()->id;
+        $data['exit_time'] = now();
+
+        KeyControl::create($data);
+
+        return to_route('control-access');
     }
 
     public function show($id)

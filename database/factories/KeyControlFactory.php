@@ -20,15 +20,17 @@ class KeyControlFactory extends Factory
      */
     public function definition(): array
     {
+        $receiver = $this->faker->randomElement(array_merge([null],
+            array_fill(0, 20, User::inRandomOrder()->firstOrFail()->id)));
+
         return [
             'key_id' => Key::inRandomOrder()->firstOrFail()->id,
             'person_id' => Person::inRandomOrder()->firstOrFail()->id,
             'deliver_user_id' => User::inRandomOrder()->firstOrFail()->id,
-            'receiver_user_id' => User::inRandomOrder()->firstOrFail()->id,
+            'receiver_user_id' => $receiver,
             'comment' => $this->faker->randomElement([null, $this->faker->realTextBetween(20, 40)]),
             'exit_time' => $this->randomDateTime(),
-            'entry_time' => $this->faker->randomElement(array_merge([null],
-                array_fill(0, 20, $this->randomDateTime())))
+            'entry_time' => $receiver == null ? null : $this->randomDateTime(),
         ];
     }
 

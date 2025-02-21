@@ -27,7 +27,9 @@
         <legend class="font-bold italic text-blue-700 dark:text-violet-500 text-xl ml-4 px-2">{{ __('Form') }}</legend>
         <div>
             <x-input-label for="internal_person_id" :value="__('Contact')"/>
-            <x-person-select id="internal_person_id" name="internal_person_id" :old-contact="old('internal_person_id', $lastEntry->internal_person_id ?? '')" class="block w-full mt-1"/>
+            <x-person-select id="internal_person_id" name="internal_person_id" :old-contact="old('internal_person_id', $lastEntry->internal_person_id ?? '')" class="block w-full mt-1">
+                {{ __('Select a contact') }}
+            </x-person-select>
             <x-input-error :messages="$errors->get('internal_person_id')"/>
             <div class="mt-4">
                 <input id="notify" name="notify" type="checkbox" class="cursor-pointer rounded hover:ring-2 dark:checked:bg-blue-600 dark:bg-transparent dark:border-gray-500"/>

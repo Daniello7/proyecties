@@ -30,9 +30,10 @@ Route::get('/package', [PackageController::class, 'index'])->name('package');
 
 Route::get('/key-control/keys', [KeyController::class, 'index'])->name('keys.index');
 
-route::resource('/key-control', KeyControlController::class)
+Route::resource('/key-control', KeyControlController::class)
     ->names(['index' => 'key-control'])
     ->parameters(['key-control' => 'id']);
+
 
 
 Route::get('/dashboard', function () {

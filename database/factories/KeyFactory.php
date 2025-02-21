@@ -19,7 +19,7 @@ class KeyFactory extends Factory
     {
         return [
             'zone' => $this->faker->randomElement(Key::ZONES),
-            'name' => $this->faker->words(asText: true),
+            'name' => $this->faker->words(random_int(2, 3), true),
         ];
     }
 }

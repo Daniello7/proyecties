@@ -19,7 +19,7 @@ return new class extends Migration {
             $table->foreignIdFor(Key::class);
             $table->foreignIdFor(Person::class);
             $table->foreignIdFor(User::class, 'deliver_user_id');
-            $table->foreignIdFor(User::class, 'receiver_user_id');
+            $table->foreignIdFor(User::class, 'receiver_user_id')->nullable()->default(null);
             $table->string('comment')->nullable();
             $table->timestamp('exit_time');
             $table->timestamp('entry_time')->nullable();
