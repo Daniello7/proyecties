@@ -4,12 +4,13 @@ namespace App\Livewire;
 
 use Livewire\Component;
 
-class KeyControlCreate extends Component
+class KeySelect extends Component
 {
     public string $zone = '';
+    public bool $isForm = false;
 
     public function render()
     {
-        return view('livewire.key-control-create');
+        return view('livewire.key-select');
     }
 }

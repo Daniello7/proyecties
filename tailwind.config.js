@@ -91,7 +91,18 @@ export default {
             '.gradient-border:hover::before': {
                 filter: 'blur(10px)',
                 opacity: '0.8',
-            }
+            },
+            '.scrollbar-custom::-webkit-scrollbar': {
+                width: '15px',
+            },
+            '.scrollbar-custom::-webkit-scrollbar-track': {
+                backgroundColor: 'transparent',
+            },
+            '.scrollbar-custom::-webkit-scrollbar-thumb': {
+                backgroundImage: 'linear-gradient(to bottom, #2563eb, #10b981)',
+                borderRadius: '10px',
+                '@apply dark:bg-gradient-to-b dark:from-violet-600 dark:to-pink-600': {},
+            },
         });
     }],
 };

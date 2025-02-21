@@ -12,7 +12,7 @@
                 </h2>
                 <hr class="mx-2 border-blue-600 dark:border-pink-600 opacity-50">
                 <form action="{{ route('key-control.store') }}" method="post" class="p-8">
-                    <livewire:key-control-create/>
+                    <livewire:key-select :is-form="true"/>
                     <x-primary-button type="submit" class="mt-4">{{ __('Save') }}</x-primary-button>
                     @csrf
                 </form>
