@@ -8,7 +8,11 @@
         </div>
         <div class="flex flex-row gap-2">
             <h3 class="font-bold text-blue-600 dark:text-pink-500">{{ __('Name') }}:</h3>
-            <p>{{ $person->name.' '.$person->last_name }}</p>
+            <p>{{ $person->name }}</p>
+        </div>
+        <div class="flex flex-row gap-2">
+            <h3 class="font-bold text-blue-600 dark:text-pink-500">{{ __('Last Name') }}:</h3>
+            <p>{{ $person->last_name }}</p>
         </div>
         <div class="flex flex-row gap-2">
             <h3 class="font-bold text-blue-600 dark:text-pink-500">{{ __('Company') }}:</h3>

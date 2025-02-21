@@ -14,7 +14,11 @@
         </div>
         <div class="flex gap-2">
             <h3 class="font-bold text-blue-600 dark:text-pink-500">{{ __('Name') }}:</h3>
-            <p class="inline-block">{{ $person->name.' '.$person->last_name }}</p><br>
+            <p class="inline-block">{{ $person->name }}</p><br>
+        </div>
+        <div class="flex gap-2">
+            <h3 class="font-bold text-blue-600 dark:text-pink-500">{{ __('Last Name') }}:</h3>
+            <p class="inline-block">{{ $person->last_name }}</p><br>
         </div>
         <div class="flex gap-2">
             <h3 class="font-bold text-blue-600 dark:text-pink-500">{{ __('Company') }}:</h3>
