@@ -19,6 +19,7 @@ class DatabaseSeeder extends Seeder
             PersonEntrySeeder::class,
             KeySeeder::class,
             KeyControlSeeder::class,
+            PackageSeeder::class,
         ]);
     }
 }

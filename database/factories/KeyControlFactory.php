@@ -20,8 +20,7 @@ class KeyControlFactory extends Factory
      */
     public function definition(): array
     {
-        $receiver = $this->faker->randomElement(array_merge([null],
-            array_fill(0, 20, User::inRandomOrder()->firstOrFail()->id)));
+        $receiver = random_int(0, 30) == 0 ? null : User::inRandomOrder()->firstOrFail()->id;
 
         return [
             'key_id' => Key::inRandomOrder()->firstOrFail()->id,

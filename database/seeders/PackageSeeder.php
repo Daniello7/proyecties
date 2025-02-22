@@ -2,13 +2,13 @@
 
 namespace Database\Seeders;
 
-use App\Models\KeyControl;
+use App\Models\Package;
 use Illuminate\Database\Seeder;
 
-class KeyControlSeeder extends Seeder
+class PackageSeeder extends Seeder
 {
     public function run(): void
     {
-        KeyControl::factory(500)->create();
+        Package::factory(500)->create();
     }
 }
