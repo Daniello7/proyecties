@@ -1,9 +1,8 @@
-<div>
-    <h2 class="text-xl font-semibold p-4 custom-gradient-text uppercase">
-        {{ __((request()->routeIs('person.edit')) ? 'Edit Person' :'New External Person').old('name', isset($person->name) ? " - $person->name" : '' ) }}
-    </h2>
-    <hr class="mx-2 border-blue-600 dark:border-pink-600 opacity-50">
-</div>
+@if(request()->routeIs('person.edit'))
+    <x-header :content="__('Edit Person'.old('name', isset($person->name) ? ' - '.$person->name : '' ))"/>
+@else
+    <x-header :content="__('New External Person').old('name', isset($person->name) ? ' - '.$person->name : '' )"/>
+@endif
 <div class="flex flex-row flex-wrap justify-evenly gap-8 *:flex-1 shadow-md dark:bg-gray-700 p-4 my-8 mx-12 rounded-lg">
     <div class="min-w-60 max-w-72">
         <x-input-label for="document_number" :value="'DNI/NIE'"/>

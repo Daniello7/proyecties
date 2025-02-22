@@ -1,9 +1,4 @@
-<div>
-    <h2 class="text-xl font-semibold p-4 custom-gradient-text uppercase">
-        {{ __('New Entry').' - '. $person->name.' '.$person->last_name }}
-    </h2>
-    <hr class="mx-2 border-blue-600 dark:border-pink-600 opacity-50">
-</div>
+<x-header :content="__('New Entry').' - '. $person->name.' '.$person->last_name"/>
 <div class="flex flex-col gap-4 mb-2 p-6">
     {{-- Person Info --}}
     <fieldset class="flex flex-row flex-wrap gap-8 flex-1 border shadow-md dark:bg-gray-900 dark:border-gray-700 p-2 rounded-lg">

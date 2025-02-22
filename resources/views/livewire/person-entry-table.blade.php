@@ -1,10 +1,5 @@
 <div class="w-full">
-    <div class="flex flex-row justify-between">
-        <h2 class="text-xl font-bold p-4 custom-gradient-text uppercase">
-            {{ $header }}
-        </h2>
-    </div>
-    <hr class="mx-2 border-blue-600 dark:border-pink-600 opacity-50">
+    <x-header :content="$header"/>
     <div class="flex flex-row justify-between px-8 py-2">
         <div>
             <label for="search" class="text-blue-600 dark:text-pink-500 font-bold">{{ __('Filter') }}:</label>
