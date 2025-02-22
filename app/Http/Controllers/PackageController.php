@@ -8,11 +8,17 @@ class PackageController extends Controller
 {
     public function index()
     {
-        
+        return view('packages.index');
     }
 
     public function create()
     {
+        return view('packages.create');
+    }
+
+    public function createExit()
+    {
+        return view('packages.createExit');
     }
 
     public function store(Request $request)

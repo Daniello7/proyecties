@@ -17,7 +17,7 @@ Route::get('/', function () {
 Route::get('/control-access', ControlAccessController::class)->name('control-access');
 
 Route::resource('/person-entries', PersonEntryController::class)
-    ->names(['index' => 'person-entries'])
+    ->name('index', 'person-entries')
     ->parameters(['person-entries' => 'id']);
 
 Route::resource('/person', PersonController::class)
@@ -25,12 +25,15 @@ Route::resource('/person', PersonController::class)
 
 Route::get('/internal-person', [InternalPersonController::class, 'index'])->name('internal-person');
 
-Route::get('/package', [PackageController::class, 'index'])->name('package');
+Route::get('/packages/create2', [PackageController::class, 'createExit'])->name('packages.createExit');
+Route::resource('/packages', PackageController::class)
+    ->name('index', 'packages')
+    ->parameters(['packages' => 'id']);
 
 Route::get('/key-control/keys', [KeyController::class, 'index'])->name('keys.index');
 
 Route::resource('/key-control', KeyControlController::class)
-    ->names(['index' => 'key-control'])
+    ->name('index', 'key-control')
     ->parameters(['key-control' => 'id']);
 
 

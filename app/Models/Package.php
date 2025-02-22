@@ -4,11 +4,15 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
 class Package extends Model
 {
     /** @use HasFactory<\Database\Factories\PackageFactory> */
     use HasFactory;
+
+    protected $fillable = ['agency', 'package_count', 'external_entity', 'receiver_user_id',
+        'deliver_user_id', 'internal_person_id', 'collected_by', 'entry_time', 'exit_time', 'comment'];
 
     const AGENCIES = [
         'AZKAR',
@@ -48,5 +52,18 @@ class Package extends Model
         'ZELERIS'
     ];
 
+    public function internalPerson(): BelongsTo
+    {
+        return $this->belongsTo(InternalPerson::class);
+    }
 
+    public function receiver(): BelongsTo
+    {
+        return $this->belongsTo(User::class, 'receiver_user_id');
+    }
+
+    public function deliver(): BelongsTo
+    {
+        return $this->belongsTo(User::class, 'deliver_user_id');
+    }
 }

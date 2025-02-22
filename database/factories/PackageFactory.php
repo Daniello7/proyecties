@@ -30,14 +30,17 @@ class PackageFactory extends Factory
             'receiver_user_id' => User::inRandomOrder()->firstOrFail()->id,
             'deliver_user_id' => $deliver,
             'internal_person_id' => InternalPerson::inRandomOrder()->firstOrFail()->id,
+            'retired_by' => $deliver == null ? null : join(' ',
+                InternalPerson::with('person')->inRandomOrder()->firstOrFail()->person->only(['name', 'last_name'])),
             'entry_time' => $this->randomDateTime(),
             'exit_time' => $deliver == null ? null : $this->randomDateTime(),
+            'comment' => random_int(0, 1) == 0 ? null : $this->faker->realTextBetween(20, 40),
         ];
     }
 
     public function randomDateTime()
     {
-        $date = $this->faker->dateTimeBetween('-15 years', 'now', 'UTC');
+        $date = $this->faker->dateTimeBetween('-3 years', 'now', 'UTC');
         $exit_time = Carbon::instance($date);
 
         return $exit_time->format('Y-m-d H:i:s');

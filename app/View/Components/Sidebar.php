@@ -16,7 +16,7 @@ class Sidebar extends Component
             ['name' => 'Home', 'url' => 'control-access'],
             ['name' => 'External Staff', 'url' => 'person-entries'],
             ['name' => 'Internal Staff', 'url' => 'internal-person'],
-            ['name' => 'Package', 'url' => 'package'],
+            ['name' => 'Package', 'url' => 'packages'],
             ['name' => 'Key control', 'url' => 'key-control'],
             ['name' => 'Log Out', 'url' => 'logout'],
         ];

@@ -35,7 +35,7 @@ class KeyControlFactory extends Factory
 
     public function randomDateTime()
     {
-        $date = $this->faker->dateTimeBetween('-15 years', 'now', 'UTC');
+        $date = $this->faker->dateTimeBetween('-3 years', 'now', 'UTC');
         $exit_time = Carbon::instance($date);
 
         return $exit_time->format('Y-m-d H:i:s');
