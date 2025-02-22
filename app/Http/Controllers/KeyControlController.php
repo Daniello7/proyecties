@@ -26,7 +26,7 @@ class KeyControlController extends Controller
 
         KeyControl::create($data);
 
-        return to_route('control-access');
+        return to_route('control-access')->with('status', __('messages.key-control_created'));
     }
 
     public function show($id)
