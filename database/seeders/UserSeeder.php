@@ -9,12 +9,18 @@ class UserSeeder extends Seeder
 {
     public function run(): void
     {
-        User::factory()->create([
-            'name' => 'Test User',
-            'email' => 'test@mail.es',
-            'password' => bcrypt('123'),
-        ]);
+        $roles = ['tester', 'admin', 'client', 'porter', 'rrhh'];
 
-        User::factory(50)->create();
+        foreach ($roles as $role) {
+            $user = User::create([
+                'name' => ucfirst($role) . ' User',
+                'email' => $role . '@test.com',
+                'password' => bcrypt($role . '123'),
+            ]);
+
+            $user->assignRole($role);
+        }
+
+        User::factory(20)->create();
     }
 }
