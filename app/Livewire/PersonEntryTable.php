@@ -5,6 +5,7 @@ namespace App\Livewire;
 use App\Models\Person;
 use App\Models\PersonEntry;
 use Carbon\Carbon;
+use Illuminate\Pagination\LengthAwarePaginator;
 use Livewire\Component;
 use Livewire\WithPagination;
 
@@ -23,14 +24,14 @@ class PersonEntryTable extends Component
     public int $person_id;
     public string $search = '';
 
-    public function mount(string $info = '', int $person_id = 0)
+    public function mount(string $info = '', int $person_id = 0): void
     {
         $this->person_id = $person_id;
         $this->info = $info;
         $this->applyTableConfiguration();
     }
 
-    public function applyTableConfiguration()
+    public function applyTableConfiguration(): void
     {
         // Default configuration
         $this->configureActiveEntriesView();
@@ -45,7 +46,7 @@ class PersonEntryTable extends Component
         }
     }
 
-    public function configureActiveEntriesView()
+    public function configureActiveEntriesView(): void
     {
         $this->columns = ['Name', 'Company', 'Contact', 'Comment', 'Actions'];
         $this->select = [
@@ -71,7 +72,7 @@ class PersonEntryTable extends Component
         ];
     }
 
-    private function configureLastEntriesView()
+    private function configureLastEntriesView(): void
     {
         $this->columns[3] = 'Latest Visit';
         $this->select[3] = 'exit_time';
@@ -84,7 +85,7 @@ class PersonEntryTable extends Component
         array_pop($this->relations);
     }
 
-    private function configurePersonEntriesView()
+    private function configurePersonEntriesView(): void
     {
         array_splice($this->columns, 0, 2);
         array_splice($this->columns, 1, 0, ['Reason', 'Porter', 'Arrival', 'Entry', 'Exit']);
@@ -101,7 +102,7 @@ class PersonEntryTable extends Component
         array_splice($this->columnMap, 0, 2);
     }
 
-    public function sortBy($column)
+    public function sortBy($column): void
     {
         if (!$this->columnMap[$column]) return;
 
@@ -115,7 +116,7 @@ class PersonEntryTable extends Component
         }
     }
 
-    private function getEntries()
+    private function getEntries(): LengthAwarePaginator
     {
         if ($this->info === 'latest_entries')
             return $this->getLatestEntries();
@@ -126,7 +127,7 @@ class PersonEntryTable extends Component
         return $this->getActiveEntries();
     }
 
-    private function getActiveEntries()
+    private function getActiveEntries(): LengthAwarePaginator
     {
         $externalPeople = Person::query()
             ->select('id')
@@ -150,7 +151,7 @@ class PersonEntryTable extends Component
             ->paginate(50);
     }
 
-    private function getLatestEntries()
+    private function getLatestEntries(): LengthAwarePaginator
     {
         $externalPeople = Person::query()
             ->select('id')
@@ -179,7 +180,7 @@ class PersonEntryTable extends Component
             ->paginate(20);
     }
 
-    private function getPersonEntries()
+    private function getPersonEntries(): LengthAwarePaginator
     {
         $query = PersonEntry::query()
             ->with($this->relations)
@@ -198,12 +199,12 @@ class PersonEntryTable extends Component
             ->paginate(20);
     }
 
-    public function applySearchFilter($query)
+    public function applySearchFilter($query): void
     {
         if (!$this->search) return;
 
         $query->where(function ($q) {
-            foreach ($this->columnMap as $key => $column) {
+            foreach ($this->columnMap as $column) {
                 if ($column) {
                     $q->orWhere($column, 'LIKE', "%{$this->search}%");
                 }
@@ -211,7 +212,7 @@ class PersonEntryTable extends Component
         });
     }
 
-    public function updateEntry(int $id)
+    public function updateEntry(int $id): void
     {
         $personEntry = PersonEntry::find($id);
 
@@ -220,7 +221,7 @@ class PersonEntryTable extends Component
         session()->flash('success', 'Entry updated successfully.');
     }
 
-    public function updateExit(int $id)
+    public function updateExit(int $id): void
     {
         $personEntry = PersonEntry::find($id);
 
@@ -229,7 +230,7 @@ class PersonEntryTable extends Component
         session()->flash('success', 'Exit updated successfully.');
     }
 
-    public function destroyPersonEntry(int $id)
+    public function destroyPersonEntry(int $id): void
     {
         PersonEntry::destroy($id);
         session()->flash('success', 'Person entry deleted.');

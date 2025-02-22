@@ -7,12 +7,13 @@
         </div>
         <x-session-status :status="session('success')" class="p-1"/>
     </div>
+    <hr class="mx-2 border-blue-600 dark:border-pink-600 opacity-50">
     <div class="h-[600px] overflow-hidden overflow-y-scroll scrollbar-custom px-4">
-        <table class="border-separate border-spacing-y-2 text-xs sm:text-sm md:text-base w-full">
+        <table class="border-separate border-spacing-y-2 text-xs sm:text-sm {{ $info ? 'md:text-base' : '' }} w-full">
             <thead class="[&_th:first-child]:rounded-l-lg [&_th:last-child]:rounded-r-lg">
             <tr class="*:cursor-pointer *:transition-colors">
                 @foreach($columns as $col)
-                    <th wire:click="sortBy('{{ $col }}')" class="p-2 uppercase select-none text-white bg-blue-600 hover:bg-gradient-to-r from-blue-600 via-emerald-600 to-blue-600 dark:bg-violet-600 dark:from-violet-600 dark:via-pink-600 dark:to-violet-600 min-w-fit w-[10%]">
+                    <th wire:click="sortBy('{{ $col }}')" class="py-2 px-1 uppercase select-none text-white bg-blue-600 hover:bg-gradient-to-r from-blue-600 via-emerald-600 to-blue-600 dark:bg-violet-600 dark:from-violet-600 dark:via-pink-600 dark:to-violet-600 min-w-fit w-[10%]">
                         {{ __($col) }}
                         @if($sortColumn == $columnMap[$col])
                             {{ $sortDirection === 'asc' ? '↑' : '↓' }}
@@ -23,7 +24,7 @@
             </thead>
             <tbody class="[&_td:first-child]:rounded-l-lg [&_td:last-child]:rounded-r-lg *:transition-colors">
             @foreach($rows as $personEntry)
-                <tr class="{{ isset($personEntry->exit_time) ?: 'ring-1 '. ($personEntry->entry_time != null ? 'ring-emerald-600':'ring-rose-600') }} shadow-md bg-white dark:bg-gray-700 rounded-lg text-center *:p-2">
+                <tr class="{{ isset($personEntry->exit_time) ?: 'ring-1 '. ($personEntry->entry_time != null ? 'ring-emerald-600':'ring-rose-600') }} shadow-md bg-white dark:bg-gray-700 rounded-lg text-center *:py-2 *:px-1">
                     <!-- Fields -->
                     @if($info === 'latest_entries')
                         <td>{{ $personEntry->person->document_number }}</td>
@@ -76,6 +77,7 @@
             </tbody>
         </table>
     </div>
+    <hr class="mx-2 border-blue-600 dark:border-pink-600 opacity-50">
     @if($rows instanceof \Illuminate\Pagination\Paginator || $rows instanceof \Illuminate\Pagination\LengthAwarePaginator)
         <div class="pt-4 mx-8 [&_*]:text-blue-600 dark:[&_*]:text-pink-500">
             {{ $rows->links() }}

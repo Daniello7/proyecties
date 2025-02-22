@@ -93,7 +93,7 @@ export default {
                 opacity: '0.8',
             },
             '.scrollbar-custom::-webkit-scrollbar': {
-                width: '15px',
+                width: '12px',
             },
             '.scrollbar-custom::-webkit-scrollbar-track': {
                 backgroundColor: 'transparent',
