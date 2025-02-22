@@ -57,25 +57,31 @@ class PackagesTable extends Component
 
     public function configurePackageHomeView(): void
     {
-//        $this->columns = ['Person', 'Key', 'Comment', 'Actions'];
-//        $this->select = [
-//            'packages.id',
-//            'packages.person_id',
-//            'packages.key_id',
-//            'packages.comment',
-//        ];
-//        $this->columnMap = [
-//            'Key' => 'key.name',
-//            'Person' => 'person.name',
-//            'Comment' => null,
-//            'Actions' => null
-//        ];
-//        $this->relations = [
-//            'key',
-//            'person:id,name,last_name',
-//        ];
-//        $this->sortColumn = 'packages.created_at';
-//        $this->sortDirection = 'asc';
+        $this->columns = ['Type', 'Agency', 'Sender', 'Destination', 'Entry', 'Comment', 'Actions'];
+        $this->select = [
+            'packages.id',
+            'packages.type',
+            'packages.agency',
+            'packages.external_entity',
+            'packages.internal_person_id',
+            'packages.entry_time',
+            'packages.comment',
+        ];
+        $this->columnMap = [
+            'Type' => 'type',
+            'Agency' => 'agency',
+            'Entry' => 'entry_time',
+            'Sender' => null,
+            'Destination' => null,
+            'Comment' => null,
+            'Actions' => null
+        ];
+        $this->relations = [
+            'internalPerson:id,person_id',
+            'internalPerson.person:id,name,last_name',
+        ];
+        $this->sortColumn = 'packages.type';
+        $this->sortDirection = 'asc';
     }
 
     public function getPackageIndexView(): LengthAwarePaginator // Últimos registros
@@ -86,13 +92,12 @@ class PackagesTable extends Component
             ->join('internal_people as internalPerson', 'internalPerson.id', '=', 'packages.internal_person_id')
             ->join('people as internalPersonPerson', 'internalPersonPerson.id', '=', 'internalPerson.person_id')
             ->join('users as receiver', 'receiver.id', '=', 'packages.receiver_user_id')
-            ->join('users as deliver', 'deliver.id', '=', 'packages.deliver_user_id');
-
+            ->join('users as deliver', 'deliver.id', '=', 'packages.deliver_user_id')
+            ->whereNotNull('exit_time');
 
         $this->applySearchFilter($query);
 
-        return $query->orderBy($this->sortColumn, $this->sortDirection)
-            ->whereNotNull('exit_time')->paginate(50);
+        return $query->orderBy($this->sortColumn, $this->sortDirection)->paginate(50);
     }
 
     public function getPackageHomeView(): Collection // Paquetes en portería
@@ -100,6 +105,8 @@ class PackagesTable extends Component
         $query = Package::query()
             ->with($this->relations)
             ->select($this->select)
+            ->join('internal_people as internalPerson', 'internalPerson.id', '=', 'packages.internal_person_id')
+            ->join('people as internalPersonPerson', 'internalPersonPerson.id', '=', 'internalPerson.person_id')
             ->whereNull('exit_time');
 
         $this->applySearchFilter($query);
@@ -144,9 +151,9 @@ class PackagesTable extends Component
 
     public function updatePackage($id): void
     {
-        $keyControl = Package::findOrFail($id);
+        $package = Package::findOrFail($id);
 
-        $keyControl->update([
+        $package->update([
             'entry_time' => now(),
             'receiver_user_id' => auth()->user()->id,
         ]);
@@ -156,9 +163,9 @@ class PackagesTable extends Component
 
     public function deletePackage($id): void
     {
-        $keyControl = Package::findorFail($id);
+        $package = Package::findorFail($id);
 
-        $keyControl->delete();
+        $package->delete();
 
         session()->flash('key-status', __('messages.key-control_deleted'));
     }

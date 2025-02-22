@@ -3,7 +3,7 @@
     <div class="flex flex-row justify-between px-8 py-2">
         <div>
             <label for="search" class="text-blue-600 dark:text-pink-500 font-bold">{{ __('Search') }}:</label>
-            <x-text-input type="search" id="search" name="search" class="p-1" wire:model.live.debounce.300ms="search"/>
+            <x-text-input type="search" :placeholder="__('Search').' . . .'" class="p-1" wire:model.live.debounce.300ms="search"/>
         </div>
         <x-session-status flash="success" class="p-1"/>
     </div>

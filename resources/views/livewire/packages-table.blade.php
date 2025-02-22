@@ -2,7 +2,7 @@
     <div class="flex flex-col justify-between p-2">
         <div class="flex flex-row justify-between">
             <div>
-                <label for="search" class="text-blue-600 dark:text-pink-500 font-bold">{{ __('Search') }}:</label>
+                <label for="search_package" class="text-blue-600 dark:text-pink-500 font-bold">{{ __('Search').':' }}</label>
                 <x-text-input type="search" class="p-1" :placeholder="__('Search').' . . .'" wire:model.live.debounce.300ms="search"/>
             </div>
             <x-session-status flash="package-status" class="py-1"/>
@@ -32,20 +32,22 @@
                     <td>{{ $package->external_entity }}</td>
                     <td>{{ $package->internalPerson->person->name. ' ' .$package->internalPerson->person->last_name }}</td>
                     <td>{{ $package->entry_time }}</td>
-                    <td>{{ $package->receiver->name }}</td>
-                    <td>{{ $package->exit_time }}</td>
-                    <td>{{ $package->deliver->name }}</td>
-                    <td>{{ $package->package_count }}</td>
-                    <td>{{ $package->retired_by }}</td>
+                    @if(!$isHomeView)
+                        <td>{{ $package->receiver->name }}</td>
+                        <td>{{ $package->exit_time }}</td>
+                        <td>{{ $package->deliver->name }}</td>
+                        <td>{{ $package->package_count }}</td>
+                        <td>{{ $package->retired_by }}</td>
+                    @endif
                     <td>{{ $package->comment }}</td>
                     <!-- Actions -->
                     <td>
                         <div class="flex flex-row flex-wrap gap-2 justify-center">
                             @if($isHomeView)
-                                <x-svg.arrow-down-button wire:click="updateKeyControlRecord({{ $package->id }})"/>
-                                <x-svg.delete-button wire:click="deleteKeyControlRecord({{ $package->id }})"/>
+                                <x-svg.arrow-down-button wire:click="updatePackageRecord({{ $package->id }})"/>
+                                <x-svg.delete-button wire:click="deletePackageRecord({{ $package->id }})"/>
                             @else
-                                <x-svg.edit-button href="{{ route('key-control.edit', $package->id) }}"/>
+                                <x-svg.edit-button href="{{ route('packages.edit', $package->id) }}"/>
                             @endif
                         </div>
                     </td>
