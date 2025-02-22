@@ -4,11 +4,7 @@
             <label for="search" class="text-blue-600 dark:text-pink-500 font-bold">{{ __('Filter') }}:</label>
             <x-text-input type="search" id="search" name="search" class="p-1" wire:model.live.debounce.300ms="search"/>
         </div>
-        @if(session()->has('success'))
-            <div class="alert alert-success p-1 rounded custom-gradient-text font-bold">
-                {{ session('success') }}
-            </div>
-        @endif
+        <x-session-status :status="session('success')" class="p-1"/>
     </div>
     <div class="h-[600px] overflow-hidden overflow-y-scroll scrollbar-custom px-4">
         <table class="border-separate border-spacing-y-2 text-xs sm:text-sm md:text-base w-full">

@@ -35,7 +35,7 @@ class KeyControlController extends Controller
 
     public function edit($id)
     {
-        $keyControl = KeyControl::with(['key','deliver','receiver','person'])->findOrFail($id);
+        $keyControl = KeyControl::with(['key', 'deliver', 'receiver', 'person'])->findOrFail($id);
 
         return view('key-control.edit', compact('keyControl'));
     }
@@ -45,7 +45,7 @@ class KeyControlController extends Controller
         $keyControl = KeyControl::with(['key', 'person', 'deliver', 'receiver'])->findOrFail($id);
         $keyControl->update($request->validated());
 
-        return to_route('control-access')->with('status', 'Key control updated successfully');
+        return to_route('control-access')->with('status', __('messages.key-control_updated'));
     }
 
     public function destroy($id)

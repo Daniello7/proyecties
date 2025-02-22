@@ -53,9 +53,7 @@
                 <x-input-label for="entry_time" :value="__('Entry')"/>
                 <div class="relative">
                     <x-text-input id="entry_time" name="entry_time" type="datetime-local" value="{{ old('entry_time', substr($personEntry->entry_time,0,-3)) }}" class="block w-full mt-1 [appearance:textfield] [&::-webkit-calendar-picker-indicator]:hidden"/>
-                    <svg class="absolute right-3 top-1/2 transform -translate-y-1/2 h-5 w-5 fill-blue-700 dark:fill-pink-600" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20">
-                        <path fill-rule="evenodd" d="M6 2a1 1 0 011 1v1h6V3a1 1 0 112 0v1h1a2 2 0 012 2v10a2 2 0 01-2 2H4a2 2 0 01-2-2V6a2 2 0 012-2h1V3a1 1 0 011-1zm-2 6v8h12V8H4z" clip-rule="evenodd"/>
-                    </svg>
+                    <x-svg.calendar-icon class="absolute right-3 top-1/2 transform -translate-y-1/2"/>
                 </div>
                 <x-input-error :messages="$errors->get('entry_time')"/>
             </div>
@@ -63,9 +61,7 @@
                 <x-input-label for="exit_time" :value="__('Exit')"/>
                 <div class="relative">
                     <x-text-input id="exit_time" name="exit_time" type="datetime-local" value="{{ old('exit_time', substr($personEntry->exit_time,0,-3)) }}" class="block w-full mt-1 [appearance:textfield] [&::-webkit-calendar-picker-indicator]:hidden"/>
-                    <svg class="absolute right-3 top-1/2 transform -translate-y-1/2 h-5 w-5 fill-blue-700 dark:fill-pink-600" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20">
-                        <path fill-rule="evenodd" d="M6 2a1 1 0 011 1v1h6V3a1 1 0 112 0v1h1a2 2 0 012 2v10a2 2 0 01-2 2H4a2 2 0 01-2-2V6a2 2 0 012-2h1V3a1 1 0 011-1zm-2 6v8h12V8H4z" clip-rule="evenodd"/>
-                    </svg>
+                    <x-svg.calendar-icon class="absolute right-3 top-1/2 transform -translate-y-1/2"/>
                 </div>
                 <x-input-error :messages="$errors->get('exit_time')"/>
             </div>

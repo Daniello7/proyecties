@@ -14,7 +14,7 @@
         @if($isForm)
             <div>
                 <x-input-label for="person_id" :value="__('Person')"/>
-                <x-person-select id="person_id" name="person_id" class="min-w-max w-60">
+                <x-person-select :include-external="true" id="person_id" name="person_id" class="min-w-max w-60">
                     {{ __('Select a person') }}
                 </x-person-select>
                 <x-input-error :messages="$errors->get('person_id')"/>
