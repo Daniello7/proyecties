@@ -1,8 +1,8 @@
 <div class="w-full">
-    <div class="flex flex-row justify-between px-8 py-2">
-        <div>
-            <label for="search" class="text-blue-600 dark:text-pink-500 font-bold">{{ __('Filter') }}:</label>
-            <x-text-input type="search" id="search" name="search" class="p-1" wire:model.live.debounce.300ms="search"/>
+    <div class="flex flex-col justify-between p-2">
+        <div class="flex flex-row justify-between">
+            <x-text-input type="search" class="p-1 w-28" :placeholder="__('Search').' . . .'" wire:model.live.debounce.300ms="search"/>
+            <x-session-status flash="key-status" class="py-1"/>
         </div>
     </div>
     <table class="border-separate border-spacing-y-2 text-xs sm:text-sm {{ $isHomeView ? '' : 'md:text-base' }} w-full">
@@ -21,6 +21,7 @@
         <tbody class="[&_td:first-child]:rounded-l-lg [&_td:last-child]:rounded-r-lg *:transition-colors">
         @foreach($rows as $keyControl)
             <tr class="shadow-md bg-white dark:bg-gray-700 rounded-lg text-center *:py-2 *:px-1">
+                <!-- Fields -->
                 <td>{{ $keyControl->person->name. ' '.$keyControl->person->last_name }}</td>
                 @if(!isset($key_id))
                     <td>{{ (array_search($keyControl->key->zone, \App\Models\Key::ZONES)+1). ' - ' .$keyControl->key->name }}</td>
@@ -32,9 +33,15 @@
                     <td>{{ $keyControl->entry_time }}</td>
                 @endif
                 <td>{{ $keyControl->comment }}</td>
+                <!-- Actions -->
                 <td>
                     <div class="flex flex-row flex-wrap gap-2 justify-center">
-                        <x-svg.edit-button href="{{ route('key-control.edit', $keyControl->id) }}"/>
+                        @if($isHomeView)
+                            <x-svg.arrow-down-button wire:click="updateKeyControlRecord({{ $keyControl->id }})"/>
+                            <x-svg.delete-button wire:click="deleteKeyControlRecord({{ $keyControl->id }})"/>
+                        @else
+                            <x-svg.edit-button href="{{ route('key-control.edit', $keyControl->id) }}"/>
+                        @endif
                     </div>
                 </td>
             </tr>

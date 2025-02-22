@@ -39,7 +39,7 @@ class PersonEntryController extends Controller
         PersonEntry::create($data);
 
         return to_route('control-access')
-            ->with('status', 'Entry created successfully');
+            ->with('success', __('messages.person-entry_created'));
     }
 
     public function edit($id)
@@ -54,7 +54,7 @@ class PersonEntryController extends Controller
         $personEntry = PersonEntry::findOrFail($id);
         $personEntry->update($request->validated());
 
-        return to_route('control-access')->with('status', 'Entry updated successfully');
+        return to_route('control-access')->with('status', __('messages.person-entry_updated'));
     }
 
     public function destroy($id)
@@ -62,6 +62,6 @@ class PersonEntryController extends Controller
         PersonEntry::destroy($id);
 
         return to_route('control-access')
-            ->with('status', 'Post deleted successfully');
+            ->with('status', __('messages.person-entry_deleted'));
     }
 }

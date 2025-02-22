@@ -218,7 +218,7 @@ class PersonEntryTable extends Component
 
         $personEntry->update(['entry_time' => Carbon::now()]);
 
-        session()->flash('success', 'Entry updated successfully.');
+        session()->flash('success', __('messages.person-entry_updated'));
     }
 
     public function updateExit(int $id): void
@@ -227,13 +227,13 @@ class PersonEntryTable extends Component
 
         $personEntry->update(['exit_time' => Carbon::now()]);
 
-        session()->flash('success', 'Exit updated successfully.');
+        session()->flash('success', __('messages.person-entry_exited'));
     }
 
     public function destroyPersonEntry(int $id): void
     {
         PersonEntry::destroy($id);
-        session()->flash('success', 'Person entry deleted.');
+        session()->flash('success', __('messages.person-entry_deleted'));
 
     }
 

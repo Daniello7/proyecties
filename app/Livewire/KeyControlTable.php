@@ -78,7 +78,7 @@ class KeyControlTable extends Component
             'key',
             'person:id,name,last_name',
         ];
-        $this->sortColumn = 'person.name';
+        $this->sortColumn = 'key_controls.created_at';
         $this->sortDirection = 'asc';
     }
 
@@ -151,6 +151,27 @@ class KeyControlTable extends Component
             $this->sortColumn = $column;
             $this->sortDirection = 'asc';
         }
+    }
+
+    public function updateKeyControlRecord($id): void
+    {
+        $keyControl = KeyControl::findOrFail($id);
+
+        $keyControl->update([
+            'entry_time' => now(),
+            'receiver_user_id' => auth()->user()->id,
+        ]);
+
+        session()->flash('key-status', __('messages.key-control_updated'));
+    }
+
+    public function deleteKeyControlRecord($id): void
+    {
+        $keyControl = KeyControl::findorFail($id);
+
+        $keyControl->delete();
+
+        session()->flash('key-status', __('messages.key-control_deleted'));
     }
 
     public function render()
