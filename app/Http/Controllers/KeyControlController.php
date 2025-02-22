@@ -3,8 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\KeyControl\StoreKeyControlRequest;
+use App\Http\Requests\KeyControl\UpdateKeyControlRequest;
 use App\Models\KeyControl;
-use Illuminate\Http\Request;
 
 class KeyControlController extends Controller
 {
@@ -35,10 +35,17 @@ class KeyControlController extends Controller
 
     public function edit($id)
     {
+        $keyControl = KeyControl::with(['key','deliver','receiver','person'])->findOrFail($id);
+
+        return view('key-control.edit', compact('keyControl'));
     }
 
-    public function update(Request $request, $id)
+    public function update(UpdateKeyControlRequest $request, $id)
     {
+        $keyControl = KeyControl::with(['key', 'person', 'deliver', 'receiver'])->findOrFail($id);
+        $keyControl->update($request->validated());
+
+        return to_route('control-access')->with('status', 'Key control updated successfully');
     }
 
     public function destroy($id)

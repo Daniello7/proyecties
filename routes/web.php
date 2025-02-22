@@ -16,7 +16,6 @@ Route::get('/', function () {
 
 Route::get('/control-access', ControlAccessController::class)->name('control-access');
 
-
 Route::resource('/person-entries', PersonEntryController::class)
     ->names(['index' => 'person-entries'])
     ->parameters(['person-entries' => 'id']);
@@ -33,7 +32,6 @@ Route::get('/key-control/keys', [KeyController::class, 'index'])->name('keys.ind
 Route::resource('/key-control', KeyControlController::class)
     ->names(['index' => 'key-control'])
     ->parameters(['key-control' => 'id']);
-
 
 
 Route::get('/dashboard', function () {

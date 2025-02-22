@@ -30,7 +30,7 @@ class KeyControlTable extends Component
     public function configureKeyControlIndexView()
     {
         $this->columns = ['Key', 'Person', 'Deliver', 'Exit', 'Receiver', 'Entry', 'Comment', 'Actions'];
-        $this->select = ['*'];
+        $this->select = ['key_controls.*'];
         $this->columnMap = [
             'Key' => 'key.name',
             'Person' => 'person.name',

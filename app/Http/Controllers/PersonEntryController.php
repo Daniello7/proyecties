@@ -44,7 +44,7 @@ class PersonEntryController extends Controller
 
     public function edit($id)
     {
-        $personEntry = PersonEntry::findOrFail($id);
+        $personEntry = PersonEntry::with('internalPerson')->findOrFail($id);
 
         return view('person-entry.edit', compact('personEntry'));
     }
