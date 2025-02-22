@@ -12,11 +12,8 @@
                 </h2>
                 <hr class="mx-2 border-blue-600 dark:border-pink-600 opacity-50">
                 <div class="py-6 flex flex-row gap-4 justify-evenly">
-                    <a href="{{ route('key-control.create') }}">
-                        <x-option-box>{{ __('New Exit') }} ↑</x-option-box>
-                    </a> <a href="{{ route('keys.index') }}">
-                        <x-option-box>{{ __('Search for Key') }}</x-option-box>
-                    </a>
+                    <x-link-box href="{{ route('key-control.create') }}">{{ __('New Exit') }} ↑</x-link-box>
+                    <x-link-box href="{{ route('keys.index') }}">{{ __('Search for Key') }}</x-link-box>
                 </div>
             </section>
             <section class="text-gray-800 dark:text-gray-100 bg-white dark:bg-gray-800 rounded-lg p-2 shadow-lg transition-colors">

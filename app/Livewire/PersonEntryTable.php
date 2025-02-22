@@ -12,6 +12,7 @@ class PersonEntryTable extends Component
 {
     use WithPagination;
 
+    public string $header;
     public array $columns;
     public array $columnMap;
     public array $select;
