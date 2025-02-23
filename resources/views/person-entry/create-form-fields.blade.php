@@ -31,8 +31,8 @@
             </x-person-select>
             <x-input-error :messages="$errors->get('internal_person_id')"/>
             <div class="mt-4">
-                <input id="notify" name="notify" type="checkbox" class="cursor-pointer rounded hover:ring-2 dark:checked:bg-blue-600 dark:bg-transparent dark:border-gray-500"/>
                 <x-input-label for="notify" class="inline-block ml-2">{{ __('Notify Contact') }}</x-input-label>
+                <input id="notify" name="notify" type="checkbox" class="cursor-pointer rounded hover:ring-2 dark:checked:bg-blue-600 dark:bg-transparent dark:border-gray-500"/>
             </div>
         </div>
         <div>
