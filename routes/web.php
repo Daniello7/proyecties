@@ -13,7 +13,15 @@ use Spatie\Permission\Middleware\RoleMiddleware;
 
 Route::get('/', function () {
     return view('welcome');
-});
+})->name('welcome');
+
+Route::get('/about', function () {
+    return view('about');
+})->name('about');
+
+Route::get('/contact', function () {
+    return view('contact');
+})->name('contact');
 
 Route::middleware(RoleMiddleware::using(['porter', 'admin']))->group(function () {
     Route::get('/control-access', ControlAccessController::class)->name('control-access');

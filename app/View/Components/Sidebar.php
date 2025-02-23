@@ -8,17 +8,69 @@ use Illuminate\View\Component;
 
 class Sidebar extends Component
 {
-    public array $links;
-
     public function __construct()
     {
-        $this->links = [
+    }
+
+    public function getLinks(): array
+    {
+        if (!auth()->check()) {
+            return $this->getGuestLinks();
+        }
+
+        $user = auth()->user();
+
+        if ($user->hasRole('admin')) {
+            return [
+                'porter' => $this->getPorterLinks(),
+                'rrhh' => $this->getHRLinks()
+            ];
+        } elseif ($user->hasRole('porter')) {
+            return $this->getPorterLinks();
+
+        } elseif ($user->hasRole('rrhh')) {
+            return $this->getHRLinks();
+        }
+
+        return [];
+    }
+
+    public function getPorterLinks(): array
+    {
+        return [
             ['name' => 'Home', 'url' => 'control-access'],
             ['name' => 'External Staff', 'url' => 'person-entries'],
             ['name' => 'Internal Staff', 'url' => 'internal-person'],
             ['name' => 'Package', 'url' => 'packages'],
             ['name' => 'Key control', 'url' => 'key-control'],
-            ['name' => 'Log Out', 'url' => 'logout'],
+        ];
+    }
+
+    public function getHRLinks(): array
+    {
+        return [
+            ['name' => 'HR', 'url' => 'hr'],
+            ['name' => 'Reports', 'url' => 'reports'],
+            ['name' => 'External Staff', 'url' => 'person-entries'],
+            ['name' => 'Internal Staff', 'url' => 'internal-person'],
+        ];
+    }
+
+    public function getAdminLinks(): array
+    {
+        return [
+            ['name' => 'Admin', 'url' => 'admin'],
+        ];
+    }
+
+    public function getGuestLinks(): array
+    {
+        return [
+            ['name' => 'Home', 'url' => 'welcome'],
+            ['name' => 'About', 'url' => 'about'],
+            ['name' => 'Contact', 'url' => 'contact'],
+            ['name' => 'Log in', 'url' => 'login'],
+            ['name' => 'Register', 'url' => 'register'],
         ];
     }
 
@@ -27,6 +79,6 @@ class Sidebar extends Component
      */
     public function render(): View|Closure|string
     {
-        return view('components.sidebar');
+        return view('components.sidebar', ['links' => $this->getLinks()]);
     }
 }
