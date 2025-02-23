@@ -23,6 +23,8 @@ Route::get('/contact', function () {
     return view('contact');
 })->name('contact');
 
+Route::get('/admin', fn() => view('admin'))->name('admin');
+
 Route::middleware(RoleMiddleware::using(['porter', 'admin', 'rrhh']))->group(function () {
     Route::resource('/person-entries', PersonEntryController::class)
         ->name('index', 'person-entries')

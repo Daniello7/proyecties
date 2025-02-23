@@ -22,6 +22,7 @@ class Sidebar extends Component
 
         if ($user->hasRole('admin')) {
             return [
+                'admin' => $this->getAdminLinks(),
                 'porter' => $this->getPorterLinks(),
                 'rrhh' => $this->getHRLinks()
             ];
