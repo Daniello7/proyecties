@@ -51,7 +51,9 @@
                     <td>
                         <div class="flex flex-row flex-wrap gap-2 justify-center">
                             @if($info)
-                                <x-svg.edit-button href="{{ route('person-entries.edit', $personEntry->id) }}"/>
+                                @can('update',\App\Models\PersonEntry::class)
+                                    <x-svg.edit-button href="{{ route('person-entries.edit', $personEntry->id) }}"/>
+                                @endcan
                             @endif
                             @if(!$info)
                                 @if($personEntry->entry_time == null)

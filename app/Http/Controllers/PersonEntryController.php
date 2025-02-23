@@ -6,8 +6,10 @@ use App\Http\Requests\PersonEntry\StorePersonEntryRequest;
 use App\Http\Requests\PersonEntry\UpdatePersonEntryRequest;
 use App\Models\Person;
 use App\Models\PersonEntry;
+use App\Policies\PersonEntryPolicy;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Gate;
 
 class PersonEntryController extends Controller
 {
@@ -18,6 +20,8 @@ class PersonEntryController extends Controller
 
     public function create(Request $request)
     {
+        Gate::authorize('create', PersonEntryPolicy::class);
+
         $person_id = $request->input('person_id');
 
         $person = Person::with(['personEntries' => function ($query) {
@@ -31,6 +35,7 @@ class PersonEntryController extends Controller
 
     public function store(StorePersonEntryRequest $request)
     {
+        Gate::authorize('create', PersonEntryPolicy::class);
 
         $data = $request->validated();
         $data['user_id'] = auth()->user()->id;
@@ -44,6 +49,8 @@ class PersonEntryController extends Controller
 
     public function edit($id)
     {
+        Gate::authorize('update', PersonEntryPolicy::class);
+
         $personEntry = PersonEntry::with('internalPerson')->findOrFail($id);
 
         return view('person-entry.edit', compact('personEntry'));
@@ -51,6 +58,8 @@ class PersonEntryController extends Controller
 
     public function update(UpdatePersonEntryRequest $request, $id)
     {
+        Gate::authorize('update', PersonEntryPolicy::class);
+
         $personEntry = PersonEntry::findOrFail($id);
         $personEntry->update($request->validated());
 
@@ -59,6 +68,8 @@ class PersonEntryController extends Controller
 
     public function destroy($id)
     {
+        Gate::authorize('delete', PersonEntryPolicy::class);
+
         PersonEntry::destroy($id);
 
         return to_route('control-access')

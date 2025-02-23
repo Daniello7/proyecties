@@ -27,7 +27,7 @@ Route::middleware(RoleMiddleware::using(['porter', 'admin', 'rrhh']))->group(fun
     Route::resource('/person-entries', PersonEntryController::class)
         ->name('index', 'person-entries')
         ->parameters(['person-entries' => 'id']);
-    
+
     Route::get('/internal-person', [InternalPersonController::class, 'index'])->name('internal-person');
 
     Route::resource('/person', PersonController::class)
