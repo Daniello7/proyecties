@@ -4,12 +4,13 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\PersonEntry\StorePersonEntryRequest;
 use App\Http\Requests\PersonEntry\UpdatePersonEntryRequest;
+use App\Mail\NotifyContactMail;
 use App\Models\Person;
 use App\Models\PersonEntry;
-use Barryvdh\DomPDF\Facade\Pdf;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Gate;
+use Illuminate\Support\Facades\Mail;
 
 class PersonEntryController extends Controller
 {
@@ -44,6 +45,14 @@ class PersonEntryController extends Controller
 
         $personEntry = PersonEntry::create($data);
 
+
+        //Send Email
+        if (isset($request['notify'])) {
+
+            Mail::to($personEntry->internalPerson->email)->queue(new NotifyContactMail());
+        }
+
+        // Generate PDF for Reason
         $reason = $request->input('reason');
 
         if ($reason == 'Charge' || $reason == 'Discharge') {
