@@ -1,7 +1,7 @@
 @component('mail::message')
-    # New Package
+    # Welcome
 
-    NEW PACKAGE FOR YOU HAS ARRIVED!
+    WELCOME NEW USER!
 
     @component('mail::button', ['url' => ''])
         Button Text
