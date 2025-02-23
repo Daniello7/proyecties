@@ -44,8 +44,7 @@
                     <td>
                         <div class="flex flex-row flex-wrap gap-2 justify-center">
                             @if($isHomeView)
-                                <x-svg.arrow-down-button wire:click="updatePackageRecord({{ $package->id }})"/>
-                                <x-svg.delete-button wire:click="deletePackageRecord({{ $package->id }})"/>
+                                <x-svg.delete-button wire:click="deletePackage({{ $package->id }})"/>
                             @else
                                 <x-svg.edit-button href="{{ route('packages.edit', $package->id) }}"/>
                             @endif

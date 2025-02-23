@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\StorePackageReceptionRequest;
+use App\Models\Package;
 use Illuminate\Http\Request;
 
 class PackageController extends Controller
@@ -21,8 +23,20 @@ class PackageController extends Controller
         return view('packages.createExit');
     }
 
-    public function store(Request $request)
+    public function store(StorePackageReceptionRequest $request)
     {
+        $data = $request->validated();
+        $data['receiver_user_id'] = auth()->user()->id;
+        $data['entry_time'] = now();
+
+        Package::create($data);
+
+        return to_route('control-access');
+    }
+
+    public function storeExit()
+    {
+
     }
 
     public function show($id)

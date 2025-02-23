@@ -111,7 +111,12 @@ class PackagesTable extends Component
 
         $this->applySearchFilter($query);
 
-        return $query->orderBy($this->sortColumn, $this->sortDirection)->get();
+        $query->orderBy($this->sortColumn, $this->sortDirection);
+        if ($this->sortColumn != 'entry_time') {
+            $query->orderBy('entry_time', $this->sortDirection);
+        }
+
+        return $query->get();
     }
 
     public function getPackageRows(): Collection|LengthAwarePaginator
@@ -167,7 +172,7 @@ class PackagesTable extends Component
 
         $package->delete();
 
-        session()->flash('key-status', __('messages.key-control_deleted'));
+        session()->flash('package-status', __('messages.package_deleted'));
     }
 
     public function render()

@@ -9,8 +9,8 @@
             <section class="text-gray-800 dark:text-gray-100 bg-white dark:bg-gray-800 rounded-lg p-2 shadow-lg transition-colors z-10">
                 <x-header :content="__('Options')"/>
                 <div class="py-6 flex flex-row gap-4 justify-evenly">
-                    <x-link-box href="{{ route('packages.create') }}">{{ __('New Entry') }} ↓</x-link-box>
-                    <x-link-box href="{{ route('packages.createExit') }}">{{ __('New Exit') }} ↑</x-link-box>
+                    <x-link-box href="{{ route('packages.create') }}">{{ __('New Reception') }} ↓</x-link-box>
+                    <x-link-box href="{{ route('packages.createExit') }}">{{ __('New Shipping') }} ↑</x-link-box>
                 </div>
             </section>
             <section class="text-gray-800 dark:text-gray-100 bg-white dark:bg-gray-800 rounded-lg p-2 shadow-lg transition-colors">
