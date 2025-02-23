@@ -49,8 +49,8 @@ class Sidebar extends Component
     public function getHRLinks(): array
     {
         return [
-            ['name' => 'HR', 'url' => 'hr'],
-            ['name' => 'Reports', 'url' => 'reports'],
+            ['name' => 'HR', 'url' => 'welcome'],
+//            ['name' => 'Reports', 'url' => 'reports'],
             ['name' => 'External Staff', 'url' => 'person-entries'],
             ['name' => 'Internal Staff', 'url' => 'internal-person'],
         ];

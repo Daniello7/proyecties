@@ -2,11 +2,12 @@
 
 namespace App\Livewire;
 
-use App\Models\Person;
+use App\Models\InternalPerson;
+use Illuminate\Database\Eloquent\Collection;
 use Livewire\Component;
 use Livewire\WithPagination;
 
-class PersonTable extends Component
+class InternalPersonTable extends Component
 {
     use WithPagination;
 
@@ -19,38 +20,41 @@ class PersonTable extends Component
 
     public function mount()
     {
-        $this->configurePersonView();
+        $this->configureInternalPersonIndexView();
     }
 
-    public function configurePersonView()
+    public function configureInternalPersonIndexView(): void
     {
-        $this->columns = ['DNI', 'Name', 'Last Name', 'Company', 'Actions'];
-        $this->select = ['id', 'document_number', 'name', 'last_name', 'company'];
-        $this->sortColumn = 'name';
+        $this->columns = ['Nº Employer', 'Name', 'Last Name', 'Actions'];
+        $this->select = [
+            'internal_people.id',
+            'person.name',
+            'person.last_name',
+        ];
+        $this->sortColumn = 'internal_people.id';
         $this->sortDirection = 'asc';
         $this->columnMap = [
-            'DNI' => 'document_number',
-            'Name' => 'name',
-            'Last Name' => 'last_name',
-            'Company' => 'company',
+            'Nº Employer' => 'internal_people.id',
+            'Name' => 'person.name',
+            'Last Name' => 'person.last_name',
             'Actions' => null,
         ];
     }
 
-    public function getPeople()
+    public function getInternalPeople(): Collection
     {
-        $query = Person::query()
+        $query = InternalPerson::query()
             ->select($this->select)
-            ->whereDoesntHave('InternalPerson');
+            ->join('people as person', 'person.id', '=', 'internal_people.person_id');
 
         $this->applySearchFilter($query);
 
         return $query
             ->orderBy($this->sortColumn, $this->sortDirection)
-            ->paginate(50);
+            ->get();
     }
 
-    public function applySearchFilter($query)
+    public function applySearchFilter($query): void
     {
         if (!$this->search) return;
 
@@ -63,7 +67,7 @@ class PersonTable extends Component
         });
     }
 
-    public function sortBy($column)
+    public function sortBy($column): void
     {
         if (!$this->columnMap[$column]) return;
 
@@ -79,6 +83,6 @@ class PersonTable extends Component
 
     public function render()
     {
-        return view('livewire.person-table', ['rows' => $this->getPeople()]);
+        return view('livewire.internal-person-table', ['internalPeople' => $this->getInternalPeople()]);
     }
 }

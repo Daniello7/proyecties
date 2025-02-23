@@ -23,17 +23,21 @@ Route::get('/contact', function () {
     return view('contact');
 })->name('contact');
 
-Route::middleware(RoleMiddleware::using(['porter', 'admin']))->group(function () {
-    Route::get('/control-access', ControlAccessController::class)->name('control-access');
-
+Route::middleware(RoleMiddleware::using(['porter', 'admin', 'rrhh']))->group(function () {
     Route::resource('/person-entries', PersonEntryController::class)
         ->name('index', 'person-entries')
         ->parameters(['person-entries' => 'id']);
+    
+    Route::get('/internal-person', [InternalPersonController::class, 'index'])->name('internal-person');
 
     Route::resource('/person', PersonController::class)
         ->parameters(['person' => 'id']);
+});
 
-    Route::get('/internal-person', [InternalPersonController::class, 'index'])->name('internal-person');
+
+Route::middleware(RoleMiddleware::using(['porter', 'admin']))->group(function () {
+    Route::get('/control-access', ControlAccessController::class)->name('control-access');
+
 
     Route::get('/packages/create2', [PackageController::class, 'createExit'])->name('packages.createExit');
     Route::post('/packages/store2', [PackageController::class, 'storeExit'])->name('packages.storeExit');
