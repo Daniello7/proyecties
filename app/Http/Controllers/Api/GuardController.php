@@ -50,6 +50,14 @@ class GuardController extends Controller
      */
     public function show(string $id)
     {
+        $guard = Guard::find($id);
+
+        if (!$guard) {
+            return response()->json([
+                'error' => 'Guard not found'
+            ], 404);
+        }
+
         $guard = Guard::findOrFail($id);
         return response()->json($guard);
     }
