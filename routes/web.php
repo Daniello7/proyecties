@@ -9,33 +9,35 @@ use App\Http\Controllers\PersonController;
 use App\Http\Controllers\PersonEntryController;
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
+use Spatie\Permission\Middleware\RoleMiddleware;
 
 Route::get('/', function () {
     return view('welcome');
 });
 
-Route::get('/control-access', ControlAccessController::class)->name('control-access');
+Route::middleware(RoleMiddleware::using(['porter', 'admin']))->group(function () {
+    Route::get('/control-access', ControlAccessController::class)->name('control-access');
 
-Route::resource('/person-entries', PersonEntryController::class)
-    ->name('index', 'person-entries')
-    ->parameters(['person-entries' => 'id']);
+    Route::resource('/person-entries', PersonEntryController::class)
+        ->name('index', 'person-entries')
+        ->parameters(['person-entries' => 'id']);
 
-Route::resource('/person', PersonController::class)
-    ->parameters(['person' => 'id']);
+    Route::resource('/person', PersonController::class)
+        ->parameters(['person' => 'id']);
 
-Route::get('/internal-person', [InternalPersonController::class, 'index'])->name('internal-person');
+    Route::get('/internal-person', [InternalPersonController::class, 'index'])->name('internal-person');
 
-Route::get('/packages/create2', [PackageController::class, 'createExit'])->name('packages.createExit');
-Route::resource('/packages', PackageController::class)
-    ->name('index', 'packages')
-    ->parameters(['packages' => 'id']);
+    Route::get('/packages/create2', [PackageController::class, 'createExit'])->name('packages.createExit');
+    Route::resource('/packages', PackageController::class)
+        ->name('index', 'packages')
+        ->parameters(['packages' => 'id']);
 
-Route::get('/key-control/keys', [KeyController::class, 'index'])->name('keys.index');
+    Route::get('/key-control/keys', [KeyController::class, 'index'])->name('keys.index');
 
-Route::resource('/key-control', KeyControlController::class)
-    ->name('index', 'key-control')
-    ->parameters(['key-control' => 'id']);
-
+    Route::resource('/key-control', KeyControlController::class)
+        ->name('index', 'key-control')
+        ->parameters(['key-control' => 'id']);
+});
 
 Route::get('/dashboard', function () {
     return view('dashboard');
