@@ -11,7 +11,7 @@ class Package extends Model
     /** @use HasFactory<\Database\Factories\PackageFactory> */
     use HasFactory;
 
-    protected $fillable = ['agency', 'package_count', 'external_entity', 'receiver_user_id',
+    protected $fillable = ['type', 'agency', 'package_count', 'external_entity', 'receiver_user_id',
         'deliver_user_id', 'internal_person_id', 'collected_by', 'entry_time', 'exit_time', 'comment'];
 
     const AGENCIES = [

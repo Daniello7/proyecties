@@ -36,6 +36,7 @@ Route::middleware(RoleMiddleware::using(['porter', 'admin']))->group(function ()
     Route::get('/internal-person', [InternalPersonController::class, 'index'])->name('internal-person');
 
     Route::get('/packages/create2', [PackageController::class, 'createExit'])->name('packages.createExit');
+    Route::post('/packages/store2', [PackageController::class, 'storeExit'])->name('packages.storeExit');
     Route::resource('/packages', PackageController::class)
         ->name('index', 'packages')
         ->parameters(['packages' => 'id']);

@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\StorePackageReceptionRequest;
+use App\Http\Requests\StorePackageShippingRequest;
 use App\Models\Package;
 use Illuminate\Http\Request;
 
@@ -34,24 +35,16 @@ class PackageController extends Controller
         return to_route('control-access');
     }
 
-    public function storeExit()
+    public function storeExit(StorePackageShippingRequest $request)
     {
+        $data = $request->validated();
+        $data['type'] = 'exit';
+        $data['receiver_user_id'] = auth()->user()->id;
+        $data['entry_time'] = now();
 
+        Package::create($data);
+
+        return to_route('control-access');
     }
 
-    public function show($id)
-    {
-    }
-
-    public function edit($id)
-    {
-    }
-
-    public function update(Request $request, $id)
-    {
-    }
-
-    public function destroy($id)
-    {
-    }
 }
