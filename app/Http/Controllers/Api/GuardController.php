@@ -10,11 +10,22 @@ use Illuminate\Http\Request;
 class GuardController extends Controller
 {
     /**
-     * @return \Illuminate\Database\Eloquent\Collection
+     * @param Request $request
+     * @return \Illuminate\Http\JsonResponse
      */
-    public function index()
+    public function index(Request $request)
     {
-        return Guard::with('zones')->get();
+        $query = Guard::query();
+
+        if ($request->has('name')) {
+            $query->name($request->name);
+        }
+
+        if ($request->has('dni')) {
+            $query->dni($request->dni);
+        }
+
+        return response()->json($query->get());
     }
 
     /**
@@ -35,11 +46,12 @@ class GuardController extends Controller
 
     /**
      * @param string $id
-     * @return Guard|\Illuminate\Database\Eloquent\Collection|\Illuminate\Database\Eloquent\Model|null
+     * @return \Illuminate\Http\JsonResponse
      */
     public function show(string $id)
     {
-        return Guard::with('zones')->findOrFail($id);
+        $guard = Guard::findOrFail($id);
+        return response()->json($guard);
     }
 
     /**
