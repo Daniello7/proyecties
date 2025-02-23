@@ -9,6 +9,6 @@ class KeyControlSeeder extends Seeder
 {
     public function run(): void
     {
-        KeyControl::factory(400)->create();
+        KeyControl::factory(300)->create();
     }
 }

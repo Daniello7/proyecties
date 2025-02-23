@@ -10,7 +10,7 @@ class InternalPersonSeeder extends Seeder
 {
     public function run(): void
     {
-        $internalPerson = Person::inRandomOrder()->take(100)->get();
+        $internalPerson = Person::inRandomOrder()->take(50)->get();
 
         foreach ($internalPerson as $person) {
             InternalPerson::factory()->create(['person_id' => $person->id]);

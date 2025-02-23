@@ -21,6 +21,9 @@ class DatabaseSeeder extends Seeder
             KeySeeder::class,
             KeyControlSeeder::class,
             PackageSeeder::class,
+            GuardSeeder::class,
+            ZoneSeeder::class,
+            GuardZoneSeeder::class,
         ]);
     }
 }

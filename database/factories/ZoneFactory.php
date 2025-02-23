@@ -12,7 +12,8 @@ class ZoneFactory extends Factory
     public function definition(): array
     {
         return [
-
+            'name' => $this->faker->word(),
+            'location' => $this->faker->address(),
         ];
     }
 }
