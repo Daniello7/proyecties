@@ -3,7 +3,6 @@
 namespace App\Http\Controllers;
 
 use App\Models\Person;
-use App\Models\PersonEntry;
 use Barryvdh\DomPDF\Facade\PDF;
 
 class PDFController extends Controller

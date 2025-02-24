@@ -12,6 +12,7 @@
 */
 
 use App\Models\User;
+use Spatie\Permission\Models\Role;
 use function Pest\Laravel\actingAs;
 
 pest()->extend(Tests\TestCase::class)
@@ -38,9 +39,29 @@ function loginAsUser(?User $user = null)
     return $user;
 }
 
-expect()->extend('toBeOne', function () {
-    return $this->toBe(1);
-});
+function actingAsPorter(?User $user = null)
+{
+    Role::create(['name' => 'porter']);
+
+    $user = $user ?? User::factory()->create();
+    $user->assignRole('porter');
+
+    actingAs($user);
+
+    return $user;
+}
+
+function actingAsAdmin(?User $user = null)
+{
+    Role::create(['name' => 'admin']);
+
+    $user = $user ?? User::factory()->create();
+    $user->assignRole('admin');
+
+    actingAs($user);
+
+    return $user;
+}
 
 /*
 |--------------------------------------------------------------------------
