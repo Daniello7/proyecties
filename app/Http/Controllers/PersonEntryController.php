@@ -46,13 +46,10 @@ class PersonEntryController extends Controller
         $personEntry = PersonEntry::create($data);
 
 
-        //Send Email
         if (isset($request['notify'])) {
-
             Mail::to($personEntry->internalPerson->email)->queue(new NotifyContactMail());
         }
 
-        // Generate PDF for Reason
         $reason = $request->input('reason');
 
         if ($reason == 'Charge' || $reason == 'Discharge') {
