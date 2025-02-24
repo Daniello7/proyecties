@@ -3,6 +3,8 @@
 namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\StoreGuardRequest;
+use App\Http\Requests\UpdateGuardRequest;
 use App\Models\Guard;
 use App\Models\Zone;
 use Illuminate\Http\Request;
@@ -32,14 +34,11 @@ class GuardController extends Controller
      * @param Request $request
      * @return \Illuminate\Http\JsonResponse
      */
-    public function store(Request $request)
+    public function store(StoreGuardRequest $request)
     {
-        $request->validate([
-            'name' => 'required|string|max:255',
-            'dni' => 'required|string|max:255|unique:guards',
-        ]);
+        $validated = $request->validated();
 
-        $guard = Guard::create($request->validated());
+        $guard = Guard::create($validated);
 
         return response()->json($guard, 201);
     }
@@ -67,15 +66,12 @@ class GuardController extends Controller
      * @param string $id
      * @return \Illuminate\Http\JsonResponse
      */
-    public function update(Request $request, string $id)
+    public function update(UpdateGuardRequest $request, string $id)
     {
-        $request->validate([
-            'name' => 'required|string|max:255',
-            'dni' => 'required|string|max:255|unique:guards,dni,' . $id,
-        ]);
+        $validated = $request->validated();
 
         $guard = Guard::findOrFail($id);
-        $guard->update($request->validated());
+        $guard->update($validated);
 
         return response()->json($guard, 204);
     }
