@@ -1,7 +1,6 @@
 <?php
 
 use App\Models\Person;
-use Illuminate\Support\Facades\Route;
 
 beforeEach(function () {
     actingAsPorter();

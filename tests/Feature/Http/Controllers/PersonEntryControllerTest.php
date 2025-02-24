@@ -5,9 +5,7 @@ use App\Models\Person;
 use App\Models\PersonEntry;
 use App\Models\User;
 use App\Models\InternalPerson;
-use Illuminate\Support\Facades\Gate;
 use Illuminate\Support\Facades\Mail;
-use Illuminate\Support\Facades\Route;
 use Carbon\Carbon;
 
 beforeEach(function () {
