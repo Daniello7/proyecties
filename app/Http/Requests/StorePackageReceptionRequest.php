@@ -12,7 +12,6 @@ class StorePackageReceptionRequest extends FormRequest
             'agency' => 'required|string',
             'external_entity' => 'required|string',
             'internal_person_id' => 'required|integer|exists:internal_people,id',
-            'notify' => 'nullable|boolean',
             'package_count' => 'required|integer',
             'comment' => 'nullable|string',
         ];

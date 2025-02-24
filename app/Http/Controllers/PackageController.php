@@ -5,7 +5,6 @@ namespace App\Http\Controllers;
 use App\Http\Requests\StorePackageReceptionRequest;
 use App\Http\Requests\StorePackageShippingRequest;
 use App\Models\Package;
-use Illuminate\Http\Request;
 
 class PackageController extends Controller
 {
