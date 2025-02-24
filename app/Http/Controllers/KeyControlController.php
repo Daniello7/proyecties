@@ -29,10 +29,6 @@ class KeyControlController extends Controller
         return to_route('control-access')->with('status', __('messages.key-control_created'));
     }
 
-    public function show($id)
-    {
-    }
-
     public function edit($id)
     {
         $keyControl = KeyControl::with(['key', 'deliver', 'receiver', 'person'])->findOrFail($id);
@@ -48,7 +44,4 @@ class KeyControlController extends Controller
         return to_route('control-access')->with('status', __('messages.key-control_updated'));
     }
 
-    public function destroy($id)
-    {
-    }
 }
