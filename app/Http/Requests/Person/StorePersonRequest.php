@@ -13,6 +13,7 @@ class StorePersonRequest extends FormRequest
             'name' => 'required|string|max:100',
             'last_name' => 'required|string|max:100',
             'company' => 'required|string|max:100',
+            'comment' => 'nullable|string|max:255',
         ];
     }
 

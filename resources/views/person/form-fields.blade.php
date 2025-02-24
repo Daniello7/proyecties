@@ -24,11 +24,9 @@
         <x-text-input id="company" name="company" :value="old('company', $person->company ?? '' )" class="block w-full mt-1"/>
         <x-input-error :messages="$errors->get('company')"/>
     </div>
-    @if(request()->routeIs('person.edit'))
-        <div class="min-w-60 max-w-72">
-            <x-input-label for="comment" :value="__('Comment')"/>
-            <x-textarea cols="30" id="comment" name="comment" class="block w-full mt-1">{{ old('comment', $person->comment ?? '' ) }}</x-textarea>
-            <x-input-error :messages="$errors->get('comment')"/>
-        </div>
-    @endif
+    <div class="min-w-60 max-w-72">
+        <x-input-label for="comment" :value="__('Comment')"/>
+        <x-textarea cols="30" id="comment" name="comment" class="block w-full mt-1">{{ old('comment', $person->comment ?? '' ) }}</x-textarea>
+        <x-input-error :messages="$errors->get('comment')"/>
+    </div>
 </div>
