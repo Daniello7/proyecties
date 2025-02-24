@@ -6,7 +6,6 @@ use App\Models\Key;
 use App\Models\Person;
 use App\Http\Requests\KeyControl\StoreKeyControlRequest;
 use Illuminate\Support\Facades\Validator;
-use Illuminate\Validation\ValidationException;
 
 it('validates the request correctly', function () {
     // Arrange
