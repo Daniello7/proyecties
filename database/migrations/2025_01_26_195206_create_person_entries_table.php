@@ -2,6 +2,7 @@
 
 use App\Models\InternalPerson;
 use App\Models\Person;
+use App\Models\PersonEntry;
 use App\Models\User;
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
@@ -19,7 +20,7 @@ return new class extends Migration {
             $table->foreignIdFor(Person::class);
             $table->foreignIdFor(InternalPerson::class);
             $table->string('comment')->nullable();
-            $table->string('reason');
+            $table->enum('reason', PersonEntry::REASONS);
             $table->timestamp('arrival_time');
             $table->timestamp('entry_time')->nullable();
             $table->timestamp('exit_time')->nullable();
