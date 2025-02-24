@@ -4,7 +4,6 @@ namespace App\Livewire;
 
 use App\Models\KeyControl;
 use Illuminate\Database\Eloquent\Collection;
-use Illuminate\Pagination\LengthAwarePaginator;
 use Livewire\Component;
 
 class KeyControlTable extends Component

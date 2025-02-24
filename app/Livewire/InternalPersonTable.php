@@ -5,12 +5,9 @@ namespace App\Livewire;
 use App\Models\InternalPerson;
 use Illuminate\Database\Eloquent\Collection;
 use Livewire\Component;
-use Livewire\WithPagination;
 
 class InternalPersonTable extends Component
 {
-    use WithPagination;
-
     public array $columns;
     public array $select;
     public string $sortColumn;

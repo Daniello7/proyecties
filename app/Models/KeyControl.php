@@ -11,6 +11,7 @@ class KeyControl extends Model
     /** @use HasFactory<\Database\Factories\KeyControlFactory> */
     use HasFactory;
 
+    protected array $dates = ['entry_time'];
     protected $fillable = [
         'type',
         'key_id',
