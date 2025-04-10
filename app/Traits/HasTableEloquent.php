@@ -26,7 +26,7 @@ trait HasTableEloquent
         }
     }
 
-    public function filterContains(Builder $query): void
+    public function applySearchFilter(Builder $query): void
     {
         if (!$this->search) return;
 

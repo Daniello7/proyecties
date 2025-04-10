@@ -7,7 +7,7 @@ use App\Models\PersonEntry;
 use App\Traits\HasTableEloquent;
 use Livewire\Component;
 
-class PersonActiveEntriesTable extends Component
+class PersonEntriesHomeTable extends Component
 {
     use HasTableEloquent;
 
@@ -59,7 +59,7 @@ class PersonActiveEntriesTable extends Component
                 'internalPerson.person_id', '=', 'internalPerson_personRelation.id')
             ->whereNull('exit_time');
 
-        $this->filterContains($query);
+        $this->applySearchFilter($query);
 
         return $query
             ->orderBy($this->sortColumn, $this->sortDirection)
@@ -92,7 +92,7 @@ class PersonActiveEntriesTable extends Component
 
     public function render()
     {
-        return view('livewire.person-active-entries-table',
+        return view('livewire.person-entries-home',
             ['rows' => $this->getEntries()]);
     }
 }

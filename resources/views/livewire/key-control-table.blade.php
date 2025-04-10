@@ -5,6 +5,7 @@
             <x-session-status flash="key-status" class="py-1"/>
         </div>
     </div>
+    <hr class="mx-2 border-blue-600 dark:border-pink-600 opacity-50">
     <table class="border-separate border-spacing-y-2 text-xs sm:text-sm {{ $isHomeView ? '' : 'md:text-base' }} w-full">
         <thead class="[&_th:first-child]:rounded-l-lg [&_th:last-child]:rounded-r-lg">
         <tr class="*:cursor-pointer *:transition-colors">
@@ -48,4 +49,5 @@
         @endforeach
         </tbody>
     </table>
+    <hr class="mx-2 border-blue-600 dark:border-pink-600 opacity-50">
 </div>

@@ -11,7 +11,8 @@
                 @include('person.person-details')
             </div>
             <div class="text-gray-800 dark:text-gray-100 bg-white dark:bg-gray-800 rounded-lg p-2 shadow-lg transition-colors">
-                <livewire:person-entry-table :header="__('Entry History')" info="show" person_id="{{ $person->id }}" class="m-4 "/>
+                <x-header :content="__('Entry History')"/>
+                <livewire:person-entries-show-table person_id="{{ $person->id }}" class="m-4 "/>
             </div>
         </div>
     </div>

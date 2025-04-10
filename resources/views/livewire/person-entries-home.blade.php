@@ -37,7 +37,9 @@
                         <x-svg.exit-button wire:click="updateExit({{ $personEntry->id }})"/>
                         <a href="{{ route('person.show', ['id' => $personEntry->person_id]) }}" class="text-white bg-blue-600 text-xl font-serif font-bold px-3 py-[2px] rounded-lg border-2 border-white dark:border-gray-700 hover:ring-4 hover:ring-blue-600 max-h-max transition">
                             i </a>
-                        <x-svg.delete-button wire:click="destroyPersonEntry({{ $personEntry->id }})"/>
+                        @can('cancel',\App\Models\PersonEntry::class)
+                            <x-svg.delete-button wire:click="destroyPersonEntry({{ $personEntry->id }})"/>
+                        @endcan
                     </div>
                 </td>
             </tr>
