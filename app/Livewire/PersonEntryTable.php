@@ -102,20 +102,6 @@ class PersonEntryTable extends Component
         array_splice($this->columnMap, 0, 2);
     }
 
-    public function sortBy($column): void
-    {
-        if (!$this->columnMap[$column]) return;
-
-        $column = $this->columnMap[$column];
-
-        if ($this->sortColumn === $column) {
-            $this->sortDirection = $this->sortDirection === 'asc' ? 'desc' : 'asc';
-        } else {
-            $this->sortColumn = $column;
-            $this->sortDirection = 'asc';
-        }
-    }
-
     private function getEntries(): LengthAwarePaginator
     {
         if ($this->info === 'latest_entries')
@@ -210,6 +196,20 @@ class PersonEntryTable extends Component
                 }
             }
         });
+    }
+
+    public function sortBy($column): void
+    {
+        if (!$this->columnMap[$column]) return;
+
+        $column = $this->columnMap[$column];
+
+        if ($this->sortColumn === $column) {
+            $this->sortDirection = $this->sortDirection === 'asc' ? 'desc' : 'asc';
+        } else {
+            $this->sortColumn = $column;
+            $this->sortDirection = 'asc';
+        }
     }
 
     public function updateEntry(int $id): void

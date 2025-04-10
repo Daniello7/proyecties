@@ -8,14 +8,15 @@
     <div class="py-12 px-4 flex flex-col xl:flex-row gap-4">
         <div class="flex-[2] flex flex-col gap-8">
             <div class="text-gray-800 dark:text-gray-100 bg-white dark:bg-gray-800 rounded-lg p-2 shadow-lg">
-                <livewire:person-entry-table :header="__('External Staff')"/>
+                <x-header :content="__('External Staff')"/>
+                <livewire:person-active-entries-table/>
             </div>
             <div class="text-gray-800 dark:text-gray-100 bg-white dark:bg-gray-800 rounded-lg p-2 shadow-lg">
                 <x-header :content="__('Package')"/>
                 <livewire:packages-table :is-home-view="true"/>
             </div>
         </div>
-        <div class="flex-1 text-gray-800 dark:text-gray-100 bg-white dark:bg-gray-800 rounded-lg p-2 shadow-lg">
+        <div class="flex-1 text-gray-800 dark:text-gray-100 bg-white dark:bg-gray-800 rounded-lg p-2 shadow-lg max-h-max">
             <x-header :content="__('Keys')"/>
             <livewire:key-control-table :is-home-view="true"/>
         </div>

@@ -103,7 +103,7 @@
     </ul>
 
     <ul class="toc-footer" id="last-updated">
-        <li>Last updated: February 23, 2025</li>
+        <li>Last updated: February 26, 2025</li>
     </ul>
 </div>
 
@@ -301,423 +301,423 @@ access-control-allow-origin: *
 <code class="language-json" style="max-height: 300px;">[
     {
         &quot;id&quot;: 1,
-        &quot;name&quot;: &quot;Ana Mar&iacute;a Laureano&quot;,
-        &quot;dni&quot;: &quot;62965730S&quot;,
-        &quot;created_at&quot;: &quot;2025-02-23T22:07:55.000000Z&quot;,
-        &quot;updated_at&quot;: &quot;2025-02-23T22:07:55.000000Z&quot;
+        &quot;name&quot;: &quot;Alexia Puente&quot;,
+        &quot;dni&quot;: &quot;12256495H&quot;,
+        &quot;created_at&quot;: &quot;2025-02-24T20:12:14.000000Z&quot;,
+        &quot;updated_at&quot;: &quot;2025-02-24T20:12:14.000000Z&quot;
     },
     {
         &quot;id&quot;: 2,
-        &quot;name&quot;: &quot;Mart&iacute;n Macias&quot;,
-        &quot;dni&quot;: &quot;64317553E&quot;,
-        &quot;created_at&quot;: &quot;2025-02-23T22:07:55.000000Z&quot;,
-        &quot;updated_at&quot;: &quot;2025-02-23T22:07:55.000000Z&quot;
+        &quot;name&quot;: &quot;Pedro Carvajal&quot;,
+        &quot;dni&quot;: &quot;80337016L&quot;,
+        &quot;created_at&quot;: &quot;2025-02-24T20:12:14.000000Z&quot;,
+        &quot;updated_at&quot;: &quot;2025-02-24T20:12:14.000000Z&quot;
     },
     {
         &quot;id&quot;: 3,
-        &quot;name&quot;: &quot;Roberto Luis&quot;,
-        &quot;dni&quot;: &quot;51994641N&quot;,
-        &quot;created_at&quot;: &quot;2025-02-23T22:07:55.000000Z&quot;,
-        &quot;updated_at&quot;: &quot;2025-02-23T22:07:55.000000Z&quot;
+        &quot;name&quot;: &quot;Helena Gracia&quot;,
+        &quot;dni&quot;: &quot;94759120T&quot;,
+        &quot;created_at&quot;: &quot;2025-02-24T20:12:14.000000Z&quot;,
+        &quot;updated_at&quot;: &quot;2025-02-24T20:12:14.000000Z&quot;
     },
     {
         &quot;id&quot;: 4,
-        &quot;name&quot;: &quot;Sergio Galv&aacute;n&quot;,
-        &quot;dni&quot;: &quot;44111360W&quot;,
-        &quot;created_at&quot;: &quot;2025-02-23T22:07:55.000000Z&quot;,
-        &quot;updated_at&quot;: &quot;2025-02-23T22:07:55.000000Z&quot;
+        &quot;name&quot;: &quot;Lic. Vera Garica&quot;,
+        &quot;dni&quot;: &quot;53628095I&quot;,
+        &quot;created_at&quot;: &quot;2025-02-24T20:12:14.000000Z&quot;,
+        &quot;updated_at&quot;: &quot;2025-02-24T20:12:14.000000Z&quot;
     },
     {
         &quot;id&quot;: 5,
-        &quot;name&quot;: &quot;Andr&eacute;s Luj&aacute;n Tercero&quot;,
-        &quot;dni&quot;: &quot;26811598U&quot;,
-        &quot;created_at&quot;: &quot;2025-02-23T22:07:55.000000Z&quot;,
-        &quot;updated_at&quot;: &quot;2025-02-23T22:07:55.000000Z&quot;
+        &quot;name&quot;: &quot;Olga Adame&quot;,
+        &quot;dni&quot;: &quot;65738349U&quot;,
+        &quot;created_at&quot;: &quot;2025-02-24T20:12:14.000000Z&quot;,
+        &quot;updated_at&quot;: &quot;2025-02-24T20:12:14.000000Z&quot;
     },
     {
         &quot;id&quot;: 6,
-        &quot;name&quot;: &quot;Enrique Carranza&quot;,
-        &quot;dni&quot;: &quot;45425703F&quot;,
-        &quot;created_at&quot;: &quot;2025-02-23T22:07:55.000000Z&quot;,
-        &quot;updated_at&quot;: &quot;2025-02-23T22:07:55.000000Z&quot;
+        &quot;name&quot;: &quot;Inmaculada Herrero&quot;,
+        &quot;dni&quot;: &quot;67837518K&quot;,
+        &quot;created_at&quot;: &quot;2025-02-24T20:12:14.000000Z&quot;,
+        &quot;updated_at&quot;: &quot;2025-02-24T20:12:14.000000Z&quot;
     },
     {
         &quot;id&quot;: 7,
-        &quot;name&quot;: &quot;Samuel Leal&quot;,
-        &quot;dni&quot;: &quot;23672365M&quot;,
-        &quot;created_at&quot;: &quot;2025-02-23T22:07:55.000000Z&quot;,
-        &quot;updated_at&quot;: &quot;2025-02-23T22:07:55.000000Z&quot;
+        &quot;name&quot;: &quot;Valentina Gallego Hijo&quot;,
+        &quot;dni&quot;: &quot;93352084C&quot;,
+        &quot;created_at&quot;: &quot;2025-02-24T20:12:14.000000Z&quot;,
+        &quot;updated_at&quot;: &quot;2025-02-24T20:12:14.000000Z&quot;
     },
     {
         &quot;id&quot;: 8,
-        &quot;name&quot;: &quot;Dr. Marc Carrillo&quot;,
-        &quot;dni&quot;: &quot;17152204E&quot;,
-        &quot;created_at&quot;: &quot;2025-02-23T22:07:55.000000Z&quot;,
-        &quot;updated_at&quot;: &quot;2025-02-23T22:07:55.000000Z&quot;
+        &quot;name&quot;: &quot;D. Mateo Briones&quot;,
+        &quot;dni&quot;: &quot;41695402V&quot;,
+        &quot;created_at&quot;: &quot;2025-02-24T20:12:14.000000Z&quot;,
+        &quot;updated_at&quot;: &quot;2025-02-24T20:12:14.000000Z&quot;
     },
     {
         &quot;id&quot;: 9,
-        &quot;name&quot;: &quot;Luc&iacute;a Ram&oacute;n Tercero&quot;,
-        &quot;dni&quot;: &quot;74160816N&quot;,
-        &quot;created_at&quot;: &quot;2025-02-23T22:07:55.000000Z&quot;,
-        &quot;updated_at&quot;: &quot;2025-02-23T22:07:55.000000Z&quot;
+        &quot;name&quot;: &quot;Lic. Jos&eacute; Manuel Ib&aacute;&ntilde;ez Tercero&quot;,
+        &quot;dni&quot;: &quot;14144244V&quot;,
+        &quot;created_at&quot;: &quot;2025-02-24T20:12:14.000000Z&quot;,
+        &quot;updated_at&quot;: &quot;2025-02-24T20:12:14.000000Z&quot;
     },
     {
         &quot;id&quot;: 10,
-        &quot;name&quot;: &quot;Manuel Palomino&quot;,
-        &quot;dni&quot;: &quot;72438378K&quot;,
-        &quot;created_at&quot;: &quot;2025-02-23T22:07:55.000000Z&quot;,
-        &quot;updated_at&quot;: &quot;2025-02-23T22:07:55.000000Z&quot;
+        &quot;name&quot;: &quot;H&eacute;ctor Meraz&quot;,
+        &quot;dni&quot;: &quot;65166881N&quot;,
+        &quot;created_at&quot;: &quot;2025-02-24T20:12:14.000000Z&quot;,
+        &quot;updated_at&quot;: &quot;2025-02-24T20:12:14.000000Z&quot;
     },
     {
         &quot;id&quot;: 11,
-        &quot;name&quot;: &quot;Sr. Biel B&aacute;ez&quot;,
-        &quot;dni&quot;: &quot;69613738I&quot;,
-        &quot;created_at&quot;: &quot;2025-02-23T22:07:55.000000Z&quot;,
-        &quot;updated_at&quot;: &quot;2025-02-23T22:07:55.000000Z&quot;
+        &quot;name&quot;: &quot;Margarita Carvajal&quot;,
+        &quot;dni&quot;: &quot;83074119W&quot;,
+        &quot;created_at&quot;: &quot;2025-02-24T20:12:14.000000Z&quot;,
+        &quot;updated_at&quot;: &quot;2025-02-24T20:12:14.000000Z&quot;
     },
     {
         &quot;id&quot;: 12,
-        &quot;name&quot;: &quot;Marcos Sim&oacute;n&quot;,
-        &quot;dni&quot;: &quot;85652313M&quot;,
-        &quot;created_at&quot;: &quot;2025-02-23T22:07:55.000000Z&quot;,
-        &quot;updated_at&quot;: &quot;2025-02-23T22:07:55.000000Z&quot;
+        &quot;name&quot;: &quot;Laia Zapata&quot;,
+        &quot;dni&quot;: &quot;06639576L&quot;,
+        &quot;created_at&quot;: &quot;2025-02-24T20:12:14.000000Z&quot;,
+        &quot;updated_at&quot;: &quot;2025-02-24T20:12:14.000000Z&quot;
     },
     {
         &quot;id&quot;: 13,
-        &quot;name&quot;: &quot;D&ntilde;a Sof&iacute;a Pagan&quot;,
-        &quot;dni&quot;: &quot;49593719P&quot;,
-        &quot;created_at&quot;: &quot;2025-02-23T22:07:55.000000Z&quot;,
-        &quot;updated_at&quot;: &quot;2025-02-23T22:07:55.000000Z&quot;
+        &quot;name&quot;: &quot;Ana Lovato&quot;,
+        &quot;dni&quot;: &quot;28264783B&quot;,
+        &quot;created_at&quot;: &quot;2025-02-24T20:12:14.000000Z&quot;,
+        &quot;updated_at&quot;: &quot;2025-02-24T20:12:14.000000Z&quot;
     },
     {
         &quot;id&quot;: 14,
-        &quot;name&quot;: &quot;Ian Cornejo&quot;,
-        &quot;dni&quot;: &quot;57848259W&quot;,
-        &quot;created_at&quot;: &quot;2025-02-23T22:07:55.000000Z&quot;,
-        &quot;updated_at&quot;: &quot;2025-02-23T22:07:55.000000Z&quot;
+        &quot;name&quot;: &quot;Aaron Villegas&quot;,
+        &quot;dni&quot;: &quot;47116512A&quot;,
+        &quot;created_at&quot;: &quot;2025-02-24T20:12:14.000000Z&quot;,
+        &quot;updated_at&quot;: &quot;2025-02-24T20:12:14.000000Z&quot;
     },
     {
         &quot;id&quot;: 15,
-        &quot;name&quot;: &quot;Mar&iacute;a De la Cruz&quot;,
-        &quot;dni&quot;: &quot;62605054B&quot;,
-        &quot;created_at&quot;: &quot;2025-02-23T22:07:55.000000Z&quot;,
-        &quot;updated_at&quot;: &quot;2025-02-23T22:07:55.000000Z&quot;
+        &quot;name&quot;: &quot;Eduardo Cab&aacute;n&quot;,
+        &quot;dni&quot;: &quot;47778668Q&quot;,
+        &quot;created_at&quot;: &quot;2025-02-24T20:12:14.000000Z&quot;,
+        &quot;updated_at&quot;: &quot;2025-02-24T20:12:14.000000Z&quot;
     },
     {
         &quot;id&quot;: 16,
-        &quot;name&quot;: &quot;Miguel &Aacute;ngel G&aacute;lvez&quot;,
-        &quot;dni&quot;: &quot;57240404D&quot;,
-        &quot;created_at&quot;: &quot;2025-02-23T22:07:55.000000Z&quot;,
-        &quot;updated_at&quot;: &quot;2025-02-23T22:07:55.000000Z&quot;
+        &quot;name&quot;: &quot;D. Rafael Rold&aacute;n&quot;,
+        &quot;dni&quot;: &quot;56015903V&quot;,
+        &quot;created_at&quot;: &quot;2025-02-24T20:12:14.000000Z&quot;,
+        &quot;updated_at&quot;: &quot;2025-02-24T20:12:14.000000Z&quot;
     },
     {
         &quot;id&quot;: 17,
-        &quot;name&quot;: &quot;Gerard Brise&ntilde;o&quot;,
-        &quot;dni&quot;: &quot;93652344P&quot;,
-        &quot;created_at&quot;: &quot;2025-02-23T22:07:55.000000Z&quot;,
-        &quot;updated_at&quot;: &quot;2025-02-23T22:07:55.000000Z&quot;
+        &quot;name&quot;: &quot;Adri&aacute;n Villag&oacute;mez&quot;,
+        &quot;dni&quot;: &quot;86089966W&quot;,
+        &quot;created_at&quot;: &quot;2025-02-24T20:12:14.000000Z&quot;,
+        &quot;updated_at&quot;: &quot;2025-02-24T20:12:14.000000Z&quot;
     },
     {
         &quot;id&quot;: 18,
-        &quot;name&quot;: &quot;D&ntilde;a Laia Guerra&quot;,
-        &quot;dni&quot;: &quot;03873132H&quot;,
-        &quot;created_at&quot;: &quot;2025-02-23T22:07:55.000000Z&quot;,
-        &quot;updated_at&quot;: &quot;2025-02-23T22:07:55.000000Z&quot;
+        &quot;name&quot;: &quot;C&eacute;sar Ortega&quot;,
+        &quot;dni&quot;: &quot;62533036J&quot;,
+        &quot;created_at&quot;: &quot;2025-02-24T20:12:14.000000Z&quot;,
+        &quot;updated_at&quot;: &quot;2025-02-24T20:12:14.000000Z&quot;
     },
     {
         &quot;id&quot;: 19,
-        &quot;name&quot;: &quot;Lic. Rodrigo Col&oacute;n Tercero&quot;,
-        &quot;dni&quot;: &quot;33286344K&quot;,
-        &quot;created_at&quot;: &quot;2025-02-23T22:07:55.000000Z&quot;,
-        &quot;updated_at&quot;: &quot;2025-02-23T22:07:55.000000Z&quot;
+        &quot;name&quot;: &quot;D. Jaime Alc&aacute;ntar&quot;,
+        &quot;dni&quot;: &quot;67742486Q&quot;,
+        &quot;created_at&quot;: &quot;2025-02-24T20:12:14.000000Z&quot;,
+        &quot;updated_at&quot;: &quot;2025-02-24T20:12:14.000000Z&quot;
     },
     {
         &quot;id&quot;: 20,
-        &quot;name&quot;: &quot;Iv&aacute;n Baca&quot;,
-        &quot;dni&quot;: &quot;67635654Z&quot;,
-        &quot;created_at&quot;: &quot;2025-02-23T22:07:55.000000Z&quot;,
-        &quot;updated_at&quot;: &quot;2025-02-23T22:07:55.000000Z&quot;
+        &quot;name&quot;: &quot;Alejandra Oliva&quot;,
+        &quot;dni&quot;: &quot;94894995X&quot;,
+        &quot;created_at&quot;: &quot;2025-02-24T20:12:14.000000Z&quot;,
+        &quot;updated_at&quot;: &quot;2025-02-24T20:12:14.000000Z&quot;
     },
     {
         &quot;id&quot;: 21,
-        &quot;name&quot;: &quot;&Aacute;frica Correa Segundo&quot;,
-        &quot;dni&quot;: &quot;78443546Y&quot;,
-        &quot;created_at&quot;: &quot;2025-02-23T22:07:55.000000Z&quot;,
-        &quot;updated_at&quot;: &quot;2025-02-23T22:07:55.000000Z&quot;
+        &quot;name&quot;: &quot;Andr&eacute;s Salvador&quot;,
+        &quot;dni&quot;: &quot;44867523U&quot;,
+        &quot;created_at&quot;: &quot;2025-02-24T20:12:14.000000Z&quot;,
+        &quot;updated_at&quot;: &quot;2025-02-24T20:12:14.000000Z&quot;
     },
     {
         &quot;id&quot;: 22,
-        &quot;name&quot;: &quot;Dr. Amparo Rueda Segundo&quot;,
-        &quot;dni&quot;: &quot;12875439I&quot;,
-        &quot;created_at&quot;: &quot;2025-02-23T22:07:55.000000Z&quot;,
-        &quot;updated_at&quot;: &quot;2025-02-23T22:07:55.000000Z&quot;
+        &quot;name&quot;: &quot;Mario Qui&ntilde;&oacute;nez Hijo&quot;,
+        &quot;dni&quot;: &quot;74098240L&quot;,
+        &quot;created_at&quot;: &quot;2025-02-24T20:12:14.000000Z&quot;,
+        &quot;updated_at&quot;: &quot;2025-02-24T20:12:14.000000Z&quot;
     },
     {
         &quot;id&quot;: 23,
-        &quot;name&quot;: &quot;Jos&eacute; Ocasio&quot;,
-        &quot;dni&quot;: &quot;21035300E&quot;,
-        &quot;created_at&quot;: &quot;2025-02-23T22:07:55.000000Z&quot;,
-        &quot;updated_at&quot;: &quot;2025-02-23T22:07:55.000000Z&quot;
+        &quot;name&quot;: &quot;Pablo Lovato&quot;,
+        &quot;dni&quot;: &quot;74903818D&quot;,
+        &quot;created_at&quot;: &quot;2025-02-24T20:12:14.000000Z&quot;,
+        &quot;updated_at&quot;: &quot;2025-02-24T20:12:14.000000Z&quot;
     },
     {
         &quot;id&quot;: 24,
-        &quot;name&quot;: &quot;Rosario Sarabia&quot;,
-        &quot;dni&quot;: &quot;88170733L&quot;,
-        &quot;created_at&quot;: &quot;2025-02-23T22:07:55.000000Z&quot;,
-        &quot;updated_at&quot;: &quot;2025-02-23T22:07:55.000000Z&quot;
+        &quot;name&quot;: &quot;D&ntilde;a Ana Mar&iacute;a Barajas Hijo&quot;,
+        &quot;dni&quot;: &quot;72647162Q&quot;,
+        &quot;created_at&quot;: &quot;2025-02-24T20:12:14.000000Z&quot;,
+        &quot;updated_at&quot;: &quot;2025-02-24T20:12:14.000000Z&quot;
     },
     {
         &quot;id&quot;: 25,
-        &quot;name&quot;: &quot;Manuel D&aacute;vila&quot;,
-        &quot;dni&quot;: &quot;01435925J&quot;,
-        &quot;created_at&quot;: &quot;2025-02-23T22:07:55.000000Z&quot;,
-        &quot;updated_at&quot;: &quot;2025-02-23T22:07:55.000000Z&quot;
+        &quot;name&quot;: &quot;Jorge Villa&quot;,
+        &quot;dni&quot;: &quot;25392199P&quot;,
+        &quot;created_at&quot;: &quot;2025-02-24T20:12:14.000000Z&quot;,
+        &quot;updated_at&quot;: &quot;2025-02-24T20:12:14.000000Z&quot;
     },
     {
         &quot;id&quot;: 26,
-        &quot;name&quot;: &quot;Jorge Rico&quot;,
-        &quot;dni&quot;: &quot;27726521O&quot;,
-        &quot;created_at&quot;: &quot;2025-02-23T22:07:55.000000Z&quot;,
-        &quot;updated_at&quot;: &quot;2025-02-23T22:07:55.000000Z&quot;
+        &quot;name&quot;: &quot;Marina Ara&ntilde;a Hijo&quot;,
+        &quot;dni&quot;: &quot;65049990H&quot;,
+        &quot;created_at&quot;: &quot;2025-02-24T20:12:14.000000Z&quot;,
+        &quot;updated_at&quot;: &quot;2025-02-24T20:12:14.000000Z&quot;
     },
     {
         &quot;id&quot;: 27,
-        &quot;name&quot;: &quot;Claudia Juan Hijo&quot;,
-        &quot;dni&quot;: &quot;08858787I&quot;,
-        &quot;created_at&quot;: &quot;2025-02-23T22:07:55.000000Z&quot;,
-        &quot;updated_at&quot;: &quot;2025-02-23T22:07:55.000000Z&quot;
+        &quot;name&quot;: &quot;Martina D&aacute;vila&quot;,
+        &quot;dni&quot;: &quot;09692033I&quot;,
+        &quot;created_at&quot;: &quot;2025-02-24T20:12:14.000000Z&quot;,
+        &quot;updated_at&quot;: &quot;2025-02-24T20:12:14.000000Z&quot;
     },
     {
         &quot;id&quot;: 28,
-        &quot;name&quot;: &quot;Bruno Arteaga&quot;,
-        &quot;dni&quot;: &quot;08199395D&quot;,
-        &quot;created_at&quot;: &quot;2025-02-23T22:07:55.000000Z&quot;,
-        &quot;updated_at&quot;: &quot;2025-02-23T22:07:55.000000Z&quot;
+        &quot;name&quot;: &quot;Mar&iacute;a Noriega&quot;,
+        &quot;dni&quot;: &quot;89472485J&quot;,
+        &quot;created_at&quot;: &quot;2025-02-24T20:12:14.000000Z&quot;,
+        &quot;updated_at&quot;: &quot;2025-02-24T20:12:14.000000Z&quot;
     },
     {
         &quot;id&quot;: 29,
-        &quot;name&quot;: &quot;Rosario Salgado&quot;,
-        &quot;dni&quot;: &quot;88361639X&quot;,
-        &quot;created_at&quot;: &quot;2025-02-23T22:07:55.000000Z&quot;,
-        &quot;updated_at&quot;: &quot;2025-02-23T22:07:55.000000Z&quot;
+        &quot;name&quot;: &quot;Teresa L&oacute;pez Segundo&quot;,
+        &quot;dni&quot;: &quot;09780125L&quot;,
+        &quot;created_at&quot;: &quot;2025-02-24T20:12:14.000000Z&quot;,
+        &quot;updated_at&quot;: &quot;2025-02-24T20:12:14.000000Z&quot;
     },
     {
         &quot;id&quot;: 30,
-        &quot;name&quot;: &quot;Ing. Pablo Rojas Tercero&quot;,
-        &quot;dni&quot;: &quot;21283254I&quot;,
-        &quot;created_at&quot;: &quot;2025-02-23T22:07:55.000000Z&quot;,
-        &quot;updated_at&quot;: &quot;2025-02-23T22:07:55.000000Z&quot;
+        &quot;name&quot;: &quot;Francisco Javier Mercado Tercero&quot;,
+        &quot;dni&quot;: &quot;48376748I&quot;,
+        &quot;created_at&quot;: &quot;2025-02-24T20:12:14.000000Z&quot;,
+        &quot;updated_at&quot;: &quot;2025-02-24T20:12:14.000000Z&quot;
     },
     {
         &quot;id&quot;: 31,
-        &quot;name&quot;: &quot;Lic. Carlos Quezada&quot;,
-        &quot;dni&quot;: &quot;54142460X&quot;,
-        &quot;created_at&quot;: &quot;2025-02-23T22:07:55.000000Z&quot;,
-        &quot;updated_at&quot;: &quot;2025-02-23T22:07:55.000000Z&quot;
+        &quot;name&quot;: &quot;Sra. Natalia Pizarro Hijo&quot;,
+        &quot;dni&quot;: &quot;12188789H&quot;,
+        &quot;created_at&quot;: &quot;2025-02-24T20:12:14.000000Z&quot;,
+        &quot;updated_at&quot;: &quot;2025-02-24T20:12:14.000000Z&quot;
     },
     {
         &quot;id&quot;: 32,
-        &quot;name&quot;: &quot;Alejandra Riojas&quot;,
-        &quot;dni&quot;: &quot;24466887Y&quot;,
-        &quot;created_at&quot;: &quot;2025-02-23T22:07:55.000000Z&quot;,
-        &quot;updated_at&quot;: &quot;2025-02-23T22:07:55.000000Z&quot;
+        &quot;name&quot;: &quot;Nuria Arroyo&quot;,
+        &quot;dni&quot;: &quot;30591136Z&quot;,
+        &quot;created_at&quot;: &quot;2025-02-24T20:12:14.000000Z&quot;,
+        &quot;updated_at&quot;: &quot;2025-02-24T20:12:14.000000Z&quot;
     },
     {
         &quot;id&quot;: 33,
-        &quot;name&quot;: &quot;Sr. Jan Delacr&uacute;z&quot;,
-        &quot;dni&quot;: &quot;94087107J&quot;,
-        &quot;created_at&quot;: &quot;2025-02-23T22:07:55.000000Z&quot;,
-        &quot;updated_at&quot;: &quot;2025-02-23T22:07:55.000000Z&quot;
+        &quot;name&quot;: &quot;Srta. Luisa Luna Segundo&quot;,
+        &quot;dni&quot;: &quot;14850394T&quot;,
+        &quot;created_at&quot;: &quot;2025-02-24T20:12:14.000000Z&quot;,
+        &quot;updated_at&quot;: &quot;2025-02-24T20:12:14.000000Z&quot;
     },
     {
         &quot;id&quot;: 34,
-        &quot;name&quot;: &quot;Dr. Adam Carri&oacute;n Hijo&quot;,
-        &quot;dni&quot;: &quot;09895296S&quot;,
-        &quot;created_at&quot;: &quot;2025-02-23T22:07:55.000000Z&quot;,
-        &quot;updated_at&quot;: &quot;2025-02-23T22:07:55.000000Z&quot;
+        &quot;name&quot;: &quot;Leo Cornejo&quot;,
+        &quot;dni&quot;: &quot;26734948J&quot;,
+        &quot;created_at&quot;: &quot;2025-02-24T20:12:14.000000Z&quot;,
+        &quot;updated_at&quot;: &quot;2025-02-24T20:12:14.000000Z&quot;
     },
     {
         &quot;id&quot;: 35,
-        &quot;name&quot;: &quot;Ing. Sergio Arag&oacute;n Hijo&quot;,
-        &quot;dni&quot;: &quot;63509754V&quot;,
-        &quot;created_at&quot;: &quot;2025-02-23T22:07:55.000000Z&quot;,
-        &quot;updated_at&quot;: &quot;2025-02-23T22:07:55.000000Z&quot;
+        &quot;name&quot;: &quot;Ander Escobar&quot;,
+        &quot;dni&quot;: &quot;66130546M&quot;,
+        &quot;created_at&quot;: &quot;2025-02-24T20:12:14.000000Z&quot;,
+        &quot;updated_at&quot;: &quot;2025-02-24T20:12:14.000000Z&quot;
     },
     {
         &quot;id&quot;: 36,
-        &quot;name&quot;: &quot;Sonia Verduzco Tercero&quot;,
-        &quot;dni&quot;: &quot;16567343Y&quot;,
-        &quot;created_at&quot;: &quot;2025-02-23T22:07:55.000000Z&quot;,
-        &quot;updated_at&quot;: &quot;2025-02-23T22:07:55.000000Z&quot;
+        &quot;name&quot;: &quot;Miguel Feliciano&quot;,
+        &quot;dni&quot;: &quot;68239835W&quot;,
+        &quot;created_at&quot;: &quot;2025-02-24T20:12:14.000000Z&quot;,
+        &quot;updated_at&quot;: &quot;2025-02-24T20:12:14.000000Z&quot;
     },
     {
         &quot;id&quot;: 37,
-        &quot;name&quot;: &quot;Mar&iacute;a Pilar Jurado&quot;,
-        &quot;dni&quot;: &quot;72774252F&quot;,
-        &quot;created_at&quot;: &quot;2025-02-23T22:07:55.000000Z&quot;,
-        &quot;updated_at&quot;: &quot;2025-02-23T22:07:55.000000Z&quot;
+        &quot;name&quot;: &quot;Ian Gast&eacute;lum&quot;,
+        &quot;dni&quot;: &quot;28933079C&quot;,
+        &quot;created_at&quot;: &quot;2025-02-24T20:12:14.000000Z&quot;,
+        &quot;updated_at&quot;: &quot;2025-02-24T20:12:14.000000Z&quot;
     },
     {
         &quot;id&quot;: 38,
-        &quot;name&quot;: &quot;Sonia Men&eacute;ndez&quot;,
-        &quot;dni&quot;: &quot;11388807V&quot;,
-        &quot;created_at&quot;: &quot;2025-02-23T22:07:55.000000Z&quot;,
-        &quot;updated_at&quot;: &quot;2025-02-23T22:07:55.000000Z&quot;
+        &quot;name&quot;: &quot;Abril Duarte Hijo&quot;,
+        &quot;dni&quot;: &quot;48667593X&quot;,
+        &quot;created_at&quot;: &quot;2025-02-24T20:12:14.000000Z&quot;,
+        &quot;updated_at&quot;: &quot;2025-02-24T20:12:14.000000Z&quot;
     },
     {
         &quot;id&quot;: 39,
-        &quot;name&quot;: &quot;Ing. Luisa Ceja Segundo&quot;,
-        &quot;dni&quot;: &quot;36037465H&quot;,
-        &quot;created_at&quot;: &quot;2025-02-23T22:07:55.000000Z&quot;,
-        &quot;updated_at&quot;: &quot;2025-02-23T22:07:55.000000Z&quot;
+        &quot;name&quot;: &quot;Gabriela Nev&aacute;rez&quot;,
+        &quot;dni&quot;: &quot;95773663U&quot;,
+        &quot;created_at&quot;: &quot;2025-02-24T20:12:14.000000Z&quot;,
+        &quot;updated_at&quot;: &quot;2025-02-24T20:12:14.000000Z&quot;
     },
     {
         &quot;id&quot;: 40,
-        &quot;name&quot;: &quot;Laia Barrios&quot;,
-        &quot;dni&quot;: &quot;18816597S&quot;,
-        &quot;created_at&quot;: &quot;2025-02-23T22:07:55.000000Z&quot;,
-        &quot;updated_at&quot;: &quot;2025-02-23T22:07:55.000000Z&quot;
+        &quot;name&quot;: &quot;Carmen Olvera&quot;,
+        &quot;dni&quot;: &quot;40107706U&quot;,
+        &quot;created_at&quot;: &quot;2025-02-24T20:12:14.000000Z&quot;,
+        &quot;updated_at&quot;: &quot;2025-02-24T20:12:14.000000Z&quot;
     },
     {
         &quot;id&quot;: 41,
-        &quot;name&quot;: &quot;Dr. Adam Bl&aacute;zquez&quot;,
-        &quot;dni&quot;: &quot;71808322I&quot;,
-        &quot;created_at&quot;: &quot;2025-02-23T22:07:55.000000Z&quot;,
-        &quot;updated_at&quot;: &quot;2025-02-23T22:07:55.000000Z&quot;
+        &quot;name&quot;: &quot;Olivia Batista&quot;,
+        &quot;dni&quot;: &quot;61001965Z&quot;,
+        &quot;created_at&quot;: &quot;2025-02-24T20:12:14.000000Z&quot;,
+        &quot;updated_at&quot;: &quot;2025-02-24T20:12:14.000000Z&quot;
     },
     {
         &quot;id&quot;: 42,
-        &quot;name&quot;: &quot;Sra. Lidia Apodaca&quot;,
-        &quot;dni&quot;: &quot;49594317B&quot;,
-        &quot;created_at&quot;: &quot;2025-02-23T22:07:55.000000Z&quot;,
-        &quot;updated_at&quot;: &quot;2025-02-23T22:07:55.000000Z&quot;
+        &quot;name&quot;: &quot;Nayara Villalpando&quot;,
+        &quot;dni&quot;: &quot;44972652Q&quot;,
+        &quot;created_at&quot;: &quot;2025-02-24T20:12:14.000000Z&quot;,
+        &quot;updated_at&quot;: &quot;2025-02-24T20:12:14.000000Z&quot;
     },
     {
         &quot;id&quot;: 43,
-        &quot;name&quot;: &quot;Ing. Fernando Figueroa&quot;,
-        &quot;dni&quot;: &quot;72363776W&quot;,
-        &quot;created_at&quot;: &quot;2025-02-23T22:07:55.000000Z&quot;,
-        &quot;updated_at&quot;: &quot;2025-02-23T22:07:55.000000Z&quot;
+        &quot;name&quot;: &quot;Lic. Elena Vaca&quot;,
+        &quot;dni&quot;: &quot;31190163F&quot;,
+        &quot;created_at&quot;: &quot;2025-02-24T20:12:14.000000Z&quot;,
+        &quot;updated_at&quot;: &quot;2025-02-24T20:12:14.000000Z&quot;
     },
     {
         &quot;id&quot;: 44,
-        &quot;name&quot;: &quot;Marta Rojo&quot;,
-        &quot;dni&quot;: &quot;69638198T&quot;,
-        &quot;created_at&quot;: &quot;2025-02-23T22:07:55.000000Z&quot;,
-        &quot;updated_at&quot;: &quot;2025-02-23T22:07:55.000000Z&quot;
+        &quot;name&quot;: &quot;David Carrasco&quot;,
+        &quot;dni&quot;: &quot;28991309O&quot;,
+        &quot;created_at&quot;: &quot;2025-02-24T20:12:14.000000Z&quot;,
+        &quot;updated_at&quot;: &quot;2025-02-24T20:12:14.000000Z&quot;
     },
     {
         &quot;id&quot;: 45,
-        &quot;name&quot;: &quot;Ing. Valeria Orosco Segundo&quot;,
-        &quot;dni&quot;: &quot;84336493X&quot;,
-        &quot;created_at&quot;: &quot;2025-02-23T22:07:55.000000Z&quot;,
-        &quot;updated_at&quot;: &quot;2025-02-23T22:07:55.000000Z&quot;
+        &quot;name&quot;: &quot;Sr. Samuel Arias&quot;,
+        &quot;dni&quot;: &quot;53535752R&quot;,
+        &quot;created_at&quot;: &quot;2025-02-24T20:12:14.000000Z&quot;,
+        &quot;updated_at&quot;: &quot;2025-02-24T20:12:14.000000Z&quot;
     },
     {
         &quot;id&quot;: 46,
-        &quot;name&quot;: &quot;Sonia De la Fuente&quot;,
-        &quot;dni&quot;: &quot;64508750I&quot;,
-        &quot;created_at&quot;: &quot;2025-02-23T22:07:55.000000Z&quot;,
-        &quot;updated_at&quot;: &quot;2025-02-23T22:07:55.000000Z&quot;
+        &quot;name&quot;: &quot;Lic. Jaime Balderas&quot;,
+        &quot;dni&quot;: &quot;43257981P&quot;,
+        &quot;created_at&quot;: &quot;2025-02-24T20:12:14.000000Z&quot;,
+        &quot;updated_at&quot;: &quot;2025-02-24T20:12:14.000000Z&quot;
     },
     {
         &quot;id&quot;: 47,
-        &quot;name&quot;: &quot;Leo Ara&ntilde;a&quot;,
-        &quot;dni&quot;: &quot;83899669A&quot;,
-        &quot;created_at&quot;: &quot;2025-02-23T22:07:55.000000Z&quot;,
-        &quot;updated_at&quot;: &quot;2025-02-23T22:07:55.000000Z&quot;
+        &quot;name&quot;: &quot;Yeray Olmos&quot;,
+        &quot;dni&quot;: &quot;51936173D&quot;,
+        &quot;created_at&quot;: &quot;2025-02-24T20:12:14.000000Z&quot;,
+        &quot;updated_at&quot;: &quot;2025-02-24T20:12:14.000000Z&quot;
     },
     {
         &quot;id&quot;: 48,
-        &quot;name&quot;: &quot;Valentina Vicente&quot;,
-        &quot;dni&quot;: &quot;88457504X&quot;,
-        &quot;created_at&quot;: &quot;2025-02-23T22:07:55.000000Z&quot;,
-        &quot;updated_at&quot;: &quot;2025-02-23T22:07:55.000000Z&quot;
+        &quot;name&quot;: &quot;Gonzalo Navarro&quot;,
+        &quot;dni&quot;: &quot;10261670V&quot;,
+        &quot;created_at&quot;: &quot;2025-02-24T20:12:14.000000Z&quot;,
+        &quot;updated_at&quot;: &quot;2025-02-24T20:12:14.000000Z&quot;
     },
     {
         &quot;id&quot;: 49,
-        &quot;name&quot;: &quot;Ing. Ismael Gonz&aacute;lez&quot;,
-        &quot;dni&quot;: &quot;54634632K&quot;,
-        &quot;created_at&quot;: &quot;2025-02-23T22:07:55.000000Z&quot;,
-        &quot;updated_at&quot;: &quot;2025-02-23T22:07:55.000000Z&quot;
+        &quot;name&quot;: &quot;Lic. Luc&iacute;a Robledo&quot;,
+        &quot;dni&quot;: &quot;26763957T&quot;,
+        &quot;created_at&quot;: &quot;2025-02-24T20:12:14.000000Z&quot;,
+        &quot;updated_at&quot;: &quot;2025-02-24T20:12:14.000000Z&quot;
     },
     {
         &quot;id&quot;: 50,
-        &quot;name&quot;: &quot;Pilar Lugo&quot;,
-        &quot;dni&quot;: &quot;69970677S&quot;,
-        &quot;created_at&quot;: &quot;2025-02-23T22:07:55.000000Z&quot;,
-        &quot;updated_at&quot;: &quot;2025-02-23T22:07:55.000000Z&quot;
+        &quot;name&quot;: &quot;Alexia Serrano&quot;,
+        &quot;dni&quot;: &quot;29469260T&quot;,
+        &quot;created_at&quot;: &quot;2025-02-24T20:12:14.000000Z&quot;,
+        &quot;updated_at&quot;: &quot;2025-02-24T20:12:14.000000Z&quot;
     },
     {
         &quot;id&quot;: 51,
-        &quot;name&quot;: &quot;Marco S&aacute;enz&quot;,
-        &quot;dni&quot;: &quot;60588289S&quot;,
-        &quot;created_at&quot;: &quot;2025-02-23T22:07:55.000000Z&quot;,
-        &quot;updated_at&quot;: &quot;2025-02-23T22:07:55.000000Z&quot;
+        &quot;name&quot;: &quot;Noelia Merino&quot;,
+        &quot;dni&quot;: &quot;85326371I&quot;,
+        &quot;created_at&quot;: &quot;2025-02-24T20:12:14.000000Z&quot;,
+        &quot;updated_at&quot;: &quot;2025-02-24T20:12:14.000000Z&quot;
     },
     {
         &quot;id&quot;: 52,
-        &quot;name&quot;: &quot;Naia Juan Tercero&quot;,
-        &quot;dni&quot;: &quot;28689989I&quot;,
-        &quot;created_at&quot;: &quot;2025-02-23T22:07:55.000000Z&quot;,
-        &quot;updated_at&quot;: &quot;2025-02-23T22:07:55.000000Z&quot;
+        &quot;name&quot;: &quot;Daniela Verdugo Hijo&quot;,
+        &quot;dni&quot;: &quot;35462984V&quot;,
+        &quot;created_at&quot;: &quot;2025-02-24T20:12:14.000000Z&quot;,
+        &quot;updated_at&quot;: &quot;2025-02-24T20:12:14.000000Z&quot;
     },
     {
         &quot;id&quot;: 53,
-        &quot;name&quot;: &quot;Mar&iacute;a &Aacute;ngeles S&aacute;ez&quot;,
-        &quot;dni&quot;: &quot;24389340H&quot;,
-        &quot;created_at&quot;: &quot;2025-02-23T22:07:55.000000Z&quot;,
-        &quot;updated_at&quot;: &quot;2025-02-23T22:07:55.000000Z&quot;
+        &quot;name&quot;: &quot;Lic. V&iacute;ctor Orozco Segundo&quot;,
+        &quot;dni&quot;: &quot;76328599S&quot;,
+        &quot;created_at&quot;: &quot;2025-02-24T20:12:14.000000Z&quot;,
+        &quot;updated_at&quot;: &quot;2025-02-24T20:12:14.000000Z&quot;
     },
     {
         &quot;id&quot;: 54,
-        &quot;name&quot;: &quot;Ing. H&eacute;ctor Villegas Segundo&quot;,
-        &quot;dni&quot;: &quot;80979141W&quot;,
-        &quot;created_at&quot;: &quot;2025-02-23T22:07:55.000000Z&quot;,
-        &quot;updated_at&quot;: &quot;2025-02-23T22:07:55.000000Z&quot;
+        &quot;name&quot;: &quot;Aitor Rold&aacute;n&quot;,
+        &quot;dni&quot;: &quot;04892916W&quot;,
+        &quot;created_at&quot;: &quot;2025-02-24T20:12:14.000000Z&quot;,
+        &quot;updated_at&quot;: &quot;2025-02-24T20:12:14.000000Z&quot;
     },
     {
         &quot;id&quot;: 55,
-        &quot;name&quot;: &quot;Blanca Domenech&quot;,
-        &quot;dni&quot;: &quot;30763460O&quot;,
-        &quot;created_at&quot;: &quot;2025-02-23T22:07:55.000000Z&quot;,
-        &quot;updated_at&quot;: &quot;2025-02-23T22:07:55.000000Z&quot;
+        &quot;name&quot;: &quot;Malak Monroy&quot;,
+        &quot;dni&quot;: &quot;14541454Q&quot;,
+        &quot;created_at&quot;: &quot;2025-02-24T20:12:14.000000Z&quot;,
+        &quot;updated_at&quot;: &quot;2025-02-24T20:12:14.000000Z&quot;
     },
     {
         &quot;id&quot;: 56,
-        &quot;name&quot;: &quot;Jan Mat&iacute;as&quot;,
-        &quot;dni&quot;: &quot;07681108J&quot;,
-        &quot;created_at&quot;: &quot;2025-02-23T22:07:55.000000Z&quot;,
-        &quot;updated_at&quot;: &quot;2025-02-23T22:07:55.000000Z&quot;
+        &quot;name&quot;: &quot;Mar&iacute;a Dolores Ord&oacute;&ntilde;ez&quot;,
+        &quot;dni&quot;: &quot;59189434L&quot;,
+        &quot;created_at&quot;: &quot;2025-02-24T20:12:14.000000Z&quot;,
+        &quot;updated_at&quot;: &quot;2025-02-24T20:12:14.000000Z&quot;
     },
     {
         &quot;id&quot;: 57,
-        &quot;name&quot;: &quot;Lola Armijo Segundo&quot;,
-        &quot;dni&quot;: &quot;99921656H&quot;,
-        &quot;created_at&quot;: &quot;2025-02-23T22:07:55.000000Z&quot;,
-        &quot;updated_at&quot;: &quot;2025-02-23T22:07:55.000000Z&quot;
+        &quot;name&quot;: &quot;Pablo Barraza&quot;,
+        &quot;dni&quot;: &quot;45510616E&quot;,
+        &quot;created_at&quot;: &quot;2025-02-24T20:12:14.000000Z&quot;,
+        &quot;updated_at&quot;: &quot;2025-02-24T20:12:14.000000Z&quot;
     },
     {
         &quot;id&quot;: 58,
-        &quot;name&quot;: &quot;Ariadna Silva&quot;,
-        &quot;dni&quot;: &quot;09714329Q&quot;,
-        &quot;created_at&quot;: &quot;2025-02-23T22:07:55.000000Z&quot;,
-        &quot;updated_at&quot;: &quot;2025-02-23T22:07:55.000000Z&quot;
+        &quot;name&quot;: &quot;Sr. Rub&eacute;n Aguirre Hijo&quot;,
+        &quot;dni&quot;: &quot;11913240Z&quot;,
+        &quot;created_at&quot;: &quot;2025-02-24T20:12:14.000000Z&quot;,
+        &quot;updated_at&quot;: &quot;2025-02-24T20:12:14.000000Z&quot;
     },
     {
         &quot;id&quot;: 59,
-        &quot;name&quot;: &quot;Manuel Tejada Segundo&quot;,
-        &quot;dni&quot;: &quot;35157091A&quot;,
-        &quot;created_at&quot;: &quot;2025-02-23T22:07:55.000000Z&quot;,
-        &quot;updated_at&quot;: &quot;2025-02-23T22:07:55.000000Z&quot;
+        &quot;name&quot;: &quot;Carla Preciado&quot;,
+        &quot;dni&quot;: &quot;68790396S&quot;,
+        &quot;created_at&quot;: &quot;2025-02-24T20:12:14.000000Z&quot;,
+        &quot;updated_at&quot;: &quot;2025-02-24T20:12:14.000000Z&quot;
     },
     {
         &quot;id&quot;: 60,
-        &quot;name&quot;: &quot;Dr. Eva Abrego Segundo&quot;,
-        &quot;dni&quot;: &quot;73009350M&quot;,
-        &quot;created_at&quot;: &quot;2025-02-23T22:07:55.000000Z&quot;,
-        &quot;updated_at&quot;: &quot;2025-02-23T22:07:55.000000Z&quot;
+        &quot;name&quot;: &quot;Bruno Far&iacute;as&quot;,
+        &quot;dni&quot;: &quot;44394162R&quot;,
+        &quot;created_at&quot;: &quot;2025-02-24T20:12:14.000000Z&quot;,
+        &quot;updated_at&quot;: &quot;2025-02-24T20:12:14.000000Z&quot;
     }
 ]</code>
  </pre>
@@ -985,10 +985,10 @@ access-control-allow-origin: *
 
 <code class="language-json" style="max-height: 300px;">{
     &quot;id&quot;: 1,
-    &quot;name&quot;: &quot;Ana Mar&iacute;a Laureano&quot;,
-    &quot;dni&quot;: &quot;62965730S&quot;,
-    &quot;created_at&quot;: &quot;2025-02-23T22:07:55.000000Z&quot;,
-    &quot;updated_at&quot;: &quot;2025-02-23T22:07:55.000000Z&quot;
+    &quot;name&quot;: &quot;Alexia Puente&quot;,
+    &quot;dni&quot;: &quot;12256495H&quot;,
+    &quot;created_at&quot;: &quot;2025-02-24T20:12:14.000000Z&quot;,
+    &quot;updated_at&quot;: &quot;2025-02-24T20:12:14.000000Z&quot;
 }</code>
  </pre>
     </span>
@@ -1092,7 +1092,8 @@ You can check the Dev Tools console for debugging information.</code></pre>
     --header "Content-Type: application/json" \
     --header "Accept: application/json" \
     --data "{
-    \"name\": \"b\"
+    \"name\": \"b\",
+    \"dni\": \"n\"
 }"
 </code></pre></div>
 
@@ -1108,7 +1109,8 @@ const headers = {
 };
 
 let body = {
-    "name": "b"
+    "name": "b",
+    "dni": "n"
 };
 
 fetch(url, {
@@ -1221,13 +1223,13 @@ You can check the Dev Tools console for debugging information.</code></pre>
                 <div style=" padding-left: 28px;  clear: unset;">
             <b style="line-height: 2;"><code>dni</code></b>&nbsp;&nbsp;
 <small>string</small>&nbsp;
-<i>optional</i> &nbsp;
+ &nbsp;
                 <input type="text" style="display: none"
                               name="dni"                data-endpoint="PUTapi-guards--id-"
-               value=""
+               value="n"
                data-component="body">
     <br>
-
+<p>El campo value no debe ser mayor que 255 caracteres. Example: <code>n</code></p>
         </div>
         </form>
 
