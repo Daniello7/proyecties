@@ -4,17 +4,12 @@ namespace App\Livewire;
 
 use App\Models\Person;
 use App\Models\PersonEntry;
+use App\Traits\HasTableEloquent;
 use Livewire\Component;
 
 class PersonActiveEntriesTable extends Component
 {
-    public array $columns;
-    public array $columnMap;
-    public array $select;
-    public string $sortColumn;
-    public string $sortDirection;
-    public array $relations;
-    public string $search = '';
+    use HasTableEloquent;
 
     public function mount()
     {
@@ -64,38 +59,11 @@ class PersonActiveEntriesTable extends Component
                 'internalPerson.person_id', '=', 'internalPerson_personRelation.id')
             ->whereNull('exit_time');
 
-        $this->applySearchFilter($query);
+        $this->filterContains($query);
 
         return $query
             ->orderBy($this->sortColumn, $this->sortDirection)
             ->paginate(50);
-    }
-
-    public function applySearchFilter($query): void
-    {
-        if (!$this->search) return;
-
-        $query->where(function ($q) {
-            foreach ($this->columnMap as $column) {
-                if ($column) {
-                    $q->orWhere($column, 'LIKE', "%{$this->search}%");
-                }
-            }
-        });
-    }
-
-    public function sortBy($column): void
-    {
-        if (!$this->columnMap[$column]) return;
-
-        $column = $this->columnMap[$column];
-
-        if ($this->sortColumn === $column) {
-            $this->sortDirection = $this->sortDirection === 'asc' ? 'desc' : 'asc';
-        } else {
-            $this->sortColumn = $column;
-            $this->sortDirection = 'asc';
-        }
     }
 
     public function updateEntry(int $id): void
