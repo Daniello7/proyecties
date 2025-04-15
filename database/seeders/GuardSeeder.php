@@ -3,7 +3,6 @@
 namespace Database\Seeders;
 
 use App\Models\Guard;
-use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 
 class GuardSeeder extends Seeder
@@ -13,6 +12,11 @@ class GuardSeeder extends Seeder
      */
     public function run(): void
     {
-        Guard::factory(60)->create();
+        Guard::create([
+            'user_id' => 1,
+            'name' => 'Daniel López',
+            'dni' => '12345678',
+        ]);
+        Guard::factory(59)->create();
     }
 }

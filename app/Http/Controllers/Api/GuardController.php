@@ -54,7 +54,7 @@ class GuardController extends Controller
 
         if (!$guard) {
             return response()->json([
-                'error' => 'Guard not found'
+                'error' => __('Guard not found')
             ], 404);
         }
 
@@ -102,7 +102,7 @@ class GuardController extends Controller
         $guard->zones()->syncWithoutDetaching([$zone->id => ['schedule' => $request->schedule]]);
 
         return response()->json(['message' =>
-            "Guard '$guard->name' with id: $guard->id has been assigned the zone '$zone->name' with schedule: $request->schedule"],
+            __('Zone assigned successfully.')],
             201);
     }
 }

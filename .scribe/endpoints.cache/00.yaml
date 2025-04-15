@@ -14,9 +14,10 @@ endpoints:
       subgroupDescription: ''
       title: ''
       description: ''
-      authenticated: false
+      authenticated: true
       custom: []
     headers:
+      Authorization: 'Bearer {YOUR_AUTH_KEY}'
       Content-Type: application/json
       Accept: application/json
     urlParameters: []
@@ -37,7 +38,10 @@ endpoints:
         description: null
         custom: []
     responseFields: []
-    auth: []
+    auth:
+      - headers
+      - Authorization
+      - 'Bearer 6g43cv8PD1aE5beadkZfhV6'
     controller: null
     method: null
     route: null
@@ -53,9 +57,10 @@ endpoints:
       subgroupDescription: ''
       title: ''
       description: ''
-      authenticated: false
+      authenticated: true
       custom: []
     headers:
+      Authorization: 'Bearer {YOUR_AUTH_KEY}'
       Content-Type: application/json
       Accept: application/json
     urlParameters: []
@@ -68,7 +73,7 @@ endpoints:
     responses:
       -
         status: 200
-        content: '[{"id":1,"name":"Dr. Sof\u00eda Alonso","dni":"97357803S","created_at":"2025-04-15T13:16:26.000000Z","updated_at":"2025-04-15T13:16:26.000000Z"},{"id":2,"name":"Ing. Jan Ram\u00edrez","dni":"78348457E","created_at":"2025-04-15T13:16:26.000000Z","updated_at":"2025-04-15T13:16:26.000000Z"},{"id":3,"name":"Mar\u00eda Tapia","dni":"75487765O","created_at":"2025-04-15T13:16:26.000000Z","updated_at":"2025-04-15T13:16:26.000000Z"},{"id":4,"name":"Pau Franco","dni":"61693364V","created_at":"2025-04-15T13:16:26.000000Z","updated_at":"2025-04-15T13:16:26.000000Z"},{"id":5,"name":"Noelia S\u00e1enz","dni":"56589593I","created_at":"2025-04-15T13:16:26.000000Z","updated_at":"2025-04-15T13:16:26.000000Z"},{"id":6,"name":"Ismael Villarreal","dni":"63329108C","created_at":"2025-04-15T13:16:26.000000Z","updated_at":"2025-04-15T13:16:26.000000Z"},{"id":7,"name":"Ainhoa Gallego","dni":"64127333O","created_at":"2025-04-15T13:16:26.000000Z","updated_at":"2025-04-15T13:16:26.000000Z"},{"id":8,"name":"Lic. Marc Carrera Hijo","dni":"55822704S","created_at":"2025-04-15T13:16:26.000000Z","updated_at":"2025-04-15T13:16:26.000000Z"},{"id":9,"name":"Francisca Zamora","dni":"61453875E","created_at":"2025-04-15T13:16:26.000000Z","updated_at":"2025-04-15T13:16:26.000000Z"},{"id":10,"name":"Sonia Cort\u00e9s","dni":"14028154T","created_at":"2025-04-15T13:16:26.000000Z","updated_at":"2025-04-15T13:16:26.000000Z"},{"id":11,"name":"Lic. Jos\u00e9 Antonio Lomeli","dni":"97679692I","created_at":"2025-04-15T13:16:26.000000Z","updated_at":"2025-04-15T13:16:26.000000Z"},{"id":12,"name":"Ver\u00f3nica Lorente","dni":"27395516Z","created_at":"2025-04-15T13:16:26.000000Z","updated_at":"2025-04-15T13:16:26.000000Z"},{"id":13,"name":"Mara Pardo","dni":"34698070W","created_at":"2025-04-15T13:16:26.000000Z","updated_at":"2025-04-15T13:16:26.000000Z"},{"id":14,"name":"Lic. Sandra Castillo","dni":"43901285N","created_at":"2025-04-15T13:16:26.000000Z","updated_at":"2025-04-15T13:16:26.000000Z"},{"id":15,"name":"D. Isaac Pi\u00f1a","dni":"15457661R","created_at":"2025-04-15T13:16:26.000000Z","updated_at":"2025-04-15T13:16:26.000000Z"},{"id":16,"name":"Lic. Claudia Ozuna","dni":"95089979S","created_at":"2025-04-15T13:16:26.000000Z","updated_at":"2025-04-15T13:16:26.000000Z"},{"id":17,"name":"Lic. Marta Lozada","dni":"24836015F","created_at":"2025-04-15T13:16:26.000000Z","updated_at":"2025-04-15T13:16:26.000000Z"},{"id":18,"name":"Valentina Prieto","dni":"03441477S","created_at":"2025-04-15T13:16:26.000000Z","updated_at":"2025-04-15T13:16:26.000000Z"},{"id":19,"name":"Jon Galv\u00e1n","dni":"12572695G","created_at":"2025-04-15T13:16:26.000000Z","updated_at":"2025-04-15T13:16:26.000000Z"},{"id":20,"name":"D. Gonzalo Guerrero","dni":"07225471R","created_at":"2025-04-15T13:16:26.000000Z","updated_at":"2025-04-15T13:16:26.000000Z"},{"id":21,"name":"Abril Mateos","dni":"71519206I","created_at":"2025-04-15T13:16:26.000000Z","updated_at":"2025-04-15T13:16:26.000000Z"},{"id":22,"name":"Marcos Alfaro","dni":"14619622A","created_at":"2025-04-15T13:16:26.000000Z","updated_at":"2025-04-15T13:16:26.000000Z"},{"id":23,"name":"Sr. Miguel Ceballos Segundo","dni":"62860714V","created_at":"2025-04-15T13:16:26.000000Z","updated_at":"2025-04-15T13:16:26.000000Z"},{"id":24,"name":"Sr. Javier Requena Tercero","dni":"89544468B","created_at":"2025-04-15T13:16:26.000000Z","updated_at":"2025-04-15T13:16:26.000000Z"},{"id":25,"name":"Lic. Gonzalo Rueda Hijo","dni":"84548002K","created_at":"2025-04-15T13:16:26.000000Z","updated_at":"2025-04-15T13:16:26.000000Z"},{"id":26,"name":"Ing. Zoe Bahena","dni":"62236248L","created_at":"2025-04-15T13:16:26.000000Z","updated_at":"2025-04-15T13:16:26.000000Z"},{"id":27,"name":"Lic. Encarnaci\u00f3n Tello Segundo","dni":"35733989G","created_at":"2025-04-15T13:16:26.000000Z","updated_at":"2025-04-15T13:16:26.000000Z"},{"id":28,"name":"Ismael Berm\u00fadez","dni":"76354989A","created_at":"2025-04-15T13:16:26.000000Z","updated_at":"2025-04-15T13:16:26.000000Z"},{"id":29,"name":"In\u00e9s Esparza Segundo","dni":"05105157P","created_at":"2025-04-15T13:16:26.000000Z","updated_at":"2025-04-15T13:16:26.000000Z"},{"id":30,"name":"Julia Chac\u00f3n","dni":"33462643E","created_at":"2025-04-15T13:16:26.000000Z","updated_at":"2025-04-15T13:16:26.000000Z"},{"id":31,"name":"Lic. Pablo Herrero Tercero","dni":"96434414A","created_at":"2025-04-15T13:16:26.000000Z","updated_at":"2025-04-15T13:16:26.000000Z"},{"id":32,"name":"Helena Vergara","dni":"99393441W","created_at":"2025-04-15T13:16:26.000000Z","updated_at":"2025-04-15T13:16:26.000000Z"},{"id":33,"name":"Marta Delapaz","dni":"00055579G","created_at":"2025-04-15T13:16:26.000000Z","updated_at":"2025-04-15T13:16:26.000000Z"},{"id":34,"name":"\u00c1frica Laboy","dni":"74570423X","created_at":"2025-04-15T13:16:26.000000Z","updated_at":"2025-04-15T13:16:26.000000Z"},{"id":35,"name":"Roc\u00edo Mateo","dni":"75484885H","created_at":"2025-04-15T13:16:26.000000Z","updated_at":"2025-04-15T13:16:26.000000Z"},{"id":36,"name":"Jon Barrag\u00e1n","dni":"00540462X","created_at":"2025-04-15T13:16:26.000000Z","updated_at":"2025-04-15T13:16:26.000000Z"},{"id":37,"name":"D. Arnau Altamirano Segundo","dni":"13969477K","created_at":"2025-04-15T13:16:26.000000Z","updated_at":"2025-04-15T13:16:26.000000Z"},{"id":38,"name":"Ian Collazo","dni":"50126033Z","created_at":"2025-04-15T13:16:26.000000Z","updated_at":"2025-04-15T13:16:26.000000Z"},{"id":39,"name":"Srta. Salma Luna Segundo","dni":"89930257A","created_at":"2025-04-15T13:16:26.000000Z","updated_at":"2025-04-15T13:16:26.000000Z"},{"id":40,"name":"Gonzalo Ortega","dni":"29829205Y","created_at":"2025-04-15T13:16:26.000000Z","updated_at":"2025-04-15T13:16:26.000000Z"},{"id":41,"name":"Ian Prieto","dni":"29777905W","created_at":"2025-04-15T13:16:26.000000Z","updated_at":"2025-04-15T13:16:26.000000Z"},{"id":42,"name":"Jos\u00e9 Manuel Robles","dni":"76820530L","created_at":"2025-04-15T13:16:26.000000Z","updated_at":"2025-04-15T13:16:26.000000Z"},{"id":43,"name":"Dr. Carlos Serrato Segundo","dni":"06798305U","created_at":"2025-04-15T13:16:26.000000Z","updated_at":"2025-04-15T13:16:26.000000Z"},{"id":44,"name":"Ismael Garc\u00eda","dni":"84349856P","created_at":"2025-04-15T13:16:26.000000Z","updated_at":"2025-04-15T13:16:26.000000Z"},{"id":45,"name":"Ing. Marina Ni\u00f1o Hijo","dni":"25560100N","created_at":"2025-04-15T13:16:26.000000Z","updated_at":"2025-04-15T13:16:26.000000Z"},{"id":46,"name":"Lola Aguirre","dni":"63352876U","created_at":"2025-04-15T13:16:26.000000Z","updated_at":"2025-04-15T13:16:26.000000Z"},{"id":47,"name":"Srta. Andrea S\u00e1ez","dni":"51367278L","created_at":"2025-04-15T13:16:26.000000Z","updated_at":"2025-04-15T13:16:26.000000Z"},{"id":48,"name":"Miriam S\u00e1nchez","dni":"79697421J","created_at":"2025-04-15T13:16:26.000000Z","updated_at":"2025-04-15T13:16:26.000000Z"},{"id":49,"name":"Ian Alba","dni":"76392611V","created_at":"2025-04-15T13:16:26.000000Z","updated_at":"2025-04-15T13:16:26.000000Z"},{"id":50,"name":"Sr. Mart\u00edn Saucedo","dni":"00883003S","created_at":"2025-04-15T13:16:26.000000Z","updated_at":"2025-04-15T13:16:26.000000Z"},{"id":51,"name":"D\u00f1a Emilia Reyna Hijo","dni":"10410666F","created_at":"2025-04-15T13:16:26.000000Z","updated_at":"2025-04-15T13:16:26.000000Z"},{"id":52,"name":"Carlos Vicente","dni":"19856947D","created_at":"2025-04-15T13:16:26.000000Z","updated_at":"2025-04-15T13:16:26.000000Z"},{"id":53,"name":"Ing. \u00c1lvaro Meza Tercero","dni":"47208287D","created_at":"2025-04-15T13:16:26.000000Z","updated_at":"2025-04-15T13:16:26.000000Z"},{"id":54,"name":"Andr\u00e9s C\u00f3rdova","dni":"58230352L","created_at":"2025-04-15T13:16:26.000000Z","updated_at":"2025-04-15T13:16:26.000000Z"},{"id":55,"name":"D\u00f1a Paola Arriaga Tercero","dni":"59540193B","created_at":"2025-04-15T13:16:26.000000Z","updated_at":"2025-04-15T13:16:26.000000Z"},{"id":56,"name":"Encarnaci\u00f3n Blanco","dni":"77962749C","created_at":"2025-04-15T13:16:26.000000Z","updated_at":"2025-04-15T13:16:26.000000Z"},{"id":57,"name":"Pablo Riera","dni":"34550577J","created_at":"2025-04-15T13:16:26.000000Z","updated_at":"2025-04-15T13:16:26.000000Z"},{"id":58,"name":"D. Fernando Calvillo Segundo","dni":"35607109O","created_at":"2025-04-15T13:16:26.000000Z","updated_at":"2025-04-15T13:16:26.000000Z"},{"id":59,"name":"Srta. Vega Caraballo","dni":"30110420B","created_at":"2025-04-15T13:16:26.000000Z","updated_at":"2025-04-15T13:16:26.000000Z"},{"id":60,"name":"D. Jos\u00e9 Manuel Loera Tercero","dni":"71845423K","created_at":"2025-04-15T13:16:26.000000Z","updated_at":"2025-04-15T13:16:26.000000Z"}]'
+        content: '[{"id":1,"name":"Leire Ramos","dni":"54972529G","created_at":"2025-04-15T17:45:51.000000Z","updated_at":"2025-04-15T17:45:51.000000Z"},{"id":2,"name":"D\u00f1a Rosa Peralta Tercero","dni":"19774833I","created_at":"2025-04-15T17:45:51.000000Z","updated_at":"2025-04-15T17:45:51.000000Z"},{"id":3,"name":"Ainara Jaimes","dni":"67436694A","created_at":"2025-04-15T17:45:51.000000Z","updated_at":"2025-04-15T17:45:51.000000Z"},{"id":4,"name":"Isabel Abrego","dni":"45832057H","created_at":"2025-04-15T17:45:51.000000Z","updated_at":"2025-04-15T17:45:51.000000Z"},{"id":5,"name":"D. Joel Valencia Segundo","dni":"52380062B","created_at":"2025-04-15T17:45:51.000000Z","updated_at":"2025-04-15T17:45:51.000000Z"},{"id":6,"name":"Elena Hernando","dni":"06967148D","created_at":"2025-04-15T17:45:51.000000Z","updated_at":"2025-04-15T17:45:51.000000Z"},{"id":7,"name":"Natalia Lozada","dni":"96017269I","created_at":"2025-04-15T17:45:51.000000Z","updated_at":"2025-04-15T17:45:51.000000Z"},{"id":8,"name":"Andrea Galarza","dni":"13259000S","created_at":"2025-04-15T17:45:51.000000Z","updated_at":"2025-04-15T17:45:51.000000Z"},{"id":9,"name":"Helena Hern\u00e1ndes","dni":"26397722P","created_at":"2025-04-15T17:45:51.000000Z","updated_at":"2025-04-15T17:45:51.000000Z"},{"id":10,"name":"Diana Borrego","dni":"53129693G","created_at":"2025-04-15T17:45:51.000000Z","updated_at":"2025-04-15T17:45:51.000000Z"},{"id":11,"name":"Sof\u00eda Orosco Segundo","dni":"26053591Y","created_at":"2025-04-15T17:45:51.000000Z","updated_at":"2025-04-15T17:45:51.000000Z"},{"id":12,"name":"Sra. Nayara Verdugo","dni":"68625731M","created_at":"2025-04-15T17:45:51.000000Z","updated_at":"2025-04-15T17:45:51.000000Z"},{"id":13,"name":"Sara Dom\u00ednguez","dni":"43149669Y","created_at":"2025-04-15T17:45:51.000000Z","updated_at":"2025-04-15T17:45:51.000000Z"},{"id":14,"name":"Asier Campos","dni":"60909270X","created_at":"2025-04-15T17:45:51.000000Z","updated_at":"2025-04-15T17:45:51.000000Z"},{"id":15,"name":"C\u00e9sar Carrasquillo","dni":"54296777J","created_at":"2025-04-15T17:45:51.000000Z","updated_at":"2025-04-15T17:45:51.000000Z"},{"id":16,"name":"Mar\u00eda Pilar Henr\u00edquez","dni":"14768627N","created_at":"2025-04-15T17:45:51.000000Z","updated_at":"2025-04-15T17:45:51.000000Z"},{"id":17,"name":"Ing. \u00d3scar Cabello","dni":"99539177R","created_at":"2025-04-15T17:45:51.000000Z","updated_at":"2025-04-15T17:45:51.000000Z"},{"id":18,"name":"Sra. Eva Medina","dni":"84631185M","created_at":"2025-04-15T17:45:51.000000Z","updated_at":"2025-04-15T17:45:51.000000Z"},{"id":19,"name":"Beatriz Abreu","dni":"50385463P","created_at":"2025-04-15T17:45:51.000000Z","updated_at":"2025-04-15T17:45:51.000000Z"},{"id":20,"name":"D\u00f1a Ver\u00f3nica Carrero Hijo","dni":"79349528H","created_at":"2025-04-15T17:45:51.000000Z","updated_at":"2025-04-15T17:45:51.000000Z"},{"id":21,"name":"Rodrigo Santill\u00e1n","dni":"15008089V","created_at":"2025-04-15T17:45:51.000000Z","updated_at":"2025-04-15T17:45:51.000000Z"},{"id":22,"name":"Lidia Montero","dni":"40445483T","created_at":"2025-04-15T17:45:51.000000Z","updated_at":"2025-04-15T17:45:51.000000Z"},{"id":23,"name":"Candela Duarte","dni":"05093624M","created_at":"2025-04-15T17:45:51.000000Z","updated_at":"2025-04-15T17:45:51.000000Z"},{"id":24,"name":"Rayan Pi\u00f1eiro","dni":"14708711I","created_at":"2025-04-15T17:45:51.000000Z","updated_at":"2025-04-15T17:45:51.000000Z"},{"id":25,"name":"Jan Sol\u00eds","dni":"36384387N","created_at":"2025-04-15T17:45:51.000000Z","updated_at":"2025-04-15T17:45:51.000000Z"},{"id":26,"name":"Mar\u00eda Gimeno Segundo","dni":"68931007X","created_at":"2025-04-15T17:45:51.000000Z","updated_at":"2025-04-15T17:45:51.000000Z"},{"id":27,"name":"Izan Rom\u00e1n","dni":"80080195Y","created_at":"2025-04-15T17:45:51.000000Z","updated_at":"2025-04-15T17:45:51.000000Z"},{"id":28,"name":"Nerea Pati\u00f1o","dni":"95812095G","created_at":"2025-04-15T17:45:51.000000Z","updated_at":"2025-04-15T17:45:51.000000Z"},{"id":29,"name":"Ing. Claudia Mel\u00e9ndez Tercero","dni":"07555128G","created_at":"2025-04-15T17:45:51.000000Z","updated_at":"2025-04-15T17:45:51.000000Z"},{"id":30,"name":"Marc Monta\u00f1ez","dni":"12226401C","created_at":"2025-04-15T17:45:51.000000Z","updated_at":"2025-04-15T17:45:51.000000Z"},{"id":31,"name":"Ander Salinas","dni":"04811580I","created_at":"2025-04-15T17:45:51.000000Z","updated_at":"2025-04-15T17:45:51.000000Z"},{"id":32,"name":"Manuela Alanis","dni":"21317635C","created_at":"2025-04-15T17:45:51.000000Z","updated_at":"2025-04-15T17:45:51.000000Z"},{"id":33,"name":"Ariadna Villalobos","dni":"91171014F","created_at":"2025-04-15T17:45:51.000000Z","updated_at":"2025-04-15T17:45:51.000000Z"},{"id":34,"name":"Zoe Alaniz","dni":"71785593D","created_at":"2025-04-15T17:45:51.000000Z","updated_at":"2025-04-15T17:45:51.000000Z"},{"id":35,"name":"Mateo Alc\u00e1ntar","dni":"23845686B","created_at":"2025-04-15T17:45:51.000000Z","updated_at":"2025-04-15T17:45:51.000000Z"},{"id":36,"name":"Srta. Zoe L\u00f3pez Hijo","dni":"15351648R","created_at":"2025-04-15T17:45:51.000000Z","updated_at":"2025-04-15T17:45:51.000000Z"},{"id":37,"name":"Luc\u00eda Armenta","dni":"61411632M","created_at":"2025-04-15T17:45:51.000000Z","updated_at":"2025-04-15T17:45:51.000000Z"},{"id":38,"name":"Clara Barrios","dni":"59156866L","created_at":"2025-04-15T17:45:51.000000Z","updated_at":"2025-04-15T17:45:51.000000Z"},{"id":39,"name":"Srta. Ainhoa Trujillo","dni":"78297836I","created_at":"2025-04-15T17:45:51.000000Z","updated_at":"2025-04-15T17:45:51.000000Z"},{"id":40,"name":"Alba Garibay","dni":"65386285I","created_at":"2025-04-15T17:45:51.000000Z","updated_at":"2025-04-15T17:45:51.000000Z"},{"id":41,"name":"Nadia Laureano","dni":"60356672H","created_at":"2025-04-15T17:45:51.000000Z","updated_at":"2025-04-15T17:45:51.000000Z"},{"id":42,"name":"Francisca Dele\u00f3n","dni":"65375255H","created_at":"2025-04-15T17:45:51.000000Z","updated_at":"2025-04-15T17:45:51.000000Z"},{"id":43,"name":"Dr. Pau Garrido Tercero","dni":"18474694J","created_at":"2025-04-15T17:45:52.000000Z","updated_at":"2025-04-15T17:45:52.000000Z"},{"id":44,"name":"Julia Lim\u00f3n","dni":"73220893C","created_at":"2025-04-15T17:45:52.000000Z","updated_at":"2025-04-15T17:45:52.000000Z"},{"id":45,"name":"Lorena Aguado","dni":"00025007G","created_at":"2025-04-15T17:45:52.000000Z","updated_at":"2025-04-15T17:45:52.000000Z"},{"id":46,"name":"Mar Montemayor","dni":"03199377C","created_at":"2025-04-15T17:45:52.000000Z","updated_at":"2025-04-15T17:45:52.000000Z"},{"id":47,"name":"Yolanda Valverde","dni":"77161949T","created_at":"2025-04-15T17:45:52.000000Z","updated_at":"2025-04-15T17:45:52.000000Z"},{"id":48,"name":"Natalia Segovia Segundo","dni":"37169977N","created_at":"2025-04-15T17:45:52.000000Z","updated_at":"2025-04-15T17:45:52.000000Z"},{"id":49,"name":"Lic. Alex Carbajal","dni":"54494643A","created_at":"2025-04-15T17:45:52.000000Z","updated_at":"2025-04-15T17:45:52.000000Z"},{"id":50,"name":"Manuela Sanz","dni":"14857907G","created_at":"2025-04-15T17:45:52.000000Z","updated_at":"2025-04-15T17:45:52.000000Z"},{"id":51,"name":"\u00c1ngel Gayt\u00e1n Segundo","dni":"55533931R","created_at":"2025-04-15T17:45:52.000000Z","updated_at":"2025-04-15T17:45:52.000000Z"},{"id":52,"name":"Jordi Armas","dni":"42425443W","created_at":"2025-04-15T17:45:52.000000Z","updated_at":"2025-04-15T17:45:52.000000Z"},{"id":53,"name":"Lic. Silvia Guevara Segundo","dni":"18474214C","created_at":"2025-04-15T17:45:52.000000Z","updated_at":"2025-04-15T17:45:52.000000Z"},{"id":54,"name":"Gael Sanabria","dni":"05197908X","created_at":"2025-04-15T17:45:52.000000Z","updated_at":"2025-04-15T17:45:52.000000Z"},{"id":55,"name":"Biel Varela","dni":"41785644U","created_at":"2025-04-15T17:45:52.000000Z","updated_at":"2025-04-15T17:45:52.000000Z"},{"id":56,"name":"Sr. Oriol Granados Hijo","dni":"04226597N","created_at":"2025-04-15T17:45:52.000000Z","updated_at":"2025-04-15T17:45:52.000000Z"},{"id":57,"name":"Cristina Miranda Segundo","dni":"28181158B","created_at":"2025-04-15T17:45:52.000000Z","updated_at":"2025-04-15T17:45:52.000000Z"},{"id":58,"name":"Dr. Noelia Font Tercero","dni":"84741068F","created_at":"2025-04-15T17:45:52.000000Z","updated_at":"2025-04-15T17:45:52.000000Z"},{"id":59,"name":"C\u00e9sar Cano","dni":"24992016O","created_at":"2025-04-15T17:45:52.000000Z","updated_at":"2025-04-15T17:45:52.000000Z"},{"id":60,"name":"D\u00f1a \u00darsula T\u00f3rrez Hijo","dni":"88627659F","created_at":"2025-04-15T17:45:52.000000Z","updated_at":"2025-04-15T17:45:52.000000Z"}]'
         headers:
           cache-control: 'no-cache, private'
           content-type: application/json
@@ -76,7 +81,10 @@ endpoints:
         description: null
         custom: []
     responseFields: []
-    auth: []
+    auth:
+      - headers
+      - Authorization
+      - 'Bearer 6g43cv8PD1aE5beadkZfhV6'
     controller: null
     method: null
     route: null
@@ -92,9 +100,10 @@ endpoints:
       subgroupDescription: ''
       title: ''
       description: ''
-      authenticated: false
+      authenticated: true
       custom: []
     headers:
+      Authorization: 'Bearer {YOUR_AUTH_KEY}'
       Content-Type: application/json
       Accept: application/json
     urlParameters: []
@@ -128,7 +137,10 @@ endpoints:
     fileParameters: []
     responses: []
     responseFields: []
-    auth: []
+    auth:
+      - headers
+      - Authorization
+      - 'Bearer 6g43cv8PD1aE5beadkZfhV6'
     controller: null
     method: null
     route: null
@@ -144,9 +156,10 @@ endpoints:
       subgroupDescription: ''
       title: ''
       description: ''
-      authenticated: false
+      authenticated: true
       custom: []
     headers:
+      Authorization: 'Bearer {YOUR_AUTH_KEY}'
       Content-Type: application/json
       Accept: application/json
     urlParameters:
@@ -170,7 +183,7 @@ endpoints:
     responses:
       -
         status: 200
-        content: '{"id":1,"name":"Dr. Sof\u00eda Alonso","dni":"97357803S","created_at":"2025-04-15T13:16:26.000000Z","updated_at":"2025-04-15T13:16:26.000000Z"}'
+        content: '{"id":1,"name":"Leire Ramos","dni":"54972529G","created_at":"2025-04-15T17:45:51.000000Z","updated_at":"2025-04-15T17:45:51.000000Z"}'
         headers:
           cache-control: 'no-cache, private'
           content-type: application/json
@@ -178,7 +191,10 @@ endpoints:
         description: null
         custom: []
     responseFields: []
-    auth: []
+    auth:
+      - headers
+      - Authorization
+      - 'Bearer 6g43cv8PD1aE5beadkZfhV6'
     controller: null
     method: null
     route: null
@@ -195,9 +211,10 @@ endpoints:
       subgroupDescription: ''
       title: ''
       description: ''
-      authenticated: false
+      authenticated: true
       custom: []
     headers:
+      Authorization: 'Bearer {YOUR_AUTH_KEY}'
       Content-Type: application/json
       Accept: application/json
     urlParameters:
@@ -242,7 +259,10 @@ endpoints:
     fileParameters: []
     responses: []
     responseFields: []
-    auth: []
+    auth:
+      - headers
+      - Authorization
+      - 'Bearer 6g43cv8PD1aE5beadkZfhV6'
     controller: null
     method: null
     route: null
@@ -258,9 +278,10 @@ endpoints:
       subgroupDescription: ''
       title: ''
       description: ''
-      authenticated: false
+      authenticated: true
       custom: []
     headers:
+      Authorization: 'Bearer {YOUR_AUTH_KEY}'
       Content-Type: application/json
       Accept: application/json
     urlParameters:
@@ -283,7 +304,10 @@ endpoints:
     fileParameters: []
     responses: []
     responseFields: []
-    auth: []
+    auth:
+      - headers
+      - Authorization
+      - 'Bearer 6g43cv8PD1aE5beadkZfhV6'
     controller: null
     method: null
     route: null
@@ -299,9 +323,10 @@ endpoints:
       subgroupDescription: ''
       title: ''
       description: ''
-      authenticated: false
+      authenticated: true
       custom: []
     headers:
+      Authorization: 'Bearer {YOUR_AUTH_KEY}'
       Content-Type: application/json
       Accept: application/json
     urlParameters: []
@@ -346,7 +371,10 @@ endpoints:
     fileParameters: []
     responses: []
     responseFields: []
-    auth: []
+    auth:
+      - headers
+      - Authorization
+      - 'Bearer 6g43cv8PD1aE5beadkZfhV6'
     controller: null
     method: null
     route: null

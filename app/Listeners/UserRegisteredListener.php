@@ -2,6 +2,7 @@
 
 namespace App\Listeners;
 
+use App\Events\UserRegisteredEvent;
 use App\Mail\WelcomeNewUserMail;
 use App\Models\User;
 use Illuminate\Queue\SerializesModels;
@@ -11,14 +12,7 @@ class UserRegisteredListener
 {
     use SerializesModels;
 
-    public User $user;
-
-    public function __construct(User $user)
-    {
-        $this->user = $user;
-    }
-
-    public function handle(UserRegisteredListener $event): void
+    public function handle(UserRegisteredEvent $event): void
     {
         Mail::to($event->user->email)->queue(new WelcomeNewUserMail($event->user));
     }

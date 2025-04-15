@@ -1,7 +1,7 @@
 @component('mail::message')
-    # Welcome
+    # Welcome to Control 77!
 
-    WELCOME NEW USER!
+    Welcome {{ $user->name }}!
 
     @component('mail::button', ['url' => ''])
         Button Text
