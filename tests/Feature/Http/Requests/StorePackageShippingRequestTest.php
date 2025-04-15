@@ -2,7 +2,7 @@
 
 namespace Tests\Feature\Http\Requests;
 
-use App\Http\Requests\StorePackageShippingRequest;
+use App\Http\Requests\Package\StorePackageShippingRequest;
 use App\Models\InternalPerson;
 use App\Models\Person;
 use Illuminate\Support\Facades\Validator;

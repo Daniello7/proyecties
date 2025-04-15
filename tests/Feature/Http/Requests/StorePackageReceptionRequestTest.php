@@ -2,7 +2,7 @@
 
 namespace Tests\Feature\Http\Requests;
 
-use App\Http\Requests\StorePackageReceptionRequest;
+use App\Http\Requests\Package\StorePackageReceptionRequest;
 use App\Models\InternalPerson;
 use App\Models\Person;
 use Illuminate\Support\Facades\Validator;

@@ -1,7 +1,8 @@
 @component('mail::message')
-    # Visit Notify
+    # Token API Proyecties.test
 
-    A NEW VISIT HAS ARRIVED!
+    Hello {{ $user->name }}.
+    Your token is: {{ $token }}.
 
     @component('mail::button', ['url' => ''])
         Button Text

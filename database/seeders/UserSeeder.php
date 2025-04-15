@@ -2,8 +2,11 @@
 
 namespace Database\Seeders;
 
+use App\Events\TokenGeneratedEvent;
 use App\Models\User;
+use Illuminate\Auth\Events\Registered;
 use Illuminate\Database\Seeder;
+use Illuminate\Support\Facades\Mail;
 
 class UserSeeder extends Seeder
 {
@@ -19,6 +22,10 @@ class UserSeeder extends Seeder
             ]);
 
             $user->assignRole($role);
+
+            $token = $user->createToken($role . '_token', [$role])->plainTextToken;
+
+            event(new TokenGeneratedEvent($user, $token));
         }
 
         User::factory(20)->create();

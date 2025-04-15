@@ -5,7 +5,7 @@ namespace App\Http\Controllers\Api;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Api\AssignZoneRequest;
 use App\Http\Requests\Api\StoreGuardRequest;
-use App\Http\Requests\UpdateGuardRequest;
+use App\Http\Requests\Api\UpdateGuardRequest;
 use App\Models\Guard;
 use App\Models\Zone;
 use Illuminate\Http\Request;

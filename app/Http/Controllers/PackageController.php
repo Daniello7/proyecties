@@ -2,8 +2,8 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Requests\StorePackageReceptionRequest;
-use App\Http\Requests\StorePackageShippingRequest;
+use App\Http\Requests\Package\StorePackageReceptionRequest;
+use App\Http\Requests\Package\StorePackageShippingRequest;
 use App\Models\Package;
 
 class PackageController extends Controller
