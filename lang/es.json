@@ -70,6 +70,8 @@
   "Key": "Llave",
   "Keys": "Llaves",
   "Key Control": "Control de Llaves",
+  "Laravel log cleared successfully.": "Log de Laravel limpiado correctamente.",
+  "laravel.log file does not exist.": "El archivo laravel.log no existe",
   "Last Name": "Apellidos",
   "Latest Records": "Últimos Registros",
   "Latest Visit": "Última Visita",

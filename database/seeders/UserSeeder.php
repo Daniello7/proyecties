@@ -4,15 +4,19 @@ namespace Database\Seeders;
 
 use App\Events\TokenGeneratedEvent;
 use App\Models\User;
-use Illuminate\Auth\Events\Registered;
 use Illuminate\Database\Seeder;
-use Illuminate\Support\Facades\Mail;
+use Illuminate\Support\Facades\Artisan;
+use Illuminate\Support\Facades\Storage;
 
 class UserSeeder extends Seeder
 {
     public function run(): void
     {
-        $roles = ['tester', 'admin', 'client', 'porter', 'rrhh'];
+        Artisan::call('log:clear');
+
+        Storage::delete('tokens.md');
+
+        $roles = ['porter', 'rrhh', 'admin', 'client'];
 
         foreach ($roles as $role) {
             $user = User::create([
