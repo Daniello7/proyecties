@@ -43,8 +43,8 @@ class Sidebar extends Component
             ['name' => 'External Staff', 'url' => 'person-entries'],
             ['name' => 'Internal Staff', 'url' => 'internal-person'],
             ['name' => 'Package', 'url' => 'packages'],
-            ['name' => 'Key control', 'url' => 'key-control'],
-            ['name' => 'Panel', 'url' => 'dashboard'],
+            ['name' => 'Key Control', 'url' => 'key-control'],
+            ['name' => 'Dashboard', 'url' => 'dashboard'],
         ];
     }
 
@@ -54,7 +54,7 @@ class Sidebar extends Component
             ['name' => 'HR', 'url' => 'welcome'],
             ['name' => 'External Staff', 'url' => 'person-entries'],
             ['name' => 'Internal Staff', 'url' => 'internal-person'],
-            ['name' => 'Panel', 'url' => 'dashboard'],
+            ['name' => 'Dashboard', 'url' => 'dashboard'],
         ];
     }
 
@@ -62,7 +62,7 @@ class Sidebar extends Component
     {
         return [
             ['name' => 'Admin', 'url' => 'admin'],
-            ['name' => 'Panel', 'url' => 'dashboard'],
+            ['name' => 'Dashboard', 'url' => 'dashboard'],
         ];
     }
 

@@ -1,6 +1,5 @@
 <?php
 
-use App\Models\Comment;
 use App\Models\Key;
 use App\Models\Person;
 use App\Models\User;

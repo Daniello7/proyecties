@@ -22,7 +22,7 @@
         </thead>
         <tbody class="[&_td:first-child]:rounded-l-lg [&_td:last-child]:rounded-r-lg *:transition-colors">
         @foreach($rows as $personEntry)
-            <tr class="{{ isset($personEntry->exit_time) ?: 'ring-1 '. ($personEntry->entry_time != null ? 'ring-emerald-600':'ring-rose-600') }} shadow-md bg-white dark:bg-gray-700 rounded-lg text-center *:py-2 *:px-1">
+            <tr class="{{ isset($personEntry->exit_time) ?: '[&_td:first-child]:border-l-4'. ($personEntry->entry_time != null ? '[&_td:first-child]:border-emerald-600':'[&_td:first-child]:border-blue-600') }} shadow-md bg-white dark:bg-gray-700 rounded-lg text-center *:py-2 *:px-1">
                 <!-- Columns -->
                 <td>{{ $personEntry->person->name.' '.$personEntry->person->last_name }}</td>
                 <td>{{ $personEntry->person->company }}</td>

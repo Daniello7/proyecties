@@ -1,6 +1,6 @@
 <x-app-layout>
     <x-slot name="header">
-        <h2 class="font-semibold text-xl text-gray-800 dark:text-gray-200 leading-tight">
+        <h2 class="font-semibold text-3xl custom-gradient-text">
             {{ __('Dashboard') }}
         </h2>
     </x-slot>
@@ -26,9 +26,7 @@
                             {{ __('Admin') }}
                         </x-link-box>
                         @endrole
-                        @role('porter')
-                        @endrole
-                        @hasanyrole('admin|porter')
+                        @hasanyrole('porter')
                         <x-link-box :href="route('control-access')">
                             {{ __('Control Access') }}
                         </x-link-box>
