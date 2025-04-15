@@ -3,7 +3,8 @@
 namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
-use App\Http\Requests\StoreGuardRequest;
+use App\Http\Requests\Api\AssignZoneRequest;
+use App\Http\Requests\Api\StoreGuardRequest;
 use App\Http\Requests\UpdateGuardRequest;
 use App\Models\Guard;
 use App\Models\Zone;
@@ -31,7 +32,7 @@ class GuardController extends Controller
     }
 
     /**
-     * @param Request $request
+     * @param StoreGuardRequest $request
      * @return \Illuminate\Http\JsonResponse
      */
     public function store(StoreGuardRequest $request)
@@ -62,7 +63,7 @@ class GuardController extends Controller
     }
 
     /**
-     * @param Request $request
+     * @param UpdateGuardRequest $request
      * @param string $id
      * @return \Illuminate\Http\JsonResponse
      */
@@ -90,17 +91,18 @@ class GuardController extends Controller
     }
 
     /**
-     * @param Request $request
-     * @param $guardId
+     * @param AssignZoneRequest $request
      * @return \Illuminate\Http\JsonResponse
      */
-    public function assignZone(Request $request, $guardId)
+    public function assignZone(AssignZoneRequest $request)
     {
-        $guard = Guard::findOrFail($guardId);
+        $guard = Guard::with('zones')->findOrFail($request->guard_id);
         $zone = Zone::findOrFail($request->zone_id);
 
-        $guard->zones()->attach($zone->id, ['schedule' => $request->schedule]);
+        $guard->zones()->syncWithoutDetaching([$zone->id => ['schedule' => $request->schedule]]);
 
-        return response()->json(['message' => 'Zone assigned with schedule'], 201);
+        return response()->json(['message' =>
+            "Guard '$guard->name' with id: $guard->id has been assigned the zone '$zone->name' with schedule: $request->schedule"],
+            201);
     }
 }

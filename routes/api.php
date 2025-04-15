@@ -9,4 +9,4 @@ Route::get('/user', function (Request $request) {
 })->middleware('auth:sanctum');
 
 Route::apiResource('/guards', GuardController::class);
-Route::post('/guards/{guardId}/zones', [GuardController::class, 'assignZone'])->name('guards.assignZone');
+Route::post('/guards/assign-zone', [GuardController::class, 'assignZone'])->name('guards.assignZone');

@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Requests;
+namespace App\Http\Requests\Api;
 
 use Illuminate\Foundation\Http\FormRequest;
 
@@ -24,6 +24,6 @@ class StoreGuardRequest extends FormRequest
         return [
             'name' => 'required|string|max:255',
             'dni' => 'required|string|max:255|unique:guards',
-        ];;
+        ];
     }
 }
