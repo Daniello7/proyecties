@@ -89,6 +89,12 @@
                                                                                 <li class="tocify-item level-2" data-unique="endpoints-DELETEapi-guards--id-">
                                 <a href="#endpoints-DELETEapi-guards--id-">DELETE api/guards/{id}</a>
                             </li>
+                                                                                <li class="tocify-item level-2" data-unique="endpoints-GETapi-guards-with_zones">
+                                <a href="#endpoints-GETapi-guards-with_zones">GET api/guards?with_zones</a>
+                            </li>
+                                                                                <li class="tocify-item level-2" data-unique="endpoints-GETapi-guards--id--with_zones">
+                                <a href="#endpoints-GETapi-guards--id--with_zones">GET api/guards/{id}?with_zones</a>
+                            </li>
                                                                                 <li class="tocify-item level-2" data-unique="endpoints-POSTapi-guards-assign-zone">
                                 <a href="#endpoints-POSTapi-guards-assign-zone">POST api/guards/assign-zone</a>
                             </li>
@@ -103,7 +109,7 @@
     </ul>
 
     <ul class="toc-footer" id="last-updated">
-        <li>Last updated: April 15, 2025</li>
+        <li>Last updated: April 16, 2025</li>
     </ul>
 </div>
 
@@ -306,7 +312,7 @@ fetch(url, {
 
 <span id="example-responses-GETapi-guards">
             <blockquote>
-            <p>Example response (200):</p>
+            <p>Example response (401):</p>
         </blockquote>
                 <details class="annotation">
             <summary style="cursor: pointer;">
@@ -317,428 +323,9 @@ content-type: application/json
 access-control-allow-origin: *
  </code></pre></details>         <pre>
 
-<code class="language-json" style="max-height: 300px;">[
-    {
-        &quot;id&quot;: 1,
-        &quot;name&quot;: &quot;Leire Ramos&quot;,
-        &quot;dni&quot;: &quot;54972529G&quot;,
-        &quot;created_at&quot;: &quot;2025-04-15T17:45:51.000000Z&quot;,
-        &quot;updated_at&quot;: &quot;2025-04-15T17:45:51.000000Z&quot;
-    },
-    {
-        &quot;id&quot;: 2,
-        &quot;name&quot;: &quot;D&ntilde;a Rosa Peralta Tercero&quot;,
-        &quot;dni&quot;: &quot;19774833I&quot;,
-        &quot;created_at&quot;: &quot;2025-04-15T17:45:51.000000Z&quot;,
-        &quot;updated_at&quot;: &quot;2025-04-15T17:45:51.000000Z&quot;
-    },
-    {
-        &quot;id&quot;: 3,
-        &quot;name&quot;: &quot;Ainara Jaimes&quot;,
-        &quot;dni&quot;: &quot;67436694A&quot;,
-        &quot;created_at&quot;: &quot;2025-04-15T17:45:51.000000Z&quot;,
-        &quot;updated_at&quot;: &quot;2025-04-15T17:45:51.000000Z&quot;
-    },
-    {
-        &quot;id&quot;: 4,
-        &quot;name&quot;: &quot;Isabel Abrego&quot;,
-        &quot;dni&quot;: &quot;45832057H&quot;,
-        &quot;created_at&quot;: &quot;2025-04-15T17:45:51.000000Z&quot;,
-        &quot;updated_at&quot;: &quot;2025-04-15T17:45:51.000000Z&quot;
-    },
-    {
-        &quot;id&quot;: 5,
-        &quot;name&quot;: &quot;D. Joel Valencia Segundo&quot;,
-        &quot;dni&quot;: &quot;52380062B&quot;,
-        &quot;created_at&quot;: &quot;2025-04-15T17:45:51.000000Z&quot;,
-        &quot;updated_at&quot;: &quot;2025-04-15T17:45:51.000000Z&quot;
-    },
-    {
-        &quot;id&quot;: 6,
-        &quot;name&quot;: &quot;Elena Hernando&quot;,
-        &quot;dni&quot;: &quot;06967148D&quot;,
-        &quot;created_at&quot;: &quot;2025-04-15T17:45:51.000000Z&quot;,
-        &quot;updated_at&quot;: &quot;2025-04-15T17:45:51.000000Z&quot;
-    },
-    {
-        &quot;id&quot;: 7,
-        &quot;name&quot;: &quot;Natalia Lozada&quot;,
-        &quot;dni&quot;: &quot;96017269I&quot;,
-        &quot;created_at&quot;: &quot;2025-04-15T17:45:51.000000Z&quot;,
-        &quot;updated_at&quot;: &quot;2025-04-15T17:45:51.000000Z&quot;
-    },
-    {
-        &quot;id&quot;: 8,
-        &quot;name&quot;: &quot;Andrea Galarza&quot;,
-        &quot;dni&quot;: &quot;13259000S&quot;,
-        &quot;created_at&quot;: &quot;2025-04-15T17:45:51.000000Z&quot;,
-        &quot;updated_at&quot;: &quot;2025-04-15T17:45:51.000000Z&quot;
-    },
-    {
-        &quot;id&quot;: 9,
-        &quot;name&quot;: &quot;Helena Hern&aacute;ndes&quot;,
-        &quot;dni&quot;: &quot;26397722P&quot;,
-        &quot;created_at&quot;: &quot;2025-04-15T17:45:51.000000Z&quot;,
-        &quot;updated_at&quot;: &quot;2025-04-15T17:45:51.000000Z&quot;
-    },
-    {
-        &quot;id&quot;: 10,
-        &quot;name&quot;: &quot;Diana Borrego&quot;,
-        &quot;dni&quot;: &quot;53129693G&quot;,
-        &quot;created_at&quot;: &quot;2025-04-15T17:45:51.000000Z&quot;,
-        &quot;updated_at&quot;: &quot;2025-04-15T17:45:51.000000Z&quot;
-    },
-    {
-        &quot;id&quot;: 11,
-        &quot;name&quot;: &quot;Sof&iacute;a Orosco Segundo&quot;,
-        &quot;dni&quot;: &quot;26053591Y&quot;,
-        &quot;created_at&quot;: &quot;2025-04-15T17:45:51.000000Z&quot;,
-        &quot;updated_at&quot;: &quot;2025-04-15T17:45:51.000000Z&quot;
-    },
-    {
-        &quot;id&quot;: 12,
-        &quot;name&quot;: &quot;Sra. Nayara Verdugo&quot;,
-        &quot;dni&quot;: &quot;68625731M&quot;,
-        &quot;created_at&quot;: &quot;2025-04-15T17:45:51.000000Z&quot;,
-        &quot;updated_at&quot;: &quot;2025-04-15T17:45:51.000000Z&quot;
-    },
-    {
-        &quot;id&quot;: 13,
-        &quot;name&quot;: &quot;Sara Dom&iacute;nguez&quot;,
-        &quot;dni&quot;: &quot;43149669Y&quot;,
-        &quot;created_at&quot;: &quot;2025-04-15T17:45:51.000000Z&quot;,
-        &quot;updated_at&quot;: &quot;2025-04-15T17:45:51.000000Z&quot;
-    },
-    {
-        &quot;id&quot;: 14,
-        &quot;name&quot;: &quot;Asier Campos&quot;,
-        &quot;dni&quot;: &quot;60909270X&quot;,
-        &quot;created_at&quot;: &quot;2025-04-15T17:45:51.000000Z&quot;,
-        &quot;updated_at&quot;: &quot;2025-04-15T17:45:51.000000Z&quot;
-    },
-    {
-        &quot;id&quot;: 15,
-        &quot;name&quot;: &quot;C&eacute;sar Carrasquillo&quot;,
-        &quot;dni&quot;: &quot;54296777J&quot;,
-        &quot;created_at&quot;: &quot;2025-04-15T17:45:51.000000Z&quot;,
-        &quot;updated_at&quot;: &quot;2025-04-15T17:45:51.000000Z&quot;
-    },
-    {
-        &quot;id&quot;: 16,
-        &quot;name&quot;: &quot;Mar&iacute;a Pilar Henr&iacute;quez&quot;,
-        &quot;dni&quot;: &quot;14768627N&quot;,
-        &quot;created_at&quot;: &quot;2025-04-15T17:45:51.000000Z&quot;,
-        &quot;updated_at&quot;: &quot;2025-04-15T17:45:51.000000Z&quot;
-    },
-    {
-        &quot;id&quot;: 17,
-        &quot;name&quot;: &quot;Ing. &Oacute;scar Cabello&quot;,
-        &quot;dni&quot;: &quot;99539177R&quot;,
-        &quot;created_at&quot;: &quot;2025-04-15T17:45:51.000000Z&quot;,
-        &quot;updated_at&quot;: &quot;2025-04-15T17:45:51.000000Z&quot;
-    },
-    {
-        &quot;id&quot;: 18,
-        &quot;name&quot;: &quot;Sra. Eva Medina&quot;,
-        &quot;dni&quot;: &quot;84631185M&quot;,
-        &quot;created_at&quot;: &quot;2025-04-15T17:45:51.000000Z&quot;,
-        &quot;updated_at&quot;: &quot;2025-04-15T17:45:51.000000Z&quot;
-    },
-    {
-        &quot;id&quot;: 19,
-        &quot;name&quot;: &quot;Beatriz Abreu&quot;,
-        &quot;dni&quot;: &quot;50385463P&quot;,
-        &quot;created_at&quot;: &quot;2025-04-15T17:45:51.000000Z&quot;,
-        &quot;updated_at&quot;: &quot;2025-04-15T17:45:51.000000Z&quot;
-    },
-    {
-        &quot;id&quot;: 20,
-        &quot;name&quot;: &quot;D&ntilde;a Ver&oacute;nica Carrero Hijo&quot;,
-        &quot;dni&quot;: &quot;79349528H&quot;,
-        &quot;created_at&quot;: &quot;2025-04-15T17:45:51.000000Z&quot;,
-        &quot;updated_at&quot;: &quot;2025-04-15T17:45:51.000000Z&quot;
-    },
-    {
-        &quot;id&quot;: 21,
-        &quot;name&quot;: &quot;Rodrigo Santill&aacute;n&quot;,
-        &quot;dni&quot;: &quot;15008089V&quot;,
-        &quot;created_at&quot;: &quot;2025-04-15T17:45:51.000000Z&quot;,
-        &quot;updated_at&quot;: &quot;2025-04-15T17:45:51.000000Z&quot;
-    },
-    {
-        &quot;id&quot;: 22,
-        &quot;name&quot;: &quot;Lidia Montero&quot;,
-        &quot;dni&quot;: &quot;40445483T&quot;,
-        &quot;created_at&quot;: &quot;2025-04-15T17:45:51.000000Z&quot;,
-        &quot;updated_at&quot;: &quot;2025-04-15T17:45:51.000000Z&quot;
-    },
-    {
-        &quot;id&quot;: 23,
-        &quot;name&quot;: &quot;Candela Duarte&quot;,
-        &quot;dni&quot;: &quot;05093624M&quot;,
-        &quot;created_at&quot;: &quot;2025-04-15T17:45:51.000000Z&quot;,
-        &quot;updated_at&quot;: &quot;2025-04-15T17:45:51.000000Z&quot;
-    },
-    {
-        &quot;id&quot;: 24,
-        &quot;name&quot;: &quot;Rayan Pi&ntilde;eiro&quot;,
-        &quot;dni&quot;: &quot;14708711I&quot;,
-        &quot;created_at&quot;: &quot;2025-04-15T17:45:51.000000Z&quot;,
-        &quot;updated_at&quot;: &quot;2025-04-15T17:45:51.000000Z&quot;
-    },
-    {
-        &quot;id&quot;: 25,
-        &quot;name&quot;: &quot;Jan Sol&iacute;s&quot;,
-        &quot;dni&quot;: &quot;36384387N&quot;,
-        &quot;created_at&quot;: &quot;2025-04-15T17:45:51.000000Z&quot;,
-        &quot;updated_at&quot;: &quot;2025-04-15T17:45:51.000000Z&quot;
-    },
-    {
-        &quot;id&quot;: 26,
-        &quot;name&quot;: &quot;Mar&iacute;a Gimeno Segundo&quot;,
-        &quot;dni&quot;: &quot;68931007X&quot;,
-        &quot;created_at&quot;: &quot;2025-04-15T17:45:51.000000Z&quot;,
-        &quot;updated_at&quot;: &quot;2025-04-15T17:45:51.000000Z&quot;
-    },
-    {
-        &quot;id&quot;: 27,
-        &quot;name&quot;: &quot;Izan Rom&aacute;n&quot;,
-        &quot;dni&quot;: &quot;80080195Y&quot;,
-        &quot;created_at&quot;: &quot;2025-04-15T17:45:51.000000Z&quot;,
-        &quot;updated_at&quot;: &quot;2025-04-15T17:45:51.000000Z&quot;
-    },
-    {
-        &quot;id&quot;: 28,
-        &quot;name&quot;: &quot;Nerea Pati&ntilde;o&quot;,
-        &quot;dni&quot;: &quot;95812095G&quot;,
-        &quot;created_at&quot;: &quot;2025-04-15T17:45:51.000000Z&quot;,
-        &quot;updated_at&quot;: &quot;2025-04-15T17:45:51.000000Z&quot;
-    },
-    {
-        &quot;id&quot;: 29,
-        &quot;name&quot;: &quot;Ing. Claudia Mel&eacute;ndez Tercero&quot;,
-        &quot;dni&quot;: &quot;07555128G&quot;,
-        &quot;created_at&quot;: &quot;2025-04-15T17:45:51.000000Z&quot;,
-        &quot;updated_at&quot;: &quot;2025-04-15T17:45:51.000000Z&quot;
-    },
-    {
-        &quot;id&quot;: 30,
-        &quot;name&quot;: &quot;Marc Monta&ntilde;ez&quot;,
-        &quot;dni&quot;: &quot;12226401C&quot;,
-        &quot;created_at&quot;: &quot;2025-04-15T17:45:51.000000Z&quot;,
-        &quot;updated_at&quot;: &quot;2025-04-15T17:45:51.000000Z&quot;
-    },
-    {
-        &quot;id&quot;: 31,
-        &quot;name&quot;: &quot;Ander Salinas&quot;,
-        &quot;dni&quot;: &quot;04811580I&quot;,
-        &quot;created_at&quot;: &quot;2025-04-15T17:45:51.000000Z&quot;,
-        &quot;updated_at&quot;: &quot;2025-04-15T17:45:51.000000Z&quot;
-    },
-    {
-        &quot;id&quot;: 32,
-        &quot;name&quot;: &quot;Manuela Alanis&quot;,
-        &quot;dni&quot;: &quot;21317635C&quot;,
-        &quot;created_at&quot;: &quot;2025-04-15T17:45:51.000000Z&quot;,
-        &quot;updated_at&quot;: &quot;2025-04-15T17:45:51.000000Z&quot;
-    },
-    {
-        &quot;id&quot;: 33,
-        &quot;name&quot;: &quot;Ariadna Villalobos&quot;,
-        &quot;dni&quot;: &quot;91171014F&quot;,
-        &quot;created_at&quot;: &quot;2025-04-15T17:45:51.000000Z&quot;,
-        &quot;updated_at&quot;: &quot;2025-04-15T17:45:51.000000Z&quot;
-    },
-    {
-        &quot;id&quot;: 34,
-        &quot;name&quot;: &quot;Zoe Alaniz&quot;,
-        &quot;dni&quot;: &quot;71785593D&quot;,
-        &quot;created_at&quot;: &quot;2025-04-15T17:45:51.000000Z&quot;,
-        &quot;updated_at&quot;: &quot;2025-04-15T17:45:51.000000Z&quot;
-    },
-    {
-        &quot;id&quot;: 35,
-        &quot;name&quot;: &quot;Mateo Alc&aacute;ntar&quot;,
-        &quot;dni&quot;: &quot;23845686B&quot;,
-        &quot;created_at&quot;: &quot;2025-04-15T17:45:51.000000Z&quot;,
-        &quot;updated_at&quot;: &quot;2025-04-15T17:45:51.000000Z&quot;
-    },
-    {
-        &quot;id&quot;: 36,
-        &quot;name&quot;: &quot;Srta. Zoe L&oacute;pez Hijo&quot;,
-        &quot;dni&quot;: &quot;15351648R&quot;,
-        &quot;created_at&quot;: &quot;2025-04-15T17:45:51.000000Z&quot;,
-        &quot;updated_at&quot;: &quot;2025-04-15T17:45:51.000000Z&quot;
-    },
-    {
-        &quot;id&quot;: 37,
-        &quot;name&quot;: &quot;Luc&iacute;a Armenta&quot;,
-        &quot;dni&quot;: &quot;61411632M&quot;,
-        &quot;created_at&quot;: &quot;2025-04-15T17:45:51.000000Z&quot;,
-        &quot;updated_at&quot;: &quot;2025-04-15T17:45:51.000000Z&quot;
-    },
-    {
-        &quot;id&quot;: 38,
-        &quot;name&quot;: &quot;Clara Barrios&quot;,
-        &quot;dni&quot;: &quot;59156866L&quot;,
-        &quot;created_at&quot;: &quot;2025-04-15T17:45:51.000000Z&quot;,
-        &quot;updated_at&quot;: &quot;2025-04-15T17:45:51.000000Z&quot;
-    },
-    {
-        &quot;id&quot;: 39,
-        &quot;name&quot;: &quot;Srta. Ainhoa Trujillo&quot;,
-        &quot;dni&quot;: &quot;78297836I&quot;,
-        &quot;created_at&quot;: &quot;2025-04-15T17:45:51.000000Z&quot;,
-        &quot;updated_at&quot;: &quot;2025-04-15T17:45:51.000000Z&quot;
-    },
-    {
-        &quot;id&quot;: 40,
-        &quot;name&quot;: &quot;Alba Garibay&quot;,
-        &quot;dni&quot;: &quot;65386285I&quot;,
-        &quot;created_at&quot;: &quot;2025-04-15T17:45:51.000000Z&quot;,
-        &quot;updated_at&quot;: &quot;2025-04-15T17:45:51.000000Z&quot;
-    },
-    {
-        &quot;id&quot;: 41,
-        &quot;name&quot;: &quot;Nadia Laureano&quot;,
-        &quot;dni&quot;: &quot;60356672H&quot;,
-        &quot;created_at&quot;: &quot;2025-04-15T17:45:51.000000Z&quot;,
-        &quot;updated_at&quot;: &quot;2025-04-15T17:45:51.000000Z&quot;
-    },
-    {
-        &quot;id&quot;: 42,
-        &quot;name&quot;: &quot;Francisca Dele&oacute;n&quot;,
-        &quot;dni&quot;: &quot;65375255H&quot;,
-        &quot;created_at&quot;: &quot;2025-04-15T17:45:51.000000Z&quot;,
-        &quot;updated_at&quot;: &quot;2025-04-15T17:45:51.000000Z&quot;
-    },
-    {
-        &quot;id&quot;: 43,
-        &quot;name&quot;: &quot;Dr. Pau Garrido Tercero&quot;,
-        &quot;dni&quot;: &quot;18474694J&quot;,
-        &quot;created_at&quot;: &quot;2025-04-15T17:45:52.000000Z&quot;,
-        &quot;updated_at&quot;: &quot;2025-04-15T17:45:52.000000Z&quot;
-    },
-    {
-        &quot;id&quot;: 44,
-        &quot;name&quot;: &quot;Julia Lim&oacute;n&quot;,
-        &quot;dni&quot;: &quot;73220893C&quot;,
-        &quot;created_at&quot;: &quot;2025-04-15T17:45:52.000000Z&quot;,
-        &quot;updated_at&quot;: &quot;2025-04-15T17:45:52.000000Z&quot;
-    },
-    {
-        &quot;id&quot;: 45,
-        &quot;name&quot;: &quot;Lorena Aguado&quot;,
-        &quot;dni&quot;: &quot;00025007G&quot;,
-        &quot;created_at&quot;: &quot;2025-04-15T17:45:52.000000Z&quot;,
-        &quot;updated_at&quot;: &quot;2025-04-15T17:45:52.000000Z&quot;
-    },
-    {
-        &quot;id&quot;: 46,
-        &quot;name&quot;: &quot;Mar Montemayor&quot;,
-        &quot;dni&quot;: &quot;03199377C&quot;,
-        &quot;created_at&quot;: &quot;2025-04-15T17:45:52.000000Z&quot;,
-        &quot;updated_at&quot;: &quot;2025-04-15T17:45:52.000000Z&quot;
-    },
-    {
-        &quot;id&quot;: 47,
-        &quot;name&quot;: &quot;Yolanda Valverde&quot;,
-        &quot;dni&quot;: &quot;77161949T&quot;,
-        &quot;created_at&quot;: &quot;2025-04-15T17:45:52.000000Z&quot;,
-        &quot;updated_at&quot;: &quot;2025-04-15T17:45:52.000000Z&quot;
-    },
-    {
-        &quot;id&quot;: 48,
-        &quot;name&quot;: &quot;Natalia Segovia Segundo&quot;,
-        &quot;dni&quot;: &quot;37169977N&quot;,
-        &quot;created_at&quot;: &quot;2025-04-15T17:45:52.000000Z&quot;,
-        &quot;updated_at&quot;: &quot;2025-04-15T17:45:52.000000Z&quot;
-    },
-    {
-        &quot;id&quot;: 49,
-        &quot;name&quot;: &quot;Lic. Alex Carbajal&quot;,
-        &quot;dni&quot;: &quot;54494643A&quot;,
-        &quot;created_at&quot;: &quot;2025-04-15T17:45:52.000000Z&quot;,
-        &quot;updated_at&quot;: &quot;2025-04-15T17:45:52.000000Z&quot;
-    },
-    {
-        &quot;id&quot;: 50,
-        &quot;name&quot;: &quot;Manuela Sanz&quot;,
-        &quot;dni&quot;: &quot;14857907G&quot;,
-        &quot;created_at&quot;: &quot;2025-04-15T17:45:52.000000Z&quot;,
-        &quot;updated_at&quot;: &quot;2025-04-15T17:45:52.000000Z&quot;
-    },
-    {
-        &quot;id&quot;: 51,
-        &quot;name&quot;: &quot;&Aacute;ngel Gayt&aacute;n Segundo&quot;,
-        &quot;dni&quot;: &quot;55533931R&quot;,
-        &quot;created_at&quot;: &quot;2025-04-15T17:45:52.000000Z&quot;,
-        &quot;updated_at&quot;: &quot;2025-04-15T17:45:52.000000Z&quot;
-    },
-    {
-        &quot;id&quot;: 52,
-        &quot;name&quot;: &quot;Jordi Armas&quot;,
-        &quot;dni&quot;: &quot;42425443W&quot;,
-        &quot;created_at&quot;: &quot;2025-04-15T17:45:52.000000Z&quot;,
-        &quot;updated_at&quot;: &quot;2025-04-15T17:45:52.000000Z&quot;
-    },
-    {
-        &quot;id&quot;: 53,
-        &quot;name&quot;: &quot;Lic. Silvia Guevara Segundo&quot;,
-        &quot;dni&quot;: &quot;18474214C&quot;,
-        &quot;created_at&quot;: &quot;2025-04-15T17:45:52.000000Z&quot;,
-        &quot;updated_at&quot;: &quot;2025-04-15T17:45:52.000000Z&quot;
-    },
-    {
-        &quot;id&quot;: 54,
-        &quot;name&quot;: &quot;Gael Sanabria&quot;,
-        &quot;dni&quot;: &quot;05197908X&quot;,
-        &quot;created_at&quot;: &quot;2025-04-15T17:45:52.000000Z&quot;,
-        &quot;updated_at&quot;: &quot;2025-04-15T17:45:52.000000Z&quot;
-    },
-    {
-        &quot;id&quot;: 55,
-        &quot;name&quot;: &quot;Biel Varela&quot;,
-        &quot;dni&quot;: &quot;41785644U&quot;,
-        &quot;created_at&quot;: &quot;2025-04-15T17:45:52.000000Z&quot;,
-        &quot;updated_at&quot;: &quot;2025-04-15T17:45:52.000000Z&quot;
-    },
-    {
-        &quot;id&quot;: 56,
-        &quot;name&quot;: &quot;Sr. Oriol Granados Hijo&quot;,
-        &quot;dni&quot;: &quot;04226597N&quot;,
-        &quot;created_at&quot;: &quot;2025-04-15T17:45:52.000000Z&quot;,
-        &quot;updated_at&quot;: &quot;2025-04-15T17:45:52.000000Z&quot;
-    },
-    {
-        &quot;id&quot;: 57,
-        &quot;name&quot;: &quot;Cristina Miranda Segundo&quot;,
-        &quot;dni&quot;: &quot;28181158B&quot;,
-        &quot;created_at&quot;: &quot;2025-04-15T17:45:52.000000Z&quot;,
-        &quot;updated_at&quot;: &quot;2025-04-15T17:45:52.000000Z&quot;
-    },
-    {
-        &quot;id&quot;: 58,
-        &quot;name&quot;: &quot;Dr. Noelia Font Tercero&quot;,
-        &quot;dni&quot;: &quot;84741068F&quot;,
-        &quot;created_at&quot;: &quot;2025-04-15T17:45:52.000000Z&quot;,
-        &quot;updated_at&quot;: &quot;2025-04-15T17:45:52.000000Z&quot;
-    },
-    {
-        &quot;id&quot;: 59,
-        &quot;name&quot;: &quot;C&eacute;sar Cano&quot;,
-        &quot;dni&quot;: &quot;24992016O&quot;,
-        &quot;created_at&quot;: &quot;2025-04-15T17:45:52.000000Z&quot;,
-        &quot;updated_at&quot;: &quot;2025-04-15T17:45:52.000000Z&quot;
-    },
-    {
-        &quot;id&quot;: 60,
-        &quot;name&quot;: &quot;D&ntilde;a &Uacute;rsula T&oacute;rrez Hijo&quot;,
-        &quot;dni&quot;: &quot;88627659F&quot;,
-        &quot;created_at&quot;: &quot;2025-04-15T17:45:52.000000Z&quot;,
-        &quot;updated_at&quot;: &quot;2025-04-15T17:45:52.000000Z&quot;
-    }
-]</code>
+<code class="language-json" style="max-height: 300px;">{
+    &quot;message&quot;: &quot;Unauthenticated.&quot;
+}</code>
  </pre>
     </span>
 <span id="execution-results-GETapi-guards" hidden>
@@ -842,8 +429,8 @@ You can check the Dev Tools console for debugging information.</code></pre>
     --header "Content-Type: application/json" \
     --header "Accept: application/json" \
     --data "{
-    \"name\": \"b\",
-    \"dni\": \"n\"
+    \"name\": \"Daniel\",
+    \"dni\": \"12345678A\"
 }"
 </code></pre></div>
 
@@ -860,8 +447,8 @@ const headers = {
 };
 
 let body = {
-    "name": "b",
-    "dni": "n"
+    "name": "Daniel",
+    "dni": "12345678A"
 };
 
 fetch(url, {
@@ -961,10 +548,10 @@ You can check the Dev Tools console for debugging information.</code></pre>
  &nbsp;
                 <input type="text" style="display: none"
                               name="name"                data-endpoint="POSTapi-guards"
-               value="b"
+               value="Daniel"
                data-component="body">
     <br>
-<p>El campo value no debe ser mayor que 255 caracteres. Example: <code>b</code></p>
+<p>The name of the guard. Example: <code>Daniel</code></p>
         </div>
                 <div style=" padding-left: 28px;  clear: unset;">
             <b style="line-height: 2;"><code>dni</code></b>&nbsp;&nbsp;
@@ -972,10 +559,10 @@ You can check the Dev Tools console for debugging information.</code></pre>
  &nbsp;
                 <input type="text" style="display: none"
                               name="dni"                data-endpoint="POSTapi-guards"
-               value="n"
+               value="12345678A"
                data-component="body">
     <br>
-<p>El campo value no debe ser mayor que 255 caracteres. Example: <code>n</code></p>
+<p>The Document number of the guard. Example: <code>12345678A</code></p>
         </div>
         </form>
 
@@ -1019,7 +606,7 @@ fetch(url, {
 
 <span id="example-responses-GETapi-guards--id-">
             <blockquote>
-            <p>Example response (200):</p>
+            <p>Example response (401):</p>
         </blockquote>
                 <details class="annotation">
             <summary style="cursor: pointer;">
@@ -1031,11 +618,7 @@ access-control-allow-origin: *
  </code></pre></details>         <pre>
 
 <code class="language-json" style="max-height: 300px;">{
-    &quot;id&quot;: 1,
-    &quot;name&quot;: &quot;Leire Ramos&quot;,
-    &quot;dni&quot;: &quot;54972529G&quot;,
-    &quot;created_at&quot;: &quot;2025-04-15T17:45:51.000000Z&quot;,
-    &quot;updated_at&quot;: &quot;2025-04-15T17:45:51.000000Z&quot;
+    &quot;message&quot;: &quot;Unauthenticated.&quot;
 }</code>
  </pre>
     </span>
@@ -1152,8 +735,8 @@ You can check the Dev Tools console for debugging information.</code></pre>
     --header "Content-Type: application/json" \
     --header "Accept: application/json" \
     --data "{
-    \"name\": \"b\",
-    \"dni\": \"n\"
+    \"name\": \"Daniel\",
+    \"dni\": \"12345678A\"
 }"
 </code></pre></div>
 
@@ -1170,8 +753,8 @@ const headers = {
 };
 
 let body = {
-    "name": "b",
-    "dni": "n"
+    "name": "Daniel",
+    "dni": "12345678A"
 };
 
 fetch(url, {
@@ -1287,10 +870,10 @@ You can check the Dev Tools console for debugging information.</code></pre>
  &nbsp;
                 <input type="text" style="display: none"
                               name="name"                data-endpoint="PUTapi-guards--id-"
-               value="b"
+               value="Daniel"
                data-component="body">
     <br>
-<p>El campo value no debe ser mayor que 255 caracteres. Example: <code>b</code></p>
+<p>The name of the guard. Example: <code>Daniel</code></p>
         </div>
                 <div style=" padding-left: 28px;  clear: unset;">
             <b style="line-height: 2;"><code>dni</code></b>&nbsp;&nbsp;
@@ -1298,10 +881,10 @@ You can check the Dev Tools console for debugging information.</code></pre>
  &nbsp;
                 <input type="text" style="display: none"
                               name="dni"                data-endpoint="PUTapi-guards--id-"
-               value="n"
+               value="12345678A"
                data-component="body">
     <br>
-<p>El campo value no debe ser mayor que 255 caracteres. Example: <code>n</code></p>
+<p>The Document number of the guard. Example: <code>12345678A</code></p>
         </div>
         </form>
 
@@ -1439,6 +1022,294 @@ You can check the Dev Tools console for debugging information.</code></pre>
             </div>
                     </form>
 
+                    <h2 id="endpoints-GETapi-guards-with_zones">GET api/guards?with_zones</h2>
+
+<p>
+<small class="badge badge-darkred">requires authentication</small>
+</p>
+
+
+
+<span id="example-requests-GETapi-guards-with_zones">
+<blockquote>Example request:</blockquote>
+
+
+<div class="bash-example">
+    <pre><code class="language-bash">curl --request GET \
+    --get "http://proyecties.test/api/guards?with_zones" \
+    --header "Authorization: Bearer {YOUR_AUTH_KEY}" \
+    --header "Content-Type: application/json" \
+    --header "Accept: application/json"</code></pre></div>
+
+
+<div class="javascript-example">
+    <pre><code class="language-javascript">const url = new URL(
+    "http://proyecties.test/api/guards?with_zones"
+);
+
+const headers = {
+    "Authorization": "Bearer {YOUR_AUTH_KEY}",
+    "Content-Type": "application/json",
+    "Accept": "application/json",
+};
+
+fetch(url, {
+    method: "GET",
+    headers,
+}).then(response =&gt; response.json());</code></pre></div>
+
+</span>
+
+<span id="example-responses-GETapi-guards-with_zones">
+            <blockquote>
+            <p>Example response (401):</p>
+        </blockquote>
+                <details class="annotation">
+            <summary style="cursor: pointer;">
+                <small onclick="textContent = parentElement.parentElement.open ? 'Show headers' : 'Hide headers'">Show headers</small>
+            </summary>
+            <pre><code class="language-http">cache-control: no-cache, private
+content-type: application/json
+access-control-allow-origin: *
+ </code></pre></details>         <pre>
+
+<code class="language-json" style="max-height: 300px;">{
+    &quot;message&quot;: &quot;Unauthenticated.&quot;
+}</code>
+ </pre>
+    </span>
+<span id="execution-results-GETapi-guards-with_zones" hidden>
+    <blockquote>Received response<span
+                id="execution-response-status-GETapi-guards-with_zones"></span>:
+    </blockquote>
+    <pre class="json"><code id="execution-response-content-GETapi-guards-with_zones"
+      data-empty-response-text="<Empty response>" style="max-height: 400px;"></code></pre>
+</span>
+<span id="execution-error-GETapi-guards-with_zones" hidden>
+    <blockquote>Request failed with error:</blockquote>
+    <pre><code id="execution-error-message-GETapi-guards-with_zones">
+
+Tip: Check that you&#039;re properly connected to the network.
+If you&#039;re a maintainer of ths API, verify that your API is running and you&#039;ve enabled CORS.
+You can check the Dev Tools console for debugging information.</code></pre>
+</span>
+<form id="form-GETapi-guards-with_zones" data-method="GET"
+      data-path="api/guards?with_zones"
+      data-authed="1"
+      data-hasfiles="0"
+      data-isarraybody="0"
+      autocomplete="off"
+      onsubmit="event.preventDefault(); executeTryOut('GETapi-guards-with_zones', this);">
+    <h3>
+        Request&nbsp;&nbsp;&nbsp;
+                    <button type="button"
+                    style="background-color: #8fbcd4; padding: 5px 10px; border-radius: 5px; border-width: thin;"
+                    id="btn-tryout-GETapi-guards-with_zones"
+                    onclick="tryItOut('GETapi-guards-with_zones');">Try it out ⚡
+            </button>
+            <button type="button"
+                    style="background-color: #c97a7e; padding: 5px 10px; border-radius: 5px; border-width: thin;"
+                    id="btn-canceltryout-GETapi-guards-with_zones"
+                    onclick="cancelTryOut('GETapi-guards-with_zones');" hidden>Cancel 🛑
+            </button>&nbsp;&nbsp;
+            <button type="submit"
+                    style="background-color: #6ac174; padding: 5px 10px; border-radius: 5px; border-width: thin;"
+                    id="btn-executetryout-GETapi-guards-with_zones"
+                    data-initial-text="Send Request 💥"
+                    data-loading-text="⏱ Sending..."
+                    hidden>Send Request 💥
+            </button>
+            </h3>
+            <p>
+            <small class="badge badge-green">GET</small>
+            <b><code>api/guards?with_zones</code></b>
+        </p>
+                <h4 class="fancy-heading-panel"><b>Headers</b></h4>
+                                <div style="padding-left: 28px; clear: unset;">
+                <b style="line-height: 2;"><code>Authorization</code></b>&nbsp;&nbsp;
+&nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="Authorization" class="auth-value"               data-endpoint="GETapi-guards-with_zones"
+               value="Bearer {YOUR_AUTH_KEY}"
+               data-component="header">
+    <br>
+<p>Example: <code>Bearer {YOUR_AUTH_KEY}</code></p>
+            </div>
+                                <div style="padding-left: 28px; clear: unset;">
+                <b style="line-height: 2;"><code>Content-Type</code></b>&nbsp;&nbsp;
+&nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="Content-Type"                data-endpoint="GETapi-guards-with_zones"
+               value="application/json"
+               data-component="header">
+    <br>
+<p>Example: <code>application/json</code></p>
+            </div>
+                                <div style="padding-left: 28px; clear: unset;">
+                <b style="line-height: 2;"><code>Accept</code></b>&nbsp;&nbsp;
+&nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="Accept"                data-endpoint="GETapi-guards-with_zones"
+               value="application/json"
+               data-component="header">
+    <br>
+<p>Example: <code>application/json</code></p>
+            </div>
+                        </form>
+
+                    <h2 id="endpoints-GETapi-guards--id--with_zones">GET api/guards/{id}?with_zones</h2>
+
+<p>
+<small class="badge badge-darkred">requires authentication</small>
+</p>
+
+
+
+<span id="example-requests-GETapi-guards--id--with_zones">
+<blockquote>Example request:</blockquote>
+
+
+<div class="bash-example">
+    <pre><code class="language-bash">curl --request GET \
+    --get "http://proyecties.test/api/guards/1?with_zones" \
+    --header "Authorization: Bearer {YOUR_AUTH_KEY}" \
+    --header "Content-Type: application/json" \
+    --header "Accept: application/json"</code></pre></div>
+
+
+<div class="javascript-example">
+    <pre><code class="language-javascript">const url = new URL(
+    "http://proyecties.test/api/guards/1?with_zones"
+);
+
+const headers = {
+    "Authorization": "Bearer {YOUR_AUTH_KEY}",
+    "Content-Type": "application/json",
+    "Accept": "application/json",
+};
+
+fetch(url, {
+    method: "GET",
+    headers,
+}).then(response =&gt; response.json());</code></pre></div>
+
+</span>
+
+<span id="example-responses-GETapi-guards--id--with_zones">
+            <blockquote>
+            <p>Example response (401):</p>
+        </blockquote>
+                <details class="annotation">
+            <summary style="cursor: pointer;">
+                <small onclick="textContent = parentElement.parentElement.open ? 'Show headers' : 'Hide headers'">Show headers</small>
+            </summary>
+            <pre><code class="language-http">cache-control: no-cache, private
+content-type: application/json
+access-control-allow-origin: *
+ </code></pre></details>         <pre>
+
+<code class="language-json" style="max-height: 300px;">{
+    &quot;message&quot;: &quot;Unauthenticated.&quot;
+}</code>
+ </pre>
+    </span>
+<span id="execution-results-GETapi-guards--id--with_zones" hidden>
+    <blockquote>Received response<span
+                id="execution-response-status-GETapi-guards--id--with_zones"></span>:
+    </blockquote>
+    <pre class="json"><code id="execution-response-content-GETapi-guards--id--with_zones"
+      data-empty-response-text="<Empty response>" style="max-height: 400px;"></code></pre>
+</span>
+<span id="execution-error-GETapi-guards--id--with_zones" hidden>
+    <blockquote>Request failed with error:</blockquote>
+    <pre><code id="execution-error-message-GETapi-guards--id--with_zones">
+
+Tip: Check that you&#039;re properly connected to the network.
+If you&#039;re a maintainer of ths API, verify that your API is running and you&#039;ve enabled CORS.
+You can check the Dev Tools console for debugging information.</code></pre>
+</span>
+<form id="form-GETapi-guards--id--with_zones" data-method="GET"
+      data-path="api/guards/{id}?with_zones"
+      data-authed="1"
+      data-hasfiles="0"
+      data-isarraybody="0"
+      autocomplete="off"
+      onsubmit="event.preventDefault(); executeTryOut('GETapi-guards--id--with_zones', this);">
+    <h3>
+        Request&nbsp;&nbsp;&nbsp;
+                    <button type="button"
+                    style="background-color: #8fbcd4; padding: 5px 10px; border-radius: 5px; border-width: thin;"
+                    id="btn-tryout-GETapi-guards--id--with_zones"
+                    onclick="tryItOut('GETapi-guards--id--with_zones');">Try it out ⚡
+            </button>
+            <button type="button"
+                    style="background-color: #c97a7e; padding: 5px 10px; border-radius: 5px; border-width: thin;"
+                    id="btn-canceltryout-GETapi-guards--id--with_zones"
+                    onclick="cancelTryOut('GETapi-guards--id--with_zones');" hidden>Cancel 🛑
+            </button>&nbsp;&nbsp;
+            <button type="submit"
+                    style="background-color: #6ac174; padding: 5px 10px; border-radius: 5px; border-width: thin;"
+                    id="btn-executetryout-GETapi-guards--id--with_zones"
+                    data-initial-text="Send Request 💥"
+                    data-loading-text="⏱ Sending..."
+                    hidden>Send Request 💥
+            </button>
+            </h3>
+            <p>
+            <small class="badge badge-green">GET</small>
+            <b><code>api/guards/{id}?with_zones</code></b>
+        </p>
+                <h4 class="fancy-heading-panel"><b>Headers</b></h4>
+                                <div style="padding-left: 28px; clear: unset;">
+                <b style="line-height: 2;"><code>Authorization</code></b>&nbsp;&nbsp;
+&nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="Authorization" class="auth-value"               data-endpoint="GETapi-guards--id--with_zones"
+               value="Bearer {YOUR_AUTH_KEY}"
+               data-component="header">
+    <br>
+<p>Example: <code>Bearer {YOUR_AUTH_KEY}</code></p>
+            </div>
+                                <div style="padding-left: 28px; clear: unset;">
+                <b style="line-height: 2;"><code>Content-Type</code></b>&nbsp;&nbsp;
+&nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="Content-Type"                data-endpoint="GETapi-guards--id--with_zones"
+               value="application/json"
+               data-component="header">
+    <br>
+<p>Example: <code>application/json</code></p>
+            </div>
+                                <div style="padding-left: 28px; clear: unset;">
+                <b style="line-height: 2;"><code>Accept</code></b>&nbsp;&nbsp;
+&nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="Accept"                data-endpoint="GETapi-guards--id--with_zones"
+               value="application/json"
+               data-component="header">
+    <br>
+<p>Example: <code>application/json</code></p>
+            </div>
+                        <h4 class="fancy-heading-panel"><b>URL Parameters</b></h4>
+                    <div style="padding-left: 28px; clear: unset;">
+                <b style="line-height: 2;"><code>id</code></b>&nbsp;&nbsp;
+<small>integer</small>&nbsp;
+ &nbsp;
+                <input type="number" style="display: none"
+               step="any"               name="id"                data-endpoint="GETapi-guards--id--with_zones"
+               value="1"
+               data-component="url">
+    <br>
+<p>The ID of the guard. Example: <code>1</code></p>
+            </div>
+                    </form>
+
                     <h2 id="endpoints-POSTapi-guards-assign-zone">POST api/guards/assign-zone</h2>
 
 <p>
@@ -1458,8 +1329,8 @@ You can check the Dev Tools console for debugging information.</code></pre>
     --header "Content-Type: application/json" \
     --header "Accept: application/json" \
     --data "{
-    \"guard_id\": 16,
-    \"zone_id\": 16,
+    \"guard_id\": 10,
+    \"zone_id\": 10,
     \"schedule\": \"20:00 - 10:00\"
 }"
 </code></pre></div>
@@ -1477,8 +1348,8 @@ const headers = {
 };
 
 let body = {
-    "guard_id": 16,
-    "zone_id": 16,
+    "guard_id": 10,
+    "zone_id": 10,
     "schedule": "20:00 - 10:00"
 };
 
@@ -1579,10 +1450,10 @@ You can check the Dev Tools console for debugging information.</code></pre>
  &nbsp;
                 <input type="number" style="display: none"
                step="any"               name="guard_id"                data-endpoint="POSTapi-guards-assign-zone"
-               value="16"
+               value="10"
                data-component="body">
     <br>
-<p>The <code>id</code> of an existing record in the guards table. Example: <code>16</code></p>
+<p>ID of the Guard. Example: <code>10</code></p>
         </div>
                 <div style=" padding-left: 28px;  clear: unset;">
             <b style="line-height: 2;"><code>zone_id</code></b>&nbsp;&nbsp;
@@ -1590,10 +1461,10 @@ You can check the Dev Tools console for debugging information.</code></pre>
  &nbsp;
                 <input type="number" style="display: none"
                step="any"               name="zone_id"                data-endpoint="POSTapi-guards-assign-zone"
-               value="16"
+               value="10"
                data-component="body">
     <br>
-<p>The <code>id</code> of an existing record in the zones table. Example: <code>16</code></p>
+<p>ID of the Zone. Example: <code>10</code></p>
         </div>
                 <div style=" padding-left: 28px;  clear: unset;">
             <b style="line-height: 2;"><code>schedule</code></b>&nbsp;&nbsp;

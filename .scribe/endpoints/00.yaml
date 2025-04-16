@@ -70,8 +70,8 @@ endpoints:
     fileParameters: []
     responses:
       -
-        status: 200
-        content: '[{"id":1,"name":"Leire Ramos","dni":"54972529G","created_at":"2025-04-15T17:45:51.000000Z","updated_at":"2025-04-15T17:45:51.000000Z"},{"id":2,"name":"D\u00f1a Rosa Peralta Tercero","dni":"19774833I","created_at":"2025-04-15T17:45:51.000000Z","updated_at":"2025-04-15T17:45:51.000000Z"},{"id":3,"name":"Ainara Jaimes","dni":"67436694A","created_at":"2025-04-15T17:45:51.000000Z","updated_at":"2025-04-15T17:45:51.000000Z"},{"id":4,"name":"Isabel Abrego","dni":"45832057H","created_at":"2025-04-15T17:45:51.000000Z","updated_at":"2025-04-15T17:45:51.000000Z"},{"id":5,"name":"D. Joel Valencia Segundo","dni":"52380062B","created_at":"2025-04-15T17:45:51.000000Z","updated_at":"2025-04-15T17:45:51.000000Z"},{"id":6,"name":"Elena Hernando","dni":"06967148D","created_at":"2025-04-15T17:45:51.000000Z","updated_at":"2025-04-15T17:45:51.000000Z"},{"id":7,"name":"Natalia Lozada","dni":"96017269I","created_at":"2025-04-15T17:45:51.000000Z","updated_at":"2025-04-15T17:45:51.000000Z"},{"id":8,"name":"Andrea Galarza","dni":"13259000S","created_at":"2025-04-15T17:45:51.000000Z","updated_at":"2025-04-15T17:45:51.000000Z"},{"id":9,"name":"Helena Hern\u00e1ndes","dni":"26397722P","created_at":"2025-04-15T17:45:51.000000Z","updated_at":"2025-04-15T17:45:51.000000Z"},{"id":10,"name":"Diana Borrego","dni":"53129693G","created_at":"2025-04-15T17:45:51.000000Z","updated_at":"2025-04-15T17:45:51.000000Z"},{"id":11,"name":"Sof\u00eda Orosco Segundo","dni":"26053591Y","created_at":"2025-04-15T17:45:51.000000Z","updated_at":"2025-04-15T17:45:51.000000Z"},{"id":12,"name":"Sra. Nayara Verdugo","dni":"68625731M","created_at":"2025-04-15T17:45:51.000000Z","updated_at":"2025-04-15T17:45:51.000000Z"},{"id":13,"name":"Sara Dom\u00ednguez","dni":"43149669Y","created_at":"2025-04-15T17:45:51.000000Z","updated_at":"2025-04-15T17:45:51.000000Z"},{"id":14,"name":"Asier Campos","dni":"60909270X","created_at":"2025-04-15T17:45:51.000000Z","updated_at":"2025-04-15T17:45:51.000000Z"},{"id":15,"name":"C\u00e9sar Carrasquillo","dni":"54296777J","created_at":"2025-04-15T17:45:51.000000Z","updated_at":"2025-04-15T17:45:51.000000Z"},{"id":16,"name":"Mar\u00eda Pilar Henr\u00edquez","dni":"14768627N","created_at":"2025-04-15T17:45:51.000000Z","updated_at":"2025-04-15T17:45:51.000000Z"},{"id":17,"name":"Ing. \u00d3scar Cabello","dni":"99539177R","created_at":"2025-04-15T17:45:51.000000Z","updated_at":"2025-04-15T17:45:51.000000Z"},{"id":18,"name":"Sra. Eva Medina","dni":"84631185M","created_at":"2025-04-15T17:45:51.000000Z","updated_at":"2025-04-15T17:45:51.000000Z"},{"id":19,"name":"Beatriz Abreu","dni":"50385463P","created_at":"2025-04-15T17:45:51.000000Z","updated_at":"2025-04-15T17:45:51.000000Z"},{"id":20,"name":"D\u00f1a Ver\u00f3nica Carrero Hijo","dni":"79349528H","created_at":"2025-04-15T17:45:51.000000Z","updated_at":"2025-04-15T17:45:51.000000Z"},{"id":21,"name":"Rodrigo Santill\u00e1n","dni":"15008089V","created_at":"2025-04-15T17:45:51.000000Z","updated_at":"2025-04-15T17:45:51.000000Z"},{"id":22,"name":"Lidia Montero","dni":"40445483T","created_at":"2025-04-15T17:45:51.000000Z","updated_at":"2025-04-15T17:45:51.000000Z"},{"id":23,"name":"Candela Duarte","dni":"05093624M","created_at":"2025-04-15T17:45:51.000000Z","updated_at":"2025-04-15T17:45:51.000000Z"},{"id":24,"name":"Rayan Pi\u00f1eiro","dni":"14708711I","created_at":"2025-04-15T17:45:51.000000Z","updated_at":"2025-04-15T17:45:51.000000Z"},{"id":25,"name":"Jan Sol\u00eds","dni":"36384387N","created_at":"2025-04-15T17:45:51.000000Z","updated_at":"2025-04-15T17:45:51.000000Z"},{"id":26,"name":"Mar\u00eda Gimeno Segundo","dni":"68931007X","created_at":"2025-04-15T17:45:51.000000Z","updated_at":"2025-04-15T17:45:51.000000Z"},{"id":27,"name":"Izan Rom\u00e1n","dni":"80080195Y","created_at":"2025-04-15T17:45:51.000000Z","updated_at":"2025-04-15T17:45:51.000000Z"},{"id":28,"name":"Nerea Pati\u00f1o","dni":"95812095G","created_at":"2025-04-15T17:45:51.000000Z","updated_at":"2025-04-15T17:45:51.000000Z"},{"id":29,"name":"Ing. Claudia Mel\u00e9ndez Tercero","dni":"07555128G","created_at":"2025-04-15T17:45:51.000000Z","updated_at":"2025-04-15T17:45:51.000000Z"},{"id":30,"name":"Marc Monta\u00f1ez","dni":"12226401C","created_at":"2025-04-15T17:45:51.000000Z","updated_at":"2025-04-15T17:45:51.000000Z"},{"id":31,"name":"Ander Salinas","dni":"04811580I","created_at":"2025-04-15T17:45:51.000000Z","updated_at":"2025-04-15T17:45:51.000000Z"},{"id":32,"name":"Manuela Alanis","dni":"21317635C","created_at":"2025-04-15T17:45:51.000000Z","updated_at":"2025-04-15T17:45:51.000000Z"},{"id":33,"name":"Ariadna Villalobos","dni":"91171014F","created_at":"2025-04-15T17:45:51.000000Z","updated_at":"2025-04-15T17:45:51.000000Z"},{"id":34,"name":"Zoe Alaniz","dni":"71785593D","created_at":"2025-04-15T17:45:51.000000Z","updated_at":"2025-04-15T17:45:51.000000Z"},{"id":35,"name":"Mateo Alc\u00e1ntar","dni":"23845686B","created_at":"2025-04-15T17:45:51.000000Z","updated_at":"2025-04-15T17:45:51.000000Z"},{"id":36,"name":"Srta. Zoe L\u00f3pez Hijo","dni":"15351648R","created_at":"2025-04-15T17:45:51.000000Z","updated_at":"2025-04-15T17:45:51.000000Z"},{"id":37,"name":"Luc\u00eda Armenta","dni":"61411632M","created_at":"2025-04-15T17:45:51.000000Z","updated_at":"2025-04-15T17:45:51.000000Z"},{"id":38,"name":"Clara Barrios","dni":"59156866L","created_at":"2025-04-15T17:45:51.000000Z","updated_at":"2025-04-15T17:45:51.000000Z"},{"id":39,"name":"Srta. Ainhoa Trujillo","dni":"78297836I","created_at":"2025-04-15T17:45:51.000000Z","updated_at":"2025-04-15T17:45:51.000000Z"},{"id":40,"name":"Alba Garibay","dni":"65386285I","created_at":"2025-04-15T17:45:51.000000Z","updated_at":"2025-04-15T17:45:51.000000Z"},{"id":41,"name":"Nadia Laureano","dni":"60356672H","created_at":"2025-04-15T17:45:51.000000Z","updated_at":"2025-04-15T17:45:51.000000Z"},{"id":42,"name":"Francisca Dele\u00f3n","dni":"65375255H","created_at":"2025-04-15T17:45:51.000000Z","updated_at":"2025-04-15T17:45:51.000000Z"},{"id":43,"name":"Dr. Pau Garrido Tercero","dni":"18474694J","created_at":"2025-04-15T17:45:52.000000Z","updated_at":"2025-04-15T17:45:52.000000Z"},{"id":44,"name":"Julia Lim\u00f3n","dni":"73220893C","created_at":"2025-04-15T17:45:52.000000Z","updated_at":"2025-04-15T17:45:52.000000Z"},{"id":45,"name":"Lorena Aguado","dni":"00025007G","created_at":"2025-04-15T17:45:52.000000Z","updated_at":"2025-04-15T17:45:52.000000Z"},{"id":46,"name":"Mar Montemayor","dni":"03199377C","created_at":"2025-04-15T17:45:52.000000Z","updated_at":"2025-04-15T17:45:52.000000Z"},{"id":47,"name":"Yolanda Valverde","dni":"77161949T","created_at":"2025-04-15T17:45:52.000000Z","updated_at":"2025-04-15T17:45:52.000000Z"},{"id":48,"name":"Natalia Segovia Segundo","dni":"37169977N","created_at":"2025-04-15T17:45:52.000000Z","updated_at":"2025-04-15T17:45:52.000000Z"},{"id":49,"name":"Lic. Alex Carbajal","dni":"54494643A","created_at":"2025-04-15T17:45:52.000000Z","updated_at":"2025-04-15T17:45:52.000000Z"},{"id":50,"name":"Manuela Sanz","dni":"14857907G","created_at":"2025-04-15T17:45:52.000000Z","updated_at":"2025-04-15T17:45:52.000000Z"},{"id":51,"name":"\u00c1ngel Gayt\u00e1n Segundo","dni":"55533931R","created_at":"2025-04-15T17:45:52.000000Z","updated_at":"2025-04-15T17:45:52.000000Z"},{"id":52,"name":"Jordi Armas","dni":"42425443W","created_at":"2025-04-15T17:45:52.000000Z","updated_at":"2025-04-15T17:45:52.000000Z"},{"id":53,"name":"Lic. Silvia Guevara Segundo","dni":"18474214C","created_at":"2025-04-15T17:45:52.000000Z","updated_at":"2025-04-15T17:45:52.000000Z"},{"id":54,"name":"Gael Sanabria","dni":"05197908X","created_at":"2025-04-15T17:45:52.000000Z","updated_at":"2025-04-15T17:45:52.000000Z"},{"id":55,"name":"Biel Varela","dni":"41785644U","created_at":"2025-04-15T17:45:52.000000Z","updated_at":"2025-04-15T17:45:52.000000Z"},{"id":56,"name":"Sr. Oriol Granados Hijo","dni":"04226597N","created_at":"2025-04-15T17:45:52.000000Z","updated_at":"2025-04-15T17:45:52.000000Z"},{"id":57,"name":"Cristina Miranda Segundo","dni":"28181158B","created_at":"2025-04-15T17:45:52.000000Z","updated_at":"2025-04-15T17:45:52.000000Z"},{"id":58,"name":"Dr. Noelia Font Tercero","dni":"84741068F","created_at":"2025-04-15T17:45:52.000000Z","updated_at":"2025-04-15T17:45:52.000000Z"},{"id":59,"name":"C\u00e9sar Cano","dni":"24992016O","created_at":"2025-04-15T17:45:52.000000Z","updated_at":"2025-04-15T17:45:52.000000Z"},{"id":60,"name":"D\u00f1a \u00darsula T\u00f3rrez Hijo","dni":"88627659F","created_at":"2025-04-15T17:45:52.000000Z","updated_at":"2025-04-15T17:45:52.000000Z"}]'
+        status: 401
+        content: '{"message":"Unauthenticated."}'
         headers:
           cache-control: 'no-cache, private'
           content-type: application/json
@@ -111,27 +111,27 @@ endpoints:
     bodyParameters:
       name:
         name: name
-        description: 'El campo value no debe ser mayor que 255 caracteres.'
+        description: 'The name of the guard.'
         required: true
-        example: b
+        example: Daniel
         type: string
         enumValues: []
-        exampleWasSpecified: false
+        exampleWasSpecified: true
         nullable: false
         custom: []
       dni:
         name: dni
-        description: 'El campo value no debe ser mayor que 255 caracteres.'
+        description: 'The Document number of the guard.'
         required: true
-        example: 'n'
+        example: 12345678A
         type: string
         enumValues: []
-        exampleWasSpecified: false
+        exampleWasSpecified: true
         nullable: false
         custom: []
     cleanBodyParameters:
-      name: b
-      dni: 'n'
+      name: Daniel
+      dni: 12345678A
     fileParameters: []
     responses: []
     responseFields: []
@@ -168,7 +168,7 @@ endpoints:
         example: 1
         type: integer
         enumValues: []
-        exampleWasSpecified: false
+        exampleWasSpecified: true
         nullable: false
         custom: []
     cleanUrlParameters:
@@ -180,8 +180,8 @@ endpoints:
     fileParameters: []
     responses:
       -
-        status: 200
-        content: '{"id":1,"name":"Leire Ramos","dni":"54972529G","created_at":"2025-04-15T17:45:51.000000Z","updated_at":"2025-04-15T17:45:51.000000Z"}'
+        status: 401
+        content: '{"message":"Unauthenticated."}'
         headers:
           cache-control: 'no-cache, private'
           content-type: application/json
@@ -223,7 +223,7 @@ endpoints:
         example: 1
         type: integer
         enumValues: []
-        exampleWasSpecified: false
+        exampleWasSpecified: true
         nullable: false
         custom: []
     cleanUrlParameters:
@@ -233,27 +233,27 @@ endpoints:
     bodyParameters:
       name:
         name: name
-        description: 'El campo value no debe ser mayor que 255 caracteres.'
+        description: 'The name of the guard.'
         required: true
-        example: b
+        example: Daniel
         type: string
         enumValues: []
-        exampleWasSpecified: false
+        exampleWasSpecified: true
         nullable: false
         custom: []
       dni:
         name: dni
-        description: 'El campo value no debe ser mayor que 255 caracteres.'
+        description: 'The Document number of the guard.'
         required: true
-        example: 'n'
+        example: 12345678A
         type: string
         enumValues: []
-        exampleWasSpecified: false
+        exampleWasSpecified: true
         nullable: false
         custom: []
     cleanBodyParameters:
-      name: b
-      dni: 'n'
+      name: Daniel
+      dni: 12345678A
     fileParameters: []
     responses: []
     responseFields: []
@@ -290,7 +290,7 @@ endpoints:
         example: 1
         type: integer
         enumValues: []
-        exampleWasSpecified: false
+        exampleWasSpecified: true
         nullable: false
         custom: []
     cleanUrlParameters:
@@ -301,6 +301,103 @@ endpoints:
     cleanBodyParameters: []
     fileParameters: []
     responses: []
+    responseFields: []
+    auth:
+      - headers
+      - Authorization
+      - 'Bearer 6g43cv8PD1aE5beadkZfhV6'
+    controller: null
+    method: null
+    route: null
+    custom: []
+  -
+    httpMethods:
+      - GET
+    uri: 'api/guards?with_zones'
+    metadata:
+      groupName: Endpoints
+      groupDescription: ''
+      subgroup: ''
+      subgroupDescription: ''
+      title: ''
+      description: ''
+      authenticated: true
+      custom: []
+    headers:
+      Authorization: 'Bearer {YOUR_AUTH_KEY}'
+      Content-Type: application/json
+      Accept: application/json
+    urlParameters: []
+    cleanUrlParameters: []
+    queryParameters: []
+    cleanQueryParameters: []
+    bodyParameters: []
+    cleanBodyParameters: []
+    fileParameters: []
+    responses:
+      -
+        status: 401
+        content: '{"message":"Unauthenticated."}'
+        headers:
+          cache-control: 'no-cache, private'
+          content-type: application/json
+          access-control-allow-origin: '*'
+        description: null
+        custom: []
+    responseFields: []
+    auth:
+      - headers
+      - Authorization
+      - 'Bearer 6g43cv8PD1aE5beadkZfhV6'
+    controller: null
+    method: null
+    route: null
+    custom: []
+  -
+    httpMethods:
+      - GET
+    uri: 'api/guards/{id}?with_zones'
+    metadata:
+      groupName: Endpoints
+      groupDescription: ''
+      subgroup: ''
+      subgroupDescription: ''
+      title: ''
+      description: ''
+      authenticated: true
+      custom: []
+    headers:
+      Authorization: 'Bearer {YOUR_AUTH_KEY}'
+      Content-Type: application/json
+      Accept: application/json
+    urlParameters:
+      id:
+        name: id
+        description: 'The ID of the guard.'
+        required: true
+        example: 1
+        type: integer
+        enumValues: []
+        exampleWasSpecified: true
+        nullable: false
+        custom: []
+    cleanUrlParameters:
+      id: 1
+    queryParameters: []
+    cleanQueryParameters: []
+    bodyParameters: []
+    cleanBodyParameters: []
+    fileParameters: []
+    responses:
+      -
+        status: 401
+        content: '{"message":"Unauthenticated."}'
+        headers:
+          cache-control: 'no-cache, private'
+          content-type: application/json
+          access-control-allow-origin: '*'
+        description: null
+        custom: []
     responseFields: []
     auth:
       - headers
@@ -334,22 +431,22 @@ endpoints:
     bodyParameters:
       guard_id:
         name: guard_id
-        description: 'The <code>id</code> of an existing record in the guards table.'
+        description: 'ID of the Guard.'
         required: true
-        example: 16
+        example: 10
         type: integer
         enumValues: []
-        exampleWasSpecified: false
+        exampleWasSpecified: true
         nullable: false
         custom: []
       zone_id:
         name: zone_id
-        description: 'The <code>id</code> of an existing record in the zones table.'
+        description: 'ID of the Zone.'
         required: true
-        example: 16
+        example: 10
         type: integer
         enumValues: []
-        exampleWasSpecified: false
+        exampleWasSpecified: true
         nullable: false
         custom: []
       schedule:
@@ -363,8 +460,8 @@ endpoints:
         nullable: false
         custom: []
     cleanBodyParameters:
-      guard_id: 16
-      zone_id: 16
+      guard_id: 10
+      zone_id: 10
       schedule: '20:00 - 10:00'
     fileParameters: []
     responses: []

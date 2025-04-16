@@ -32,23 +32,24 @@ class GuardController extends Controller
     }
 
     /**
+     * @bodyParam name string required The name of the guard. Example: Daniel
+     * @bodyParam dni string required The Document number of the guard. Example: 12345678A
      * @param StoreGuardRequest $request
      * @return \Illuminate\Http\JsonResponse
      */
     public function store(StoreGuardRequest $request)
     {
-        $validated = $request->validated();
-
-        $guard = Guard::create($validated);
+        $guard = Guard::create($request->validated());
 
         return response()->json($guard, 201);
     }
 
     /**
-     * @param string $id
+     * @urlParam id int required The ID of the guard. Example: 1
+     * @param int $id
      * @return \Illuminate\Http\JsonResponse
      */
-    public function show(string $id)
+    public function show(int $id)
     {
         $guard = Guard::find($id);
 
@@ -58,32 +59,48 @@ class GuardController extends Controller
             ], 404);
         }
 
-        $guard = Guard::findOrFail($id);
-        return response()->json($guard);
+        return response()->json($guard, 201);
     }
 
     /**
+     * @urlParam id int required The ID of the guard. Example: 1
+     * @bodyParam name string required The name of the guard. Example: Daniel
+     * @bodyParam dni string required The Document number of the guard. Example: 12345678A
+     *
      * @param UpdateGuardRequest $request
      * @param string $id
      * @return \Illuminate\Http\JsonResponse
      */
     public function update(UpdateGuardRequest $request, string $id)
     {
-        $validated = $request->validated();
+        $guard = Guard::find($id);
 
-        $guard = Guard::findOrFail($id);
-        $guard->update($validated);
+        if (!$guard) {
+            return response()->json([
+                'error' => __('Guard not found')
+            ], 404);
+        }
 
-        return response()->json($guard, 204);
+        $guard->update($request->validated());
+
+        return response()->json($guard);
     }
 
     /**
+     * @urlParam id int required The ID of the guard. Example: 1
+     *
      * @param string $id
      * @return \Illuminate\Http\JsonResponse
      */
-    public function destroy(string $id)
+    public function destroy(int $id)
     {
-        $guard = Guard::findOrFail($id);
+        $guard = Guard::find($id);
+
+        if (!$guard) {
+            return response()->json([
+                'error' => __('Guard not found')
+            ], 404);
+        }
 
         $guard->delete();
 
@@ -101,8 +118,6 @@ class GuardController extends Controller
 
         $guard->zones()->syncWithoutDetaching([$zone->id => ['schedule' => $request->schedule]]);
 
-        return response()->json(['message' =>
-            __('Zone assigned successfully.')],
-            201);
+        return response()->json(['message' => __('Zone assigned successfully.')]);
     }
 }

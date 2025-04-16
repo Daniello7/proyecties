@@ -17,8 +17,14 @@ class UserSeeder extends Seeder
         Storage::delete('tokens.md');
 
         $roles = ['porter', 'rrhh', 'admin', 'client'];
+        $tokenAbilities = [
+            ['read-own-guard', 'read-own-zones'],
+            ['read-guards', 'read-zones'],
+            ['*'],
+            ['']
+        ];
 
-        foreach ($roles as $role) {
+        foreach (array_combine($roles, $tokenAbilities) as $role => $tokenAbilities) {
             $user = User::create([
                 'name' => ucfirst($role) . ' User',
                 'email' => $role . '@mail.es',
@@ -27,7 +33,7 @@ class UserSeeder extends Seeder
 
             $user->assignRole($role);
 
-            $token = $user->createToken($role . '_token', [$role])->plainTextToken;
+            $token = $user->createToken($role . '_token', $tokenAbilities)->plainTextToken;
 
             event(new TokenGeneratedEvent($user, $token));
         }

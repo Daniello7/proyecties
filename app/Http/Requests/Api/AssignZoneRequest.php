@@ -5,6 +5,8 @@ namespace App\Http\Requests\Api;
 use Illuminate\Foundation\Http\FormRequest;
 
 /**
+ * @bodyParam guard_id integer required ID of the Guard. Example: 10
+ * @bodyParam zone_id integer required ID of the Zone. Example: 10
  * @bodyParam schedule string required Schedule format 24h. Example: 20:00 - 10:00
  */
 class AssignZoneRequest extends FormRequest
