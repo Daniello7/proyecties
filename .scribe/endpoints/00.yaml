@@ -63,8 +63,30 @@ endpoints:
       Accept: application/json
     urlParameters: []
     cleanUrlParameters: []
-    queryParameters: []
-    cleanQueryParameters: []
+    queryParameters:
+      name:
+        name: name
+        description: 'Name of the Guard.'
+        required: false
+        example: Daniel
+        type: string
+        enumValues: []
+        exampleWasSpecified: true
+        nullable: false
+        custom: []
+      dni:
+        name: dni
+        description: 'DNI of the Guard.'
+        required: false
+        example: 12345678A
+        type: string
+        enumValues: []
+        exampleWasSpecified: true
+        nullable: false
+        custom: []
+    cleanQueryParameters:
+      name: Daniel
+      dni: 12345678A
     bodyParameters: []
     cleanBodyParameters: []
     fileParameters: []
@@ -329,8 +351,30 @@ endpoints:
       Accept: application/json
     urlParameters: []
     cleanUrlParameters: []
-    queryParameters: []
-    cleanQueryParameters: []
+    queryParameters:
+      name:
+        name: name
+        description: 'Name of the Guard.'
+        required: false
+        example: Daniel
+        type: string
+        enumValues: []
+        exampleWasSpecified: true
+        nullable: false
+        custom: []
+      dni:
+        name: dni
+        description: 'DNI of the Guard.'
+        required: false
+        example: 12345678A
+        type: string
+        enumValues: []
+        exampleWasSpecified: true
+        nullable: false
+        custom: []
+    cleanQueryParameters:
+      name: Daniel
+      dni: 12345678A
     bodyParameters: []
     cleanBodyParameters: []
     fileParameters: []

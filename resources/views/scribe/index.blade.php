@@ -286,7 +286,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 <div class="bash-example">
     <pre><code class="language-bash">curl --request GET \
-    --get "http://proyecties.test/api/guards" \
+    --get "http://proyecties.test/api/guards?name=Daniel&amp;dni=12345678A" \
     --header "Authorization: Bearer {YOUR_AUTH_KEY}" \
     --header "Content-Type: application/json" \
     --header "Accept: application/json"</code></pre></div>
@@ -296,6 +296,13 @@ You can check the Dev Tools console for debugging information.</code></pre>
     <pre><code class="language-javascript">const url = new URL(
     "http://proyecties.test/api/guards"
 );
+
+const params = {
+    "name": "Daniel",
+    "dni": "12345678A",
+};
+Object.keys(params)
+    .forEach(key =&gt; url.searchParams.append(key, params[key]));
 
 const headers = {
     "Authorization": "Bearer {YOUR_AUTH_KEY}",
@@ -408,7 +415,30 @@ You can check the Dev Tools console for debugging information.</code></pre>
     <br>
 <p>Example: <code>application/json</code></p>
             </div>
-                        </form>
+                            <h4 class="fancy-heading-panel"><b>Query Parameters</b></h4>
+                                    <div style="padding-left: 28px; clear: unset;">
+                <b style="line-height: 2;"><code>name</code></b>&nbsp;&nbsp;
+<small>string</small>&nbsp;
+<i>optional</i> &nbsp;
+                <input type="text" style="display: none"
+                              name="name"                data-endpoint="GETapi-guards"
+               value="Daniel"
+               data-component="query">
+    <br>
+<p>Name of the Guard. Example: <code>Daniel</code></p>
+            </div>
+                                    <div style="padding-left: 28px; clear: unset;">
+                <b style="line-height: 2;"><code>dni</code></b>&nbsp;&nbsp;
+<small>string</small>&nbsp;
+<i>optional</i> &nbsp;
+                <input type="text" style="display: none"
+                              name="dni"                data-endpoint="GETapi-guards"
+               value="12345678A"
+               data-component="query">
+    <br>
+<p>DNI of the Guard. Example: <code>12345678A</code></p>
+            </div>
+                </form>
 
                     <h2 id="endpoints-POSTapi-guards">POST api/guards</h2>
 
@@ -1036,7 +1066,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 <div class="bash-example">
     <pre><code class="language-bash">curl --request GET \
-    --get "http://proyecties.test/api/guards?with_zones" \
+    --get "http://proyecties.test/api/guards?with_zones?name=Daniel&amp;dni=12345678A" \
     --header "Authorization: Bearer {YOUR_AUTH_KEY}" \
     --header "Content-Type: application/json" \
     --header "Accept: application/json"</code></pre></div>
@@ -1046,6 +1076,13 @@ You can check the Dev Tools console for debugging information.</code></pre>
     <pre><code class="language-javascript">const url = new URL(
     "http://proyecties.test/api/guards?with_zones"
 );
+
+const params = {
+    "name": "Daniel",
+    "dni": "12345678A",
+};
+Object.keys(params)
+    .forEach(key =&gt; url.searchParams.append(key, params[key]));
 
 const headers = {
     "Authorization": "Bearer {YOUR_AUTH_KEY}",
@@ -1158,7 +1195,30 @@ You can check the Dev Tools console for debugging information.</code></pre>
     <br>
 <p>Example: <code>application/json</code></p>
             </div>
-                        </form>
+                            <h4 class="fancy-heading-panel"><b>Query Parameters</b></h4>
+                                    <div style="padding-left: 28px; clear: unset;">
+                <b style="line-height: 2;"><code>name</code></b>&nbsp;&nbsp;
+<small>string</small>&nbsp;
+<i>optional</i> &nbsp;
+                <input type="text" style="display: none"
+                              name="name"                data-endpoint="GETapi-guards-with_zones"
+               value="Daniel"
+               data-component="query">
+    <br>
+<p>Name of the Guard. Example: <code>Daniel</code></p>
+            </div>
+                                    <div style="padding-left: 28px; clear: unset;">
+                <b style="line-height: 2;"><code>dni</code></b>&nbsp;&nbsp;
+<small>string</small>&nbsp;
+<i>optional</i> &nbsp;
+                <input type="text" style="display: none"
+                              name="dni"                data-endpoint="GETapi-guards-with_zones"
+               value="12345678A"
+               data-component="query">
+    <br>
+<p>DNI of the Guard. Example: <code>12345678A</code></p>
+            </div>
+                </form>
 
                     <h2 id="endpoints-GETapi-guards--id--with_zones">GET api/guards/{id}?with_zones</h2>
 

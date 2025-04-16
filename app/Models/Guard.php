@@ -19,7 +19,7 @@ class Guard extends Model
 
     public function scopeDni($query, $dni)
     {
-        return $query->where('dni', $dni);
+        return $query->where('dni', 'like', "%{$dni}%");
     }
 
     public function zones()

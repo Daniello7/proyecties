@@ -15,7 +15,7 @@ class GuardSeeder extends Seeder
         Guard::create([
             'user_id' => 1,
             'name' => 'Daniel López',
-            'dni' => '12345678',
+            'dni' => '12345678A',
         ]);
         Guard::factory(59)->create();
     }

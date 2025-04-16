@@ -13,6 +13,8 @@ use Illuminate\Http\Request;
 class GuardController extends Controller
 {
     /**
+     * @queryParam name string Name of the Guard. Example: Daniel
+     * @queryParam dni string DNI of the Guard. Example: 12345678A
      * @param Request $request
      * @return \Illuminate\Http\JsonResponse
      */
@@ -66,7 +68,6 @@ class GuardController extends Controller
      * @urlParam id int required The ID of the guard. Example: 1
      * @bodyParam name string required The name of the guard. Example: Daniel
      * @bodyParam dni string required The Document number of the guard. Example: 12345678A
-     *
      * @param UpdateGuardRequest $request
      * @param string $id
      * @return \Illuminate\Http\JsonResponse
