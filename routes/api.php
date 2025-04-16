@@ -11,7 +11,5 @@ Route::get('/user', function (Request $request) {
 
 Route::middleware(['auth:sanctum', RoleMiddleware::using('admin')])->group(function () {
     Route::apiResource('/guards', GuardController::class);
-    Route::get('/guards?with_zones', [GuardController::class, 'index']);
-    Route::get('/guards/{id}?with_zones', [GuardController::class, 'show']);
     Route::post('/guards/assign-zone', [GuardController::class, 'assignZone'])->name('guards.assignZone');
 });

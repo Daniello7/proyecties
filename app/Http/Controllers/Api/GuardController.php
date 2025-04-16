@@ -6,17 +6,21 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests\Api\AssignZoneRequest;
 use App\Http\Requests\Api\StoreGuardRequest;
 use App\Http\Requests\Api\UpdateGuardRequest;
+use App\Http\Resources\GuardResource;
 use App\Models\Guard;
 use App\Models\Zone;
+use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
+use Illuminate\Http\Resources\Json\AnonymousResourceCollection;
 
 class GuardController extends Controller
 {
     /**
      * @queryParam name string Name of the Guard. Example: Daniel
      * @queryParam dni string DNI of the Guard. Example: 12345678A
+     * @queryParam with_zones boolean Show zones of the Guard. Example: false
      * @param Request $request
-     * @return \Illuminate\Http\JsonResponse
+     * @return AnonymousResourceCollection
      */
     public function index(Request $request)
     {
@@ -30,14 +34,14 @@ class GuardController extends Controller
             $query->dni($request->dni);
         }
 
-        return response()->json($query->get());
+        return GuardResource::collection($query->get());
     }
 
     /**
      * @bodyParam name string required The name of the guard. Example: Daniel
      * @bodyParam dni string required The Document number of the guard. Example: 12345678A
      * @param StoreGuardRequest $request
-     * @return \Illuminate\Http\JsonResponse
+     * @return JsonResponse
      */
     public function store(StoreGuardRequest $request)
     {
@@ -48,20 +52,15 @@ class GuardController extends Controller
 
     /**
      * @urlParam id int required The ID of the guard. Example: 1
+     * @queryParam with_zones boolean Show zones of the Guard. Example: false
      * @param int $id
-     * @return \Illuminate\Http\JsonResponse
+     * @return GuardResource
      */
     public function show(int $id)
     {
-        $guard = Guard::find($id);
+        $guard = Guard::findOrFail($id);
 
-        if (!$guard) {
-            return response()->json([
-                'error' => __('Guard not found')
-            ], 404);
-        }
-
-        return response()->json($guard, 201);
+        return new GuardResource($guard);
     }
 
     /**
@@ -69,18 +68,12 @@ class GuardController extends Controller
      * @bodyParam name string required The name of the guard. Example: Daniel
      * @bodyParam dni string required The Document number of the guard. Example: 12345678A
      * @param UpdateGuardRequest $request
-     * @param string $id
-     * @return \Illuminate\Http\JsonResponse
+     * @param int $id
+     * @return JsonResponse
      */
-    public function update(UpdateGuardRequest $request, string $id)
+    public function update(UpdateGuardRequest $request, int $id)
     {
-        $guard = Guard::find($id);
-
-        if (!$guard) {
-            return response()->json([
-                'error' => __('Guard not found')
-            ], 404);
-        }
+        $guard = Guard::findOrFail($id);
 
         $guard->update($request->validated());
 
@@ -89,19 +82,12 @@ class GuardController extends Controller
 
     /**
      * @urlParam id int required The ID of the guard. Example: 1
-     *
-     * @param string $id
-     * @return \Illuminate\Http\JsonResponse
+     * @param int $id
+     * @return JsonResponse
      */
     public function destroy(int $id)
     {
-        $guard = Guard::find($id);
-
-        if (!$guard) {
-            return response()->json([
-                'error' => __('Guard not found')
-            ], 404);
-        }
+        $guard = Guard::findOrFail($id);
 
         $guard->delete();
 
@@ -110,7 +96,7 @@ class GuardController extends Controller
 
     /**
      * @param AssignZoneRequest $request
-     * @return \Illuminate\Http\JsonResponse
+     * @return JsonResponse
      */
     public function assignZone(AssignZoneRequest $request)
     {

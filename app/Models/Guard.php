@@ -32,7 +32,9 @@ class Guard extends Model
     protected static function booted()
     {
         static::addGlobalScope('withZones', function (Builder $builder) {
-            if (request()->has('with_zones')) {
+            $withZones = request()->query('with_zones');
+
+            if (filter_var($withZones, FILTER_VALIDATE_BOOLEAN)) {
                 $builder->with('zones');
             }
         });
