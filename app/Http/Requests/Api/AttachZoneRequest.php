@@ -9,7 +9,7 @@ use Illuminate\Foundation\Http\FormRequest;
  * @bodyParam zone_id integer required ID of the Zone. Example: 10
  * @bodyParam schedule string required Schedule format 24h. Example: 20:00 - 10:00
  */
-class AssignZoneRequest extends FormRequest
+class AttachZoneRequest extends FormRequest
 {
     public function rules(): array
     {

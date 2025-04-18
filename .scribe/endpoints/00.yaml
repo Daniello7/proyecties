@@ -623,7 +623,7 @@ endpoints:
   -
     httpMethods:
       - POST
-    uri: api/guards/assign-zone
+    uri: api/guards/attach-zone
     metadata:
       groupName: Endpoints
       groupDescription: ''
@@ -676,6 +676,62 @@ endpoints:
       guard_id: 10
       zone_id: 10
       schedule: '20:00 - 10:00'
+    fileParameters: []
+    responses: []
+    responseFields: []
+    auth:
+      - headers
+      - Authorization
+      - 'Bearer 6g43cv8PD1aE5beadkZfhV6'
+    controller: null
+    method: null
+    route: null
+    custom: []
+  -
+    httpMethods:
+      - POST
+    uri: api/guards/detach-zone
+    metadata:
+      groupName: Endpoints
+      groupDescription: ''
+      subgroup: ''
+      subgroupDescription: ''
+      title: ''
+      description: ''
+      authenticated: true
+      custom: []
+    headers:
+      Authorization: 'Bearer YOUR_AUTH_KEY'
+      Content-Type: application/json
+      Accept: application/json
+    urlParameters: []
+    cleanUrlParameters: []
+    queryParameters: []
+    cleanQueryParameters: []
+    bodyParameters:
+      guard_id:
+        name: guard_id
+        description: 'ID of the Guard.'
+        required: true
+        example: 10
+        type: integer
+        enumValues: []
+        exampleWasSpecified: true
+        nullable: false
+        custom: []
+      zone_id:
+        name: zone_id
+        description: 'ID of the Zone.'
+        required: true
+        example: 10
+        type: integer
+        enumValues: []
+        exampleWasSpecified: true
+        nullable: false
+        custom: []
+    cleanBodyParameters:
+      guard_id: 10
+      zone_id: 10
     fileParameters: []
     responses: []
     responseFields: []

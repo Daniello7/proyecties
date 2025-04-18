@@ -104,8 +104,11 @@
                                                                                 <li class="tocify-item level-2" data-unique="endpoints-DELETEapi-zones--id-">
                                 <a href="#endpoints-DELETEapi-zones--id-">DELETE api/zones/{id}</a>
                             </li>
-                                                                                <li class="tocify-item level-2" data-unique="endpoints-POSTapi-guards-assign-zone">
-                                <a href="#endpoints-POSTapi-guards-assign-zone">POST api/guards/assign-zone</a>
+                                                                                <li class="tocify-item level-2" data-unique="endpoints-POSTapi-guards-attach-zone">
+                                <a href="#endpoints-POSTapi-guards-attach-zone">POST api/guards/attach-zone</a>
+                            </li>
+                                                                                <li class="tocify-item level-2" data-unique="endpoints-POSTapi-guards-detach-zone">
+                                <a href="#endpoints-POSTapi-guards-detach-zone">POST api/guards/detach-zone</a>
                             </li>
                                                                         </ul>
                             </ul>
@@ -1861,7 +1864,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
             </div>
                     </form>
 
-                    <h2 id="endpoints-POSTapi-guards-assign-zone">POST api/guards/assign-zone</h2>
+                    <h2 id="endpoints-POSTapi-guards-attach-zone">POST api/guards/attach-zone</h2>
 
 <p>
 <small class="badge badge-darkred">requires authentication</small>
@@ -1869,13 +1872,13 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 
 
-<span id="example-requests-POSTapi-guards-assign-zone">
+<span id="example-requests-POSTapi-guards-attach-zone">
 <blockquote>Example request:</blockquote>
 
 
 <div class="bash-example">
     <pre><code class="language-bash">curl --request POST \
-    "http://proyecties.test/api/guards/assign-zone" \
+    "http://proyecties.test/api/guards/attach-zone" \
     --header "Authorization: Bearer YOUR_AUTH_KEY" \
     --header "Content-Type: application/json" \
     --header "Accept: application/json" \
@@ -1889,7 +1892,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 <div class="javascript-example">
     <pre><code class="language-javascript">const url = new URL(
-    "http://proyecties.test/api/guards/assign-zone"
+    "http://proyecties.test/api/guards/attach-zone"
 );
 
 const headers = {
@@ -1912,45 +1915,45 @@ fetch(url, {
 
 </span>
 
-<span id="example-responses-POSTapi-guards-assign-zone">
+<span id="example-responses-POSTapi-guards-attach-zone">
 </span>
-<span id="execution-results-POSTapi-guards-assign-zone" hidden>
+<span id="execution-results-POSTapi-guards-attach-zone" hidden>
     <blockquote>Received response<span
-                id="execution-response-status-POSTapi-guards-assign-zone"></span>:
+                id="execution-response-status-POSTapi-guards-attach-zone"></span>:
     </blockquote>
-    <pre class="json"><code id="execution-response-content-POSTapi-guards-assign-zone"
+    <pre class="json"><code id="execution-response-content-POSTapi-guards-attach-zone"
       data-empty-response-text="<Empty response>" style="max-height: 400px;"></code></pre>
 </span>
-<span id="execution-error-POSTapi-guards-assign-zone" hidden>
+<span id="execution-error-POSTapi-guards-attach-zone" hidden>
     <blockquote>Request failed with error:</blockquote>
-    <pre><code id="execution-error-message-POSTapi-guards-assign-zone">
+    <pre><code id="execution-error-message-POSTapi-guards-attach-zone">
 
 Tip: Check that you&#039;re properly connected to the network.
 If you&#039;re a maintainer of ths API, verify that your API is running and you&#039;ve enabled CORS.
 You can check the Dev Tools console for debugging information.</code></pre>
 </span>
-<form id="form-POSTapi-guards-assign-zone" data-method="POST"
-      data-path="api/guards/assign-zone"
+<form id="form-POSTapi-guards-attach-zone" data-method="POST"
+      data-path="api/guards/attach-zone"
       data-authed="1"
       data-hasfiles="0"
       data-isarraybody="0"
       autocomplete="off"
-      onsubmit="event.preventDefault(); executeTryOut('POSTapi-guards-assign-zone', this);">
+      onsubmit="event.preventDefault(); executeTryOut('POSTapi-guards-attach-zone', this);">
     <h3>
         Request&nbsp;&nbsp;&nbsp;
                     <button type="button"
                     style="background-color: #8fbcd4; padding: 5px 10px; border-radius: 5px; border-width: thin;"
-                    id="btn-tryout-POSTapi-guards-assign-zone"
-                    onclick="tryItOut('POSTapi-guards-assign-zone');">Try it out ⚡
+                    id="btn-tryout-POSTapi-guards-attach-zone"
+                    onclick="tryItOut('POSTapi-guards-attach-zone');">Try it out ⚡
             </button>
             <button type="button"
                     style="background-color: #c97a7e; padding: 5px 10px; border-radius: 5px; border-width: thin;"
-                    id="btn-canceltryout-POSTapi-guards-assign-zone"
-                    onclick="cancelTryOut('POSTapi-guards-assign-zone');" hidden>Cancel 🛑
+                    id="btn-canceltryout-POSTapi-guards-attach-zone"
+                    onclick="cancelTryOut('POSTapi-guards-attach-zone');" hidden>Cancel 🛑
             </button>&nbsp;&nbsp;
             <button type="submit"
                     style="background-color: #6ac174; padding: 5px 10px; border-radius: 5px; border-width: thin;"
-                    id="btn-executetryout-POSTapi-guards-assign-zone"
+                    id="btn-executetryout-POSTapi-guards-attach-zone"
                     data-initial-text="Send Request 💥"
                     data-loading-text="⏱ Sending..."
                     hidden>Send Request 💥
@@ -1958,7 +1961,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
             </h3>
             <p>
             <small class="badge badge-black">POST</small>
-            <b><code>api/guards/assign-zone</code></b>
+            <b><code>api/guards/attach-zone</code></b>
         </p>
                 <h4 class="fancy-heading-panel"><b>Headers</b></h4>
                                 <div style="padding-left: 28px; clear: unset;">
@@ -1966,7 +1969,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
 &nbsp;
  &nbsp;
                 <input type="text" style="display: none"
-                              name="Authorization" class="auth-value"               data-endpoint="POSTapi-guards-assign-zone"
+                              name="Authorization" class="auth-value"               data-endpoint="POSTapi-guards-attach-zone"
                value="Bearer YOUR_AUTH_KEY"
                data-component="header">
     <br>
@@ -1977,7 +1980,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
 &nbsp;
  &nbsp;
                 <input type="text" style="display: none"
-                              name="Content-Type"                data-endpoint="POSTapi-guards-assign-zone"
+                              name="Content-Type"                data-endpoint="POSTapi-guards-attach-zone"
                value="application/json"
                data-component="header">
     <br>
@@ -1988,7 +1991,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
 &nbsp;
  &nbsp;
                 <input type="text" style="display: none"
-                              name="Accept"                data-endpoint="POSTapi-guards-assign-zone"
+                              name="Accept"                data-endpoint="POSTapi-guards-attach-zone"
                value="application/json"
                data-component="header">
     <br>
@@ -2000,7 +2003,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
 <small>integer</small>&nbsp;
  &nbsp;
                 <input type="number" style="display: none"
-               step="any"               name="guard_id"                data-endpoint="POSTapi-guards-assign-zone"
+               step="any"               name="guard_id"                data-endpoint="POSTapi-guards-attach-zone"
                value="10"
                data-component="body">
     <br>
@@ -2011,7 +2014,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
 <small>integer</small>&nbsp;
  &nbsp;
                 <input type="number" style="display: none"
-               step="any"               name="zone_id"                data-endpoint="POSTapi-guards-assign-zone"
+               step="any"               name="zone_id"                data-endpoint="POSTapi-guards-attach-zone"
                value="10"
                data-component="body">
     <br>
@@ -2022,11 +2025,167 @@ You can check the Dev Tools console for debugging information.</code></pre>
 <small>string</small>&nbsp;
  &nbsp;
                 <input type="text" style="display: none"
-                              name="schedule"                data-endpoint="POSTapi-guards-assign-zone"
+                              name="schedule"                data-endpoint="POSTapi-guards-attach-zone"
                value="20:00 - 10:00"
                data-component="body">
     <br>
 <p>Schedule format 24h. Example: <code>20:00 - 10:00</code></p>
+        </div>
+        </form>
+
+                    <h2 id="endpoints-POSTapi-guards-detach-zone">POST api/guards/detach-zone</h2>
+
+<p>
+<small class="badge badge-darkred">requires authentication</small>
+</p>
+
+
+
+<span id="example-requests-POSTapi-guards-detach-zone">
+<blockquote>Example request:</blockquote>
+
+
+<div class="bash-example">
+    <pre><code class="language-bash">curl --request POST \
+    "http://proyecties.test/api/guards/detach-zone" \
+    --header "Authorization: Bearer YOUR_AUTH_KEY" \
+    --header "Content-Type: application/json" \
+    --header "Accept: application/json" \
+    --data "{
+    \"guard_id\": 10,
+    \"zone_id\": 10
+}"
+</code></pre></div>
+
+
+<div class="javascript-example">
+    <pre><code class="language-javascript">const url = new URL(
+    "http://proyecties.test/api/guards/detach-zone"
+);
+
+const headers = {
+    "Authorization": "Bearer YOUR_AUTH_KEY",
+    "Content-Type": "application/json",
+    "Accept": "application/json",
+};
+
+let body = {
+    "guard_id": 10,
+    "zone_id": 10
+};
+
+fetch(url, {
+    method: "POST",
+    headers,
+    body: JSON.stringify(body),
+}).then(response =&gt; response.json());</code></pre></div>
+
+</span>
+
+<span id="example-responses-POSTapi-guards-detach-zone">
+</span>
+<span id="execution-results-POSTapi-guards-detach-zone" hidden>
+    <blockquote>Received response<span
+                id="execution-response-status-POSTapi-guards-detach-zone"></span>:
+    </blockquote>
+    <pre class="json"><code id="execution-response-content-POSTapi-guards-detach-zone"
+      data-empty-response-text="<Empty response>" style="max-height: 400px;"></code></pre>
+</span>
+<span id="execution-error-POSTapi-guards-detach-zone" hidden>
+    <blockquote>Request failed with error:</blockquote>
+    <pre><code id="execution-error-message-POSTapi-guards-detach-zone">
+
+Tip: Check that you&#039;re properly connected to the network.
+If you&#039;re a maintainer of ths API, verify that your API is running and you&#039;ve enabled CORS.
+You can check the Dev Tools console for debugging information.</code></pre>
+</span>
+<form id="form-POSTapi-guards-detach-zone" data-method="POST"
+      data-path="api/guards/detach-zone"
+      data-authed="1"
+      data-hasfiles="0"
+      data-isarraybody="0"
+      autocomplete="off"
+      onsubmit="event.preventDefault(); executeTryOut('POSTapi-guards-detach-zone', this);">
+    <h3>
+        Request&nbsp;&nbsp;&nbsp;
+                    <button type="button"
+                    style="background-color: #8fbcd4; padding: 5px 10px; border-radius: 5px; border-width: thin;"
+                    id="btn-tryout-POSTapi-guards-detach-zone"
+                    onclick="tryItOut('POSTapi-guards-detach-zone');">Try it out ⚡
+            </button>
+            <button type="button"
+                    style="background-color: #c97a7e; padding: 5px 10px; border-radius: 5px; border-width: thin;"
+                    id="btn-canceltryout-POSTapi-guards-detach-zone"
+                    onclick="cancelTryOut('POSTapi-guards-detach-zone');" hidden>Cancel 🛑
+            </button>&nbsp;&nbsp;
+            <button type="submit"
+                    style="background-color: #6ac174; padding: 5px 10px; border-radius: 5px; border-width: thin;"
+                    id="btn-executetryout-POSTapi-guards-detach-zone"
+                    data-initial-text="Send Request 💥"
+                    data-loading-text="⏱ Sending..."
+                    hidden>Send Request 💥
+            </button>
+            </h3>
+            <p>
+            <small class="badge badge-black">POST</small>
+            <b><code>api/guards/detach-zone</code></b>
+        </p>
+                <h4 class="fancy-heading-panel"><b>Headers</b></h4>
+                                <div style="padding-left: 28px; clear: unset;">
+                <b style="line-height: 2;"><code>Authorization</code></b>&nbsp;&nbsp;
+&nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="Authorization" class="auth-value"               data-endpoint="POSTapi-guards-detach-zone"
+               value="Bearer YOUR_AUTH_KEY"
+               data-component="header">
+    <br>
+<p>Example: <code>Bearer YOUR_AUTH_KEY</code></p>
+            </div>
+                                <div style="padding-left: 28px; clear: unset;">
+                <b style="line-height: 2;"><code>Content-Type</code></b>&nbsp;&nbsp;
+&nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="Content-Type"                data-endpoint="POSTapi-guards-detach-zone"
+               value="application/json"
+               data-component="header">
+    <br>
+<p>Example: <code>application/json</code></p>
+            </div>
+                                <div style="padding-left: 28px; clear: unset;">
+                <b style="line-height: 2;"><code>Accept</code></b>&nbsp;&nbsp;
+&nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="Accept"                data-endpoint="POSTapi-guards-detach-zone"
+               value="application/json"
+               data-component="header">
+    <br>
+<p>Example: <code>application/json</code></p>
+            </div>
+                                <h4 class="fancy-heading-panel"><b>Body Parameters</b></h4>
+        <div style=" padding-left: 28px;  clear: unset;">
+            <b style="line-height: 2;"><code>guard_id</code></b>&nbsp;&nbsp;
+<small>integer</small>&nbsp;
+ &nbsp;
+                <input type="number" style="display: none"
+               step="any"               name="guard_id"                data-endpoint="POSTapi-guards-detach-zone"
+               value="10"
+               data-component="body">
+    <br>
+<p>ID of the Guard. Example: <code>10</code></p>
+        </div>
+                <div style=" padding-left: 28px;  clear: unset;">
+            <b style="line-height: 2;"><code>zone_id</code></b>&nbsp;&nbsp;
+<small>integer</small>&nbsp;
+ &nbsp;
+                <input type="number" style="display: none"
+               step="any"               name="zone_id"                data-endpoint="POSTapi-guards-detach-zone"
+               value="10"
+               data-component="body">
+    <br>
+<p>ID of the Zone. Example: <code>10</code></p>
         </div>
         </form>
 

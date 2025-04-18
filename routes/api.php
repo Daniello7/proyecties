@@ -12,5 +12,6 @@ Route::get('/user', function (Request $request) {
 Route::middleware('auth:sanctum')->group(function () {
     Route::apiResource('/guards', GuardController::class);
     Route::apiResource('/zones', ZoneController::class);
-    Route::post('/guards/assign-zone', [GuardController::class, 'assignZone'])->name('guards.assignZone');
+    Route::post('/guards/attach-zone', [GuardController::class, 'attachZone']);
+    Route::post('/guards/detach-zone', [GuardController::class, 'detachZone']);
 });

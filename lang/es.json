@@ -164,5 +164,6 @@
   "You're logged in!": "¡Usted está conectado!",
   "Your email address is unverified.": "Su dirección de correo electrónico no está verificada.",
   "Zone": "Zona",
-  "Zone assigned successfully.": "Zona asignada correctamente"
+  "Zone assigned successfully.": "Zona asignada correctamente",
+  "Zone is not assigned": "La Zona no estaba asignada"
 }
