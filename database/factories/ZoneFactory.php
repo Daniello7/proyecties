@@ -2,7 +2,7 @@
 
 namespace Database\Factories;
 
-use App\Models\Zone;
+use App\Models\Api\Zone;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 class ZoneFactory extends Factory

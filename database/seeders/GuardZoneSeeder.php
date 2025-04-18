@@ -2,9 +2,8 @@
 
 namespace Database\Seeders;
 
-use App\Models\Guard;
-use App\Models\Zone;
-use Illuminate\Database\Console\Seeds\WithoutModelEvents;
+use App\Models\Api\Guard;
+use App\Models\Api\Zone;
 use Illuminate\Database\Seeder;
 
 class GuardZoneSeeder extends Seeder

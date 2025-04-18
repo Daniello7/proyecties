@@ -7,8 +7,8 @@ use App\Http\Requests\Api\AttachZoneRequest;
 use App\Http\Requests\Api\DetachZoneRequest;
 use App\Http\Requests\Api\GuardRequest;
 use App\Http\Resources\GuardResource;
-use App\Models\Guard;
-use App\Models\Zone;
+use App\Models\Api\Guard;
+use App\Models\Api\Zone;
 use Illuminate\Http\Request;
 use Illuminate\Http\Resources\Json\AnonymousResourceCollection;
 

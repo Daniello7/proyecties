@@ -2,7 +2,7 @@
 
 namespace App\Http\Resources;
 
-use App\Models\Guard;
+use App\Models\Api\Guard;
 use Illuminate\Http\Request;
 use Illuminate\Http\Resources\Json\JsonResource;
 

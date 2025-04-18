@@ -2,7 +2,7 @@
 
 namespace Database\Factories;
 
-use App\Models\Guard;
+use App\Models\Api\Guard;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 class GuardFactory extends Factory

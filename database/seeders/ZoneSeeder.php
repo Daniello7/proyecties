@@ -2,8 +2,7 @@
 
 namespace Database\Seeders;
 
-use App\Models\Zone;
-use Illuminate\Database\Console\Seeds\WithoutModelEvents;
+use App\Models\Api\Zone;
 use Illuminate\Database\Seeder;
 
 class ZoneSeeder extends Seeder

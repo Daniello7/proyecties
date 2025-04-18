@@ -5,7 +5,7 @@ namespace App\Http\Controllers\Api;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Api\ZoneRequest;
 use App\Http\Resources\ZoneResource;
-use App\Models\Zone;
+use App\Models\Api\Zone;
 use Illuminate\Http\Resources\Json\AnonymousResourceCollection;
 
 class ZoneController extends Controller

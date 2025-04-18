@@ -2,7 +2,7 @@
 
 namespace Database\Seeders;
 
-use App\Models\Guard;
+use App\Models\Api\Guard;
 use Illuminate\Database\Seeder;
 
 class GuardSeeder extends Seeder

@@ -1,10 +1,11 @@
 <?php
 
-namespace App\Models;
+namespace App\Models\Api;
 
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 
 class Guard extends Model
 {
@@ -42,6 +43,11 @@ class Guard extends Model
         return $this->belongsToMany(Zone::class)
             ->withPivot('schedule')
             ->withTimestamps();
+    }
+
+    public function reports(): HasMany
+    {
+        return $this->hasMany(GuardReport::class);
     }
 
     protected static function booted()
