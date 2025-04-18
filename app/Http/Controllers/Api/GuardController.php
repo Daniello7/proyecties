@@ -24,7 +24,7 @@ class GuardController extends Controller
      */
     public function index(Request $request)
     {
-        $query = Guard::query();
+        $query = Guard::ownGuard();
 
         if ($request->has('name')) {
             $query->name($request->name);

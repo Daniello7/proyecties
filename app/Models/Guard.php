@@ -22,6 +22,21 @@ class Guard extends Model
         return $query->where('dni', 'like', "%{$dni}%");
     }
 
+    public function scopeOwnGuard($query)
+    {
+        $user = auth()->user();
+        if ($user->tokenCan('read-own-guard')) {
+
+            $guardId = optional($user->assignedGuard)->id;
+
+            if (!$guardId) return $query;
+
+            return $query->where('id', $guardId);
+        }
+
+        return $query;
+    }
+
     public function zones()
     {
         return $this->belongsToMany(Zone::class)

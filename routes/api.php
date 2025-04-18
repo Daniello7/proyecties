@@ -9,7 +9,7 @@ Route::get('/user', function (Request $request) {
     return $request->user();
 })->middleware('auth:sanctum');
 
-Route::middleware(['auth:sanctum', RoleMiddleware::using('admin')])->group(function () {
+Route::middleware('auth:sanctum')->group(function () {
     Route::apiResource('/guards', GuardController::class);
     Route::post('/guards/assign-zone', [GuardController::class, 'assignZone'])->name('guards.assignZone');
 });

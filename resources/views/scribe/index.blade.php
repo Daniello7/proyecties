@@ -103,7 +103,7 @@
     </ul>
 
     <ul class="toc-footer" id="last-updated">
-        <li>Last updated: April 16, 2025</li>
+        <li>Last updated: April 18, 2025</li>
     </ul>
 </div>
 
@@ -120,7 +120,7 @@
 You can switch the language used with the tabs at the top right (or from the nav menu at the top left on mobile).&lt;/aside&gt;</code></pre>
 
         <h1 id="authenticating-requests">Authenticating requests</h1>
-<p>To authenticate requests, include an <strong><code>Authorization</code></strong> header with the value <strong><code>"Bearer {YOUR_AUTH_KEY}"</code></strong>.</p>
+<p>To authenticate requests, include an <strong><code>Authorization</code></strong> header with the value <strong><code>"Bearer YOUR_AUTH_KEY"</code></strong>.</p>
 <p>All authenticated endpoints are marked with a <code>requires authentication</code> badge in the documentation below.</p>
 <p>You can retrieve your token by visiting your dashboard and clicking <b>Generate API token</b>.</p>
 
@@ -143,7 +143,7 @@ You can switch the language used with the tabs at the top right (or from the nav
 <div class="bash-example">
     <pre><code class="language-bash">curl --request GET \
     --get "http://proyecties.test/api/user" \
-    --header "Authorization: Bearer {YOUR_AUTH_KEY}" \
+    --header "Authorization: Bearer YOUR_AUTH_KEY" \
     --header "Content-Type: application/json" \
     --header "Accept: application/json"</code></pre></div>
 
@@ -154,7 +154,7 @@ You can switch the language used with the tabs at the top right (or from the nav
 );
 
 const headers = {
-    "Authorization": "Bearer {YOUR_AUTH_KEY}",
+    "Authorization": "Bearer YOUR_AUTH_KEY",
     "Content-Type": "application/json",
     "Accept": "application/json",
 };
@@ -237,10 +237,10 @@ You can check the Dev Tools console for debugging information.</code></pre>
  &nbsp;
                 <input type="text" style="display: none"
                               name="Authorization" class="auth-value"               data-endpoint="GETapi-user"
-               value="Bearer {YOUR_AUTH_KEY}"
+               value="Bearer YOUR_AUTH_KEY"
                data-component="header">
     <br>
-<p>Example: <code>Bearer {YOUR_AUTH_KEY}</code></p>
+<p>Example: <code>Bearer YOUR_AUTH_KEY</code></p>
             </div>
                                 <div style="padding-left: 28px; clear: unset;">
                 <b style="line-height: 2;"><code>Content-Type</code></b>&nbsp;&nbsp;
@@ -281,7 +281,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
 <div class="bash-example">
     <pre><code class="language-bash">curl --request GET \
     --get "http://proyecties.test/api/guards?name=Daniel&amp;dni=12345678A&amp;with_zones=" \
-    --header "Authorization: Bearer {YOUR_AUTH_KEY}" \
+    --header "Authorization: Bearer YOUR_AUTH_KEY" \
     --header "Content-Type: application/json" \
     --header "Accept: application/json"</code></pre></div>
 
@@ -300,7 +300,7 @@ Object.keys(params)
     .forEach(key =&gt; url.searchParams.append(key, params[key]));
 
 const headers = {
-    "Authorization": "Bearer {YOUR_AUTH_KEY}",
+    "Authorization": "Bearer YOUR_AUTH_KEY",
     "Content-Type": "application/json",
     "Accept": "application/json",
 };
@@ -383,10 +383,10 @@ You can check the Dev Tools console for debugging information.</code></pre>
  &nbsp;
                 <input type="text" style="display: none"
                               name="Authorization" class="auth-value"               data-endpoint="GETapi-guards"
-               value="Bearer {YOUR_AUTH_KEY}"
+               value="Bearer YOUR_AUTH_KEY"
                data-component="header">
     <br>
-<p>Example: <code>Bearer {YOUR_AUTH_KEY}</code></p>
+<p>Example: <code>Bearer YOUR_AUTH_KEY</code></p>
             </div>
                                 <div style="padding-left: 28px; clear: unset;">
                 <b style="line-height: 2;"><code>Content-Type</code></b>&nbsp;&nbsp;
@@ -471,7 +471,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
 <div class="bash-example">
     <pre><code class="language-bash">curl --request POST \
     "http://proyecties.test/api/guards" \
-    --header "Authorization: Bearer {YOUR_AUTH_KEY}" \
+    --header "Authorization: Bearer YOUR_AUTH_KEY" \
     --header "Content-Type: application/json" \
     --header "Accept: application/json" \
     --data "{
@@ -487,7 +487,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
 );
 
 const headers = {
-    "Authorization": "Bearer {YOUR_AUTH_KEY}",
+    "Authorization": "Bearer YOUR_AUTH_KEY",
     "Content-Type": "application/json",
     "Accept": "application/json",
 };
@@ -560,10 +560,10 @@ You can check the Dev Tools console for debugging information.</code></pre>
  &nbsp;
                 <input type="text" style="display: none"
                               name="Authorization" class="auth-value"               data-endpoint="POSTapi-guards"
-               value="Bearer {YOUR_AUTH_KEY}"
+               value="Bearer YOUR_AUTH_KEY"
                data-component="header">
     <br>
-<p>Example: <code>Bearer {YOUR_AUTH_KEY}</code></p>
+<p>Example: <code>Bearer YOUR_AUTH_KEY</code></p>
             </div>
                                 <div style="padding-left: 28px; clear: unset;">
                 <b style="line-height: 2;"><code>Content-Type</code></b>&nbsp;&nbsp;
@@ -627,7 +627,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
 <div class="bash-example">
     <pre><code class="language-bash">curl --request GET \
     --get "http://proyecties.test/api/guards/1?with_zones=" \
-    --header "Authorization: Bearer {YOUR_AUTH_KEY}" \
+    --header "Authorization: Bearer YOUR_AUTH_KEY" \
     --header "Content-Type: application/json" \
     --header "Accept: application/json"</code></pre></div>
 
@@ -644,7 +644,7 @@ Object.keys(params)
     .forEach(key =&gt; url.searchParams.append(key, params[key]));
 
 const headers = {
-    "Authorization": "Bearer {YOUR_AUTH_KEY}",
+    "Authorization": "Bearer YOUR_AUTH_KEY",
     "Content-Type": "application/json",
     "Accept": "application/json",
 };
@@ -727,10 +727,10 @@ You can check the Dev Tools console for debugging information.</code></pre>
  &nbsp;
                 <input type="text" style="display: none"
                               name="Authorization" class="auth-value"               data-endpoint="GETapi-guards--id-"
-               value="Bearer {YOUR_AUTH_KEY}"
+               value="Bearer YOUR_AUTH_KEY"
                data-component="header">
     <br>
-<p>Example: <code>Bearer {YOUR_AUTH_KEY}</code></p>
+<p>Example: <code>Bearer YOUR_AUTH_KEY</code></p>
             </div>
                                 <div style="padding-left: 28px; clear: unset;">
                 <b style="line-height: 2;"><code>Content-Type</code></b>&nbsp;&nbsp;
@@ -805,7 +805,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
 <div class="bash-example">
     <pre><code class="language-bash">curl --request PUT \
     "http://proyecties.test/api/guards/1" \
-    --header "Authorization: Bearer {YOUR_AUTH_KEY}" \
+    --header "Authorization: Bearer YOUR_AUTH_KEY" \
     --header "Content-Type: application/json" \
     --header "Accept: application/json" \
     --data "{
@@ -821,7 +821,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
 );
 
 const headers = {
-    "Authorization": "Bearer {YOUR_AUTH_KEY}",
+    "Authorization": "Bearer YOUR_AUTH_KEY",
     "Content-Type": "application/json",
     "Accept": "application/json",
 };
@@ -898,10 +898,10 @@ You can check the Dev Tools console for debugging information.</code></pre>
  &nbsp;
                 <input type="text" style="display: none"
                               name="Authorization" class="auth-value"               data-endpoint="PUTapi-guards--id-"
-               value="Bearer {YOUR_AUTH_KEY}"
+               value="Bearer YOUR_AUTH_KEY"
                data-component="header">
     <br>
-<p>Example: <code>Bearer {YOUR_AUTH_KEY}</code></p>
+<p>Example: <code>Bearer YOUR_AUTH_KEY</code></p>
             </div>
                                 <div style="padding-left: 28px; clear: unset;">
                 <b style="line-height: 2;"><code>Content-Type</code></b>&nbsp;&nbsp;
@@ -977,7 +977,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
 <div class="bash-example">
     <pre><code class="language-bash">curl --request DELETE \
     "http://proyecties.test/api/guards/1" \
-    --header "Authorization: Bearer {YOUR_AUTH_KEY}" \
+    --header "Authorization: Bearer YOUR_AUTH_KEY" \
     --header "Content-Type: application/json" \
     --header "Accept: application/json"</code></pre></div>
 
@@ -988,7 +988,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
 );
 
 const headers = {
-    "Authorization": "Bearer {YOUR_AUTH_KEY}",
+    "Authorization": "Bearer YOUR_AUTH_KEY",
     "Content-Type": "application/json",
     "Accept": "application/json",
 };
@@ -1055,10 +1055,10 @@ You can check the Dev Tools console for debugging information.</code></pre>
  &nbsp;
                 <input type="text" style="display: none"
                               name="Authorization" class="auth-value"               data-endpoint="DELETEapi-guards--id-"
-               value="Bearer {YOUR_AUTH_KEY}"
+               value="Bearer YOUR_AUTH_KEY"
                data-component="header">
     <br>
-<p>Example: <code>Bearer {YOUR_AUTH_KEY}</code></p>
+<p>Example: <code>Bearer YOUR_AUTH_KEY</code></p>
             </div>
                                 <div style="padding-left: 28px; clear: unset;">
                 <b style="line-height: 2;"><code>Content-Type</code></b>&nbsp;&nbsp;
@@ -1111,7 +1111,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
 <div class="bash-example">
     <pre><code class="language-bash">curl --request POST \
     "http://proyecties.test/api/guards/assign-zone" \
-    --header "Authorization: Bearer {YOUR_AUTH_KEY}" \
+    --header "Authorization: Bearer YOUR_AUTH_KEY" \
     --header "Content-Type: application/json" \
     --header "Accept: application/json" \
     --data "{
@@ -1128,7 +1128,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
 );
 
 const headers = {
-    "Authorization": "Bearer {YOUR_AUTH_KEY}",
+    "Authorization": "Bearer YOUR_AUTH_KEY",
     "Content-Type": "application/json",
     "Accept": "application/json",
 };
@@ -1202,10 +1202,10 @@ You can check the Dev Tools console for debugging information.</code></pre>
  &nbsp;
                 <input type="text" style="display: none"
                               name="Authorization" class="auth-value"               data-endpoint="POSTapi-guards-assign-zone"
-               value="Bearer {YOUR_AUTH_KEY}"
+               value="Bearer YOUR_AUTH_KEY"
                data-component="header">
     <br>
-<p>Example: <code>Bearer {YOUR_AUTH_KEY}</code></p>
+<p>Example: <code>Bearer YOUR_AUTH_KEY</code></p>
             </div>
                                 <div style="padding-left: 28px; clear: unset;">
                 <b style="line-height: 2;"><code>Content-Type</code></b>&nbsp;&nbsp;

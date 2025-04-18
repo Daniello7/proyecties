@@ -17,7 +17,7 @@ endpoints:
       authenticated: true
       custom: []
     headers:
-      Authorization: 'Bearer {YOUR_AUTH_KEY}'
+      Authorization: 'Bearer YOUR_AUTH_KEY'
       Content-Type: application/json
       Accept: application/json
     urlParameters: []
@@ -60,7 +60,7 @@ endpoints:
       authenticated: true
       custom: []
     headers:
-      Authorization: 'Bearer {YOUR_AUTH_KEY}'
+      Authorization: 'Bearer YOUR_AUTH_KEY'
       Content-Type: application/json
       Accept: application/json
     urlParameters: []
@@ -136,7 +136,7 @@ endpoints:
       authenticated: true
       custom: []
     headers:
-      Authorization: 'Bearer {YOUR_AUTH_KEY}'
+      Authorization: 'Bearer YOUR_AUTH_KEY'
       Content-Type: application/json
       Accept: application/json
     urlParameters: []
@@ -192,7 +192,7 @@ endpoints:
       authenticated: true
       custom: []
     headers:
-      Authorization: 'Bearer {YOUR_AUTH_KEY}'
+      Authorization: 'Bearer YOUR_AUTH_KEY'
       Content-Type: application/json
       Accept: application/json
     urlParameters:
@@ -258,7 +258,7 @@ endpoints:
       authenticated: true
       custom: []
     headers:
-      Authorization: 'Bearer {YOUR_AUTH_KEY}'
+      Authorization: 'Bearer YOUR_AUTH_KEY'
       Content-Type: application/json
       Accept: application/json
     urlParameters:
@@ -325,7 +325,7 @@ endpoints:
       authenticated: true
       custom: []
     headers:
-      Authorization: 'Bearer {YOUR_AUTH_KEY}'
+      Authorization: 'Bearer YOUR_AUTH_KEY'
       Content-Type: application/json
       Accept: application/json
     urlParameters:
@@ -370,7 +370,7 @@ endpoints:
       authenticated: true
       custom: []
     headers:
-      Authorization: 'Bearer {YOUR_AUTH_KEY}'
+      Authorization: 'Bearer YOUR_AUTH_KEY'
       Content-Type: application/json
       Accept: application/json
     urlParameters: []
