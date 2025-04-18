@@ -17,6 +17,6 @@ class GuardSeeder extends Seeder
             'name' => 'Daniel López',
             'dni' => '12345678A',
         ]);
-        Guard::factory(59)->create();
+        Guard::factory(39)->create();
     }
 }

@@ -4,7 +4,11 @@ namespace App\Http\Requests\Api;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class StoreGuardRequest extends FormRequest
+/**
+ * @bodyParam name string required The name of the guard. Example: Daniel
+ * @bodyParam dni string required The Document number of the guard. Example: 12345678A
+ */
+class GuardRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.

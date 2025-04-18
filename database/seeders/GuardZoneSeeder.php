@@ -18,7 +18,8 @@ class GuardZoneSeeder extends Seeder
         $zones = Zone::all();
 
         foreach ($guards as $guard) {
-            foreach ($zones as $zone) {
+            $randomZones = $zones->random(3);
+            foreach ($randomZones as $zone) {
                 $guard->zones()->attach($zone->id,
                     [
                         'schedule' => rand(0, 1) == 0

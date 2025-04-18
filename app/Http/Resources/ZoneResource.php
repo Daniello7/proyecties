@@ -17,7 +17,7 @@ class ZoneResource extends JsonResource
             'id' => $this->id,
             'name' => $this->name,
             'location' => $this->location,
-            'schedule' => $this->pivot->schedule ?? null,
+            'schedule' => $this->when(!is_null($this->pivot?->schedule), $this->pivot?->schedule),
         ];
     }
 }

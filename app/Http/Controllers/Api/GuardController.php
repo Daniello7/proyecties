@@ -4,8 +4,7 @@ namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Api\AssignZoneRequest;
-use App\Http\Requests\Api\StoreGuardRequest;
-use App\Http\Requests\Api\UpdateGuardRequest;
+use App\Http\Requests\Api\GuardRequest;
 use App\Http\Resources\GuardResource;
 use App\Models\Guard;
 use App\Models\Zone;
@@ -16,14 +15,19 @@ use Illuminate\Http\Resources\Json\AnonymousResourceCollection;
 class GuardController extends Controller
 {
     /**
-     * @queryParam name string Name of the Guard. Example: Daniel
-     * @queryParam dni string DNI of the Guard. Example: 12345678A
+     * @queryParam name string Name of the Guard. Example: a
+     * @queryParam dni string DNI of the Guard. Example: 3
      * @queryParam with_zones boolean Show zones of the Guard. Example: false
      * @param Request $request
      * @return AnonymousResourceCollection
      */
     public function index(Request $request)
     {
+        $user = auth()->user();
+
+        abort_if(!$user->tokenCan('read-guards') && !$user->tokenCan('read-own-guard'),
+            403, __('Not authorized'));
+
         $query = Guard::ownGuard();
 
         if ($request->has('name')) {
@@ -38,16 +42,16 @@ class GuardController extends Controller
     }
 
     /**
-     * @bodyParam name string required The name of the guard. Example: Daniel
-     * @bodyParam dni string required The Document number of the guard. Example: 12345678A
-     * @param StoreGuardRequest $request
-     * @return JsonResponse
+     * @param GuardRequest $request
+     * @return GuardResource
      */
-    public function store(StoreGuardRequest $request)
+    public function store(GuardRequest $request)
     {
+        abort_if(!auth()->user()->tokenCan('store-guards'), 403, __('Not authorized'));
+
         $guard = Guard::create($request->validated());
 
-        return response()->json($guard, 201);
+        return new GuardResource($guard);
     }
 
     /**
@@ -58,40 +62,50 @@ class GuardController extends Controller
      */
     public function show(int $id)
     {
-        $guard = Guard::findOrFail($id);
+        $user = auth()->user();
+
+        if ($user->tokenCan('read-guards')) {
+            $guard = Guard::findOrFail($id);
+        } elseif ($user->tokenCan('read-own-guard')) {
+            $guard = Guard::ownGuard()->firstOrFail();
+        } else {
+            abort(403, __('Not authorized'));
+        }
 
         return new GuardResource($guard);
     }
 
     /**
      * @urlParam id int required The ID of the guard. Example: 1
-     * @bodyParam name string required The name of the guard. Example: Daniel
-     * @bodyParam dni string required The Document number of the guard. Example: 12345678A
-     * @param UpdateGuardRequest $request
+     * @param GuardRequest $request
      * @param int $id
-     * @return JsonResponse
+     * @return GuardResource
      */
-    public function update(UpdateGuardRequest $request, int $id)
+    public function update(GuardRequest $request, int $id)
     {
+        abort_if(!auth()->user()->tokenCan('update-guards'), 403, __('Not authorized'));
+
         $guard = Guard::findOrFail($id);
 
         $guard->update($request->validated());
 
-        return response()->json($guard);
+        return new GuardResource($guard);
     }
 
     /**
      * @urlParam id int required The ID of the guard. Example: 1
      * @param int $id
-     * @return JsonResponse
+     * @return GuardResource
      */
     public function destroy(int $id)
     {
+        abort_if(!auth()->user()->tokenCan('delete-guards'), 403, __('Not authorized'));
+
         $guard = Guard::findOrFail($id);
 
         $guard->delete();
 
-        return response()->json(null, 204);
+        return new GuardResource($guard);
     }
 
     /**
@@ -100,6 +114,8 @@ class GuardController extends Controller
      */
     public function assignZone(AssignZoneRequest $request)
     {
+        abort_if(!auth()->user()->tokenCan('store-guard-zone'), 403, __('Not authorized'));
+
         $guard = Guard::with('zones')->findOrFail($request->guard_id);
         $zone = Zone::findOrFail($request->zone_id);
 
