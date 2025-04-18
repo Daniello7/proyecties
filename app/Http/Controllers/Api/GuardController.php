@@ -110,7 +110,7 @@ class GuardController extends Controller
 
     /**
      * @param AssignZoneRequest $request
-     * @return JsonResponse
+     * @return GuardResource
      */
     public function assignZone(AssignZoneRequest $request)
     {
@@ -121,6 +121,10 @@ class GuardController extends Controller
 
         $guard->zones()->syncWithoutDetaching([$zone->id => ['schedule' => $request->schedule]]);
 
-        return response()->json(['message' => __('Zone assigned successfully.')]);
+        $guard->load(['zones' => function ($query) use ($zone) {
+            $query->where('zone_id', $zone->id);
+        }]);
+
+        return new GuardResource($guard);
     }
 }
