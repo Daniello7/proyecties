@@ -12,6 +12,18 @@ class Zone extends Model
 
     protected $fillable = ['name', 'location'];
 
+    public function scopeOwnZones()
+    {
+        $user = auth()->user();
+        $guardId = $user->assignedGuard?->id;
+
+        if ($user->tokenCant('read-own-zones') || !$guardId) return $this->all();
+
+        $guard = Guard::findOrFail($guardId);
+
+        return $guard->zones;
+    }
+
     public function guards()
     {
         return $this->belongsToMany(Guard::class)

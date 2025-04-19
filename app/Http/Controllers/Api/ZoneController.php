@@ -15,9 +15,15 @@ class ZoneController extends Controller
      */
     public function index()
     {
-        abort_if(!auth()->user()->tokenCan('read-zones'), 403, __('Not authorized'));
+        $user = auth()->user();
 
-        return ZoneResource::collection(Zone::all());
+        abort_if(!$user->tokenCan('read-zones')
+            && !$user->tokenCan('read-own-zones'),
+            403, __('Not authorized'));
+
+        $zones = Zone::ownZones();
+
+        return ZoneResource::collection($zones);
     }
 
     /**

@@ -26,16 +26,11 @@ class Guard extends Model
     public function scopeOwnGuard($query)
     {
         $user = auth()->user();
-        if ($user->tokenCan('read-own-guard')) {
+        $guardId = $user->assignedGuard?->id;
 
-            $guardId = optional($user->assignedGuard)->id;
+        if (!$user->tokenCan('read-own-guard') || !$guardId) return $query;
 
-            if (!$guardId) return $query;
-
-            return $query->where('id', $guardId);
-        }
-
-        return $query;
+        return $query->where('id', $guardId);
     }
 
     public function zones()

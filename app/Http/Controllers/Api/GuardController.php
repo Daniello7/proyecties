@@ -25,7 +25,8 @@ class GuardController extends Controller
     {
         $user = auth()->user();
 
-        abort_if(!$user->tokenCan('read-guards') && !$user->tokenCan('read-own-guard'),
+        abort_if(!$user->tokenCan('read-guards')
+            && !$user->tokenCan('read-own-guard'),
             403, __('Not authorized'));
 
         $query = Guard::ownGuard();
