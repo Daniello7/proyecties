@@ -4,6 +4,7 @@ namespace App\Models\Api;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 
 class Zone extends Model
@@ -24,7 +25,7 @@ class Zone extends Model
         return $guard->zones;
     }
 
-    public function guards()
+    public function assignedGuards(): BelongsToMany
     {
         return $this->belongsToMany(Guard::class)
             ->withPivot('schedule')
@@ -34,5 +35,10 @@ class Zone extends Model
     public function reports(): HasMany
     {
         return $this->hasMany(GuardReport::class);
+    }
+
+    public function alarms(): HasMany
+    {
+        return $this->hasMany(Alarm::class);
     }
 }

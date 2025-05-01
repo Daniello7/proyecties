@@ -24,6 +24,9 @@ class DatabaseSeeder extends Seeder
             GuardSeeder::class,
             ZoneSeeder::class,
             GuardZoneSeeder::class,
+            GuardReportSeeder::class,
+            AlarmSeeder::class,
+            AlarmGuardSeeder::class,
         ]);
     }
 }

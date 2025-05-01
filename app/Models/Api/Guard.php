@@ -5,6 +5,7 @@ namespace App\Models\Api;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 
 class Guard extends Model
@@ -33,10 +34,17 @@ class Guard extends Model
         return $query->where('id', $guardId);
     }
 
-    public function zones()
+    public function zones(): BelongsToMany
     {
         return $this->belongsToMany(Zone::class)
             ->withPivot('schedule')
+            ->withTimestamps();
+    }
+
+    public function alarms(): BelongsToMany
+    {
+        return $this->belongsToMany(Alarm::class)
+            ->withPivot('date', 'is_false_alarm', 'notes')
             ->withTimestamps();
     }
 

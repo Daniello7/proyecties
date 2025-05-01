@@ -1,6 +1,6 @@
 <?php
 
-namespace Database\Factories;
+namespace Database\Factories\Api;
 
 use App\Models\Api\Zone;
 use Illuminate\Database\Eloquent\Factories\Factory;

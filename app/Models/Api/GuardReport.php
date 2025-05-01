@@ -12,7 +12,7 @@ class GuardReport extends Model
 
     protected $fillable = ['date', 'schedule', 'incident'];
 
-    public function guard(): BelongsTo
+    public function assignedGuard(): BelongsTo
     {
         return $this->belongsTo(Guard::class);
     }

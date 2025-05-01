@@ -1,8 +1,9 @@
 <?php
 
-namespace Database\Factories;
+namespace Database\Factories\Api;
 
 use App\Models\Api\Guard;
+use App\Models\User;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 class GuardFactory extends Factory
@@ -12,6 +13,7 @@ class GuardFactory extends Factory
     public function definition(): array
     {
         return [
+            'user_id' => User::inRandomOrder()->firstOrFail(),
             'name' => $this->faker->name(),
             'dni' => $this->faker->unique()->numerify('########')
                 . ucfirst($this->faker->randomLetter()),
