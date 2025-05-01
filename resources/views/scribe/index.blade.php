@@ -2377,7 +2377,15 @@ You can check the Dev Tools console for debugging information.</code></pre>
     "http://proyecties.test/api/guard-reports" \
     --header "Authorization: Bearer YOUR_AUTH_KEY" \
     --header "Content-Type: application/json" \
-    --header "Accept: application/json"</code></pre></div>
+    --header "Accept: application/json" \
+    --data "{
+    \"guard_id\": 1,
+    \"zone_id\": 1,
+    \"entry_time\": \"2025\\/06\\/01 7:00\",
+    \"exit_time\": \"2025\\/06\\/01 19:00\",
+    \"incident\": \"\\\"\\\"\"
+}"
+</code></pre></div>
 
 
 <div class="javascript-example">
@@ -2391,9 +2399,18 @@ const headers = {
     "Accept": "application/json",
 };
 
+let body = {
+    "guard_id": 1,
+    "zone_id": 1,
+    "entry_time": "2025\/06\/01 7:00",
+    "exit_time": "2025\/06\/01 19:00",
+    "incident": "\"\""
+};
+
 fetch(url, {
     method: "POST",
     headers,
+    body: JSON.stringify(body),
 }).then(response =&gt; response.json());</code></pre></div>
 
 </span>
@@ -2480,7 +2497,63 @@ You can check the Dev Tools console for debugging information.</code></pre>
     <br>
 <p>Example: <code>application/json</code></p>
             </div>
-                        </form>
+                                <h4 class="fancy-heading-panel"><b>Body Parameters</b></h4>
+        <div style=" padding-left: 28px;  clear: unset;">
+            <b style="line-height: 2;"><code>guard_id</code></b>&nbsp;&nbsp;
+<small>integer</small>&nbsp;
+ &nbsp;
+                <input type="number" style="display: none"
+               step="any"               name="guard_id"                data-endpoint="POSTapi-guard-reports"
+               value="1"
+               data-component="body">
+    <br>
+<p>ID of the Guard. Example: <code>1</code></p>
+        </div>
+                <div style=" padding-left: 28px;  clear: unset;">
+            <b style="line-height: 2;"><code>zone_id</code></b>&nbsp;&nbsp;
+<small>integer</small>&nbsp;
+ &nbsp;
+                <input type="number" style="display: none"
+               step="any"               name="zone_id"                data-endpoint="POSTapi-guard-reports"
+               value="1"
+               data-component="body">
+    <br>
+<p>ID of the Zone. Example: <code>1</code></p>
+        </div>
+                <div style=" padding-left: 28px;  clear: unset;">
+            <b style="line-height: 2;"><code>entry_time</code></b>&nbsp;&nbsp;
+<small>date</small>&nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="entry_time"                data-endpoint="POSTapi-guard-reports"
+               value="2025/06/01 7:00"
+               data-component="body">
+    <br>
+<p>Guard entrance time to work. Example: <code>2025/06/01 7:00</code></p>
+        </div>
+                <div style=" padding-left: 28px;  clear: unset;">
+            <b style="line-height: 2;"><code>exit_time</code></b>&nbsp;&nbsp;
+<small>date</small>&nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="exit_time"                data-endpoint="POSTapi-guard-reports"
+               value="2025/06/01 19:00"
+               data-component="body">
+    <br>
+<p>Guard exit time from work. Example: <code>2025/06/01 19:00</code></p>
+        </div>
+                <div style=" padding-left: 28px;  clear: unset;">
+            <b style="line-height: 2;"><code>incident</code></b>&nbsp;&nbsp;
+<small>string</small>&nbsp;
+<i>optional</i> &nbsp;
+                <input type="text" style="display: none"
+                              name="incident"                data-endpoint="POSTapi-guard-reports"
+               value=""""
+               data-component="body">
+    <br>
+<p>optional Work incidents. Example: <code>""</code></p>
+        </div>
+        </form>
 
                     <h2 id="endpoints-GETapi-guard-reports--id-">GET api/guard-reports/{id}</h2>
 
@@ -2496,7 +2569,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 <div class="bash-example">
     <pre><code class="language-bash">curl --request GET \
-    --get "http://proyecties.test/api/guard-reports/architecto" \
+    --get "http://proyecties.test/api/guard-reports/100" \
     --header "Authorization: Bearer YOUR_AUTH_KEY" \
     --header "Content-Type: application/json" \
     --header "Accept: application/json"</code></pre></div>
@@ -2504,7 +2577,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 <div class="javascript-example">
     <pre><code class="language-javascript">const url = new URL(
-    "http://proyecties.test/api/guard-reports/architecto"
+    "http://proyecties.test/api/guard-reports/100"
 );
 
 const headers = {
@@ -2621,14 +2694,14 @@ You can check the Dev Tools console for debugging information.</code></pre>
                         <h4 class="fancy-heading-panel"><b>URL Parameters</b></h4>
                     <div style="padding-left: 28px; clear: unset;">
                 <b style="line-height: 2;"><code>id</code></b>&nbsp;&nbsp;
-<small>string</small>&nbsp;
+<small>integer</small>&nbsp;
  &nbsp;
-                <input type="text" style="display: none"
-                              name="id"                data-endpoint="GETapi-guard-reports--id-"
-               value="architecto"
+                <input type="number" style="display: none"
+               step="any"               name="id"                data-endpoint="GETapi-guard-reports--id-"
+               value="100"
                data-component="url">
     <br>
-<p>The ID of the guard report. Example: <code>architecto</code></p>
+<p>ID of the report. Example: <code>100</code></p>
             </div>
                     </form>
 
@@ -2646,15 +2719,23 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 <div class="bash-example">
     <pre><code class="language-bash">curl --request PUT \
-    "http://proyecties.test/api/guard-reports/architecto" \
+    "http://proyecties.test/api/guard-reports/100" \
     --header "Authorization: Bearer YOUR_AUTH_KEY" \
     --header "Content-Type: application/json" \
-    --header "Accept: application/json"</code></pre></div>
+    --header "Accept: application/json" \
+    --data "{
+    \"guard_id\": 1,
+    \"zone_id\": 1,
+    \"entry_time\": \"2025\\/06\\/01 7:00\",
+    \"exit_time\": \"2025\\/06\\/01 19:00\",
+    \"incident\": \"\\\"\\\"\"
+}"
+</code></pre></div>
 
 
 <div class="javascript-example">
     <pre><code class="language-javascript">const url = new URL(
-    "http://proyecties.test/api/guard-reports/architecto"
+    "http://proyecties.test/api/guard-reports/100"
 );
 
 const headers = {
@@ -2663,9 +2744,18 @@ const headers = {
     "Accept": "application/json",
 };
 
+let body = {
+    "guard_id": 1,
+    "zone_id": 1,
+    "entry_time": "2025\/06\/01 7:00",
+    "exit_time": "2025\/06\/01 19:00",
+    "incident": "\"\""
+};
+
 fetch(url, {
     method: "PUT",
     headers,
+    body: JSON.stringify(body),
 }).then(response =&gt; response.json());</code></pre></div>
 
 </span>
@@ -2759,16 +2849,72 @@ You can check the Dev Tools console for debugging information.</code></pre>
                         <h4 class="fancy-heading-panel"><b>URL Parameters</b></h4>
                     <div style="padding-left: 28px; clear: unset;">
                 <b style="line-height: 2;"><code>id</code></b>&nbsp;&nbsp;
-<small>string</small>&nbsp;
+<small>integer</small>&nbsp;
  &nbsp;
-                <input type="text" style="display: none"
-                              name="id"                data-endpoint="PUTapi-guard-reports--id-"
-               value="architecto"
+                <input type="number" style="display: none"
+               step="any"               name="id"                data-endpoint="PUTapi-guard-reports--id-"
+               value="100"
                data-component="url">
     <br>
-<p>The ID of the guard report. Example: <code>architecto</code></p>
+<p>ID of the report. Example: <code>100</code></p>
             </div>
-                    </form>
+                            <h4 class="fancy-heading-panel"><b>Body Parameters</b></h4>
+        <div style=" padding-left: 28px;  clear: unset;">
+            <b style="line-height: 2;"><code>guard_id</code></b>&nbsp;&nbsp;
+<small>integer</small>&nbsp;
+ &nbsp;
+                <input type="number" style="display: none"
+               step="any"               name="guard_id"                data-endpoint="PUTapi-guard-reports--id-"
+               value="1"
+               data-component="body">
+    <br>
+<p>ID of the Guard. Example: <code>1</code></p>
+        </div>
+                <div style=" padding-left: 28px;  clear: unset;">
+            <b style="line-height: 2;"><code>zone_id</code></b>&nbsp;&nbsp;
+<small>integer</small>&nbsp;
+ &nbsp;
+                <input type="number" style="display: none"
+               step="any"               name="zone_id"                data-endpoint="PUTapi-guard-reports--id-"
+               value="1"
+               data-component="body">
+    <br>
+<p>ID of the Zone. Example: <code>1</code></p>
+        </div>
+                <div style=" padding-left: 28px;  clear: unset;">
+            <b style="line-height: 2;"><code>entry_time</code></b>&nbsp;&nbsp;
+<small>date</small>&nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="entry_time"                data-endpoint="PUTapi-guard-reports--id-"
+               value="2025/06/01 7:00"
+               data-component="body">
+    <br>
+<p>Guard entrance time to work. Example: <code>2025/06/01 7:00</code></p>
+        </div>
+                <div style=" padding-left: 28px;  clear: unset;">
+            <b style="line-height: 2;"><code>exit_time</code></b>&nbsp;&nbsp;
+<small>date</small>&nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="exit_time"                data-endpoint="PUTapi-guard-reports--id-"
+               value="2025/06/01 19:00"
+               data-component="body">
+    <br>
+<p>Guard exit time from work. Example: <code>2025/06/01 19:00</code></p>
+        </div>
+                <div style=" padding-left: 28px;  clear: unset;">
+            <b style="line-height: 2;"><code>incident</code></b>&nbsp;&nbsp;
+<small>string</small>&nbsp;
+<i>optional</i> &nbsp;
+                <input type="text" style="display: none"
+                              name="incident"                data-endpoint="PUTapi-guard-reports--id-"
+               value=""""
+               data-component="body">
+    <br>
+<p>optional Work incidents. Example: <code>""</code></p>
+        </div>
+        </form>
 
                     <h2 id="endpoints-DELETEapi-guard-reports--id-">DELETE api/guard-reports/{id}</h2>
 
@@ -2784,7 +2930,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 <div class="bash-example">
     <pre><code class="language-bash">curl --request DELETE \
-    "http://proyecties.test/api/guard-reports/architecto" \
+    "http://proyecties.test/api/guard-reports/100" \
     --header "Authorization: Bearer YOUR_AUTH_KEY" \
     --header "Content-Type: application/json" \
     --header "Accept: application/json"</code></pre></div>
@@ -2792,7 +2938,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 <div class="javascript-example">
     <pre><code class="language-javascript">const url = new URL(
-    "http://proyecties.test/api/guard-reports/architecto"
+    "http://proyecties.test/api/guard-reports/100"
 );
 
 const headers = {
@@ -2893,14 +3039,14 @@ You can check the Dev Tools console for debugging information.</code></pre>
                         <h4 class="fancy-heading-panel"><b>URL Parameters</b></h4>
                     <div style="padding-left: 28px; clear: unset;">
                 <b style="line-height: 2;"><code>id</code></b>&nbsp;&nbsp;
-<small>string</small>&nbsp;
+<small>integer</small>&nbsp;
  &nbsp;
-                <input type="text" style="display: none"
-                              name="id"                data-endpoint="DELETEapi-guard-reports--id-"
-               value="architecto"
+                <input type="number" style="display: none"
+               step="any"               name="id"                data-endpoint="DELETEapi-guard-reports--id-"
+               value="100"
                data-component="url">
     <br>
-<p>The ID of the guard report. Example: <code>architecto</code></p>
+<p>ID of the report. Example: <code>100</code></p>
             </div>
                     </form>
 

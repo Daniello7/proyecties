@@ -807,8 +807,63 @@ endpoints:
     cleanUrlParameters: []
     queryParameters: []
     cleanQueryParameters: []
-    bodyParameters: []
-    cleanBodyParameters: []
+    bodyParameters:
+      guard_id:
+        name: guard_id
+        description: 'ID of the Guard.'
+        required: true
+        example: 1
+        type: integer
+        enumValues: []
+        exampleWasSpecified: true
+        nullable: false
+        custom: []
+      zone_id:
+        name: zone_id
+        description: 'ID of the Zone.'
+        required: true
+        example: 1
+        type: integer
+        enumValues: []
+        exampleWasSpecified: true
+        nullable: false
+        custom: []
+      entry_time:
+        name: entry_time
+        description: 'Guard entrance time to work.'
+        required: true
+        example: '2025/06/01 7:00'
+        type: date
+        enumValues: []
+        exampleWasSpecified: true
+        nullable: false
+        custom: []
+      exit_time:
+        name: exit_time
+        description: 'Guard exit time from work.'
+        required: true
+        example: '2025/06/01 19:00'
+        type: date
+        enumValues: []
+        exampleWasSpecified: true
+        nullable: false
+        custom: []
+      incident:
+        name: incident
+        description: 'optional Work incidents.'
+        required: false
+        example: '""'
+        type: string
+        enumValues: []
+        exampleWasSpecified: true
+        nullable: true
+        custom: []
+    cleanBodyParameters:
+      guard_id: 1
+      zone_id: 1
+      entry_time: '2025/06/01 7:00'
+      exit_time: '2025/06/01 19:00'
+      incident: '""'
     fileParameters: []
     responses: []
     responseFields: []
@@ -840,16 +895,16 @@ endpoints:
     urlParameters:
       id:
         name: id
-        description: 'The ID of the guard report.'
+        description: 'ID of the report.'
         required: true
-        example: architecto
-        type: string
+        example: 100
+        type: integer
         enumValues: []
-        exampleWasSpecified: false
+        exampleWasSpecified: true
         nullable: false
         custom: []
     cleanUrlParameters:
-      id: architecto
+      id: 100
     queryParameters: []
     cleanQueryParameters: []
     bodyParameters: []
@@ -895,20 +950,75 @@ endpoints:
     urlParameters:
       id:
         name: id
-        description: 'The ID of the guard report.'
+        description: 'ID of the report.'
         required: true
-        example: architecto
-        type: string
+        example: 100
+        type: integer
         enumValues: []
-        exampleWasSpecified: false
+        exampleWasSpecified: true
         nullable: false
         custom: []
     cleanUrlParameters:
-      id: architecto
+      id: 100
     queryParameters: []
     cleanQueryParameters: []
-    bodyParameters: []
-    cleanBodyParameters: []
+    bodyParameters:
+      guard_id:
+        name: guard_id
+        description: 'ID of the Guard.'
+        required: true
+        example: 1
+        type: integer
+        enumValues: []
+        exampleWasSpecified: true
+        nullable: false
+        custom: []
+      zone_id:
+        name: zone_id
+        description: 'ID of the Zone.'
+        required: true
+        example: 1
+        type: integer
+        enumValues: []
+        exampleWasSpecified: true
+        nullable: false
+        custom: []
+      entry_time:
+        name: entry_time
+        description: 'Guard entrance time to work.'
+        required: true
+        example: '2025/06/01 7:00'
+        type: date
+        enumValues: []
+        exampleWasSpecified: true
+        nullable: false
+        custom: []
+      exit_time:
+        name: exit_time
+        description: 'Guard exit time from work.'
+        required: true
+        example: '2025/06/01 19:00'
+        type: date
+        enumValues: []
+        exampleWasSpecified: true
+        nullable: false
+        custom: []
+      incident:
+        name: incident
+        description: 'optional Work incidents.'
+        required: false
+        example: '""'
+        type: string
+        enumValues: []
+        exampleWasSpecified: true
+        nullable: true
+        custom: []
+    cleanBodyParameters:
+      guard_id: 1
+      zone_id: 1
+      entry_time: '2025/06/01 7:00'
+      exit_time: '2025/06/01 19:00'
+      incident: '""'
     fileParameters: []
     responses: []
     responseFields: []
@@ -940,16 +1050,16 @@ endpoints:
     urlParameters:
       id:
         name: id
-        description: 'The ID of the guard report.'
+        description: 'ID of the report.'
         required: true
-        example: architecto
-        type: string
+        example: 100
+        type: integer
         enumValues: []
-        exampleWasSpecified: false
+        exampleWasSpecified: true
         nullable: false
         custom: []
     cleanUrlParameters:
-      id: architecto
+      id: 100
     queryParameters: []
     cleanQueryParameters: []
     bodyParameters: []

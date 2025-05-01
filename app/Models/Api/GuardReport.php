@@ -10,11 +10,11 @@ class GuardReport extends Model
 {
     use HasFactory;
 
-    protected $fillable = ['date', 'schedule', 'incident'];
+    protected $fillable = ['guard_id', 'zone_id', 'entry_time', 'exit_time', 'incident'];
 
     public function assignedGuard(): BelongsTo
     {
-        return $this->belongsTo(Guard::class);
+        return $this->belongsTo(Guard::class, 'guard_id');
     }
 
     public function zone(): BelongsTo

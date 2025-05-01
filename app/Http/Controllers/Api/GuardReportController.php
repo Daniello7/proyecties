@@ -3,39 +3,70 @@
 namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\GuardReportRequest;
+use App\Http\Resources\GuardReportResource;
 use App\Models\Api\GuardReport;
-use Illuminate\Http\Request;
+use Illuminate\Http\Resources\Json\AnonymousResourceCollection;
 
 class GuardReportController extends Controller
 {
+    /**
+     * @return AnonymousResourceCollection
+     */
     public function index()
     {
-        return GuardReport::all();
+        $guardReports = GuardReport::with('assignedGuard')->get();
+
+        return GuardReportResource::collection($guardReports);
     }
 
-    public function store(Request $request)
+    /**
+     * @param GuardReportRequest $request
+     * @return GuardReportResource
+     */
+    public function store(GuardReportRequest $request)
     {
-        return GuardReport::create($request->all());
+        $guardReport = GuardReport::create($request->validated());
+
+        return new GuardReportResource($guardReport);
     }
 
+    /**
+     * @urlParam id int required ID of the report. Example: 100
+     * @param $id
+     * @return GuardReportResource
+     */
     public function show($id)
     {
-        return GuardReport::findOrFail($id);
+        $guardReport = GuardReport::findOrFail($id);
+
+        return new GuardReportResource($guardReport);
     }
 
-    public function update(Request $request, $id)
+    /**
+     * @urlParam id int required ID of the report. Example: 100
+     * @param GuardReportRequest $request
+     * @param $id
+     * @return GuardReportResource
+     */
+    public function update(GuardReportRequest $request, $id)
     {
         $guardReport = GuardReport::findOrFail($id);
         $guardReport->update($request->all());
 
-        return $guardReport;
+        return new GuardReportResource($guardReport);
     }
 
+    /**
+     * @urlParam id int required ID of the report. Example: 100
+     * @param $id
+     * @return GuardReportResource
+     */
     public function destroy($id)
     {
         $guardReport = GuardReport::findOrFail($id);
         $guardReport->delete();
 
-        return $guardReport;
+        return new GuardReportResource($guardReport);
     }
 }
