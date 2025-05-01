@@ -26,7 +26,7 @@ class AlarmFactory extends Factory
                 'water_leak',
                 'gas_leak',
             ]),
-            'status' => $this->faker->randomElement(['active', 'inactive']),
+            'is_active' => $this->faker->boolean,
             'description' => $this->faker->text(),
         ];
     }

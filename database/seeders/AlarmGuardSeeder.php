@@ -10,13 +10,15 @@ class AlarmGuardSeeder extends Seeder
 {
     public function run(): void
     {
-        $guards = Guard::all();
+        $alarms = Alarm::all();
 
-        foreach ($guards as $guard) {
-            $guard->alarms()->attach(Alarm::inRandomOrder()->firstOrFail()->id,
-                ['date' => now()],
-                ['is_false_alarm' => random_int(0, 1) == 1 ? true : false]
-            );
+        foreach ($alarms as $alarm) {
+            for ($i = 0; $i < random_int(1, 5); $i++) {
+                $alarm->assignedGuards()->attach(Guard::inRandomOrder()->firstOrFail()->id,
+                    ['date' => now()],
+                    ['is_false_alarm' => random_int(0, 1) == 1 ? true : false]
+                );
+            }
         }
     }
 }

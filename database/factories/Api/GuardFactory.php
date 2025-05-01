@@ -13,7 +13,6 @@ class GuardFactory extends Factory
     public function definition(): array
     {
         return [
-            'user_id' => User::inRandomOrder()->firstOrFail(),
             'name' => $this->faker->name(),
             'dni' => $this->faker->unique()->numerify('########')
                 . ucfirst($this->faker->randomLetter()),

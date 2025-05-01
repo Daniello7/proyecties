@@ -11,7 +11,7 @@ return new class extends Migration {
             $table->id();
             $table->foreignId('zone_id')->constrained('zones')->onDelete('cascade');
             $table->string('type');
-            $table->enum('status', ['active', 'inactive'])->default('active');
+            $table->boolean('is_active');
             $table->string('description')->nullable();
             $table->timestamps();
         });

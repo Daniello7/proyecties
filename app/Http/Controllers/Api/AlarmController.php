@@ -3,39 +3,61 @@
 namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\Api\AlarmRequest;
+use App\Http\Resources\AlarmResource;
 use App\Models\Api\Alarm;
-use Illuminate\Http\Request;
 
 class AlarmController extends Controller
 {
     public function index()
     {
-        return Alarm::all();
+        return AlarmResource::collection(Alarm::all());
     }
 
-    public function store(Request $request)
+    public function store(AlarmRequest $request)
     {
-        return Alarm::create($request->all());
+        $alarm = Alarm::create($request->all());
+
+        return new AlarmResource($alarm);
     }
 
+    /**
+     * @queryParam show_triggers boolean optional Show the Triggers counts and info. Example: 0
+     * @urlParam id int required ID of the Alarm. Example: 50
+     * @param $id
+     * @return AlarmResource
+     */
     public function show($id)
     {
-        return Alarm::findOrFail($id);
+        $alarm = Alarm::findOrFail($id);
+
+        return new AlarmResource($alarm);
     }
 
-    public function update(Request $request, $id)
+    /**
+     * @urlParam id int required ID of the Alarm. Example: 50
+     * @param AlarmRequest $request
+     * @param $id
+     * @return AlarmResource
+     */
+    public function update(AlarmRequest $request, $id)
     {
         $alarm = Alarm::findOrFail($id);
         $alarm->update($request->all());
 
-        return $alarm;
+        return new AlarmResource($alarm);
     }
 
+    /**
+     * @urlParam id int required ID of the Alarm. Example: 50
+     * @param $id
+     * @return AlarmResource
+     */
     public function destroy($id)
     {
         $alarm = Alarm::findOrFail($id);
         $alarm->delete();
 
-        return $alarm;
+        return new AlarmResource($alarm);
     }
 }

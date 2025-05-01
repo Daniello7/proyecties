@@ -3,6 +3,7 @@
 namespace Database\Seeders;
 
 use App\Models\Api\Guard;
+use App\Models\User;
 use Illuminate\Database\Seeder;
 
 class GuardSeeder extends Seeder
@@ -17,6 +18,9 @@ class GuardSeeder extends Seeder
             'name' => 'Daniel López',
             'dni' => '12345678A',
         ]);
-        Guard::factory(39)->create();
+
+        $users = User::whereDoesntHave('assignedGuard')->inRandomOrder()->take(14)->get();
+
+        $users->each(fn($user) => Guard::factory()->create(['user_id' => $user->id]));
     }
 }
