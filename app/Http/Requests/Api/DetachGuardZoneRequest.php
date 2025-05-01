@@ -8,7 +8,7 @@ use Illuminate\Foundation\Http\FormRequest;
  * @bodyParam guard_id integer required ID of the Guard. Example: 10
  * @bodyParam zone_id integer required ID of the Zone. Example: 10
  */
-class DetachZoneRequest extends FormRequest
+class DetachGuardZoneRequest extends FormRequest
 {
     public function rules(): array
     {

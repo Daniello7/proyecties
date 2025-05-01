@@ -3,12 +3,9 @@
 namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
-use App\Http\Requests\Api\AttachZoneRequest;
-use App\Http\Requests\Api\DetachZoneRequest;
 use App\Http\Requests\Api\GuardRequest;
 use App\Http\Resources\GuardResource;
 use App\Models\Api\Guard;
-use App\Models\Api\Zone;
 use Illuminate\Http\Request;
 use Illuminate\Http\Resources\Json\AnonymousResourceCollection;
 
@@ -105,43 +102,6 @@ class GuardController extends Controller
         $guard = Guard::findOrFail($id);
 
         $guard->delete();
-
-        return new GuardResource($guard);
-    }
-
-    /**
-     * @param AttachZoneRequest $request
-     * @return GuardResource
-     */
-    public function attachZone(AttachZoneRequest $request)
-    {
-        abort_if(!auth()->user()->tokenCan('attach-guard-zone'), 403, __('Not authorized'));
-
-        $guard = Guard::with('zones')->findOrFail($request->guard_id);
-        $zone = Zone::findOrFail($request->zone_id);
-
-        $guard->zones()->syncWithoutDetaching([$zone->id => ['schedule' => $request->schedule]]);
-
-        $guard->load(['zones' => function ($query) use ($zone) {
-            $query->where('zone_id', $zone->id);
-        }]);
-
-        return new GuardResource($guard);
-    }
-
-    public function detachZone(DetachZoneRequest $request)
-    {
-        abort_if(!auth()->user()->tokenCan('detach-guard-zone'), 403, __('Not authorized'));
-
-        $zone = Zone::findOrFail($request->zone_id);
-
-        $guard = Guard::with(['zones' => function ($query) use ($zone) {
-            $query->where('zone_id', $zone->id);
-        }])->findOrFail($request->guard_id);
-
-        if (!$guard->zones->contains($zone)) abort(400, __('Zone is not assigned'));
-
-        $guard->zones()->detach($zone);
 
         return new GuardResource($guard);
     }

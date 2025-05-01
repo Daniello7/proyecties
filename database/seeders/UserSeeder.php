@@ -18,8 +18,8 @@ class UserSeeder extends Seeder
 
         $roles = ['porter', 'rrhh', 'admin', 'client'];
         $tokenAbilities = [
-            ['read-own-guard', 'read-own-zones'],
-            ['read-guards', 'read-zones'],
+            ['read-own-guard', 'read-own-zones', 'read-own-reports', 'store-reports'],
+            ['read-guards', 'read-zones', 'read-alarms', 'read-guard-reports'],
             ['*'],
             ['']
         ];

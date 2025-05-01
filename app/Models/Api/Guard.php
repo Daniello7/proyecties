@@ -44,7 +44,7 @@ class Guard extends Model
     public function alarms(): BelongsToMany
     {
         return $this->belongsToMany(Alarm::class)
-            ->withPivot('date', 'is_false_alarm', 'notes')
+            ->withPivot('id', 'date', 'is_false_alarm', 'notes')
             ->withTimestamps();
     }
 

@@ -23,11 +23,11 @@ class AlarmResource extends JsonResource
                 $this->whenLoaded('assignedGuards', function () {
                     return $this->assignedGuards->map(function ($guard) {
                         return [
-                            'alarm_trigger_id' => $guard->id,
-                            'guard' => new GuardResource($guard),
+                            'alarm_trigger_id' => $guard->pivot->id,
                             'date' => $guard->pivot->date,
                             'is_false_alarm' => $guard->pivot->is_false_alarm,
-                            'notes' => $guard->notes
+                            'notes' => $guard->notes,
+                            'guard' => new GuardResource($guard),
                         ];
                     });
                 }),

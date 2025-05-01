@@ -11,11 +11,19 @@ class AlarmController extends Controller
 {
     public function index()
     {
+        $user = auth()->user();
+        abort_if(!$user->tokenCan('read-alarms'),
+            403, __('Not authorized'));
+
         return AlarmResource::collection(Alarm::all());
     }
 
     public function store(AlarmRequest $request)
     {
+        $user = auth()->user();
+        abort_if(!$user->tokenCan('store-alarms'),
+            403, __('Not authorized'));
+
         $alarm = Alarm::create($request->all());
 
         return new AlarmResource($alarm);
@@ -29,6 +37,10 @@ class AlarmController extends Controller
      */
     public function show($id)
     {
+        $user = auth()->user();
+        abort_if(!$user->tokenCan('read-alarms'),
+            403, __('Not authorized'));
+
         $alarm = Alarm::findOrFail($id);
 
         return new AlarmResource($alarm);
@@ -42,6 +54,10 @@ class AlarmController extends Controller
      */
     public function update(AlarmRequest $request, $id)
     {
+        $user = auth()->user();
+        abort_if(!$user->tokenCan('update-alarms'),
+            403, __('Not authorized'));
+
         $alarm = Alarm::findOrFail($id);
         $alarm->update($request->all());
 
@@ -55,9 +71,14 @@ class AlarmController extends Controller
      */
     public function destroy($id)
     {
+        $user = auth()->user();
+        abort_if(!$user->tokenCan('delete-alarms'),
+            403, __('Not authorized'));
+
         $alarm = Alarm::findOrFail($id);
         $alarm->delete();
 
         return new AlarmResource($alarm);
     }
+
 }

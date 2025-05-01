@@ -140,6 +140,9 @@
                                                                                 <li class="tocify-item level-2" data-unique="endpoints-DELETEapi-alarms--id-">
                                 <a href="#endpoints-DELETEapi-alarms--id-">DELETE api/alarms/{id}</a>
                             </li>
+                                                                                <li class="tocify-item level-2" data-unique="endpoints-POSTapi-alarm-attach-guard">
+                                <a href="#endpoints-POSTapi-alarm-attach-guard">POST api/alarm/attach-guard</a>
+                            </li>
                                                                         </ul>
                             </ul>
             </div>
@@ -3750,6 +3753,198 @@ You can check the Dev Tools console for debugging information.</code></pre>
 <p>ID of the Alarm. Example: <code>50</code></p>
             </div>
                     </form>
+
+                    <h2 id="endpoints-POSTapi-alarm-attach-guard">POST api/alarm/attach-guard</h2>
+
+<p>
+<small class="badge badge-darkred">requires authentication</small>
+</p>
+
+
+
+<span id="example-requests-POSTapi-alarm-attach-guard">
+<blockquote>Example request:</blockquote>
+
+
+<div class="bash-example">
+    <pre><code class="language-bash">curl --request POST \
+    "http://proyecties.test/api/alarm/attach-guard" \
+    --header "Authorization: Bearer YOUR_AUTH_KEY" \
+    --header "Content-Type: application/json" \
+    --header "Accept: application/json" \
+    --data "{
+    \"alarm_id\": 1,
+    \"guard_id\": 1,
+    \"is_false_alarm\": true,
+    \"notes\": \"\\\"\\\"\"
+}"
+</code></pre></div>
+
+
+<div class="javascript-example">
+    <pre><code class="language-javascript">const url = new URL(
+    "http://proyecties.test/api/alarm/attach-guard"
+);
+
+const headers = {
+    "Authorization": "Bearer YOUR_AUTH_KEY",
+    "Content-Type": "application/json",
+    "Accept": "application/json",
+};
+
+let body = {
+    "alarm_id": 1,
+    "guard_id": 1,
+    "is_false_alarm": true,
+    "notes": "\"\""
+};
+
+fetch(url, {
+    method: "POST",
+    headers,
+    body: JSON.stringify(body),
+}).then(response =&gt; response.json());</code></pre></div>
+
+</span>
+
+<span id="example-responses-POSTapi-alarm-attach-guard">
+</span>
+<span id="execution-results-POSTapi-alarm-attach-guard" hidden>
+    <blockquote>Received response<span
+                id="execution-response-status-POSTapi-alarm-attach-guard"></span>:
+    </blockquote>
+    <pre class="json"><code id="execution-response-content-POSTapi-alarm-attach-guard"
+      data-empty-response-text="<Empty response>" style="max-height: 400px;"></code></pre>
+</span>
+<span id="execution-error-POSTapi-alarm-attach-guard" hidden>
+    <blockquote>Request failed with error:</blockquote>
+    <pre><code id="execution-error-message-POSTapi-alarm-attach-guard">
+
+Tip: Check that you&#039;re properly connected to the network.
+If you&#039;re a maintainer of ths API, verify that your API is running and you&#039;ve enabled CORS.
+You can check the Dev Tools console for debugging information.</code></pre>
+</span>
+<form id="form-POSTapi-alarm-attach-guard" data-method="POST"
+      data-path="api/alarm/attach-guard"
+      data-authed="1"
+      data-hasfiles="0"
+      data-isarraybody="0"
+      autocomplete="off"
+      onsubmit="event.preventDefault(); executeTryOut('POSTapi-alarm-attach-guard', this);">
+    <h3>
+        Request&nbsp;&nbsp;&nbsp;
+                    <button type="button"
+                    style="background-color: #8fbcd4; padding: 5px 10px; border-radius: 5px; border-width: thin;"
+                    id="btn-tryout-POSTapi-alarm-attach-guard"
+                    onclick="tryItOut('POSTapi-alarm-attach-guard');">Try it out ⚡
+            </button>
+            <button type="button"
+                    style="background-color: #c97a7e; padding: 5px 10px; border-radius: 5px; border-width: thin;"
+                    id="btn-canceltryout-POSTapi-alarm-attach-guard"
+                    onclick="cancelTryOut('POSTapi-alarm-attach-guard');" hidden>Cancel 🛑
+            </button>&nbsp;&nbsp;
+            <button type="submit"
+                    style="background-color: #6ac174; padding: 5px 10px; border-radius: 5px; border-width: thin;"
+                    id="btn-executetryout-POSTapi-alarm-attach-guard"
+                    data-initial-text="Send Request 💥"
+                    data-loading-text="⏱ Sending..."
+                    hidden>Send Request 💥
+            </button>
+            </h3>
+            <p>
+            <small class="badge badge-black">POST</small>
+            <b><code>api/alarm/attach-guard</code></b>
+        </p>
+                <h4 class="fancy-heading-panel"><b>Headers</b></h4>
+                                <div style="padding-left: 28px; clear: unset;">
+                <b style="line-height: 2;"><code>Authorization</code></b>&nbsp;&nbsp;
+&nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="Authorization" class="auth-value"               data-endpoint="POSTapi-alarm-attach-guard"
+               value="Bearer YOUR_AUTH_KEY"
+               data-component="header">
+    <br>
+<p>Example: <code>Bearer YOUR_AUTH_KEY</code></p>
+            </div>
+                                <div style="padding-left: 28px; clear: unset;">
+                <b style="line-height: 2;"><code>Content-Type</code></b>&nbsp;&nbsp;
+&nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="Content-Type"                data-endpoint="POSTapi-alarm-attach-guard"
+               value="application/json"
+               data-component="header">
+    <br>
+<p>Example: <code>application/json</code></p>
+            </div>
+                                <div style="padding-left: 28px; clear: unset;">
+                <b style="line-height: 2;"><code>Accept</code></b>&nbsp;&nbsp;
+&nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="Accept"                data-endpoint="POSTapi-alarm-attach-guard"
+               value="application/json"
+               data-component="header">
+    <br>
+<p>Example: <code>application/json</code></p>
+            </div>
+                                <h4 class="fancy-heading-panel"><b>Body Parameters</b></h4>
+        <div style=" padding-left: 28px;  clear: unset;">
+            <b style="line-height: 2;"><code>alarm_id</code></b>&nbsp;&nbsp;
+<small>integer</small>&nbsp;
+ &nbsp;
+                <input type="number" style="display: none"
+               step="any"               name="alarm_id"                data-endpoint="POSTapi-alarm-attach-guard"
+               value="1"
+               data-component="body">
+    <br>
+<p>ID of the Alarm. Example: <code>1</code></p>
+        </div>
+                <div style=" padding-left: 28px;  clear: unset;">
+            <b style="line-height: 2;"><code>guard_id</code></b>&nbsp;&nbsp;
+<small>integer</small>&nbsp;
+ &nbsp;
+                <input type="number" style="display: none"
+               step="any"               name="guard_id"                data-endpoint="POSTapi-alarm-attach-guard"
+               value="1"
+               data-component="body">
+    <br>
+<p>ID of the Guard. Example: <code>1</code></p>
+        </div>
+                <div style=" padding-left: 28px;  clear: unset;">
+            <b style="line-height: 2;"><code>is_false_alarm</code></b>&nbsp;&nbsp;
+<small>boolean</small>&nbsp;
+ &nbsp;
+                <label data-endpoint="POSTapi-alarm-attach-guard" style="display: none">
+            <input type="radio" name="is_false_alarm"
+                   value="true"
+                   data-endpoint="POSTapi-alarm-attach-guard"
+                   data-component="body"             >
+            <code>true</code>
+        </label>
+        <label data-endpoint="POSTapi-alarm-attach-guard" style="display: none">
+            <input type="radio" name="is_false_alarm"
+                   value="false"
+                   data-endpoint="POSTapi-alarm-attach-guard"
+                   data-component="body"             >
+            <code>false</code>
+        </label>
+    <br>
+<p>Indicates if alarm is fake. Example: <code>true</code></p>
+        </div>
+                <div style=" padding-left: 28px;  clear: unset;">
+            <b style="line-height: 2;"><code>notes</code></b>&nbsp;&nbsp;
+<small>string</small>&nbsp;
+<i>optional</i> &nbsp;
+                <input type="text" style="display: none"
+                              name="notes"                data-endpoint="POSTapi-alarm-attach-guard"
+               value=""""
+               data-component="body">
+    <br>
+<p>Notes of the triggered alarm. Example: <code>""</code></p>
+        </div>
+        </form>
 
             
 
