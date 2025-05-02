@@ -13,7 +13,7 @@ return new class extends Migration {
     {
         Schema::create('guards', function (Blueprint $table) {
             $table->id();
-            $table->foreignIdFor(User::class)->unique();
+            $table->foreignIdFor(User::class)->unique()->nullable();
             $table->string('name');
             $table->string('dni')->unique();
             $table->timestamps();

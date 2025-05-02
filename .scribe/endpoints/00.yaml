@@ -46,6 +46,166 @@ endpoints:
     custom: []
   -
     httpMethods:
+      - POST
+    uri: api/register
+    metadata:
+      groupName: Endpoints
+      groupDescription: ''
+      subgroup: ''
+      subgroupDescription: ''
+      title: ''
+      description: ''
+      authenticated: false
+      custom: []
+    headers:
+      Content-Type: application/json
+      Accept: application/json
+    urlParameters: []
+    cleanUrlParameters: []
+    queryParameters: []
+    cleanQueryParameters: []
+    bodyParameters:
+      name:
+        name: name
+        description: 'Your username.'
+        required: true
+        example: 'Test User'
+        type: string
+        enumValues: []
+        exampleWasSpecified: true
+        nullable: false
+        custom: []
+      email:
+        name: email
+        description: Email.
+        required: true
+        example: test@mail.com
+        type: email
+        enumValues: []
+        exampleWasSpecified: true
+        nullable: false
+        custom: []
+      password:
+        name: password
+        description: Password.
+        required: true
+        example: '123'
+        type: string
+        enumValues: []
+        exampleWasSpecified: true
+        nullable: false
+        custom: []
+      password_confirmation:
+        name: password_confirmation
+        description: Password.
+        required: true
+        example: '123'
+        type: password
+        enumValues: []
+        exampleWasSpecified: true
+        nullable: false
+        custom: []
+    cleanBodyParameters:
+      name: 'Test User'
+      email: test@mail.com
+      password: '123'
+      password_confirmation: '123'
+    fileParameters: []
+    responses: []
+    responseFields: []
+    auth: []
+    controller: null
+    method: null
+    route: null
+    custom: []
+  -
+    httpMethods:
+      - POST
+    uri: api/login
+    metadata:
+      groupName: Endpoints
+      groupDescription: ''
+      subgroup: ''
+      subgroupDescription: ''
+      title: ''
+      description: ''
+      authenticated: false
+      custom: []
+    headers:
+      Content-Type: application/json
+      Accept: application/json
+    urlParameters: []
+    cleanUrlParameters: []
+    queryParameters: []
+    cleanQueryParameters: []
+    bodyParameters:
+      email:
+        name: email
+        description: Email.
+        required: true
+        example: test@mail.com
+        type: email
+        enumValues: []
+        exampleWasSpecified: true
+        nullable: false
+        custom: []
+      password:
+        name: password
+        description: Password.
+        required: true
+        example: '123'
+        type: string
+        enumValues: []
+        exampleWasSpecified: true
+        nullable: false
+        custom: []
+    cleanBodyParameters:
+      email: test@mail.com
+      password: '123'
+    fileParameters: []
+    responses: []
+    responseFields: []
+    auth: []
+    controller: null
+    method: null
+    route: null
+    custom: []
+  -
+    httpMethods:
+      - POST
+    uri: api/logout
+    metadata:
+      groupName: Endpoints
+      groupDescription: ''
+      subgroup: ''
+      subgroupDescription: ''
+      title: ''
+      description: ''
+      authenticated: true
+      custom: []
+    headers:
+      Authorization: 'Bearer YOUR_AUTH_KEY'
+      Content-Type: application/json
+      Accept: application/json
+    urlParameters: []
+    cleanUrlParameters: []
+    queryParameters: []
+    cleanQueryParameters: []
+    bodyParameters: []
+    cleanBodyParameters: []
+    fileParameters: []
+    responses: []
+    responseFields: []
+    auth:
+      - headers
+      - Authorization
+      - 'Bearer 6g43cv8PD1aE5beadkZfhV6'
+    controller: null
+    method: null
+    route: null
+    custom: []
+  -
+    httpMethods:
       - GET
     uri: api/guards
     metadata:

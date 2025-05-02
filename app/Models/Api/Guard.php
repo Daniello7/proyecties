@@ -12,7 +12,7 @@ class Guard extends Model
 {
     use HasFactory;
 
-    protected $fillable = ['name', 'dni'];
+    protected $fillable = ['name', 'dni','user_id'];
 
     public function scopeName($query, $name)
     {

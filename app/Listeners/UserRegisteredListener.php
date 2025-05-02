@@ -4,7 +4,6 @@ namespace App\Listeners;
 
 use App\Events\UserRegisteredEvent;
 use App\Mail\WelcomeNewUserMail;
-use App\Models\User;
 use Illuminate\Queue\SerializesModels;
 use Illuminate\Support\Facades\Mail;
 
