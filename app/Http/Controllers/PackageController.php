@@ -2,8 +2,8 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Requests\Package\StorePackageReceptionRequest;
-use App\Http\Requests\Package\StorePackageShippingRequest;
+use App\Events\NotifyContactPackageEvent;
+use App\Http\Requests\Package\StorePackageRequest;
 use App\Models\Package;
 
 class PackageController extends Controller
@@ -13,37 +13,29 @@ class PackageController extends Controller
         return view('packages.index');
     }
 
-    public function create()
+    public function create($type = 'entry')
     {
-        return view('packages.create');
+        if (!in_array($type, ['entry', 'exit'])) abort(404);
+
+        return view('packages.create' . ucfirst($type), compact('type'));
     }
 
-    public function createExit()
+    public function store(StorePackageRequest $request, $type = 'entry')
     {
-        return view('packages.createExit');
-    }
+        if (!in_array($type, ['entry', 'exit'])) abort(404);
 
-    public function store(StorePackageReceptionRequest $request)
-    {
         $data = $request->validated();
+        $data['type'] = $type;
         $data['receiver_user_id'] = auth()->user()->id;
         $data['entry_time'] = now();
 
-        Package::create($data);
+        $package = Package::create($data);
+
+        if (isset($request['notify'])) {
+            event(new NotifyContactPackageEvent($package));
+        }
+
 
         return to_route('control-access');
     }
-
-    public function storeExit(StorePackageShippingRequest $request)
-    {
-        $data = $request->validated();
-        $data['type'] = 'exit';
-        $data['receiver_user_id'] = auth()->user()->id;
-        $data['entry_time'] = now();
-
-        Package::create($data);
-
-        return to_route('control-access');
-    }
-
 }

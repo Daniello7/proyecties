@@ -2,18 +2,18 @@
 
 namespace App\Http\Controllers;
 
+use App\Events\NotifyContactVisitorEvent;
 use App\Http\Requests\PersonEntry\StorePersonEntryRequest;
 use App\Http\Requests\PersonEntry\UpdatePersonEntryRequest;
-use App\Mail\NotifyContactMail;
 use App\Models\Person;
 use App\Models\PersonEntry;
 use Carbon\Carbon;
+use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Gate;
-use Illuminate\Support\Facades\Mail;
 
 class PersonEntryController extends Controller
 {
+    use AuthorizesRequests;
     public function index()
     {
         return view('person-entry.index');
@@ -21,8 +21,7 @@ class PersonEntryController extends Controller
 
     public function create(Request $request)
     {
-
-        Gate::authorize('create', PersonEntry::class);
+        $this->authorize('create', PersonEntry::class);
 
         $person_id = $request->input('person_id');
 
@@ -37,7 +36,7 @@ class PersonEntryController extends Controller
 
     public function store(StorePersonEntryRequest $request)
     {
-        Gate::authorize('create', PersonEntry::class);
+        $this->authorize('create', PersonEntry::class);
 
         $data = $request->validated();
         $data['user_id'] = auth()->user()->id;
@@ -45,9 +44,8 @@ class PersonEntryController extends Controller
 
         $personEntry = PersonEntry::create($data);
 
-
         if (isset($request['notify'])) {
-            Mail::to($personEntry->internalPerson->email)->queue(new NotifyContactMail());
+            event(new NotifyContactVisitorEvent($personEntry));
         }
 
         $reason = $request->input('reason');
@@ -68,7 +66,7 @@ class PersonEntryController extends Controller
 
     public function edit($id)
     {
-        Gate::authorize('update', PersonEntry::class);
+        $this->authorize('update', PersonEntry::class);
 
         $personEntry = PersonEntry::with('internalPerson')->findOrFail($id);
 
@@ -77,7 +75,7 @@ class PersonEntryController extends Controller
 
     public function update(UpdatePersonEntryRequest $request, $id)
     {
-        Gate::authorize('update', PersonEntry::class);
+        $this->authorize('update', PersonEntry::class);
 
         $personEntry = PersonEntry::findOrFail($id);
         $personEntry->update($request->validated());
@@ -87,7 +85,7 @@ class PersonEntryController extends Controller
 
     public function destroy($id)
     {
-        Gate::authorize('delete', PersonEntry::class);
+        $this->authorize('delete', PersonEntry::class);
 
         PersonEntry::destroy($id);
 

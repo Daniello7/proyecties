@@ -31,11 +31,14 @@ Route::middleware(RoleMiddleware::using(['porter', 'admin', 'rrhh']))->group(fun
         ->name('index', 'person-entries')
         ->parameters(['person-entries' => 'id']);
 
-    Route::get('/internal-person', [InternalPersonController::class, 'index'])->name('internal-person');
+    Route::get('/internal-person', [InternalPersonController::class, 'index'])
+        ->name('internal-person');
 
     Route::resource('/person', PersonController::class)
         ->parameters(['person' => 'id']);
+});
 
+Route::middleware(RoleMiddleware::using(['porter']))->group(function () {
     Route::get('/driver-rules/{person}', [PDFController::class, 'driverRules'])->name('driver-rules');
     Route::get('/visitor-rules/{person}', [PDFController::class, 'visitorRules'])->name('visitor-rules');
     Route::get('/cleaning-rules/{person}', [PDFController::class, 'cleaningRules'])->name('cleaning-rules');
@@ -44,11 +47,12 @@ Route::middleware(RoleMiddleware::using(['porter', 'admin', 'rrhh']))->group(fun
 Route::middleware(RoleMiddleware::using(['porter', 'admin']))->group(function () {
     Route::get('/control-access', ControlAccessController::class)->name('control-access');
 
-    Route::get('/packages/create2', [PackageController::class, 'createExit'])->name('packages.createExit');
-    Route::post('/packages/store2', [PackageController::class, 'storeExit'])->name('packages.storeExit');
+    Route::get('/packages/create/{type}', [PackageController::class, 'create'])->name('packages.create');
+    Route::post('/packages/store/{type}', [PackageController::class, 'store'])->name('packages.store');
     Route::resource('/packages', PackageController::class)
         ->name('index', 'packages')
-        ->parameters(['packages' => 'id']);
+        ->parameters(['packages' => 'id'])
+        ->except(['create', 'store']);
 
     Route::get('/key-control/keys', [KeyController::class, 'index'])->name('keys.index');
 

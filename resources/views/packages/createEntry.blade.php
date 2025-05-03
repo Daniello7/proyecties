@@ -8,7 +8,7 @@
         <div class="flex flex-col gap-8 mx-auto sm:px-6 lg:px-8">
             <section class="text-gray-800 dark:text-gray-100 bg-white dark:bg-gray-800 rounded-lg p-2 shadow-lg transition-colors z-10">
                 <x-header :content="__('New Reception')"/>
-                <form action="{{ route('packages.store') }}" method="post" class="px-8 pb-4">
+                <form action="{{ route('packages.store', ['type' => 'entry']) }}" method="post" class="px-8 pb-4">
                     @include('packages.create-form-fields')
                     @csrf
                     <x-primary-button>{{ __('Save') }}</x-primary-button>

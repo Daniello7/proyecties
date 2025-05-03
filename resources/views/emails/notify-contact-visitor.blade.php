@@ -1,8 +1,7 @@
 @component('mail::message')
-    # Token API Control 77
+    # {{ strtoupper(__('New Visit')) }}
 
-    {{ __('Hello!') . ' ' . $user->name}}.
-    Your token is: {{ $token }}.
+    {{ $message }}
 
     @component('mail::button', ['url' => ''])
         Button Text

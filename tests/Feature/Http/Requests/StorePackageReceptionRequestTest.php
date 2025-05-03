@@ -2,7 +2,7 @@
 
 namespace Tests\Feature\Http\Requests;
 
-use App\Http\Requests\Package\StorePackageReceptionRequest;
+use App\Http\Requests\Package\StorePackageRequest;
 use App\Models\InternalPerson;
 use App\Models\Person;
 use Illuminate\Support\Facades\Validator;
@@ -21,7 +21,7 @@ it('passes validation when all fields are correct', function () {
     ];
 
     // Act
-    $validator = Validator::make($data, (new StorePackageReceptionRequest())->rules());
+    $validator = Validator::make($data, (new StorePackageRequest())->rules());
 
     // Assert
     expect($validator->fails())->toBeFalse();
@@ -37,7 +37,7 @@ it('fails validation when agency is missing', function () {
     ];
 
     // Act
-    $validator = Validator::make($data, (new StorePackageReceptionRequest())->rules());
+    $validator = Validator::make($data, (new StorePackageRequest())->rules());
 
     // Assert
     expect($validator->fails())->toBeTrue()
@@ -54,7 +54,7 @@ it('fails validation when external_entity is missing', function () {
     ];
 
     // Act
-    $validator = Validator::make($data, (new StorePackageReceptionRequest())->rules());
+    $validator = Validator::make($data, (new StorePackageRequest())->rules());
 
     // Assert
     expect($validator->fails())->toBeTrue()
@@ -72,7 +72,7 @@ it('fails validation when internal_person_id is invalid', function () {
     ];
 
     // Act
-    $validator = Validator::make($data, (new StorePackageReceptionRequest())->rules());
+    $validator = Validator::make($data, (new StorePackageRequest())->rules());
 
     // Assert
     expect($validator->fails())->toBeTrue()
@@ -89,7 +89,7 @@ it('fails validation when package_count is missing', function () {
     ];
 
     // Act
-    $validator = Validator::make($data, (new StorePackageReceptionRequest())->rules());
+    $validator = Validator::make($data, (new StorePackageRequest())->rules());
 
     // Assert
     expect($validator->fails())->toBeTrue()

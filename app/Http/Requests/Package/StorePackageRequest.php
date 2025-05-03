@@ -4,7 +4,7 @@ namespace App\Http\Requests\Package;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class StorePackageReceptionRequest extends FormRequest
+class StorePackageRequest extends FormRequest
 {
     public function rules(): array
     {

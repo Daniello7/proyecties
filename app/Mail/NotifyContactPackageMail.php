@@ -9,25 +9,28 @@ use Illuminate\Mail\Mailables\Content;
 use Illuminate\Mail\Mailables\Envelope;
 use Illuminate\Queue\SerializesModels;
 
-class NotifyContactMail extends Mailable implements ShouldQueue
+class NotifyContactPackageMail extends Mailable implements ShouldQueue
 {
     use Queueable, SerializesModels;
 
-    public function __construct()
+    public string $message;
+
+    public function __construct(string $message)
     {
+        $this->message = $message;
     }
 
     public function envelope(): Envelope
     {
         return new Envelope(
-            subject: 'Notify Contact',
+            subject: 'Notify Contact Package',
         );
     }
 
     public function content(): Content
     {
         return new Content(
-            markdown: 'emails.notify-contact',
+            markdown: 'emails.notify-contact-package',
         );
     }
 

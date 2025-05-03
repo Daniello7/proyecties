@@ -3,7 +3,7 @@
 namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
-use App\Http\Requests\GuardReportRequest;
+use App\Http\Requests\Api\GuardReportRequest;
 use App\Http\Resources\GuardReportResource;
 use App\Models\Api\GuardReport;
 use Illuminate\Http\Resources\Json\AnonymousResourceCollection;

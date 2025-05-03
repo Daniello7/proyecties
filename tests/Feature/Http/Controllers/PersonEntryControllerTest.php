@@ -1,6 +1,6 @@
 <?php
 
-use App\Mail\NotifyContactMail;
+use App\Mail\NotifyContactVisitorMail;
 use App\Models\Person;
 use App\Models\PersonEntry;
 use App\Models\User;
@@ -43,7 +43,7 @@ it('creates a person entry successfully', function () {
         'reason' => 'Charge',
         'comment' => 'Entry for charge',
     ]);
-    Mail::assertQueued(NotifyContactMail::class);
+    Mail::assertQueued(NotifyContactVisitorMail::class);
 });
 
 it('updates a person entry successfully', function () {

@@ -1,7 +1,7 @@
 @component('mail::message')
-    # Visit Notify
+    # {{ strtoupper(__('New Package')) }}
 
-    A NEW VISIT HAS ARRIVED!
+    {{ $message }}
 
     @component('mail::button', ['url' => ''])
         Button Text

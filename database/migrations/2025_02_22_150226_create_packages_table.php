@@ -17,7 +17,7 @@ return new class extends Migration {
             $table->id();
             $table->enum('type', ['entry', 'exit'])->default('entry');
             $table->enum('agency', Package::AGENCIES);
-            $table->integer('package_count')->default(0);
+            $table->integer('package_count')->default(1);
             $table->string('external_entity');
             $table->foreignIdFor(User::class, 'receiver_user_id');
             $table->foreignIdFor(User::class, 'deliver_user_id')->nullable();
