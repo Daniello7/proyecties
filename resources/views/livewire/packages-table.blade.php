@@ -25,7 +25,7 @@
             </thead>
             <tbody class="[&_td:first-child]:rounded-l-lg [&_td:last-child]:rounded-r-lg *:transition-colors">
             @foreach($rows as $package)
-                <tr class="shadow-md bg-white dark:bg-gray-700 rounded-lg text-center *:py-2 *:px-1">
+                <tr class="{{ !$isHomeView ?: 'ring-1 '. ($package->type == 'entry' ? 'ring-emerald-600':'ring-red-600') }} shadow-md bg-white dark:bg-gray-700 rounded-lg text-center *:py-2 *:px-1">
                     <!-- Fields -->
                     <td>{{ __(ucfirst($package->type)) }}</td>
                     <td>{{ $package->agency }}</td>
