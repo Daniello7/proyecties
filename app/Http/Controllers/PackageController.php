@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Events\NotifyContactPackageEvent;
 use App\Http\Requests\Package\StorePackageRequest;
+use App\Http\Requests\Package\UpdatePackageRequest;
 use App\Models\Package;
 
 class PackageController extends Controller
@@ -35,6 +36,30 @@ class PackageController extends Controller
             event(new NotifyContactPackageEvent($package));
         }
 
+        return to_route('control-access');
+    }
+
+    public function edit(int $id)
+    {
+        $package = Package::findOrFail($id);
+
+        return view('packages.edit' . ucfirst($package->type), compact('package'));
+    }
+
+    public function update(UpdatePackageRequest $request, int $id)
+    {
+        $package = Package::findOrFail($id);
+
+        $data = $request->validated();
+
+        $package->update($data);
+
+        return to_route('control-access');
+    }
+
+    public function destroy(int $id)
+    {
+        Package::findOrFail($id)->delete();
 
         return to_route('control-access');
     }

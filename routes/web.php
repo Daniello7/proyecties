@@ -48,11 +48,12 @@ Route::middleware(RoleMiddleware::using(['porter', 'admin']))->group(function ()
     Route::get('/control-access', ControlAccessController::class)->name('control-access');
 
     Route::get('/packages/create/{type}', [PackageController::class, 'create'])->name('packages.create');
+    Route::get('/packages/edit/{id}', [PackageController::class, 'edit'])->name('packages.edit');
     Route::post('/packages/store/{type}', [PackageController::class, 'store'])->name('packages.store');
     Route::resource('/packages', PackageController::class)
         ->name('index', 'packages')
         ->parameters(['packages' => 'id'])
-        ->except(['create', 'store']);
+        ->except(['create', 'store', 'edit']);
 
     Route::get('/key-control/keys', [KeyController::class, 'index'])->name('keys.index');
 
