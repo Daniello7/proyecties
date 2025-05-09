@@ -13,11 +13,6 @@ class PersonEntriesHomeTable extends Component
 
     public function mount()
     {
-        $this->applyTableConfiguration();
-    }
-
-    private function applyTableConfiguration(): void
-    {
         $this->columns = ['Name', 'Company', 'Contact', 'Comment', 'Actions'];
         $this->select = [
             'person_entries.id',

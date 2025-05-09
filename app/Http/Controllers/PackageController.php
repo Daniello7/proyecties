@@ -63,4 +63,9 @@ class PackageController extends Controller
 
         return to_route('control-access');
     }
+
+    public function deleted()
+    {
+        return view('packages.deleted');
+    }
 }

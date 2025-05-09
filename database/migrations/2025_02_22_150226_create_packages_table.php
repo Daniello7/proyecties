@@ -27,6 +27,7 @@ return new class extends Migration {
             $table->timestamp('exit_time')->nullable();
             $table->string('comment')->nullable();
             $table->timestamps();
+            $table->softDeletes();
         });
     }
 

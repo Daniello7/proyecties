@@ -19,7 +19,9 @@ class GuardSeeder extends Seeder
             'dni' => '12345678A',
         ]);
 
-        $users = User::whereDoesntHave('assignedGuard')->inRandomOrder()->take(14)->get();
+        $users = User::whereDoesntHave('assignedGuard')
+            ->whereNotIn('id', [1, 2, 3, 4])
+            ->inRandomOrder()->take(14)->get();
 
         $users->each(fn($user) => Guard::factory()->create(['user_id' => $user->id]));
     }

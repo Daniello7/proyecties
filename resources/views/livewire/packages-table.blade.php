@@ -9,12 +9,12 @@
         </div>
     </div>
     <hr class="mx-2 border-blue-600 dark:border-pink-600 opacity-50">
-    <div class="h-[600px] overflow-hidden overflow-y-scroll scrollbar-custom px-4">
+    <div class="max-h-[600px] overflow-hidden overflow-y-scroll scrollbar-custom px-4">
         <table class="border-separate border-spacing-y-2 text-xs sm:text-sm w-full">
             <thead class="[&_th:first-child]:rounded-l-lg [&_th:last-child]:rounded-r-lg">
             <tr class="*:cursor-pointer *:transition-colors">
                 @foreach($columns as $col)
-                    <th wire:click="sortBy('{{ $col }}')" class="py-2 px-1 uppercase select-none text-white bg-blue-600 hover:bg-gradient-to-r from-blue-600 via-emerald-600 to-blue-600 dark:bg-violet-700 dark:from-violet-700 dark:via-pink-600 dark:to-violet-700 min-w-fit w-[10%]">
+                    <th wire:click="sortBy('{{ $columnMap[$col] }}')" class="py-2 px-1 uppercase select-none text-white bg-blue-600 hover:bg-gradient-to-r from-blue-600 via-emerald-600 to-blue-600 dark:bg-violet-700 dark:from-violet-700 dark:via-pink-600 dark:to-violet-700 min-w-fit w-[10%]">
                         {{ __($col) }}
                         @if($sortColumn == $columnMap[$col])
                             {{ $sortDirection === 'asc' ? '↑' : '↓' }}

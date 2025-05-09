@@ -14,11 +14,6 @@ class PersonEntriesShowTable extends Component
 
     public function mount()
     {
-        $this->applyTableConfiguration();
-    }
-
-    private function applyTableConfiguration(): void
-    {
         $this->columns = ['Contact', 'Reason', 'Porter', 'Arrival', 'Entry', 'Exit', 'Comment', 'Actions'];
         $this->select = [
             'person_entries.id',

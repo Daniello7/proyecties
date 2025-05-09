@@ -13,11 +13,6 @@ class PersonEntriesIndexTable extends Component
 
     public function mount()
     {
-        $this->applyTableConfiguration();
-    }
-
-    private function applyTableConfiguration(): void
-    {
         $this->columns = ['DNI', 'Name', 'Company', 'Contact', 'Latest Visit', 'Actions'];
         $this->select = [
             'person_entries.id',
