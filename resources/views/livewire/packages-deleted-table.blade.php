@@ -1,11 +1,14 @@
 <div class="w-full">
     <div class="flex flex-col justify-between p-2">
-        <div class="flex flex-row justify-between">
+        <div class="flex flex-row justify-between px-8">
             <div>
                 <label for="search_package" class="text-blue-600 dark:text-pink-500 font-bold">{{ __('Search').':' }}</label>
                 <x-text-input type="search" class="p-1" :placeholder="__('Search').' . . .'" wire:model.live.debounce.300ms="search"/>
             </div>
-            <x-session-status flash="package-status" class="py-1"/>
+            <div class="flex flex-row gap-2">
+                <x-session-status flash="package-status" class="py-1"/>
+                <x-svg.recycle-bin class="w-9 h-9 stroke-white dark:hover:ring-red-700 bg-red-600 dark:bg-red-700"/>
+            </div>
         </div>
     </div>
     <hr class="mx-2 border-blue-600 dark:border-pink-600 opacity-50">
@@ -46,7 +49,8 @@
                         <!-- Actions -->
                         <td>
                             <div class="flex flex-row flex-wrap gap-2 justify-center">
-                                Actions
+                                <x-svg.restore-button wire:click="restore({{ $package->id }})"/>
+                                <x-svg.recycle-bin wire:click="forceDelete({{ $package->id }})" class="w-7 h-7 stroke-red-600 dark:stroke-red-200 bg-red-300 dark:bg-red-800 bg-opacity-40"/>
                             </div>
                         </td>
                     </tr>

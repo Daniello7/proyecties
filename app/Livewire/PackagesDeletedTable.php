@@ -32,14 +32,20 @@ class PackagesDeletedTable extends Component
         return $query->orderBy($this->sortColumn, $this->sortDirection)->paginate(50);
     }
 
-    public function forceDelete(Package $package): void
+    public function forceDelete(int $id): void
     {
+        $package = Package::onlyTrashed()->findOrFail($id);
         $package->forceDelete();
+
+        session()->flash('package-status', __('messages.package_deleted'));
     }
 
-    public function restore(Package $package): void
+    public function restore(int $id): void
     {
+        $package = Package::onlyTrashed()->findOrFail($id);
         $package->restore();
+
+        session()->flash('package-status', __('messages.package_restored'));
     }
 
     public function render()

@@ -16,4 +16,5 @@ return [
     'package_updated' => 'Paquete actualizado',
     'package_exited' => 'Salida de paquete actualizada',
     'package_deleted' => 'Paquete eliminado',
+    'package_restored' => 'Paquete recuperado',
 ];

@@ -44,7 +44,7 @@
                     <td>
                         <div class="flex flex-row flex-wrap gap-2 justify-center">
                             @if($isHomeView)
-                                <x-svg.delete-button wire:click="deletePackage({{ $package->id }})"/>
+                                <x-svg.recycle-bin wire:click="deletePackage({{ $package->id }})" class="w-9 h-9 stroke-red-600 dark:stroke-red-300 bg-red-300 dark:bg-red-900 bg-opacity-40"/>
                             @else
                                 <x-svg.edit-button href="{{ route('packages.edit', $package->id) }}"/>
                             @endif
