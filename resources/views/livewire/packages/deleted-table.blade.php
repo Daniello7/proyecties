@@ -7,7 +7,9 @@
             </div>
             <div class="flex flex-row gap-2">
                 <x-session-status flash="package-status" class="py-1"/>
-                <x-svg.recycle-bin class="w-9 h-9 stroke-white dark:hover:ring-red-700 bg-red-600 dark:bg-red-700"/>
+                @if(count($rows) > 0)
+                    <x-svg.recycle-bin wire:click="openModal('confirm-delete-all')" class="w-9 h-9 stroke-white dark:hover:ring-red-700 bg-red-600 dark:bg-red-700"/>
+                @endif
             </div>
         </div>
     </div>
@@ -50,7 +52,7 @@
                         <td>
                             <div class="flex flex-row flex-wrap gap-2 justify-center">
                                 <x-svg.restore-button wire:click="restore({{ $package->id }})"/>
-                                <x-svg.recycle-bin wire:click="forceDelete({{ $package->id }})" class="w-7 h-7 stroke-red-600 dark:stroke-red-200 bg-red-300 dark:bg-red-800 bg-opacity-40"/>
+                                <x-svg.recycle-bin wire:click="openModal('confirm-delete', {{ $package->id }})" class="w-7 h-7 stroke-red-600 dark:stroke-red-200 bg-red-300 dark:bg-red-800 bg-opacity-40"/>
                             </div>
                         </td>
                     </tr>
@@ -63,4 +65,6 @@
     <div class="pt-4 mx-8 [&_*]:text-blue-600 dark:[&_*]:text-pink-500">
         {{ $rows->links() }}
     </div>
+    @includeWhen($activeModal == 'confirm-delete-all', 'livewire.packages.modals.confirm-delete-all')
+    @includeWhen($activeModal == 'confirm-delete', 'livewire.packages.modals.confirm-delete')
 </div>

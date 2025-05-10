@@ -86,6 +86,6 @@ class PackagesTable extends Component
 
     public function render()
     {
-        return view('livewire.packages-table', ['rows' => $this->getPackageRows()]);
+        return view('livewire.packages.packages-table', ['rows' => $this->getPackageRows()]);
     }
 }
