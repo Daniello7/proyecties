@@ -8,7 +8,6 @@
     <div class="py-12 px-4 flex flex-col xl:flex-row gap-4">
         <div class="flex-[2] flex flex-col gap-8">
             <div class="text-gray-800 dark:text-gray-100 bg-white dark:bg-gray-800 rounded-lg p-2 shadow-lg">
-                <x-header :content="__('External Staff')"/>
                 <livewire:person-entries-home-table/>
             </div>
             <div class="text-gray-800 dark:text-gray-100 bg-white dark:bg-gray-800 rounded-lg p-2 shadow-lg">

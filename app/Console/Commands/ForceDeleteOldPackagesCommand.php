@@ -14,7 +14,7 @@ class ForceDeleteOldPackagesCommand extends Command
 
     public function handle(): void
     {
-        $date = Carbon::now()->subMinute();
+        $date = Carbon::now()->subMonth();
 
         $packages = Package::onlyTrashed()
             ->where('deleted_at', '<=', $date)

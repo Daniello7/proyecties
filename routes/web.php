@@ -42,6 +42,7 @@ Route::middleware(RoleMiddleware::using(['porter']))->group(function () {
     Route::get('/driver-rules/{person}', [PDFController::class, 'driverRules'])->name('driver-rules');
     Route::get('/visitor-rules/{person}', [PDFController::class, 'visitorRules'])->name('visitor-rules');
     Route::get('/cleaning-rules/{person}', [PDFController::class, 'cleaningRules'])->name('cleaning-rules');
+    Route::post('/active-entries-pdf/', [PDFController::class, 'activeEntriesPdf'])->name('active-entries.pdf');
 });
 
 Route::middleware(RoleMiddleware::using(['porter', 'admin']))->group(function () {

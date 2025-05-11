@@ -87,7 +87,6 @@ class PersonEntriesHomeTable extends Component
 
     public function render()
     {
-        return view('livewire.person-entries-home',
-            ['rows' => $this->getEntries()]);
+        return view('livewire.person-entries-home', ['rows' => $this->getEntries()]);
     }
 }
