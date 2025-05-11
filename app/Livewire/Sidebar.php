@@ -1,15 +1,27 @@
 <?php
 
-namespace App\View\Components;
+namespace App\Livewire;
 
 use Closure;
 use Illuminate\Contracts\View\View;
-use Illuminate\View\Component;
+use Livewire\Component;
 
 class Sidebar extends Component
 {
-    public function __construct()
+    public ?int $unreadPdfCount = null;
+    protected $listeners = ['pdfGenerated' => 'loadUnreadPdfCount'];
+
+    public function mount()
     {
+        $this->loadUnreadPdfCount();
+    }
+
+    public function loadUnreadPdfCount(): void
+    {
+        $this->unreadPdfCount = auth()->user()
+            ->pdfExports()
+            ->whereNull('viewed_at')
+            ->count();
     }
 
     public function getLinks(): array
@@ -44,6 +56,7 @@ class Sidebar extends Component
             ['name' => 'Internal Staff', 'url' => 'internal-person'],
             ['name' => 'Package', 'url' => 'packages'],
             ['name' => 'Key Control', 'url' => 'key-control'],
+            ['name' => 'PDF', 'url' => 'pdf-exports.index'],
             ['name' => 'Dashboard', 'url' => 'dashboard'],
         ];
     }
@@ -77,11 +90,8 @@ class Sidebar extends Component
         ];
     }
 
-    /**
-     * Get the view / contents that represent the component.
-     */
     public function render(): View|Closure|string
     {
-        return view('components.sidebar', ['links' => $this->getLinks()]);
+        return view('livewire.sidebar', ['links' => $this->getLinks()]);
     }
 }

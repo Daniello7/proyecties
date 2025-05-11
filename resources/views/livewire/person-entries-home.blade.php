@@ -1,21 +1,14 @@
 <div class="w-full">
     <x-header :content="__('External Staff')">
-        <div class="place-content-center flex flex-row">
-            <form action="" method="POST">
-                <x-primary-button type="submit">
-                    <x-svg.excel-icon class="w-6 h-6 stroke-white fill-white mr-2"/>
-                    {{ __('Export') }}
-                </x-primary-button>
-            </form>
-            <form action="{{ route('active-entries.pdf') }}" method="POST" target="_blank">
-                @csrf
-                <input type="hidden" name="columns" value="{{ json_encode($this->columns) }}">
-                <input type="hidden" name="entries" value="{{ json_encode($this->getEntries()->pluck('id')) }}">
-                <x-secondary-button type="submit">
-                    <x-svg.pdf-icon class="w-6 h-6 stroke-white mr-2"/>
-                    {{ __('Listing') }}
-                </x-secondary-button>
-            </form>
+        <div class="place-content-center">
+            <x-primary-button type="submit">
+                <x-svg.excel-icon class="w-6 h-6 stroke-white fill-white mr-2"/>
+                {{ __('Export') }}
+            </x-primary-button>
+            <x-secondary-button wire:click="generateActiveEntriesPdf()">
+                <x-svg.pdf-icon class="w-6 h-6 stroke-white mr-2"/>
+                {{ __('Listing') }}
+            </x-secondary-button>
         </div>
     </x-header>
     <div class="flex flex-row justify-between px-8 py-2">
@@ -67,8 +60,3 @@
     </table>
     <hr class="mx-2 border-blue-600 dark:border-pink-600 opacity-50">
 </div>
-<script>
-    window.addEventListener('open-pdf', event => {
-
-    });
-</script>

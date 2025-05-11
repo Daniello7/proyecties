@@ -2,9 +2,11 @@
 
 namespace App\Livewire;
 
+use App\Jobs\GenerateActiveEntriesPdfJob;
 use App\Models\Person;
 use App\Models\PersonEntry;
 use App\Traits\HasTableEloquent;
+use Illuminate\Support\Facades\Log;
 use Livewire\Component;
 
 class PersonEntriesHomeTable extends Component
@@ -83,6 +85,15 @@ class PersonEntriesHomeTable extends Component
     {
         PersonEntry::destroy($id);
         session()->flash('success', __('messages.person-entry_deleted'));
+    }
+
+    public function generateActiveEntriesPdf(): void
+    {
+        GenerateActiveEntriesPdfJob::dispatch(
+            $this->columns,
+            $this->getEntries()->pluck('id')->toArray(),
+            auth()->user()->id,
+        );
     }
 
     public function render()

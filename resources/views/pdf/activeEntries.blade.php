@@ -36,11 +36,11 @@
             color: #042851;
         }
 
-        tr:nth-child(odd){
+        tr:nth-child(odd) {
             background: #acdeff;
         }
 
-        tr:nth-child(even){
+        tr:nth-child(even) {
             background: #e7f5ff;
         }
     </style>
@@ -50,7 +50,7 @@
     <img id="logo" src="{{ public_path('images/logo.png') }}" width="100%" alt="logo.svg">
     <h3>PERSONAL EXTERNO EN INSTALACIONES</h3>
     <p>{{ now()->addHours(2)->format('H:i d/m/Y') }}</p>
-    <p>Emitido por: {{ auth()->user()->name }}</p>
+    <p>Emitido por: {{ $user_id }}</p>
 </header>
 <hr>
 <table>

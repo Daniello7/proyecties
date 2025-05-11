@@ -36,30 +36,4 @@ class PDFController extends Controller
 
         return $pdf->stream('driverRules.pdf');
     }
-
-    public function activeEntriesPdf(ActiveEntriesPDF $request)
-    {
-        $request->validated();
-
-        $columns = json_decode($request->columns, true);
-        $entries_id = json_decode($request->entries, true);
-
-        array_pop($columns);
-        array_splice($columns, 3, 0, ['Reason', 'Date entry']);
-
-        $entries = PersonEntry::with([
-            'person:id,name,last_name,company',
-            'internalPerson:id,person_id',
-            'internalPerson.person:id,name,last_name',
-        ])
-            ->whereIn('id', $entries_id)
-            ->get();
-
-        $pdf = PDF::loadView('pdf.activeEntries', [
-            'columns' => $columns,
-            'entries' => $entries
-        ]);
-
-        return $pdf->stream('activeEntries.pdf');
-    }
 }
