@@ -9,7 +9,10 @@ use Livewire\Component;
 class Sidebar extends Component
 {
     public ?int $unreadPdfCount = null;
-    protected $listeners = ['pdfGenerated' => 'loadUnreadPdfCount'];
+    protected $listeners = [
+        'pdfGenerated' => 'loadUnreadPdfCount',
+        'updated-pdf' => 'loadUnreadPdfCount',
+    ];
 
     public function mount()
     {
@@ -56,7 +59,7 @@ class Sidebar extends Component
             ['name' => 'Internal Staff', 'url' => 'internal-person'],
             ['name' => 'Package', 'url' => 'packages'],
             ['name' => 'Key Control', 'url' => 'key-control'],
-            ['name' => 'PDF', 'url' => 'pdf-exports.index'],
+            ['name' => 'PDF', 'url' => 'pdf-exports'],
             ['name' => 'Dashboard', 'url' => 'dashboard'],
         ];
     }

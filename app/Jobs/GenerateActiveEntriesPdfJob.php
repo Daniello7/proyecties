@@ -48,6 +48,7 @@ class GenerateActiveEntriesPdfJob implements ShouldQueue
         ]);
 
         $filename = 'pdfs/active_entries_' . $this->user_id . '_' . now()->timestamp . '.pdf';
+
         Storage::disk('public')->put($filename, $pdf->output());
 
         PdfExport::create([

@@ -49,7 +49,7 @@
 <header>
     <img id="logo" src="{{ public_path('images/logo.png') }}" width="100%" alt="logo.svg">
     <h3>PERSONAL EXTERNO EN INSTALACIONES</h3>
-    <p>{{ now()->addHours(2)->format('H:i d/m/Y') }}</p>
+    <p>{{ now()->format('H:i d/m/Y') }}</p>
     <p>Emitido por: {{ $user_id }}</p>
 </header>
 <hr>
