@@ -25,28 +25,33 @@
             </thead>
             <tbody class="[&_td:first-child]:rounded-l-lg [&_td:last-child]:rounded-r-lg *:transition-colors">
             @foreach($rows as $package)
-                <tr class="{{ !$isHomeView ?: 'ring-1 '. ($package->type == 'entry' ? 'ring-emerald-600':'ring-red-600') }} shadow-md bg-white dark:bg-gray-700 rounded-lg text-center *:py-2 *:px-1">
+                <tr class="ring-1 {{ $package->type == 'entry' ? 'ring-emerald-600':'ring-red-600' }} shadow-md bg-white dark:bg-gray-700 rounded-lg text-center *:py-2 *:px-1">
                     <!-- Fields -->
                     <td>{{ __(ucfirst($package->type)) }}</td>
                     <td>{{ $package->agency }}</td>
                     <td>{{ $package->external_entity }}</td>
                     <td>{{ $package->internalPerson->person->name. ' ' .$package->internalPerson->person->last_name }}</td>
                     <td>{{ $package->entry_time }}</td>
-                    @if(!$isHomeView)
-                        <td>{{ $package->receiver->name }}</td>
-                        <td>{{ $package->exit_time }}</td>
-                        <td>{{ $package->deliver->name }}</td>
-                        <td>{{ $package->package_count }}</td>
-                        <td>{{ $package->retired_by }}</td>
-                    @endif
-                    <td>{{ $package->comment }}</td>
+                    <td>
+                        @if($activePackageCommentInput == "package_$package->id")
+                            <div x-data x-init="$nextTick(() => $refs.textarea.focus())">
+                                <x-textarea x-ref="textarea" wire:model.live="packageComment" class="text-sm transition"></x-textarea>
+                            </div>
+                        @else
+                            {{ $package->comment }}
+                        @endif
+                    </td>
                     <!-- Actions -->
                     <td>
                         <div class="flex flex-row flex-wrap gap-2 justify-center">
-                            @if($isHomeView)
-                                <x-svg.recycle-bin wire:click="deletePackage({{ $package->id }})" class="w-9 h-9 stroke-red-600 dark:stroke-red-300 bg-red-300 dark:bg-red-900 bg-opacity-40"/>
+                            @if($activePackageCommentInput == "package_$package->id")
+                                <x-svg.confirm-button wire:click="updatePackageComment({{ $package->id }})"/>
+                                <x-svg.cancel-button wire:click="closeCommentInput()"/>
                             @else
-                                <x-svg.edit-button href="{{ route('packages.edit', $package->id) }}"/>
+                                <button class="w-9 h-9" wire:click="openCommentInput({{ $package->id }})">
+                                    <x-svg.edit-comment-icon/>
+                                </button>
+                                <x-svg.recycle-bin wire:click="deletePackage({{ $package->id }})" class="w-9 h-9 stroke-red-600 dark:stroke-red-300 bg-red-300 dark:bg-red-900 bg-opacity-40 dark:bg-opacity-40"/>
                             @endif
                         </div>
                     </td>
@@ -56,9 +61,4 @@
         </table>
     </div>
     <hr class="mx-2 border-blue-600 dark:border-pink-600 opacity-50">
-    @if(!$isHomeView)
-        <div class="pt-4 mx-8 [&_*]:text-blue-600 dark:[&_*]:text-pink-500">
-            {{ $rows->links() }}
-        </div>
-    @endif
 </div>

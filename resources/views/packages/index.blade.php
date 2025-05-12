@@ -25,7 +25,7 @@
             </section>
             <section class="text-gray-800 dark:text-gray-100 bg-white dark:bg-gray-800 rounded-lg p-2 shadow-lg transition-colors">
                 <x-header :content="__('Package').' - '.__('Latest Records')"/>
-                <livewire:packages-table/>
+                <livewire:packages-index-table/>
             </section>
         </div>
     </div>

@@ -6,38 +6,42 @@ use App\Models\Package;
 use App\Traits\HasTableEloquent;
 use App\Traits\PackageTableConfig;
 use Illuminate\Database\Eloquent\Collection;
-use Illuminate\Pagination\LengthAwarePaginator;
 use Livewire\Component;
 
-class PackagesTable extends Component
+class PackagesHomeTable extends Component
 {
     use HasTableEloquent, PackageTableConfig;
 
-    public bool $isHomeView = false;
+    public ?string $activePackageCommentInput = null;
+    public string $packageComment = '';
 
     public function mount(): void
     {
-        if ($this->isHomeView) {
-            $this->configurePackageHomeView();
-        } else {
-            $this->configurePackageAllColumns();
-        }
+        $this->configurePackageHomeView();
     }
 
-    public function getPackageIndexView(): LengthAwarePaginator
+    public function openCommentInput($id): void
     {
-        $query = Package::query()
-            ->with($this->relations)
-            ->select($this->select)
-            ->joinCustodyAndOwner(true)
-            ->whereNotNull('exit_time');
-
-        $this->applySearchFilter($query);
-
-        return $query->orderBy($this->sortColumn, $this->sortDirection)->paginate(50);
+        $this->activePackageCommentInput = "package_$id";
     }
 
-    public function getPackageHomeView(): Collection
+    public function closeCommentInput(): void
+    {
+        $this->activePackageCommentInput = null;
+    }
+
+    public function updatePackageComment($id): void
+    {
+        $package = Package::find($id);
+
+        $package->update(['comment' => $this->packageComment]);
+
+        session()->flash('package-status', __('messages.comment_updated'));
+
+        $this->closeCommentInput();
+    }
+
+    public function getPackages(): Collection
     {
         $query = Package::query()
             ->with($this->relations)
@@ -48,19 +52,8 @@ class PackagesTable extends Component
         $this->applySearchFilter($query);
 
         $query->orderBy($this->sortColumn, $this->sortDirection);
-        if ($this->sortColumn != 'entry_time') {
-            $query->orderBy('entry_time', $this->sortDirection);
-        }
 
         return $query->get();
-    }
-
-    public function getPackageRows(): Collection|LengthAwarePaginator
-    {
-        if ($this->isHomeView)
-            return $this->getPackageHomeView();
-
-        return $this->getPackageIndexView();
     }
 
     public function updatePackage($id): void
@@ -86,6 +79,6 @@ class PackagesTable extends Component
 
     public function render()
     {
-        return view('livewire.packages.packages-table', ['rows' => $this->getPackageRows()]);
+        return view('livewire.packages-home-table', ['rows' => $this->getPackages()]);
     }
 }

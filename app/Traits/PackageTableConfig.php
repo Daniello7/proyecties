@@ -17,8 +17,8 @@ trait PackageTableConfig
             'Exit' => 'exit_time',
             'Package Count' => 'package_count',
             'Retired By' => 'retired_by',
-            'Sender' => null,
-            'Destination' => null,
+            'Sender' => 'external_entity',
+            'Destination' => 'internalPersonPerson.name',
             'Comment' => null,
             'Actions' => null
         ];
@@ -48,8 +48,8 @@ trait PackageTableConfig
             'Type' => 'type',
             'Agency' => 'agency',
             'Entry' => 'entry_time',
-            'Sender' => null,
-            'Destination' => null,
+            'Sender' => 'external_entity',
+            'Destination' => 'internalPersonPerson.name',
             'Comment' => null,
             'Actions' => null
         ];

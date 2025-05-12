@@ -12,7 +12,7 @@
             </div>
             <div class="text-gray-800 dark:text-gray-100 bg-white dark:bg-gray-800 rounded-lg p-2 shadow-lg">
                 <x-header :content="__('Package')"/>
-                <livewire:packages-table :is-home-view="true"/>
+                <livewire:packages-home-table/>
             </div>
         </div>
         <div class="flex-1 text-gray-800 dark:text-gray-100 bg-white dark:bg-gray-800 rounded-lg p-2 shadow-lg max-h-max">
