@@ -53,11 +53,7 @@ class PersonEntriesIndexTable extends Component
             ->with($this->relations)
             ->select($this->select)
             ->whereIn('person_entries.id', $latestEntries)
-            ->join('people as person', 'person_entries.person_id', '=', 'person.id')
-            ->join('internal_people as internalPerson',
-                'person_entries.internal_person_id', '=', 'internalPerson.id')
-            ->join('people as internalPerson_personRelation',
-                'internalPerson.person_id', '=', 'internalPerson_personRelation.id')
+            ->joinInternalPerson(true)
             ->whereNotNull('exit_time');
 
         $this->applySearchFilter($query);

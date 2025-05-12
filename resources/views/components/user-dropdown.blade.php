@@ -3,7 +3,7 @@
     <div class="hidden sm:flex sm:items-center sm:ms-6">
         <x-dropdown align="right" width="48">
             <x-slot name="trigger">
-                <button class="inline-flex custom-gradient-text hover:font-black transition">
+                <button class="inline-flex custom-gradient-text hover:font-black transition shadow rounded-lg hover:shadow-md p-2">
                     <div>{{ Auth::user()->name }}</div>
                     <div class="p-1">
                         <svg class="fill-current text-emerald-600 dark:text-pink-500 h-4 w-4" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20">

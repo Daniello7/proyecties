@@ -3,19 +3,13 @@
 namespace App\Livewire;
 
 use App\Models\Person;
+use App\Traits\HasTableEloquent;
 use Livewire\Component;
 use Livewire\WithPagination;
 
 class PersonTable extends Component
 {
-    use WithPagination;
-
-    public array $columns;
-    public array $select;
-    public string $sortColumn;
-    public string $sortDirection;
-    public array $columnMap;
-    public string $search = '';
+    use WithPagination, HasTableEloquent;
 
     public function mount()
     {
@@ -48,33 +42,6 @@ class PersonTable extends Component
         return $query
             ->orderBy($this->sortColumn, $this->sortDirection)
             ->paginate(50);
-    }
-
-    public function applySearchFilter($query)
-    {
-        if (!$this->search) return;
-
-        $query->where(function ($q) {
-            foreach ($this->columnMap as $column) {
-                if ($column) {
-                    $q->orWhere($column, 'LIKE', "%{$this->search}%");
-                }
-            }
-        });
-    }
-
-    public function sortBy($column)
-    {
-        if (!$this->columnMap[$column]) return;
-
-        $column = $this->columnMap[$column];
-
-        if ($this->sortColumn === $column) {
-            $this->sortDirection = $this->sortDirection === 'asc' ? 'desc' : 'asc';
-        } else {
-            $this->sortColumn = $column;
-            $this->sortDirection = 'asc';
-        }
     }
 
     public function render()

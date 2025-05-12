@@ -3,17 +3,13 @@
 namespace App\Livewire;
 
 use App\Models\InternalPerson;
+use App\Traits\HasTableEloquent;
 use Illuminate\Database\Eloquent\Collection;
 use Livewire\Component;
 
 class InternalPersonTable extends Component
 {
-    public array $columns;
-    public array $select;
-    public string $sortColumn;
-    public string $sortDirection;
-    public array $columnMap;
-    public string $search = '';
+    use HasTableEloquent;
 
     public function mount()
     {
@@ -49,33 +45,6 @@ class InternalPersonTable extends Component
         return $query
             ->orderBy($this->sortColumn, $this->sortDirection)
             ->get();
-    }
-
-    public function applySearchFilter($query): void
-    {
-        if (!$this->search) return;
-
-        $query->where(function ($q) {
-            foreach ($this->columnMap as $column) {
-                if ($column) {
-                    $q->orWhere($column, 'LIKE', "%{$this->search}%");
-                }
-            }
-        });
-    }
-
-    public function sortBy($column): void
-    {
-        if (!$this->columnMap[$column]) return;
-
-        $column = $this->columnMap[$column];
-
-        if ($this->sortColumn === $column) {
-            $this->sortDirection = $this->sortDirection === 'asc' ? 'desc' : 'asc';
-        } else {
-            $this->sortColumn = $column;
-            $this->sortDirection = 'asc';
-        }
     }
 
     public function render()

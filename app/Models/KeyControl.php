@@ -42,4 +42,13 @@ class KeyControl extends Model
     {
         return $this->belongsTo(User::class, 'receiver_user_id');
     }
+
+    public function scopeJoinRelations($query)
+    {
+        return $query
+            ->join('keys as key', 'key.id', '=', 'key_controls.key_id')
+            ->join('people as person', 'person.id', '=', 'key_controls.person_id')
+            ->join('users as deliver', 'deliver.id', '=', 'key_controls.deliver_user_id')
+            ->join('users as receiver', 'receiver.id', '=', 'key_controls.receiver_user_id');
+    }
 }

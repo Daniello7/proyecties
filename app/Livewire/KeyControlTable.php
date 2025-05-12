@@ -3,18 +3,14 @@
 namespace App\Livewire;
 
 use App\Models\KeyControl;
+use App\Traits\HasTableEloquent;
 use Illuminate\Database\Eloquent\Collection;
 use Livewire\Component;
 
 class KeyControlTable extends Component
 {
-    public array $columns;
-    public array $select;
-    public array $columnMap;
-    public array $relations;
-    public string $sortColumn;
-    public string $sortDirection;
-    public string $search = '';
+    use HasTableEloquent;
+
     public bool $isHomeView = false;
     public int $key_id;
     protected $listeners = ['keyUpdated' => 'updateKeyId'];
@@ -81,16 +77,12 @@ class KeyControlTable extends Component
         $this->sortDirection = 'asc';
     }
 
-    public function getKeyControlIndexView(): Collection // Últimos registros
+    public function getKeyControlIndexView(): Collection
     {
         $query = KeyControl::query()
             ->with($this->relations)
             ->select($this->select)
-            ->join('keys as key', 'key.id', '=', 'key_controls.key_id')
-            ->join('people as person', 'person.id', '=', 'key_controls.person_id')
-            ->join('users as deliver', 'deliver.id', '=', 'key_controls.deliver_user_id')
-            ->join('users as receiver', 'receiver.id', '=', 'key_controls.receiver_user_id');
-
+            ->joinRelations();
 
         $this->applySearchFilter($query);
 
@@ -103,7 +95,7 @@ class KeyControlTable extends Component
             ->whereNotNull('entry_time')->get();
     }
 
-    public function getKeyControlHomeView(): Collection// Llaves que se encuentran fuera
+    public function getKeyControlHomeView(): Collection
     {
         $query = KeyControl::query()
             ->with($this->relations)
@@ -123,33 +115,6 @@ class KeyControlTable extends Component
             return $this->getKeyControlHomeView();
 
         return $this->getKeyControlIndexView();
-    }
-
-    public function applySearchFilter($query): void
-    {
-        if (!$this->search) return;
-
-        $query->where(function ($q) {
-            foreach ($this->columnMap as $column) {
-                if ($column) {
-                    $q->orWhere($column, 'LIKE', "%{$this->search}%");
-                }
-            }
-        });
-    }
-
-    public function sortBy($column): void
-    {
-        if (!$this->columnMap[$column]) return;
-
-        $column = $this->columnMap[$column];
-
-        if ($this->sortColumn === $column) {
-            $this->sortDirection = $this->sortDirection === 'asc' ? 'desc' : 'asc';
-        } else {
-            $this->sortColumn = $column;
-            $this->sortDirection = 'asc';
-        }
     }
 
     public function updateKeyControlRecord($id): void

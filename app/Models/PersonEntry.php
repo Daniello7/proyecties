@@ -36,4 +36,17 @@ class PersonEntry extends Model
     {
         return $this->BelongsTo(InternalPerson::class);
     }
+
+    public function scopeJoinInternalPerson($query, bool $includeExternalPerson = false)
+    {
+        if ($includeExternalPerson) {
+            $query->join('people as person', 'person_entries.person_id', '=', 'person.id');
+        }
+
+        return $query
+            ->join('internal_people as internalPerson',
+                'person_entries.internal_person_id', '=', 'internalPerson.id')
+            ->join('people as internalPerson_personRelation',
+                'internalPerson.person_id', '=', 'internalPerson_personRelation.id');
+    }
 }

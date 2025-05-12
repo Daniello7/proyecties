@@ -49,10 +49,7 @@ class PersonEntriesShowTable extends Component
         $query = PersonEntry::query()
             ->with($this->relations)
             ->select($this->select)
-            ->join('internal_people as internalPerson',
-                'person_entries.internal_person_id', '=', 'internalPerson.id')
-            ->join('people as internalPerson_personRelation',
-                'internalPerson.person_id', '=', 'internalPerson_personRelation.id')
+            ->joinInternalPerson()
             ->where('person_entries.person_id', $this->person_id)
             ->whereNotNull('exit_time');
 

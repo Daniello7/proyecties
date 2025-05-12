@@ -9,7 +9,7 @@
         <thead class="[&_th:first-child]:rounded-l-lg [&_th:last-child]:rounded-r-lg">
         <tr class="*:cursor-pointer *:transition-colors">
             @foreach($columns as $col)
-                <th wire:click="sortBy('{{ $col }}')" class="p-2 uppercase select-none text-white bg-blue-600 hover:bg-gradient-to-r from-blue-600 via-emerald-600 to-blue-600 dark:bg-violet-700 dark:from-violet-700 dark:via-pink-600 dark:to-violet-700 min-w-fit w-[10%]">
+                <th wire:click="sortBy('{{ $columnMap[$col] }}')" class="p-2 uppercase select-none text-white bg-blue-600 hover:bg-gradient-to-r from-blue-600 via-emerald-600 to-blue-600 dark:bg-violet-700 dark:from-violet-700 dark:via-pink-600 dark:to-violet-700 min-w-fit w-[10%]">
                     {{ __($col) }}
                     @if($sortColumn == $columnMap[$col])
                         {{ $sortDirection === 'asc' ? '↑' : '↓' }}
