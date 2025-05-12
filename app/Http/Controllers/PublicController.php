@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 class PublicController extends Controller
 {
-    public function index()
+    public function welcome()
     {
         return view('welcome');
     }
@@ -19,5 +19,5 @@ class PublicController extends Controller
         return view('contact');
     }
 
-    
+
 }

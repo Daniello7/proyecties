@@ -6,6 +6,6 @@ class ControlAccessController extends Controller
 {
     public function __invoke()
     {
-        return view('control-access.index');
+        return view('porter.home');
     }
 }
