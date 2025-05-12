@@ -21,10 +21,12 @@ class Sidebar extends Component
 
     public function loadUnreadPdfCount(): void
     {
-        $this->unreadPdfCount = auth()->user()
-            ->pdfExports()
-            ->whereNull('viewed_at')
-            ->count();
+        if (auth()->check()) {
+            $this->unreadPdfCount = auth()->user()
+                ->pdfExports()
+                ->whereNull('viewed_at')
+                ->count();
+        }
     }
 
     public function getLinks(): array
