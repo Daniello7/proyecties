@@ -38,11 +38,8 @@ class Sidebar extends Component
         $user = auth()->user();
 
         if ($user->hasRole('admin')) {
-            return [
-                'admin' => $this->getAdminLinks(),
-                'porter' => $this->getPorterLinks(),
-                'rrhh' => $this->getHRLinks()
-            ];
+            return $this->getAdminLinks();
+
         } elseif ($user->hasRole('porter')) {
             return $this->getPorterLinks();
 
@@ -80,6 +77,10 @@ class Sidebar extends Component
     {
         return [
             ['name' => 'Admin', 'url' => 'admin'],
+            ['name' => 'External Staff', 'url' => 'person-entries'],
+            ['name' => 'Internal Staff', 'url' => 'internal-person'],
+            ['name' => 'Package', 'url' => 'packages'],
+            ['name' => 'Key Control', 'url' => 'key-control'],
             ['name' => 'Dashboard', 'url' => 'dashboard'],
         ];
     }

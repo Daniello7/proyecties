@@ -26,6 +26,7 @@
                 </div>
                 <div class="flex gap-4">
                     <x-user-dropdown/>
+                    <x-language-dropdown/>
                     <x-svg.dark-mode-button/>
                 </div>
             </div>
