@@ -23,6 +23,7 @@ class PackagesHomeTable extends Component
     public function openCommentInput($id): void
     {
         $this->activePackageCommentInput = "package_$id";
+        $this->packageComment = '';
     }
 
     public function closeCommentInput(): void

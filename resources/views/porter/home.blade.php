@@ -17,7 +17,7 @@
         </div>
         <div class="flex-1 text-gray-800 dark:text-gray-100 bg-white dark:bg-gray-800 rounded-lg p-2 shadow-lg max-h-max">
             <x-header :content="__('Keys')"/>
-            <livewire:key-control-table :is-home-view="true"/>
+            <livewire:key-control-home-table/>
         </div>
     </div>
 </x-app-layout>

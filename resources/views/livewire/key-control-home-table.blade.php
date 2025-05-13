@@ -6,7 +6,7 @@
         </div>
     </div>
     <hr class="mx-2 border-blue-600 dark:border-pink-600 opacity-50">
-    <table class="border-separate border-spacing-y-2 text-xs sm:text-sm {{ $isHomeView ? '' : 'md:text-base' }} w-full">
+    <table class="border-separate border-spacing-y-2 text-xs sm:text-sm w-full">
         <thead class="[&_th:first-child]:rounded-l-lg [&_th:last-child]:rounded-r-lg">
         <tr class="*:cursor-pointer *:transition-colors">
             @foreach($columns as $col)
@@ -24,25 +24,13 @@
             <tr class="shadow-md bg-white dark:bg-gray-700 rounded-lg text-center *:py-2 *:px-1">
                 <!-- Fields -->
                 <td>{{ $keyControl->person->name. ' '.$keyControl->person->last_name }}</td>
-                @if(!isset($key_id))
-                    <td>{{ (array_search($keyControl->key->zone, \App\Models\Key::ZONES)+1). ' - ' .$keyControl->key->name }}</td>
-                @endif
-                @if(!$isHomeView)
-                    <td>{{ $keyControl->deliver->name }}</td>
-                    <td>{{ $keyControl->exit_time }}</td>
-                    <td>{{ $keyControl->receiver->name }}</td>
-                    <td>{{ $keyControl->entry_time }}</td>
-                @endif
+                <td>{{ (array_search($keyControl->key->zone, \App\Models\Key::ZONES)+1). ' - ' .$keyControl->key->name }}</td>
                 <td>{{ $keyControl->comment }}</td>
                 <!-- Actions -->
                 <td>
                     <div class="flex flex-row flex-wrap gap-2 justify-center">
-                        @if($isHomeView)
-                            <x-svg.arrow-down-button wire:click="updateKeyControlRecord({{ $keyControl->id }})"/>
-                            <x-svg.delete-button wire:click="deleteKeyControlRecord({{ $keyControl->id }})"/>
-                        @else
-                            <x-svg.edit-button href="{{ route('key-control.edit', $keyControl->id) }}"/>
-                        @endif
+                        <x-svg.arrow-down-button wire:click="updateKeyControlReception({{ $keyControl->id }})"/>
+                        <x-svg.delete-button wire:click="deleteKeyControlRecord({{ $keyControl->id }})"/>
                     </div>
                 </td>
             </tr>

@@ -22,7 +22,6 @@ Route::middleware(['auth', RoleMiddleware::using(['porter', 'admin', 'rrhh'])])-
 
 Route::middleware(RoleMiddleware::using(['porter', 'admin']))->group(function () {
     Route::get('/packages', [PackageController::class, 'index'])->name('packages');
-    Route::delete('/packages/{id}', [PackageController::class, 'destroy'])->name('packages.destroy');
     Route::get('/packages/deleted', [PackageController::class, 'deleted'])->name('packages.deleted');
 
     Route::get('/key-control/keys', [KeyController::class, 'index'])->name('keys.index');
