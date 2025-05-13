@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Livewire;
+namespace App\Livewire\Packages;
 
 use App\Models\Package;
 use App\Traits\HasTableEloquent;
@@ -8,7 +8,7 @@ use App\Traits\PackageTableConfig;
 use Illuminate\Database\Eloquent\Collection;
 use Livewire\Component;
 
-class PackagesHomeTable extends Component
+class HomeTable extends Component
 {
     use HasTableEloquent, PackageTableConfig;
 
@@ -80,6 +80,6 @@ class PackagesHomeTable extends Component
 
     public function render()
     {
-        return view('livewire.packages-home-table', ['rows' => $this->getPackages()]);
+        return view('livewire.packages.home-table', ['rows' => $this->getPackages()]);
     }
 }

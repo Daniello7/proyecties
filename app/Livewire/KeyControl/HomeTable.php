@@ -1,13 +1,13 @@
 <?php
 
-namespace App\Livewire;
+namespace App\Livewire\KeyControl;
 
 use App\Models\KeyControl;
 use App\Traits\HasTableEloquent;
 use Illuminate\Database\Eloquent\Collection;
 use Livewire\Component;
 
-class KeyControlHomeTable extends Component
+class homeTable extends Component
 {
     use HasTableEloquent;
 
@@ -76,7 +76,7 @@ class KeyControlHomeTable extends Component
 
     public function render()
     {
-        return view('livewire.key-control-home-table', [
+        return view('livewire.key-control.home-table', [
             'rows' => $this->getKeyControlRows()
         ]);
     }

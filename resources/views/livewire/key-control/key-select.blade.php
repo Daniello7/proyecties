@@ -27,6 +27,6 @@
         @endif
     </div>
     @if(!$isForm)
-        <livewire:key-control-table :key_id="$key_id"/>
+        <livewire:key-control.index-table :key_id="$key_id"/>
     @endif
 </div>

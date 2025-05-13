@@ -11,7 +11,7 @@
                     {{ __('Key Control').' - '.__('Search for Key') }}
                 </h2>
                 <hr class="mx-2 border-blue-600 dark:border-pink-600 opacity-50">
-                <livewire:key-select/>
+                <livewire:key-control.key-select/>
             </section>
         </div>
     </div>

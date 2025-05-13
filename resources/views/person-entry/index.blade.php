@@ -15,7 +15,7 @@
             </section>
             <section class="text-gray-800 dark:text-gray-100 bg-white dark:bg-gray-800 rounded-lg p-2 shadow-lg transition-colors">
                 <x-header :content="__('External Staff').' - '.__('New Entry')"/>
-                <livewire:person-entries-index-table class="m-4"/>
+                <livewire:person-entries.index-table class="m-4"/>
             </section>
         </div>
     </div>

@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Livewire;
+namespace App\Livewire\Packages;
 
 use App\Models\Package;
 use App\Traits\HasTableEloquent;
@@ -9,7 +9,7 @@ use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Pagination\LengthAwarePaginator;
 use Livewire\Component;
 
-class PackagesIndexTable extends Component
+class IndexTable extends Component
 {
     use HasTableEloquent, PackageTableConfig;
 
@@ -47,6 +47,6 @@ class PackagesIndexTable extends Component
 
     public function render()
     {
-        return view('livewire.packages-index-table', ['rows' => $this->getPackages()]);
+        return view('livewire.packages.index-table', ['rows' => $this->getPackages()]);
     }
 }

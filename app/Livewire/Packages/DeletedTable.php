@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Livewire;
+namespace App\Livewire\Packages;
 
 use App\Models\Package;
 use App\Traits\HasTableEloquent;
@@ -8,7 +8,7 @@ use App\Traits\PackageTableConfig;
 use Illuminate\Pagination\LengthAwarePaginator;
 use Livewire\Component;
 
-class PackagesDeletedTable extends Component
+class DeletedTable extends Component
 {
     use HasTableEloquent, PackageTableConfig;
 

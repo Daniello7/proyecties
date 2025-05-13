@@ -1,13 +1,13 @@
 <?php
 
-namespace App\Livewire;
+namespace App\Livewire\KeyControl;
 
 use App\Models\KeyControl;
 use App\Traits\HasTableEloquent;
 use Illuminate\Database\Eloquent\Collection;
 use Livewire\Component;
 
-class KeyControlIndexTable extends Component
+class IndexTable extends Component
 {
     use HasTableEloquent;
 
@@ -27,7 +27,6 @@ class KeyControlIndexTable extends Component
     public function configureKeyControlIndexView(): void
     {
         $this->columns = ['Person', 'Key', 'Deliver', 'Exit', 'Receiver', 'Entry', 'Comment', 'Actions'];
-        if (isset($this->key_id)) array_splice($this->columns, 1, 1);
         $this->select = ['key_controls.*'];
         $this->columnMap = [
             'Key' => 'key.name',
@@ -63,6 +62,7 @@ class KeyControlIndexTable extends Component
         } else {
             $query->where('entry_time', '>=', now()->subMonths(2));
         }
+
         return $query->orderBy($this->sortColumn, $this->sortDirection)
             ->whereNotNull('entry_time')->get();
     }
@@ -78,7 +78,7 @@ class KeyControlIndexTable extends Component
 
     public function render()
     {
-        return view('livewire.key-control-index-table', [
+        return view('livewire.key-control.index-table', [
             'rows' => $this->getKeyControlRows()
         ]);
     }

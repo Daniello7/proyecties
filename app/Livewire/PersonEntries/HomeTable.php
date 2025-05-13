@@ -1,38 +1,38 @@
 <?php
 
-namespace App\Livewire;
+namespace App\Livewire\PersonEntries;
 
+use App\Jobs\GenerateActiveEntriesPdfJob;
 use App\Models\Person;
 use App\Models\PersonEntry;
 use App\Traits\HasTableEloquent;
 use Livewire\Component;
 
-class PersonEntriesIndexTable extends Component
+class HomeTable extends Component
 {
     use HasTableEloquent;
 
     public function mount()
     {
-        $this->columns = ['DNI', 'Name', 'Company', 'Contact', 'Latest Visit', 'Actions'];
+        $this->columns = ['Name', 'Company', 'Contact', 'Comment', 'Actions'];
         $this->select = [
             'person_entries.id',
             'person_entries.person_id',
             'person_entries.internal_person_id',
-            'person_entries.exit_time',
+            'person_entries.comment',
             'entry_time'
         ];
         $this->relations = [
-            'person:id,name,last_name,company,document_number',
+            'person:id,name,last_name,company',
             'internalPerson:id,person_id',
+            'internalPerson.person:id,name,last_name',
         ];
-        $this->sortColumn = 'exit_time';
-        $this->sortDirection = 'desc';
+        $this->sortColumn = 'arrival_time';
+        $this->sortDirection = 'asc';
         $this->columnMap = [
-            'DNI' => 'person.document_number',
             'Name' => 'person.name',
             'Company' => 'person.company',
             'Contact' => 'internalPerson_personRelation.name',
-            'Latest Visit' => 'exit_time',
             'Comment' => null,
             'Actions' => null,
         ];
@@ -44,23 +44,36 @@ class PersonEntriesIndexTable extends Component
             ->select('id')
             ->doesntHave('internalPerson');
 
-        $latestEntries = PersonEntry::query()
-            ->selectRaw('MAX(person_entries.id)')
-            ->wherein('person_entries.person_id', $externalPeople)
-            ->groupBy('person_entries.person_id');
-
         $query = PersonEntry::query()
             ->with($this->relations)
             ->select($this->select)
-            ->whereIn('person_entries.id', $latestEntries)
+            ->whereIn('person_entries.person_id', $externalPeople)
             ->joinInternalPerson(true)
-            ->whereNotNull('exit_time');
+            ->whereNull('exit_time');
 
         $this->applySearchFilter($query);
 
         return $query
             ->orderBy($this->sortColumn, $this->sortDirection)
-            ->paginate(20);
+            ->paginate(50);
+    }
+
+    public function updateEntry(int $id): void
+    {
+        $personEntry = PersonEntry::find($id);
+
+        $personEntry->update(['entry_time' => now()]);
+
+        session()->flash('success', __('messages.person-entry_updated'));
+    }
+
+    public function updateExit(int $id): void
+    {
+        $personEntry = PersonEntry::find($id);
+
+        $personEntry->update(['exit_time' => now()]);
+
+        session()->flash('success', __('messages.person-entry_exited'));
     }
 
     public function destroyPersonEntry(int $id): void
@@ -69,8 +82,17 @@ class PersonEntriesIndexTable extends Component
         session()->flash('success', __('messages.person-entry_deleted'));
     }
 
+    public function generateActiveEntriesPdf(): void
+    {
+        GenerateActiveEntriesPdfJob::dispatch(
+            $this->columns,
+            $this->getEntries()->pluck('id')->toArray(),
+            auth()->user()->id,
+        );
+    }
+
     public function render()
     {
-        return view('livewire.person-entries-index-table', ['rows' => $this->getEntries()]);
+        return view('livewire.person-entries.home-table', ['rows' => $this->getEntries()]);
     }
 }
