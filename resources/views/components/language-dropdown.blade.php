@@ -11,12 +11,11 @@
             </button>
         </x-slot>
         <x-slot name="content">
-            <x-dropdown-link :href="route('languages', ['lang' => 'es'])">
-                {{ __('Spanish') }}
-            </x-dropdown-link>
-            <x-dropdown-link :href="route('languages', ['lang' => 'en'])">
-                {{ __('English') }}
-            </x-dropdown-link>
+            @foreach($langKeys as $key)
+                <x-dropdown-link :href="route('languages', ['lang' => $key])">
+                    {{__(explode(',', $languages[$key]['isoName'])[0])}}
+                </x-dropdown-link>
+            @endforeach
         </x-slot>
     </x-dropdown>
 </div>

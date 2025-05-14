@@ -11,11 +11,8 @@ class ReasonSelect extends Component
 {
     public array $reasons = PersonEntry::REASONS;
 
-    public string $oldReason;
-
-    public function __construct(string $oldReason = null)
+    public function __construct()
     {
-        $this->oldReason = $oldReason;
     }
 
     /**

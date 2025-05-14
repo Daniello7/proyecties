@@ -2,23 +2,47 @@
 
 namespace App\Livewire\PersonEntries;
 
+use App\Events\NotifyContactVisitorEvent;
+use App\Http\Requests\PersonEntry\StorePersonEntryRequest;
+use App\Http\Requests\PersonEntry\UpdatePersonEntryRequest;
 use App\Models\Person;
 use App\Models\PersonEntry;
 use App\Traits\HasTableEloquent;
+use Illuminate\Pagination\LengthAwarePaginator;
 use Livewire\Component;
 
 class IndexTable extends Component
 {
     use HasTableEloquent;
 
-    public function mount()
+    public ?string $activeModal = null;
+    public ?int $id = null;
+    public ?Person $person = null;
+    public ?PersonEntry $entry = null;
+
+    // Form properties
+    public $reason;
+    public $person_id;
+    public $internal_person_id;
+    public $arrival_time;
+    public $entry_time;
+    public $exit_time;
+    public $comment;
+    public $notify = false;
+    public $enter = false;
+
+    protected StorePersonEntryRequest|UpdatePersonEntryRequest $formRequest;
+
+    public function mount(): void
     {
-        $this->columns = ['DNI', 'Name', 'Company', 'Contact', 'Latest Visit', 'Actions'];
+        $this->columns = ['DNI', 'Name', 'Company', 'Contact', 'Latest Visit', 'Reason', 'Comment', 'Actions'];
         $this->select = [
             'person_entries.id',
             'person_entries.person_id',
             'person_entries.internal_person_id',
+            'person_entries.reason',
             'person_entries.exit_time',
+            'person_entries.comment',
             'entry_time'
         ];
         $this->relations = [
@@ -33,12 +57,13 @@ class IndexTable extends Component
             'Company' => 'person.company',
             'Contact' => 'internalPerson_personRelation.name',
             'Latest Visit' => 'exit_time',
+            'Reason' => 'reason',
             'Comment' => null,
             'Actions' => null,
         ];
     }
 
-    private function getEntries()
+    private function getEntries(): LengthAwarePaginator
     {
         $externalPeople = Person::query()
             ->select('id')
@@ -61,6 +86,87 @@ class IndexTable extends Component
         return $query
             ->orderBy($this->sortColumn, $this->sortDirection)
             ->paginate(20);
+    }
+
+    public function openModal($modal, int $id): void
+    {
+        $this->id = $id;
+        $this->activeModal = $modal;
+
+        if ($modal === 'editEntry') {
+            $this->entry = PersonEntry::with(['person', 'internalPerson.person'])->find($id);
+            $this->loadPersonEntryData();
+
+        }
+
+        if ($modal === 'createEntry') {
+            $this->person = Person::with(['personEntries' => function ($q) {
+                $q->orderBy('exit_time', 'desc')->first();
+            }])->find($id);
+
+            $this->entry = $this->person->personEntries->first();
+
+            $this->loadPersonEntryData();
+            $this->comment = null;
+        }
+    }
+
+    public function closeModal(): void
+    {
+        $this->resetExceptConfig();
+    }
+
+    private function loadPersonEntryData(): void
+    {
+        $this->reason = $this->entry->reason;
+        $this->person_id = $this->entry->person_id;
+        $this->internal_person_id = $this->entry->internal_person_id;
+        $this->arrival_time = substr($this->entry->arrival_time, 0, -3);
+        $this->entry_time = substr($this->entry->entry_time, 0, -3);
+        $this->exit_time = $this->entry->exit_time ? substr($this->entry->exit_time, 0, -3) : null;
+        $this->comment = $this->entry->comment;
+    }
+
+    public function storePersonEntry(): void
+    {
+        $this->formRequest = new StorePersonEntryRequest();
+
+        $validated = $this->validate($this->formRequest->rules());
+        $validated['user_id'] = auth()->user()->id;
+        $validated['arrival_time'] = now();
+
+        if ($this->enter) $validated['entry_time'] = now();
+
+        PersonEntry::create($validated);
+
+        session()->flash('success', __('messages.person-entry_created'));
+
+        if ($this->notify) event(new NotifyContactVisitorEvent($this->entry));
+
+        if ($this->reason == 'Charge' || $this->reason == 'Discharge') {
+            $pdfUrl = route('driver-rules', ['person' => $this->person]);
+        } elseif ($this->reason == 'Cleaning') {
+            $pdfUrl = route('cleaning-rules', ['person' => $this->person]);
+        } else {
+            $pdfUrl = route('visitor-rules', ['person' => $this->person]);
+        }
+
+        $this->dispatch('openRulesPdf', url: $pdfUrl);
+
+        $this->closeModal();
+    }
+
+    public function updatePersonEntry(): void
+    {
+        $this->formRequest = new UpdatePersonEntryRequest();
+
+        $validated = $this->validate($this->formRequest->rules());
+
+        $this->entry->update($validated);
+
+        session()->flash('success', __('messages.person-entry_updated'));
+
+        $this->closeModal();
     }
 
     public function destroyPersonEntry(int $id): void

@@ -7,7 +7,7 @@
         <x-session-status flash="success" class="p-1"/>
     </div>
     <hr class="mx-2 border-blue-600 dark:border-pink-600 opacity-50">
-    <div class="h-[600px] overflow-hidden overflow-y-scroll scrollbar-custom px-4">
+    <div class="max-h-[600px] overflow-hidden overflow-y-scroll scrollbar-custom px-4">
         <table class="border-separate border-spacing-y-2 text-xs sm:text-sm md:text-base w-full">
             <thead class="[&_th:first-child]:rounded-l-lg [&_th:last-child]:rounded-r-lg">
             <tr class="*:cursor-pointer *:transition-colors">

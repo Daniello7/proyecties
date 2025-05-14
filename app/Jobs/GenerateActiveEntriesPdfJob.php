@@ -41,10 +41,12 @@ class GenerateActiveEntriesPdfJob implements ShouldQueue
             ->whereIn('id', $this->entries_id)
             ->get();
 
+        $username = auth()->user()->name;
+
         $pdf = PDF::loadView('pdf.activeEntries', [
             'columns' => $this->columns,
             'entries' => $entries,
-            'user_id' => $this->user_id
+            'username' => $username,
         ]);
 
         $filename = 'pdfs/active_entries_' . $this->user_id . '_' . now()->timestamp . '.pdf';

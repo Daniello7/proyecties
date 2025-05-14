@@ -38,4 +38,11 @@ trait HasTableEloquent
             }
         });
     }
+
+    public function resetExceptConfig(array $excepts = []): void
+    {
+        $resets = array_merge(['columns', 'select', 'relations', 'columnMap', 'sortColumn', 'sortDirection', 'search'], $excepts);
+
+        $this->resetExcept($resets);
+    }
 }

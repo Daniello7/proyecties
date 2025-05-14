@@ -7,6 +7,9 @@ return [
     'key-control_deleted' => 'Registro de llave eliminado',
     'key-control_created' => 'Nuevo registro de llave añadido',
 
+    'person_created' => 'Persona añadida correctamente.',
+    'person_updated' => 'Persona actualizada correctamente.',
+
     'person-entry_updated' => 'Entrada de persona actualizada',
     'person-entry_exited' => 'Salida de persona actualizada',
     'person-entry_deleted' => 'Entrada de persona eliminada',

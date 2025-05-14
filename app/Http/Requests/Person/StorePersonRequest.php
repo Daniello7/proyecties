@@ -9,7 +9,7 @@ class StorePersonRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'document_number' => 'required|string|max:20',
+            'document_number' => 'required|string|max:20|unique:people,document_number',
             'name' => 'required|string|max:100',
             'last_name' => 'required|string|max:100',
             'company' => 'required|string|max:100',

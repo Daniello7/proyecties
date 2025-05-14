@@ -50,7 +50,7 @@
     <img id="logo" src="{{ public_path('images/logo.png') }}" width="100%" alt="logo.svg">
     <h3>PERSONAL EXTERNO EN INSTALACIONES</h3>
     <p>{{ now()->format('H:i d/m/Y') }}</p>
-    <p>Emitido por: {{ $user_id }}</p>
+    <p>Emitido por: {{ $username }}</p>
 </header>
 <hr>
 <table>
