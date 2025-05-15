@@ -36,7 +36,7 @@
                     <td>
                         <div class="flex flex-row flex-wrap gap-2 justify-center">
                             <x-svg.edit-button wire:click="openModal('editEntry', {{ $personEntry->id }})"/>
-                            <x-svg.delete-button wire:click="openModal('destroyEntry', {{ $personEntry->id }})"/>
+                            <x-svg.recycle-bin wire:click="openModal('destroyEntry', {{ $personEntry->id }})" class="w-9 h-9 stroke-red-600 dark:stroke-red-200 bg-red-300 dark:bg-red-800 bg-opacity-40"/>
                         </div>
                     </td>
                 </tr>

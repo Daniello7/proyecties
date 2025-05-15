@@ -2,6 +2,7 @@
 
 namespace App\Livewire\KeyControl;
 
+use App\Http\Requests\KeyControl\UpdateKeyControlRequest;
 use App\Models\KeyControl;
 use App\Traits\HasTableEloquent;
 use Illuminate\Database\Eloquent\Collection;
@@ -11,8 +12,26 @@ class IndexTable extends Component
 {
     use HasTableEloquent;
 
-    public int $key_id;
-    protected $listeners = ['keyUpdated' => 'updateKeyId'];
+    public ?int $keyId = null;
+    public ?int $exitKey_id;
+    public ?KeyControl $exitKey;
+    public $activeModal = null;
+
+    public UpdateKeyControlRequest $formRequest;
+
+    // Form properties
+    public $person_id;
+    public $key_id;
+    public $deliver_id;
+    public $receiver_id;
+    public $entry_time;
+    public $exit_time;
+    public $comment;
+
+    protected $listeners = [
+        'keyUpdated' => 'updateKeyId',
+        'zoneUpdated' => 'resetKeyId'
+    ];
 
     public function mount(): void
     {
@@ -21,7 +40,12 @@ class IndexTable extends Component
 
     public function updateKeyId($newKeyId): void
     {
-        $this->key_id = $newKeyId;
+        $this->keyId = $newKeyId;
+    }
+
+    public function resetKeyId(): void
+    {
+        $this->keyId = null;
     }
 
     public function configureKeyControlIndexView(): void
@@ -57,8 +81,8 @@ class IndexTable extends Component
 
         $this->applySearchFilter($query);
 
-        if (isset($this->key_id)) {
-            $query->where('key.id', $this->key_id);
+        if (isset($this->keyId)) {
+            $query->where('key.id', $this->keyId);
         } else {
             $query->where('entry_time', '>=', now()->subMonths(2));
         }
@@ -67,7 +91,46 @@ class IndexTable extends Component
             ->whereNotNull('entry_time')->get();
     }
 
-    public function deleteKeyControlRecord($id): void
+    public function openModal($modal, $id): void
+    {
+        $this->activeModal = $modal;
+        $this->exitKey_id = $id;
+
+        if ($modal === 'editKeyControl') {
+            $this->exitKey = KeyControl::findOrFail($id);
+            $this->loadKeyControlData();
+        }
+    }
+
+    public function closeModal(): void
+    {
+        $this->resetExceptConfig(['keyId']);
+    }
+
+    private function loadKeyControlData(): void
+    {
+        $this->person_id = $this->exitKey->person_id;
+        $this->key_id = $this->exitKey->key_id;
+        $this->deliver_id = $this->exitKey->deliver_id;
+        $this->receiver_id = $this->exitKey->receiver_id;
+        $this->entry_time = substr($this->exitKey->entry_time, 0, -3);
+        $this->exit_time = substr($this->exitKey->exit_time, 0, -3);
+    }
+
+    public function updateKeyControl(): void
+    {
+        $this->formRequest = new UpdateKeyControlRequest();
+
+        $validated = $this->validate($this->formRequest->rules());
+
+        $this->exitKey->update($validated);
+
+        session()->flash('key-status', __('messages.key-control_updated'));
+
+        $this->closeModal();
+    }
+
+    public function deleteKeyControl($id): void
     {
         $keyControl = KeyControl::findorFail($id);
 

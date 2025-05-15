@@ -96,7 +96,6 @@ class IndexTable extends Component
         if ($modal === 'editEntry') {
             $this->entry = PersonEntry::with(['person', 'internalPerson.person'])->find($id);
             $this->loadPersonEntryData();
-
         }
 
         if ($modal === 'createEntry') {
@@ -172,7 +171,10 @@ class IndexTable extends Component
     public function destroyPersonEntry(int $id): void
     {
         PersonEntry::destroy($id);
+
         session()->flash('success', __('messages.person-entry_deleted'));
+
+        $this->closeModal();
     }
 
     public function render()

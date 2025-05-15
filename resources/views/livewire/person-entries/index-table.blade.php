@@ -39,7 +39,7 @@
                         <x-svg.edit-button wire:click="openModal('editEntry', {{ $personEntry->id }})"/>
                         <a href="{{ route('person.show', ['id' => $personEntry->person_id]) }}" class="text-white bg-blue-600 text-xl font-serif font-bold px-3 py-[2px] rounded-lg border-2 border-white dark:border-gray-700 hover:ring-4 hover:ring-blue-600 max-h-max transition">
                             i </a>
-                        <x-svg.delete-button wire:click="destroyPersonEntry({{ $personEntry->id }})"/>
+                        <x-svg.recycle-bin wire:click="openModal('destroyEntry', {{ $personEntry->id }})" class="w-9 h-9 stroke-red-600 dark:stroke-red-200 bg-red-300 dark:bg-red-800 bg-opacity-40"/>
                     </div>
                 </td>
             </tr>
@@ -54,4 +54,5 @@
     @endif
     @includeWhen($activeModal == 'editEntry', 'person-entry.edit')
     @includeWhen($activeModal == 'createEntry', 'person-entry.create')
+    @includeWhen($activeModal == 'destroyEntry', 'livewire.person-entries.modals.confirm-destroy')
 </div>

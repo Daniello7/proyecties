@@ -26,14 +26,14 @@
                 <td>{{ $keyControl->person->name. ' '.$keyControl->person->last_name }}</td>
                 <td>{{ (array_search($keyControl->key->zone, \App\Models\Key::ZONES)+1). ' - ' .$keyControl->key->name }}</td>
                 <td>{{ $keyControl->deliver->name }}</td>
-                <td>{{ $keyControl->exit_time }}</td>
+                <td>{{ substr($keyControl->exit_time,0,-3) }}</td>
                 <td>{{ $keyControl->receiver->name }}</td>
-                <td>{{ $keyControl->entry_time }}</td>
+                <td>{{ substr($keyControl->entry_time,0,-3) }}</td>
                 <td>{{ $keyControl->comment }}</td>
                 <!-- Actions -->
                 <td>
                     <div class="flex flex-row flex-wrap gap-2 justify-center">
-                        <x-svg.edit-button href="{{ route('key-control.edit', $keyControl->id) }}"/>
+                        <x-svg.edit-button wire:click="openModal('editKeyControl',{{ $keyControl->id }})"/>
                     </div>
                 </td>
             </tr>
@@ -41,4 +41,5 @@
         </tbody>
     </table>
     <hr class="mx-2 border-blue-600 dark:border-pink-600 opacity-50">
+    @includeWhen($activeModal == 'editKeyControl', 'key-control.edit')
 </div>

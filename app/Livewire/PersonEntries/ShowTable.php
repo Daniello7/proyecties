@@ -79,9 +79,8 @@ class ShowTable extends Component
         $this->id = $id;
         $this->activeModal = $modal;
 
-        $this->entry = PersonEntry::with(['person', 'internalPerson.person'])->findOrFail($id);
-
         if ($modal === 'editEntry') {
+            $this->entry = PersonEntry::with(['person', 'internalPerson.person'])->findOrFail($id);
             $this->loadPersonEntryData();
         }
     }

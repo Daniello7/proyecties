@@ -1,22 +1,14 @@
-<x-app-layout :title="__('Control Access')">
-    <x-slot name='header'>
-        <h1 class='font-semibold text-3xl custom-gradient-text'>
-            {{ __('Key Control') }}
-        </h1>
-    </x-slot>
-    <div class="py-12">
-        <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
-            <div class="bg-white shadow-lg dark:bg-gray-800 rounded-lg">
-                <div class="text-gray-800 dark:text-gray-100 pb-8">
-                    <x-header :content="__('Key Control').' - '.__('Edit Exit')"/>
-                    <form action="{{ route('key-control.update', $keyControl->id) }}" method="post" class="px-8">
-                        @include('key-control.edit-form-fields')
-                        <x-primary-button type="submit">{{ __('Save') }}</x-primary-button>
-                        @csrf
-                        @method('PATCH')
-                    </form>
-                </div>
-            </div>
-        </div>
+<div class="fixed inset-0 bg-gray-500 bg-opacity-75 flex items-center justify-center z-50">
+    <div class="bg-white dark:bg-gray-800 rounded-3xl gradient-border shadow-xl w-full max-w-4xl">
+        <x-header :content="__('Key Control').' - '.__('Edit Exit')"/>
+        @include('key-control.edit-form-fields')
+        <x-primary-button wire:click="updateKeyControl({{ $key_id }})" class="m-4">
+            {{ __('Update') }}
+            <x-svg.confirm-icon class="w-7 h-7 ml-2"/>
+        </x-primary-button>
+        <x-secondary-button wire:click="closeModal" class="m-4">
+            {{ __('Cancel') }}
+            <x-svg.cancel-icon class="w-7 h-7 ml-2"/>
+        </x-secondary-button>
     </div>
-</x-app-layout>
+</div>

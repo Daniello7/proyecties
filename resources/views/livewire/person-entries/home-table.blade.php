@@ -1,8 +1,8 @@
 <div class="w-full">
     <x-header :content="__('External Staff')">
         <div class="place-content-center">
-            <x-primary-button  wire:loading.attr="disabled" x-data="{ loading: false }" x-on:click="loading = true; setTimeout(() => loading = false, 2000)" x-bind:disabled="loading">
-                <x-svg.excel-icon  class="w-6 h-6 stroke-white fill-white mr-2"/>
+            <x-primary-button wire:loading.attr="disabled" x-data="{ loading: false }" x-on:click="loading = true; setTimeout(() => loading = false, 2000)" x-bind:disabled="loading">
+                <x-svg.excel-icon class="w-6 h-6 stroke-white fill-white mr-2"/>
                 {{ __('Export') }}
             </x-primary-button>
             <x-secondary-button wire:click="generateActiveEntriesPdf()" wire:loading.attr="disabled" x-data="{ loading: false }" x-on:click="loading = true; setTimeout(() => loading = false, 2000)" x-bind:disabled="loading">
@@ -50,7 +50,7 @@
                         <a href="{{ route('person.show', ['id' => $personEntry->person_id]) }}" class="text-white bg-blue-600 text-xl font-serif font-bold px-3 py-[2px] rounded-lg border-2 border-white dark:border-gray-700 hover:ring-4 hover:ring-blue-600 max-h-max transition">
                             i </a>
                         @can('cancel',\App\Models\PersonEntry::class)
-                            <x-svg.delete-button wire:click="destroyPersonEntry({{ $personEntry->id }})"/>
+                            <x-svg.recycle-bin wire:click="destroyPersonEntry({{ $personEntry->id }})" class="w-9 h-9 stroke-red-600 dark:stroke-red-200 bg-red-300 dark:bg-red-800 bg-opacity-40"/>
                         @endcan
                     </div>
                 </td>

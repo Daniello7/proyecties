@@ -7,12 +7,19 @@ use Livewire\Component;
 class KeySelect extends Component
 {
     public string $zone = '';
-    public int $key_id = 0;
+    public ?int $keyId = 0;
     public bool $isForm = false;
 
-    public function updatedKeyId($value): void
+    public function updatedKeyId($keyId): void
     {
-        $this->dispatch('keyUpdated', $value);
+        $this->dispatch('keyUpdated', $keyId);
+    }
+
+    public function updatedZone($zone): void
+    {
+        $this->zone = $zone;
+        $this->keyId = 0;
+        $this->dispatch('zoneUpdated', $zone);
     }
 
     public function render()

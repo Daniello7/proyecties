@@ -1,0 +1,27 @@
+<div class="flex flex-col gap-8 mx-auto sm:px-6 lg:px-8">
+    <section class="text-gray-800 dark:text-gray-100 bg-white dark:bg-gray-800 rounded-lg p-2 shadow-lg transition-colors z-10">
+        <x-header :content="__('Options')"/>
+        <div class="py-6 flex flex-row gap-4 justify-evenly">
+            <x-button-box wire:click="openExitKeysTable">
+                <x-svg.key-icon class="w-8 h-8 stroke-blue-600"/>
+                {{ __('Latest Records') }}
+            </x-button-box>
+            <x-button-box wire:click="openCreateExitKey">
+                <x-svg.package-shipping-icon class="w-8 h-8 stroke-blue-600"/>
+                {{ __('New Exit') }}
+            </x-button-box>
+            <x-button-box wire:click="openSearchKey">
+                <x-svg.search-icon class="w-8 h-8 stroke-blue-600"/>
+                {{ __('Search for Key') }}
+            </x-button-box>
+        </div>
+    </section>
+    <section class="text-gray-800 dark:text-gray-100 bg-white dark:bg-gray-800 rounded-lg p-2 shadow-lg transition-colors">
+        @if($openedExitKeysTable)
+            <x-header :content="__('Key Control').' - '.__('Latest Records')"/>
+            <livewire:key-control.index-table/>
+        @endif
+        @includeWhen($openedCreateExitKey, 'key-control.create')
+        @includeWhen($openedSearchKey, 'keys.index')
+    </section>
+</div>
