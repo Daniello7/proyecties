@@ -30,19 +30,13 @@
                     <td>{{ $personEntry->user->name }}</td>
                     <td>{{ $personEntry->arrival_time }}</td>
                     <td>{{ $personEntry->entry_time }}</td>
-                    @isset($personEntry->exit_time)
-                        <td>{{ $personEntry->exit_time }}</td>
-                    @endisset
+                    <td>{{ $personEntry->exit_time }}</td>
                     <td>{{ $personEntry->comment }}</td>
                     <!-- Actions -->
                     <td>
                         <div class="flex flex-row flex-wrap gap-2 justify-center">
-                            @can('update',\App\Models\PersonEntry::class)
-                                <x-svg.edit-button href="{{ route('person-entries.edit', $personEntry->id) }}"/>
-                            @endcan
-                            @can('delete',\App\Models\PersonEntry::class)
-                                <x-svg.delete-button wire:click="destroyPersonEntry({{ $personEntry->id }})"/>
-                            @endcan
+                            <x-svg.edit-button wire:click="openModal('editEntry', {{ $personEntry->id }})"/>
+                            <x-svg.delete-button wire:click="openModal('destroyEntry', {{ $personEntry->id }})"/>
                         </div>
                     </td>
                 </tr>
@@ -56,4 +50,6 @@
             {{ $rows->links() }}
         </div>
     @endif
+    @includeWhen($activeModal == 'editEntry', 'person-entry.edit')
+    @includeWhen($activeModal == 'destroyEntry', 'livewire.person-entries.modals.confirm-destroy')
 </div>

@@ -11,23 +11,19 @@ use App\Http\Controllers\PersonEntryController;
 
 Route::middleware(['auth', RoleMiddleware::using(['porter', 'admin', 'rrhh'])])->group(function () {
     Route::get('/person-entries', [PersonEntryController::class, 'index'])->name('person-entries');
-    Route::get('/person-entries/{id}', [PersonEntryController::class, 'show'])->name('person-entries.show');
 
     Route::get('/internal-person', [InternalPersonController::class, 'index'])
         ->name('internal-person');
 
-    Route::get('/person', [PersonController::class, 'index'])->name('person.index');
     Route::get('/person/{id}', [PersonController::class, 'show'])->name('person.show');
 });
 
 Route::middleware(RoleMiddleware::using(['porter', 'admin']))->group(function () {
     Route::get('/packages', [PackageController::class, 'index'])->name('packages');
-    Route::get('/packages/deleted', [PackageController::class, 'deleted'])->name('packages.deleted');
 
     Route::get('/key-control/keys', [KeyController::class, 'index'])->name('keys.index');
 
     Route::get('/key-control', [KeyControlController::class, 'index'])->name('key-control');
-    Route::get('/key-control/{id}', [KeyControlController::class, 'show'])->name('key-control.show');
 });
 
 Route::get('/dashboard', function () {

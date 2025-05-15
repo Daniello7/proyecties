@@ -4,11 +4,14 @@ namespace App\Livewire;
 
 use Closure;
 use Illuminate\Contracts\View\View;
+use Illuminate\Support\Facades\Route;
 use Livewire\Component;
 
 class Sidebar extends Component
 {
     public ?int $unreadPdfCount = null;
+    public $currentRoute = '';
+
     protected $listeners = [
         'pdfGenerated' => 'loadUnreadPdfCount',
         'updated-pdf' => 'loadUnreadPdfCount',
@@ -17,6 +20,7 @@ class Sidebar extends Component
     public function mount()
     {
         $this->loadUnreadPdfCount();
+        $this->currentRoute = Route::currentRouteName();
     }
 
     public function loadUnreadPdfCount(): void
@@ -95,6 +99,12 @@ class Sidebar extends Component
             ['name' => 'Register', 'url' => 'register'],
         ];
     }
+
+    public function isActiveLink(string $url): bool
+    {
+        return str_starts_with($this->currentRoute, $url);
+    }
+
 
     public function render(): View|Closure|string
     {

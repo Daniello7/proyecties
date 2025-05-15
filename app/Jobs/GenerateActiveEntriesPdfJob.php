@@ -5,6 +5,7 @@ namespace App\Jobs;
 use App\Events\GeneratedActiveEntriesPdfEvent;
 use App\Models\PdfExport;
 use App\Models\PersonEntry;
+use App\Models\User;
 use Barryvdh\DomPDF\Facade\Pdf;
 use Illuminate\Bus\Queueable;
 use Illuminate\Contracts\Queue\ShouldQueue;
@@ -41,12 +42,12 @@ class GenerateActiveEntriesPdfJob implements ShouldQueue
             ->whereIn('id', $this->entries_id)
             ->get();
 
-        $username = auth()->user()->name;
+        $user = User::findOrFail($this->user_id);
 
         $pdf = PDF::loadView('pdf.activeEntries', [
             'columns' => $this->columns,
             'entries' => $entries,
-            'username' => $username,
+            'username' => $user->name,
         ]);
 
         $filename = 'pdfs/active_entries_' . $this->user_id . '_' . now()->timestamp . '.pdf';

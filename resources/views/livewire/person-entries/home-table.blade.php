@@ -1,11 +1,11 @@
 <div class="w-full">
     <x-header :content="__('External Staff')">
         <div class="place-content-center">
-            <x-primary-button type="submit">
-                <x-svg.excel-icon class="w-6 h-6 stroke-white fill-white mr-2"/>
+            <x-primary-button  wire:loading.attr="disabled" x-data="{ loading: false }" x-on:click="loading = true; setTimeout(() => loading = false, 2000)" x-bind:disabled="loading">
+                <x-svg.excel-icon  class="w-6 h-6 stroke-white fill-white mr-2"/>
                 {{ __('Export') }}
             </x-primary-button>
-            <x-secondary-button wire:click="generateActiveEntriesPdf()">
+            <x-secondary-button wire:click="generateActiveEntriesPdf()" wire:loading.attr="disabled" x-data="{ loading: false }" x-on:click="loading = true; setTimeout(() => loading = false, 2000)" x-bind:disabled="loading">
                 <x-svg.pdf-icon class="w-6 h-6 stroke-white mr-2"/>
                 {{ __('Listing') }}
             </x-secondary-button>

@@ -1,4 +1,5 @@
 <div class="w-full">
+    <x-header :content="__('Package').' - '.__('Latest Records')"/>
     <div class="flex flex-col justify-between p-2">
         <div class="flex flex-row justify-between">
             <div>
@@ -41,7 +42,8 @@
                     <!-- Actions -->
                     <td>
                         <div class="flex flex-row flex-wrap gap-2 justify-center">
-                            <x-svg.edit-button href="{{ route('packages.edit', $package->id) }}"/>
+                            <x-svg.edit-button wire:click="openModal('editPackage', {{ $package->id }})"/>
+                            <x-svg.recycle-bin wire:click="openModal('deletePackage', {{ $package->id }})" class="w-9 h-9 stroke-red-600 dark:stroke-red-200 bg-red-300 dark:bg-red-800 bg-opacity-40"/>
                         </div>
                     </td>
                 </tr>
@@ -53,4 +55,6 @@
     <div class="pt-4 mx-8 [&_*]:text-blue-600 dark:[&_*]:text-pink-500">
         {{ $rows->links() }}
     </div>
+    @includeWhen($activeModal == 'editPackage', 'packages.edit')
+    @includeWhen($activeModal == 'deletePackage', 'livewire.packages.modals.confirm-delete')
 </div>

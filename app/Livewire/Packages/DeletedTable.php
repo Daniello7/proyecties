@@ -56,7 +56,7 @@ class DeletedTable extends Component
         $this->activeModal = null;
     }
 
-    public function forceDelete(int $id): void
+    public function deletePackage(int $id): void
     {
         $package = Package::onlyTrashed()->findOrFail($id);
         $package->forceDelete();
@@ -66,7 +66,7 @@ class DeletedTable extends Component
         $this->activeModal = null;
     }
 
-    public function forceDeleteAll(): void
+    public function deleteAllPackages(): void
     {
         Package::onlyTrashed()->forceDelete();
 

@@ -1,4 +1,5 @@
 <div class="w-full">
+    <x-header :content="__('Package').' - '.__('Recycle bin')"/>
     <div class="flex flex-col justify-between p-2">
         <div class="flex flex-row justify-between px-8">
             <div>

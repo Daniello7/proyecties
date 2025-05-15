@@ -8,48 +8,44 @@
         <x-session-status flash="success" class="p-1"/>
     </div>
     <hr class="mx-2 border-blue-600 dark:border-pink-600 opacity-50">
-        <table class="border-separate border-spacing-y-2 text-xs sm:text-sm md:text-base w-full">
-            <thead class="[&_th:first-child]:rounded-l-lg [&_th:last-child]:rounded-r-lg">
-            <tr class="*:cursor-pointer *:transition-colors">
-                @foreach($columns as $col)
-                    <th wire:click="sortBy('{{ $columnMap[$col] }}')" class="py-2 px-1 uppercase select-none text-white bg-blue-600 hover:bg-gradient-to-r from-blue-600 via-emerald-600 to-blue-600 dark:bg-violet-600 dark:from-violet-600 dark:via-pink-600 dark:to-violet-600 min-w-fit w-[10%]">
-                        {{ __($col) }}
-                        @if($sortColumn == $columnMap[$col])
-                            {{ $sortDirection === 'asc' ? '↑' : '↓' }}
-                        @endif
-                    </th>
-                @endforeach
-            </tr>
-            </thead>
-            <tbody class="[&_td:first-child]:rounded-l-lg [&_td:last-child]:rounded-r-lg *:transition-colors">
-            @foreach($rows as $personEntry)
-                <tr class="{{ isset($personEntry->exit_time) ?: 'ring-1 '. ($personEntry->entry_time != null ? 'ring-emerald-600':'ring-rose-600') }} shadow-md bg-white dark:bg-gray-700 rounded-lg text-center *:py-2 *:px-1">
-                    <!-- Fields -->
-                    <td>{{ $personEntry->person->document_number }}</td>
-                    <td>{{ $personEntry->person->name.' '.$personEntry->person->last_name }}</td>
-                    <td>{{ $personEntry->person->company }}</td>
-                    <td>{{ $personEntry->internalPerson->person->name.' '.$personEntry->internalPerson->person->last_name }}</td>
-                    <td>{{ $personEntry->exit_time }}</td>
-                    <td>{{ __($personEntry->reason) }}</td>
-                    <td>{{ $personEntry->comment }}</td>
-                    <!-- Actions -->
-                    <td>
-                        <div class="flex flex-row flex-wrap gap-2 justify-center">
-                            <x-svg.entry-button wire:click="openModal('createEntry', {{ $personEntry->person->id }})"/>
-                            @can('update',\App\Models\PersonEntry::class)
-                                <x-svg.edit-button wire:click="openModal('editEntry', {{ $personEntry->id }})"/>
-                            @endcan
-                            <a href="{{ route('person.show', ['id' => $personEntry->person_id]) }}" class="text-white bg-blue-600 text-xl font-serif font-bold px-3 py-[2px] rounded-lg border-2 border-white dark:border-gray-700 hover:ring-4 hover:ring-blue-600 max-h-max transition">
-                                i </a>
-                            @can('delete',\App\Models\PersonEntry::class)
-                                <x-svg.delete-button wire:click="destroyPersonEntry({{ $personEntry->id }})"/>
-                            @endcan
-                        </div>
-                    </td>
-                </tr>
+    <table class="border-separate border-spacing-y-2 text-xs sm:text-sm md:text-base w-full">
+        <thead class="[&_th:first-child]:rounded-l-lg [&_th:last-child]:rounded-r-lg">
+        <tr class="*:cursor-pointer *:transition-colors">
+            @foreach($columns as $col)
+                <th wire:click="sortBy('{{ $columnMap[$col] }}')" class="py-2 px-1 uppercase select-none text-white bg-blue-600 hover:bg-gradient-to-r from-blue-600 via-emerald-600 to-blue-600 dark:bg-violet-600 dark:from-violet-600 dark:via-pink-600 dark:to-violet-600 min-w-fit w-[10%]">
+                    {{ __($col) }}
+                    @if($sortColumn == $columnMap[$col])
+                        {{ $sortDirection === 'asc' ? '↑' : '↓' }}
+                    @endif
+                </th>
             @endforeach
-            </tbody>
-        </table>
+        </tr>
+        </thead>
+        <tbody class="[&_td:first-child]:rounded-l-lg [&_td:last-child]:rounded-r-lg *:transition-colors">
+        @foreach($rows as $personEntry)
+            <tr class="{{ isset($personEntry->exit_time) ?: 'ring-1 '. ($personEntry->entry_time != null ? 'ring-emerald-600':'ring-rose-600') }} shadow-md bg-white dark:bg-gray-700 rounded-lg text-center *:py-2 *:px-1">
+                <!-- Fields -->
+                <td>{{ $personEntry->person->document_number }}</td>
+                <td>{{ $personEntry->person->name.' '.$personEntry->person->last_name }}</td>
+                <td>{{ $personEntry->person->company }}</td>
+                <td>{{ $personEntry->internalPerson->person->name.' '.$personEntry->internalPerson->person->last_name }}</td>
+                <td>{{ $personEntry->exit_time }}</td>
+                <td>{{ __($personEntry->reason) }}</td>
+                <td>{{ $personEntry->comment }}</td>
+                <!-- Actions -->
+                <td>
+                    <div class="flex flex-row flex-wrap gap-2 justify-center">
+                        <x-svg.entry-button wire:click="openModal('createEntry', {{ $personEntry->person->id }})"/>
+                        <x-svg.edit-button wire:click="openModal('editEntry', {{ $personEntry->id }})"/>
+                        <a href="{{ route('person.show', ['id' => $personEntry->person_id]) }}" class="text-white bg-blue-600 text-xl font-serif font-bold px-3 py-[2px] rounded-lg border-2 border-white dark:border-gray-700 hover:ring-4 hover:ring-blue-600 max-h-max transition">
+                            i </a>
+                        <x-svg.delete-button wire:click="destroyPersonEntry({{ $personEntry->id }})"/>
+                    </div>
+                </td>
+            </tr>
+        @endforeach
+        </tbody>
+    </table>
     <hr class="mx-2 border-blue-600 dark:border-pink-600 opacity-50">
     @if($rows instanceof \Illuminate\Pagination\Paginator || $rows instanceof \Illuminate\Pagination\LengthAwarePaginator)
         <div class="pt-4 mx-8 [&_*]:text-blue-600 dark:[&_*]:text-pink-500">

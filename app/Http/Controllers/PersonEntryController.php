@@ -19,14 +19,4 @@ class PersonEntryController extends Controller
     {
         return view('person-entry.index');
     }
-
-    public function destroy($id)
-    {
-        $this->authorize('delete', PersonEntry::class);
-
-        PersonEntry::destroy($id);
-
-        return to_route('control-access')
-            ->with('status', __('messages.person-entry_deleted'));
-    }
 }
