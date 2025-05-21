@@ -1,7 +1,7 @@
 @props(['status', 'flash'])
 
 @if (isset($status) && session()->has($status))
-    <div {{ $attributes->merge(['class' => 'custom-gradient-text font-bold']) }} x-data='{ show:true }' x-init='setTimeout(() => show = false, 5000)' x-show='show'>
+    <div {{ $attributes->merge(['class' => 'custom-gradient-text font-bold']) }}>
         {{ session($status) }}
     </div>
 @elseif(isset($flash) && session()->has($flash))

@@ -26,15 +26,15 @@
         </tr>
         </thead>
         <tbody class="[&_td:first-child]:rounded-l-lg [&_td:last-child]:rounded-r-lg *:transition-colors">
-        @foreach($rows as $person)
+        @foreach($rows as $personData)
             <tr class="shadow-md bg-white dark:bg-gray-700 rounded-lg text-center *:p-2">
-                @foreach(array_slice($person->toArray(), 1) as $field)
+                @foreach(array_slice($personData->toArray(), 1) as $field)
                     <td>{{ $field }}</td>
                 @endforeach
                 <td class="flex flex-row flex-wrap gap-2 justify-center">
-                    <x-svg.edit-button wire:click="openModal('editPerson', {{ $person->id }})"/>
-                    <x-svg.entry-button wire:click="openModal('createEntry', {{ $person->id }})"/>
-                    <a href="{{ route('person.show', ['id' => $person->id]) }}" class="text-white bg-blue-600 text-xl font-serif font-bold px-3 py-[2px] rounded-lg border-2 border-white dark:border-gray-700 hover:ring-4 hover:ring-blue-600 max-h-max transition">
+                    <x-svg.edit-button wire:click="openModal('editPerson', {{ $personData->id }})"/>
+                    <x-svg.entry-button wire:click="openModal('createEntry', {{ $personData->id }})"/>
+                    <a href="{{ route('person.show', ['id' => $personData->id]) }}" class="text-white bg-blue-600 text-xl font-serif font-bold px-3 py-[2px] rounded-lg border-2 border-white dark:border-gray-700 hover:ring-4 hover:ring-blue-600 max-h-max transition">
                         i </a>
                 </td>
             </tr>

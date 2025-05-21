@@ -60,7 +60,7 @@ class PersonTable extends Component
             $this->entry = $this->person->personEntries->first();
 
             $this->loadPersonData();
-            $this->comment = null;
+            $this->loadLastEntryData();
         }
     }
 
@@ -71,17 +71,23 @@ class PersonTable extends Component
 
     private function loadPersonData(): void
     {
-        $this->reason = $this->person->reason;
         $this->person_id = $this->person->person_id;
-        $this->internal_person_id = $this->person->internal_person_id;
-        $this->arrival_time = substr($this->person->arrival_time, 0, -3);
-        $this->entry_time = substr($this->person->entry_time, 0, -3);
-        $this->exit_time = $this->person->exit_time ? substr($this->person->exit_time, 0, -3) : null;
         $this->document_number = $this->person->document_number;
         $this->name = $this->person->name;
         $this->last_name = $this->person->last_name;
         $this->company = $this->person->company;
         $this->comment = $this->person->comment;
+    }
+
+    private function loadLastEntryData(): void
+    {
+        if (!$this->entry) return;
+        $this->internal_person_id = $this->entry->internal_person_id;
+        $this->arrival_time = substr($this->entry->arrival_time, 0, -3);
+        $this->entry_time = substr($this->entry->entry_time, 0, -3);
+        $this->exit_time = $this->entry->exit_time ? substr($this->entry->exit_time, 0, -3) : null;
+        $this->reason = $this->entry->reason;
+        $this->comment = null;
     }
 
     public function storePerson(): void

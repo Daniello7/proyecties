@@ -15,6 +15,9 @@ return [
     'person-entry_deleted' => 'Entrada de persona eliminada',
     'person-entry_created' => 'Nueva entrada de persona añadida',
 
+    'document_created' => 'Nuevo documento añadido',
+    'document_deleted' => 'Documento eliminado',
+
     'package_stored' => 'Nuevo paquete registrado',
     'package_updated' => 'Paquete actualizado',
     'package_exited' => 'Salida de paquete actualizada',

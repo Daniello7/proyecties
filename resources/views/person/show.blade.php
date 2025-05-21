@@ -9,10 +9,11 @@
             <div class="text-gray-800 dark:text-gray-100 bg-white dark:bg-gray-800 rounded-lg p-2 shadow-lg transition-colors">
                 <x-header :content="__('Information').' - '.$person->name.' '.$person->last_name"/>
                 @include('person.person-details')
+                <livewire:person-document :person="$person"/>
             </div>
             <div class="text-gray-800 dark:text-gray-100 bg-white dark:bg-gray-800 rounded-lg p-2 shadow-lg transition-colors">
                 <x-header :content="__('Entry History')"/>
-                <livewire:person-entries.show-table person_id="{{ $person->id }}" class="m-4 "/>
+                <livewire:person-entries.show-table person_id="{{ $person->id }}" class="m-4"/>
             </div>
         </div>
     </div>
