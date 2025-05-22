@@ -37,16 +37,19 @@ class DocumentExportList extends Component
         $this->documentExports = $this->getDocumentExports();
     }
 
-    public function updateViewedAt(int $id): void
+    public function updateViewedAt(int $id)
     {
         $document = DocumentExport::findOrFail($id);
 
-        if ($document->viewed_at == null) {
-            $document->update(['viewed_at' => now()]);
-        }
+        $document->update(['viewed_at' => now()]);
 
-        $this->dispatch('open-document', documentUrl: Storage::url($document->file_path));
         $this->dispatch('updated-document');
+
+        if ($this->type == 'pdf') {
+            $this->dispatch('open-document', documentUrl: Storage::url($document->file_path));
+        } else {
+            return response()->download(Storage::disk('public')->path($document->file_path), $document->filename . '.xlsx');
+        }
     }
 
     public function changeViewedAt(int $id): void

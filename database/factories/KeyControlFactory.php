@@ -28,16 +28,9 @@ class KeyControlFactory extends Factory
             'deliver_user_id' => User::inRandomOrder()->firstOrFail()->id,
             'receiver_user_id' => $receiver,
             'comment' => $this->faker->randomElement([null, $this->faker->realTextBetween(20, 40)]),
-            'exit_time' => $this->randomDateTime(),
-            'entry_time' => $receiver == null ? null : $this->randomDateTime(),
+            'exit_time' => $this->faker->dateTime(),
+            'entry_time' => $receiver == null ? null : $this->faker->dateTime(),
         ];
     }
 
-    public function randomDateTime()
-    {
-        $date = $this->faker->dateTimeBetween('-3 years', 'now', 'UTC');
-        $exit_time = Carbon::instance($date);
-
-        return $exit_time->format('Y-m-d H:i:s');
-    }
 }

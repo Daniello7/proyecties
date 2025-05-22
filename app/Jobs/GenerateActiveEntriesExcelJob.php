@@ -29,7 +29,7 @@ class GenerateActiveEntriesExcelJob implements ShouldQueue
     {
         $filename = 'Active Entries';
         $filePath = sprintf(
-            'excel/exports/%s/%s_%s_%s.pdf',
+            'excel/exports/%s/%s_%s_%s.xlsx',
             now()->format('Y-m'),
             "user_$this->user_id",
             Str::slug(strtolower($filename)),

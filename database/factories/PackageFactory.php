@@ -32,17 +32,10 @@ class PackageFactory extends Factory
             'internal_person_id' => InternalPerson::inRandomOrder()->firstOrFail()->id,
             'retired_by' => $deliver == null ? null : join(' ',
                 InternalPerson::with('person')->inRandomOrder()->firstOrFail()->person->only(['name', 'last_name'])),
-            'entry_time' => $this->randomDateTime(),
-            'exit_time' => $deliver == null ? null : $this->randomDateTime(),
+            'entry_time' => $this->faker->dateTime(),
+            'exit_time' => $deliver == null ? null : $this->faker->dateTime(),
             'comment' => random_int(0, 1) == 0 ? null : $this->faker->realTextBetween(20, 40),
         ];
     }
 
-    public function randomDateTime()
-    {
-        $date = $this->faker->dateTimeBetween('-3 years', 'now', 'UTC');
-        $exit_time = Carbon::instance($date);
-
-        return $exit_time->format('Y-m-d H:i:s');
-    }
 }

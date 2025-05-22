@@ -33,7 +33,6 @@ class PersonEntryExport implements FromCollection, WithHeadings, WithMapping, Wi
     {
         return [
             'ID',
-            __('User ID'),
             __('Porter'),
             __('Name'),
             __('Contact'),
@@ -52,7 +51,6 @@ class PersonEntryExport implements FromCollection, WithHeadings, WithMapping, Wi
     {
         return [
             $row->id,
-            $row->user->id,
             $row->user->name,
             $row->person->name . ' ' . $row->person->last_name,
             $row->internalPerson->person->name . ' ' . $row->internalPerson->person->last_name,
@@ -82,7 +80,7 @@ class PersonEntryExport implements FromCollection, WithHeadings, WithMapping, Wi
                 ]
             ],
 
-            'A1:J' . $sheet->getHighestRow() => [
+            'A1:I' . $sheet->getHighestRow() => [
                 'borders' => [
                     'allBorders' => [
                         'borderStyle' => 'thin',

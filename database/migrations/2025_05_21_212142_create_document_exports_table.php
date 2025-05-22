@@ -13,7 +13,7 @@ return new class extends Migration {
             $table->string('filename');
             $table->string('file_path');
             $table->string('type');
-            $table->timestamp('viewed_at')->nullable();
+            $table->dateTime('viewed_at')->nullable();
             $table->timestamps();
         });
     }

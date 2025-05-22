@@ -21,9 +21,9 @@ return new class extends Migration {
             $table->foreignIdFor(InternalPerson::class);
             $table->string('comment')->nullable();
             $table->enum('reason', PersonEntry::REASONS);
-            $table->timestamp('arrival_time');
-            $table->timestamp('entry_time')->nullable();
-            $table->timestamp('exit_time')->nullable();
+            $table->dateTime('arrival_time');
+            $table->dateTime('entry_time')->nullable();
+            $table->dateTime('exit_time')->nullable();
             $table->timestamps();
         });
     }

@@ -65,11 +65,11 @@
 </div>
 <script>
     window.addEventListener('open-document', event => {
-        let a = $document.createElement('a')
-        a.href = event.detail.pdfUrl
+        let a = document.createElement('a')
+        a.href = event.detail.documentUrl
         a.target = '_blank'
         a.rel = 'noopener noreferrer'
-        $document.body.append(a)
+        document.body.append(a)
         a.click()
         a.remove()
     })

@@ -13,7 +13,7 @@ return new class extends Migration {
             $table->id();
             $table->foreignIdFor(Alarm::class);
             $table->foreignIdFor(Guard::class);
-            $table->timestamp('date');
+            $table->dateTime('date');
             $table->boolean('is_false_alarm')->default(false);
             $table->text('notes')->nullable();
             $table->timestamps();

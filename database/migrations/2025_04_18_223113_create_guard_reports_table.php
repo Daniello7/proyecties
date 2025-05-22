@@ -11,8 +11,8 @@ return new class extends Migration {
             $table->id();
             $table->foreignId('guard_id')->constrained('guards')->onDelete('cascade');
             $table->foreignId('zone_id')->constrained('zones')->onDelete('cascade');
-            $table->timestamp('entry_time');
-            $table->timestamp('exit_time');
+            $table->dateTime('entry_time');
+            $table->dateTime('exit_time');
             $table->text('incident')->nullable();
             $table->timestamps();
         });

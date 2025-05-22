@@ -23,8 +23,8 @@ return new class extends Migration {
             $table->foreignIdFor(User::class, 'deliver_user_id')->nullable();
             $table->foreignIdFor(InternalPerson::class);
             $table->string('retired_by')->nullable();
-            $table->timestamp('entry_time');
-            $table->timestamp('exit_time')->nullable();
+            $table->dateTime('entry_time');
+            $table->dateTime('exit_time')->nullable();
             $table->string('comment')->nullable();
             $table->timestamps();
             $table->softDeletes();

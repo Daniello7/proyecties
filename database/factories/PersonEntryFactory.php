@@ -27,19 +27,12 @@ class PersonEntryFactory extends Factory
             'internal_person_id' => InternalPerson::inRandomOrder()->firstOrFail()->id,
             'comment' => $this->faker->randomElement([null, null, $this->faker->realTextBetween(20, 40)]),
             'reason' => $this->faker->randomElement(PersonEntry::REASONS),
-            'arrival_time' => $this->randomDateTime(),
+            'arrival_time' => $this->faker->dateTime(),
             'entry_time' => $this->faker->randomElement(array_merge([null],
-                array_fill(0, 10, $this->randomDateTime()))),
+                array_fill(0, 10, $this->faker->dateTime()))),
             'exit_time' => $this->faker->randomElement(array_merge([null],
-                array_fill(0, 10, $this->randomDateTime())))
+                array_fill(0, 10, $this->faker->dateTime())))
         ];
     }
 
-    public function randomDateTime()
-    {
-        $date = $this->faker->dateTimeBetween('-15 years', 'now', 'UTC');
-        $exit_time = Carbon::instance($date);
-
-        return $exit_time->format('Y-m-d H:i:s');
-    }
 }
