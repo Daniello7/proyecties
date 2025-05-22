@@ -10,13 +10,13 @@
         <input type="file" id="fileInput" accept="{{ $allowedTypeFile === 'excel' ? '.xlsx,.xls' : '.pdf' }}" wire:model="dropZoneFile">
         <x-input-error :messages="$errors->get('dropZoneFile')"/>
         <div id="fileList" class="file-list">
-            @if($filename)
+            @if($original_name)
                 <span class="file-item">
                     @if($allowedTypeFile === 'excel')
                     @else
                         <x-svg.pdf-icon class="h-6 w-6 mr-2 stroke-red-600"/>
                     @endif
-                    {{ $filename }}
+                    {{ $original_name }}
             </span>
             @endif
         </div>

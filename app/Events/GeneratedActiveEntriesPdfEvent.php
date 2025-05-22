@@ -13,6 +13,6 @@ class GeneratedActiveEntriesPdfEvent
 
     public function __construct()
     {
-        session()->flash('success', 'PDF generado correctamente');
+        session()->flash('success', __('messages.document_created'));
     }
 }

@@ -2,6 +2,7 @@
 
 namespace App\Livewire\PersonEntries;
 
+use App\Jobs\GenerateActiveEntriesExcelJob;
 use App\Jobs\GenerateActiveEntriesPdfJob;
 use App\Models\Person;
 use App\Models\PersonEntry;
@@ -55,7 +56,7 @@ class HomeTable extends Component
 
         return $query
             ->orderBy($this->sortColumn, $this->sortDirection)
-            ->paginate(50);
+            ->get();
     }
 
     public function updateEntry(int $id): void
@@ -89,6 +90,18 @@ class HomeTable extends Component
             $this->getEntries()->pluck('id')->toArray(),
             auth()->user()->id,
         );
+
+        $this->dispatch('documentGenerated');;
+    }
+
+    public function generateActiveEntriesExcel(): void
+    {
+        GenerateActiveEntriesExcelJob::dispatch(
+            $this->getEntries()->pluck('id')->toArray(),
+            auth()->user()->id,
+        );
+
+        $this->dispatch('documentGenerated');;
     }
 
     public function render()

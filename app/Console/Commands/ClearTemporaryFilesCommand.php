@@ -22,7 +22,8 @@ class ClearTemporaryFilesCommand extends Command
         $directories = [
             ['disk' => 'local', 'path' => 'livewire-tmp'],
             ['disk' => 'public', 'path' => 'person-documents'],
-            ['disk' => 'public', 'path' => 'pdfs'],
+            ['disk' => 'public', 'path' => 'pdf'],
+            ['disk' => 'public', 'path' => 'excel'],
         ];
 
         $this->withProgressBar($directories, function ($dir) {

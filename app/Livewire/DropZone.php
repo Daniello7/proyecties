@@ -4,6 +4,7 @@ namespace App\Livewire;
 
 use Livewire\Component;
 use Livewire\WithFileUploads;
+use Str;
 
 class DropZone extends Component
 {
@@ -55,7 +56,7 @@ class DropZone extends Component
         $this->validate($validationRule);
 
         $this->dropZoneMessage = '';
-        $this->filename = $this->dropZoneFile->getClientOriginalName();
+        $this->filename = 'Rules ' . now() . '.pdf';
         $this->original_name = $this->dropZoneFile->getClientOriginalName();
         $this->type = $this->dropZoneFile->getMimeType();
         $this->size = $this->dropZoneFile->getSize();
@@ -66,7 +67,14 @@ class DropZone extends Component
     {
         $validated = $this->validate();
 
-        $this->path = $this->dropZoneFile->store('person-documents', 'public');
+        $filePath = sprintf(
+            'pdf/person-documents/%s/%s-%s',
+            now()->format('Y-m'),
+            'rules',
+            "person-$this->person_id",
+        );
+
+        $this->path = $this->dropZoneFile->store($filePath, 'public');
 
         $validated['path'] = $this->path;
 

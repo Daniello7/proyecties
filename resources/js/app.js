@@ -1,6 +1,7 @@
 import './bootstrap';
 // import Alpine from 'alpinejs';
-import {darkModeToggleButtonAction, initializeDarkMode} from './dark-mode.js';
+import {darkModeToggleButtonAction, initializeDarkMode} from './features/dark-mode.js';
+import './features/reveal-scroll.js';
 
 if (!window.Alpine) {
     import('alpinejs').then((module) => {

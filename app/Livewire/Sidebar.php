@@ -13,21 +13,21 @@ class Sidebar extends Component
     public $currentRoute = '';
 
     protected $listeners = [
-        'pdfGenerated' => 'loadUnreadPdfCount',
-        'updated-pdf' => 'loadUnreadPdfCount',
+        'documentGenerated' => 'loadUnreadDocumentCount',
+        'updated-document' => 'loadUnreadDocumentCount',
     ];
 
     public function mount()
     {
-        $this->loadUnreadPdfCount();
+        $this->loadUnreadDocumentCount();
         $this->currentRoute = Route::currentRouteName();
     }
 
-    public function loadUnreadPdfCount(): void
+    public function loadUnreadDocumentCount(): void
     {
         if (auth()->check()) {
             $this->unreadPdfCount = auth()->user()
-                ->pdfExports()
+                ->documentExports()
                 ->whereNull('viewed_at')
                 ->count();
         }
@@ -62,7 +62,7 @@ class Sidebar extends Component
             ['name' => 'Internal Staff', 'url' => 'internal-person'],
             ['name' => 'Package', 'url' => 'packages'],
             ['name' => 'Key Control', 'url' => 'key-control'],
-            ['name' => 'PDF', 'url' => 'pdf-exports'],
+            ['name' => 'Documents', 'url' => 'document-exports'],
             ['name' => 'Dashboard', 'url' => 'dashboard'],
         ];
     }

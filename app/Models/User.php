@@ -56,8 +56,8 @@ class User extends Authenticatable
         return $this->hasOne(Guard::class);
     }
 
-    public function pdfExports(): HasMany
+    public function documentExports(): HasMany
     {
-        return $this->hasMany(PdfExport::class);
+        return $this->hasMany(DocumentExport::class);
     }
 }

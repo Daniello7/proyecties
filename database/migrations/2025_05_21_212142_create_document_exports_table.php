@@ -7,11 +7,12 @@ use Illuminate\Support\Facades\Schema;
 return new class extends Migration {
     public function up(): void
     {
-        Schema::create('pdf_exports', function (Blueprint $table) {
+        Schema::create('document_exports', function (Blueprint $table) {
             $table->id();
             $table->foreignId('user_id')->constrained()->onDelete('cascade');
-            $table->string('type');
+            $table->string('filename');
             $table->string('file_path');
+            $table->string('type');
             $table->timestamp('viewed_at')->nullable();
             $table->timestamps();
         });
@@ -19,6 +20,6 @@ return new class extends Migration {
 
     public function down(): void
     {
-        Schema::dropIfExists('pdf_exports');
+        Schema::dropIfExists('document_exports');
     }
 };

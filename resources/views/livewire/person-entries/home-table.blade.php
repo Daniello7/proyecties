@@ -1,7 +1,7 @@
 <div class="w-full">
     <x-header :content="__('External Staff')">
         <div class="place-content-center">
-            <x-primary-button wire:loading.attr="disabled" x-data="{ loading: false }" x-on:click="loading = true; setTimeout(() => loading = false, 2000)" x-bind:disabled="loading">
+            <x-primary-button wire:click="generateActiveEntriesExcel" wire:loading.attr="disabled" x-data="{ loading: false }" x-on:click="loading = true; setTimeout(() => loading = false, 2000)" x-bind:disabled="loading">
                 <x-svg.excel-icon class="w-6 h-6 stroke-white fill-white mr-2"/>
                 {{ __('Export') }}
             </x-primary-button>
@@ -34,7 +34,7 @@
         </thead>
         <tbody class="[&_td:first-child]:rounded-l-lg [&_td:last-child]:rounded-r-lg *:transition-colors">
         @foreach($rows as $personEntry)
-            <tr class="ring-1 {{ ($personEntry->entry_time != null ? 'ring-emerald-600':'ring-blue-600') }} shadow-md bg-white dark:bg-gray-700 rounded-lg text-center *:py-2 *:px-1">
+            <tr class="ring-1 {{ ($personEntry->entry_time != null ? 'ring-emerald-600':'ring-blue-600') }} shadow-md bg-white dark:bg-gray-700 rounded-lg text-center *:py-2 *:px-1 reveal-scroll">
                 <!-- Columns -->
                 <td>{{ $personEntry->person->name.' '.$personEntry->person->last_name }}</td>
                 <td>{{ $personEntry->person->company }}</td>

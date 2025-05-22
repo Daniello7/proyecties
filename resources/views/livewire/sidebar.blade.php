@@ -5,7 +5,7 @@
                 <li class="my-2 font-semibold transition-all duration-200 {{ $this->isActiveLink($link['url']) ? 'active-link' : 'not-active-link' }}">
                     <a href="{{ route($link['url']) }}" class="block p-2">
                         {{ __($link['name']) }}
-                        @if(($link['url'] == 'pdf-exports' && $unreadPdfCount != null))
+                        @if(($link['url'] == 'document-exports' && $unreadPdfCount != null))
                             <span wire:key="pdf-count" class="bg-red-600 text-white text-xs rounded-full p-1 shadow-[0_0_4px_red] ml-1">
                                 {{ $unreadPdfCount }}
                             </span>
@@ -16,5 +16,4 @@
             @endforeach
         </ul>
     </nav>
-{{--    <input type="hidden" wire:poll.2000ms="loadUnreadPdfCount">--}}
 </aside>

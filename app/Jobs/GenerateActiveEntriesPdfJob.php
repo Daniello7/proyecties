@@ -3,7 +3,7 @@
 namespace App\Jobs;
 
 use App\Events\GeneratedActiveEntriesPdfEvent;
-use App\Models\PdfExport;
+use App\Models\DocumentExport;
 use App\Models\PersonEntry;
 use App\Models\User;
 use Barryvdh\DomPDF\Facade\Pdf;
@@ -13,6 +13,7 @@ use Illuminate\Foundation\Bus\Dispatchable;
 use Illuminate\Queue\InteractsWithQueue;
 use Illuminate\Queue\SerializesModels;
 use Illuminate\Support\Facades\Storage;
+use Str;
 
 class GenerateActiveEntriesPdfJob implements ShouldQueue
 {
@@ -50,15 +51,24 @@ class GenerateActiveEntriesPdfJob implements ShouldQueue
             'username' => $user->name,
         ]);
 
-        $filename = 'pdfs/active_entries_' . $this->user_id . '_' . now()->timestamp . '.pdf';
+        $filename = 'Active Entries';
 
-        Storage::disk('public')->put($filename, $pdf->output());
+        $filePath = sprintf(
+            'pdf/exports/%s/%s_%s_%s.pdf',
+            now()->format('Y-m'),
+            "user_$this->user_id",
+            Str::slug(strtolower($filename)),
+            Str::uuid()
+        );
 
-        PdfExport::create([
+        DocumentExport::create([
             'user_id' => $this->user_id,
-            'file_path' => $filename,
-            'type' => 'Active Entries',
+            'filename' => $filename,
+            'file_path' => $filePath,
+            'type' => 'pdf',
         ]);
+
+        Storage::disk('public')->put($filePath, $pdf->output());
 
         event(new GeneratedActiveEntriesPdfEvent($this->user_id));
     }
