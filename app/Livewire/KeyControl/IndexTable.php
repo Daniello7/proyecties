@@ -5,7 +5,7 @@ namespace App\Livewire\KeyControl;
 use App\Http\Requests\KeyControl\UpdateKeyControlRequest;
 use App\Models\KeyControl;
 use App\Traits\HasTableEloquent;
-use Illuminate\Database\Eloquent\Collection;
+use Illuminate\Pagination\LengthAwarePaginator;
 use Livewire\Component;
 
 class IndexTable extends Component
@@ -13,6 +13,7 @@ class IndexTable extends Component
     use HasTableEloquent;
 
     public ?int $keyId = null;
+    public ?int $areaId = null;
     public ?int $exitKey_id;
     public ?KeyControl $exitKey;
     public $activeModal = null;
@@ -43,8 +44,10 @@ class IndexTable extends Component
         $this->keyId = $newKeyId;
     }
 
-    public function resetKeyId(): void
+    public function resetKeyId($newAreaId): void
     {
+        $this->areaId = $newAreaId;
+
         $this->keyId = null;
     }
 
@@ -72,7 +75,7 @@ class IndexTable extends Component
         $this->sortDirection = 'desc';
     }
 
-    public function getKeyControlRows(): Collection
+    public function getKeyControlRows(): LengthAwarePaginator
     {
         $query = KeyControl::query()
             ->with($this->relations)
@@ -81,14 +84,16 @@ class IndexTable extends Component
 
         $this->applySearchFilter($query);
 
+        if (isset($this->areaId)) {
+            $query->where('key.area_id', $this->areaId);
+        }
+
         if (isset($this->keyId)) {
             $query->where('key.id', $this->keyId);
-        } else {
-            $query->where('entry_time', '>=', now()->subMonths(2));
         }
 
         return $query->orderBy($this->sortColumn, $this->sortDirection)
-            ->whereNotNull('entry_time')->get();
+            ->whereNotNull('entry_time')->paginate(20);
     }
 
     public function openModal($modal, $id): void

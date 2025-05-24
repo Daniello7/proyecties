@@ -1,4 +1,5 @@
 <div class="w-full">
+    {{--    @dd($keyId)--}}
     <div class="flex flex-col justify-between p-2">
         <div class="flex flex-row justify-between">
             <x-text-input type="search" class="p-1 w-28" :placeholder="__('Search').' . . .'" wire:model.live.debounce.300ms="search"/>
@@ -24,7 +25,7 @@
             <tr class="shadow-md bg-white dark:bg-gray-700 rounded-lg text-center *:py-2 *:px-1">
                 <!-- Fields -->
                 <td>{{ $keyControl->person->name. ' '.$keyControl->person->last_name }}</td>
-                <td>{{ (array_search($keyControl->key->zone, \App\Models\Key::ZONES)+1). ' - ' .$keyControl->key->name }}</td>
+                <td>{{ "{$keyControl->key->area_id}.{$keyControl->key->area_key_number} - {$keyControl->key->name}" }}</td>
                 <td>{{ $keyControl->deliver->name }}</td>
                 <td>{{ substr($keyControl->exit_time,0,-3) }}</td>
                 <td>{{ $keyControl->receiver->name }}</td>
@@ -41,5 +42,8 @@
         </tbody>
     </table>
     <hr class="mx-2 border-blue-600 dark:border-pink-600 opacity-50">
+    <div class="pt-4 mx-8 [&_*]:text-blue-600 dark:[&_*]:text-pink-500">
+        {{ $rows->links() }}
+    </div>
     @includeWhen($activeModal == 'editKeyControl', 'key-control.edit')
 </div>

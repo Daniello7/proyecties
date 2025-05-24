@@ -6,27 +6,8 @@
         </div>
         <div>
             <x-input-label for="keyId" :value="__('Key')"/>
-            <x-key-select id="keyId"  :zone="$zone" wire:model.live="keyId" class="min-w-max w-64"/>
-            @if($isForm)
-                <x-input-error :messages="$errors->get('keyId')"/>
-            @endif
+            <x-key-select id="keyId" :areaId="$zone" wire:model.live="keyId" class="min-w-max w-64"/>
         </div>
-        @if($isForm)
-            <div>
-                <x-input-label for="person_id" :value="__('Person')"/>
-                <x-person-select :include-external="true" id="person_id" name="person_id" class="min-w-max w-60">
-                    {{ __('Select a person') }}
-                </x-person-select>
-                <x-input-error :messages="$errors->get('person_id')"/>
-            </div>
-            <div>
-                <x-input-label for="comment" :value="__('Comment')"/>
-                <x-textarea cols="30" rows="3" id="comment" name="comment" class="min-w-max w-64"/>
-                <x-input-error :messages="$errors->get('comment')"/>
-            </div>
-        @endif
     </div>
-    @if(!$isForm)
-        <livewire:key-control.index-table :keyId="$keyId"/>
-    @endif
+    <livewire:key-control.index-table/>
 </div>

@@ -19,6 +19,7 @@ class DatabaseSeeder extends Seeder
             PersonSeeder::class,
             InternalPersonSeeder::class,
             PersonEntrySeeder::class,
+            AreaSeeder::class,
             KeySeeder::class,
             KeyControlSeeder::class,
             PackageSeeder::class,

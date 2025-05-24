@@ -2,13 +2,13 @@
     <div>
         <x-input-label for="zone" :value="__('Zone')"/>
         <p class="dark:text-gray-300 bg-white dark:bg-gray-900 py-2 px-4  border border-gray-300 dark:border-gray-700 rounded-md shadow-sm">
-            {{ (array_search($keyControl->key->zone,\App\Models\Key::ZONES) + 1) .'. '.$keyControl->key->zone }}
+            {{ "{$exitKey->key->area_id} - ". __($exitKey->key->area->name) }}
         </p>
     </div>
     <div>
         <x-input-label for="key_id" :value="__('Key')"/>
         <p class="dark:text-gray-300 bg-white dark:bg-gray-900 py-2 px-4  border border-gray-300 dark:border-gray-700 rounded-md shadow-sm">
-            {{ $keyControl->key->name }}
+            {{ "{$exitKey->key->area_id}.{$exitKey->key->area_key_number} - {$exitKey->key->name}" }}
         </p>
     </div>
     <div>

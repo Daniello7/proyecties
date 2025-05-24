@@ -18,8 +18,7 @@ class KeyFactory extends Factory
     public function definition(): array
     {
         return [
-            'zone' => $this->faker->randomElement(Key::ZONES),
-            'name' => $this->faker->words(random_int(2, 3), true),
+            'name' => $this->faker->streetName(),
         ];
     }
 }

@@ -24,7 +24,7 @@
             <tr class="shadow-md bg-white dark:bg-gray-700 rounded-lg text-center *:py-2 *:px-1">
                 <!-- Fields -->
                 <td>{{ $keyControl->person->name. ' '.$keyControl->person->last_name }}</td>
-                <td>{{ (array_search($keyControl->key->zone, \App\Models\Key::ZONES)+1). ' - ' .$keyControl->key->name }}</td>
+                <td>{{ "{$keyControl->key->area_id}.{$keyControl->key->area_key_number} - {$keyControl->key->name}" }}</td>
                 <td>{{ $keyControl->comment }}</td>
                 <!-- Actions -->
                 <td>

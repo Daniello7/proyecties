@@ -6,9 +6,8 @@ use Livewire\Component;
 
 class KeySelect extends Component
 {
-    public string $zone = '';
+    public int $zone;
     public ?int $keyId = 0;
-    public bool $isForm = false;
 
     public function updatedKeyId($keyId): void
     {

@@ -10,14 +10,14 @@ class KeySelect extends Component
 {
     public object $keys;
 
-    public function __construct($zone = '')
+    public function __construct(?int $areaId = null)
     {
-        $this->keys = $this->getKeysByZone($zone);
+        $this->keys = $this->getKeysByArea($areaId);
     }
 
-    public function getKeysByZone($zone = ''): object
+    public function getKeysByArea(?int $areaId = null): object
     {
-        return Key::where('zone', $zone)->get();
+        return Key::where('area_id', $areaId)->get();
     }
 
     public function render(): View

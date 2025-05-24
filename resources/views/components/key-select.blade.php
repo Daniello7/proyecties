@@ -2,7 +2,7 @@
     <option value="0">{{ count($keys) > 0 ? __('Select a key') : __('Not selected Zone') }}</option>
     @foreach($keys as $key)
         <option value="{{ $key->id }}">
-            {{ $key->name }}
+            {{ "$key->area_id.$key->area_key_number - $key->name" }}
         </option>
     @endforeach
 </select>
