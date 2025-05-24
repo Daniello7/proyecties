@@ -26,6 +26,10 @@ Route::middleware(RoleMiddleware::using(['porter', 'admin']))->group(function ()
     Route::get('/key-control', [KeyControlController::class, 'index'])->name('key-control');
 });
 
+Route::middleware(['auth', RoleMiddleware::using(['admin', 'rrhh'])])->group(function () {
+    Route::get('/internal-person/{id}', [InternalPersonController::class, 'show'])->name('internal-person.show');
+});
+
 Route::get('/dashboard', function () {
     return view('dashboard');
 })->middleware(['auth', 'verified'])->name('dashboard');

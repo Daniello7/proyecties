@@ -17,6 +17,12 @@ return new class extends Migration {
             $table->string('email')->unique();
             $table->string('contract_type');
             $table->date('hired_at');
+            $table->string('phone')->nullable();
+            $table->string('address')->nullable();
+            $table->string('country')->nullable();
+            $table->string('city')->nullable();
+            $table->string('province')->nullable();
+            $table->string('zip_code')->nullable();
             $table->timestamps();
         });
     }

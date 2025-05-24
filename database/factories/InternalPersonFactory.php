@@ -20,8 +20,14 @@ class InternalPersonFactory extends Factory
         return [
             'person_id' => Person::inRandomOrder()->firstOrFail()->id,
             'email' => $this->faker->unique()->safeEmail(),
+            'phone' => $this->faker->phoneNumber(),
             'contract_type' => $this->faker->randomElement(['Temporal', 'Indefinido']),
             'hired_at' => $this->faker->date(),
+            'address' => $this->faker->address(),
+            'country' => $this->faker->country(),
+            'city' => $this->faker->city(),
+            'province' => $this->faker->state(),
+            'zip_code' => $this->faker->postcode(),
         ];
     }
 }

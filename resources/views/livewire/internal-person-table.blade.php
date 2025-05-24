@@ -1,10 +1,12 @@
 <div class="w-full">
-    <div class="flex flex-row justify-between px-8 py-2">
+    <div class="flex flex-row justify-between items-center px-8 py-2">
         <div>
             <label for="search" class="text-blue-600 dark:text-pink-500 font-bold">{{ __('Filter') }}:</label>
             <x-text-input type="search" id="search" name="search" class="p-1" wire:model.live.debounce.300ms="search"/>
         </div>
+        <x-session-status flash="internal-person-status"/>
     </div>
+    <hr class="mx-2 border-blue-600 dark:border-pink-600 opacity-50">
     <table class="border-separate border-spacing-y-2 text-xs sm:text-sm md:text-base w-full">
         <thead class="[&_th:first-child]:rounded-l-lg [&_th:last-child]:rounded-r-lg">
         <tr class="*:cursor-pointer *:transition-colors">
@@ -27,9 +29,12 @@
 
                 <!-- Actions -->
                 <td class="flex flex-row flex-wrap gap-2 justify-center">
-                    @if(auth()->user()->hasRole(['admin', 'rrhh']))
-                        <x-svg.edit-button href="{{ route('person.edit', $internalPerson->id) }}"/>
-                        <a href="{{ route('person.show', ['id' => $internalPerson->id]) }}" class="text-white bg-blue-600 text-xl font-serif font-bold px-3 py-[2px] rounded-lg border-2 border-white dark:border-gray-700 hover:ring-4 hover:ring-blue-600 max-h-max transition">
+                    @role('porter')
+                    <x-svg.exit-button/>
+                    @endrole
+                    @if(auth()->user()->hasAnyRole('admin', 'rrhh'))
+                        <x-svg.edit-button wire:click="openModal('editInternalPerson', {{ $internalPerson->id }})"/>
+                        <a href="{{ route('internal-person.show', ['id' => $internalPerson->id]) }}" class="text-white bg-blue-600 text-xl font-serif font-bold px-3 py-[2px] rounded-lg border-2 border-white dark:border-gray-700 hover:ring-4 hover:ring-blue-600 max-h-max transition">
                             i </a>
                     @endif
                 </td>
@@ -37,4 +42,5 @@
         @endforeach
         </tbody>
     </table>
+    @includeWhen($activeModal == 'editInternalPerson', 'internal-person.edit')
 </div>
