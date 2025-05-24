@@ -1,5 +1,4 @@
 <div class="w-full">
-    {{--    @dd($keyId)--}}
     <div class="flex flex-col justify-between p-2">
         <div class="flex flex-row justify-between">
             <x-text-input type="search" class="p-1 w-28" :placeholder="__('Search').' . . .'" wire:model.live.debounce.300ms="search"/>

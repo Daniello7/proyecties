@@ -10,11 +10,12 @@ class AreaSeeder extends Seeder
     public function run(): void
     {
         $zones = [
-            'Office',
             'Entrance',
+            'Control Access',
+            'Office',
+            'Workshop',
             'Factory',
-            'Parking',
-            'Control Access'
+            'Parking'
         ];
 
         foreach ($zones as $zone) {

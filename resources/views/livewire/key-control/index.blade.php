@@ -2,12 +2,16 @@
     <section class="text-gray-800 dark:text-gray-100 bg-white dark:bg-gray-800 rounded-lg p-2 shadow-lg transition-colors z-10">
         <x-header :content="__('Options')"/>
         <div class="py-6 flex flex-row gap-4 justify-evenly">
-            <x-button-box wire:click="openExitKeysTable">
+            <x-button-box wire:click="openKeyTable">
                 <x-svg.key-icon class="w-8 h-8 stroke-blue-600"/>
+                {{ __('Keys') }}
+            </x-button-box>
+            <x-button-box wire:click="openExitKeysTable">
+                <x-svg.key-control-icon class="w-8 h-8 fill-blue-600"/>
                 {{ __('Latest Records') }}
             </x-button-box>
             <x-button-box wire:click="openCreateExitKey">
-                <x-svg.package-shipping-icon class="w-8 h-8 stroke-blue-600"/>
+                <x-svg.add-key-icon class="w-8 h-8 stroke-blue-600"/>
                 {{ __('New Exit') }}
             </x-button-box>
             <x-button-box wire:click="openSearchKey">
@@ -23,5 +27,8 @@
         @endif
         @includeWhen($openedCreateExitKey, 'key-control.create')
         @includeWhen($openedSearchKey, 'keys.index')
+        @if($openedKeyTable)
+            <livewire:key-control.key-table/>
+        @endif
     </section>
 </div>

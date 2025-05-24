@@ -22,6 +22,8 @@ class Index extends Component
     public bool $openedCreateExitKey = false;
     public bool $openedSearchKey = false;
 
+    public bool $openedKeyTable = false;
+
     public function openExitKeysTable(): void
     {
         $this->closeWindows();
@@ -40,11 +42,18 @@ class Index extends Component
         $this->openedSearchKey = true;
     }
 
+    public function openKeyTable(): void
+    {
+        $this->closeWindows();
+        $this->openedKeyTable = true;
+    }
+
     private function closeWindows(): void
     {
         $this->openedExitKeysTable = false;
         $this->openedCreateExitKey = false;
         $this->openedSearchKey = false;
+        $this->openedKeyTable = false;
     }
 
     public function updatedAreaId(): void
