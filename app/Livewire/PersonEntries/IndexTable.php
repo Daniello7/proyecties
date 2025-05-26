@@ -2,36 +2,22 @@
 
 namespace App\Livewire\PersonEntries;
 
-use App\Events\NotifyContactVisitorEvent;
-use App\Http\Requests\PersonEntry\StorePersonEntryRequest;
 use App\Http\Requests\PersonEntry\UpdatePersonEntryRequest;
 use App\Models\Person;
 use App\Models\PersonEntry;
+use App\Traits\HasLoadPersonEntryData;
+use App\Traits\HasPersonEntryStore;
 use App\Traits\HasTableEloquent;
 use Illuminate\Pagination\LengthAwarePaginator;
 use Livewire\Component;
 
 class IndexTable extends Component
 {
-    use HasTableEloquent;
+    use HasTableEloquent, HasLoadPersonEntryData, HasPersonEntryStore;
 
     public ?string $activeModal = null;
     public ?int $id = null;
     public ?Person $person = null;
-    public ?PersonEntry $entry = null;
-
-    // Form properties
-    public $reason;
-    public $person_id;
-    public $internal_person_id;
-    public $arrival_time;
-    public $entry_time;
-    public $exit_time;
-    public $comment;
-    public $notify = false;
-    public $enter = false;
-
-    protected StorePersonEntryRequest|UpdatePersonEntryRequest $formRequest;
 
     public function mount(): void
     {
@@ -115,51 +101,13 @@ class IndexTable extends Component
         $this->resetExceptConfig();
     }
 
-    private function loadPersonEntryData(): void
-    {
-        $this->reason = $this->entry->reason;
-        $this->person_id = $this->entry->person_id;
-        $this->internal_person_id = $this->entry->internal_person_id;
-        $this->arrival_time = substr($this->entry->arrival_time, 0, -3);
-        $this->entry_time = substr($this->entry->entry_time, 0, -3);
-        $this->exit_time = $this->entry->exit_time ? substr($this->entry->exit_time, 0, -3) : null;
-        $this->comment = $this->entry->comment;
-    }
-
-    public function storePersonEntry(): void
-    {
-        $this->formRequest = new StorePersonEntryRequest();
-
-        $validated = $this->validate($this->formRequest->rules());
-        $validated['user_id'] = auth()->user()->id;
-        $validated['arrival_time'] = now();
-
-        if ($this->enter) $validated['entry_time'] = now();
-
-        PersonEntry::create($validated);
-
-        session()->flash('success', __('messages.person-entry_created'));
-
-        if ($this->notify) event(new NotifyContactVisitorEvent($this->entry));
-
-        if ($this->reason == 'Charge' || $this->reason == 'Discharge') {
-            $pdfUrl = route('driver-rules', ['person' => $this->person]);
-        } elseif ($this->reason == 'Cleaning') {
-            $pdfUrl = route('cleaning-rules', ['person' => $this->person]);
-        } else {
-            $pdfUrl = route('visitor-rules', ['person' => $this->person]);
-        }
-
-        $this->dispatch('openRulesPdf', url: $pdfUrl);
-
-        $this->closeModal();
-    }
-
     public function updatePersonEntry(): void
     {
         $this->formRequest = new UpdatePersonEntryRequest();
 
         $validated = $this->validate($this->formRequest->rules());
+
+        if ($validated['entry_time'] == '') $validated['entry_time'] = null;
 
         $this->entry->update($validated);
 

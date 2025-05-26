@@ -10,23 +10,23 @@ class PersonEntryPolicy
 {
     use HandlesAuthorization;
 
-    public function create(User $user)
+    public function create(User $user): bool
+    {
+        return $user->hasRole(['porter']);
+    }
+
+    public function update(User $user): bool
     {
         return $user->hasRole(['admin', 'porter']);
     }
 
-    public function update(User $user)
-    {
-        return $user->hasRole(['admin', 'porter']);
-    }
-
-    public function delete(User $user)
+    public function delete(User $user): bool
     {
         return $user->hasRole(['admin']);
     }
 
-    public function cancel(User $user)
+    public function cancel(User $user): bool
     {
-        return $user->hasRole(['admin', 'porter']);
+        return $user->hasRole(['porter']);
     }
 }

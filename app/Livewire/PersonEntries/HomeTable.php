@@ -7,13 +7,14 @@ use App\Jobs\GenerateActiveEntriesPdfJob;
 use App\Models\Person;
 use App\Models\PersonEntry;
 use App\Traits\HasTableEloquent;
+use Illuminate\Database\Eloquent\Collection;
 use Livewire\Component;
 
 class HomeTable extends Component
 {
     use HasTableEloquent;
 
-    public function mount()
+    public function mount(): void
     {
         $this->columns = ['Name', 'Company', 'Contact', 'Comment', 'Actions'];
         $this->select = [
@@ -39,7 +40,7 @@ class HomeTable extends Component
         ];
     }
 
-    private function getEntries()
+    private function getEntries(): Collection
     {
         $externalPeople = Person::query()
             ->select('id')
@@ -63,6 +64,8 @@ class HomeTable extends Component
     {
         $personEntry = PersonEntry::find($id);
 
+        $this->authorize('update', $personEntry);
+
         $personEntry->update(['entry_time' => now()]);
 
         session()->flash('success', __('messages.person-entry_updated'));
@@ -72,14 +75,21 @@ class HomeTable extends Component
     {
         $personEntry = PersonEntry::find($id);
 
+        $this->authorize('update', $personEntry);
+
         $personEntry->update(['exit_time' => now()]);
 
         session()->flash('success', __('messages.person-entry_exited'));
     }
 
-    public function destroyPersonEntry(int $id): void
+    public function cancelPersonEntry(int $id): void
     {
-        PersonEntry::destroy($id);
+        $personEntry = PersonEntry::findOrFail($id);
+
+        $this->authorize('cancel', $personEntry);
+
+        $personEntry->delete();
+
         session()->flash('success', __('messages.person-entry_deleted'));
     }
 

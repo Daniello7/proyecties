@@ -99,6 +99,7 @@
   "Key": "Llave",
   "Key Control": "Control de Llaves",
   "Keys": "Llaves",
+  "Keys Management": "Gestión de Llaves",
   "Language": "Idioma",
   "Laravel log cleared successfully.": "Log de Laravel limpiado correctamente.",
   "laravel.log file does not exist.": "El archivo laravel.log no existe",

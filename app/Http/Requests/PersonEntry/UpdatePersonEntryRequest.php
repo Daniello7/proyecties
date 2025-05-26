@@ -14,7 +14,7 @@ class UpdatePersonEntryRequest extends FormRequest
             'reason' => 'required|string|in:' . join(',', PersonEntry::REASONS),
             'comment' => 'string|nullable|max:255',
             'arrival_time' => 'date|required',
-            'entry_time' => 'date|required',
+            'entry_time' => 'date',
             'exit_time' => 'date|required',
         ];
     }
