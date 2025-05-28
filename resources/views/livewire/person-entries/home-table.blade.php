@@ -43,17 +43,13 @@
                 <!-- Actions -->
                 <td>
                     <div class="flex flex-row flex-wrap gap-2 justify-center">
-                        @can('update', \App\Models\PersonEntry::class)
-                            @if($personEntry->entry_time == null)
-                                <x-svg.entry-button wire:click="updateEntry({{ $personEntry->id }})"/>
-                            @endif
-                            <x-svg.exit-button wire:click="updateExit({{ $personEntry->id }})"/>
-                        @endcan
+                        @if($personEntry->entry_time == null)
+                            <x-svg.entry-button wire:click="updateEntry({{ $personEntry->id }})"/>
+                        @endif
+                        <x-svg.exit-button wire:click="updateExit({{ $personEntry->id }})"/>
                         <a href="{{ route('person.show', ['id' => $personEntry->person_id]) }}" class="text-white bg-blue-600 text-xl font-serif font-bold px-3 py-[2px] rounded-lg border-2 border-white dark:border-gray-700 hover:ring-4 hover:ring-blue-600 max-h-max transition">
                             i </a>
-                        @can('cancel',\App\Models\PersonEntry::class)
-                            <x-svg.recycle-bin wire:click="cancelPersonEntry({{ $personEntry->id }})" class="w-9 h-9 stroke-red-600 dark:stroke-red-200 bg-red-300 dark:bg-red-800 bg-opacity-40"/>
-                        @endcan
+                        <x-svg.recycle-bin wire:click="cancelPersonEntry({{ $personEntry->id }})" class="w-9 h-9 stroke-red-600 dark:stroke-red-200 bg-red-300 dark:bg-red-800 bg-opacity-40"/>
                     </div>
                 </td>
             </tr>

@@ -83,6 +83,7 @@ class ShowTable extends Component
 
         if ($modal === 'editEntry') {
             $this->entry = PersonEntry::with(['person', 'internalPerson.person'])->findOrFail($id);
+            $this->authorize('update', $this->entry);
             $this->loadPersonEntryData();
         }
     }
@@ -94,6 +95,8 @@ class ShowTable extends Component
 
     public function updatePersonEntry(): void
     {
+        $this->authorize('update', $this->entry);
+
         $formRequest = new UpdatePersonEntryRequest();
 
         $validated = $this->validate($formRequest->rules());
@@ -109,7 +112,12 @@ class ShowTable extends Component
 
     public function destroyPersonEntry(int $id): void
     {
-        PersonEntry::destroy($id);
+        $personEntry = PersonEntry::findOrFail($id);
+
+        $this->authorize('delete', $personEntry);
+
+        $personEntry->delete();
+
         session()->flash('success', __('messages.person-entry_deleted'));
 
         $this->closeModal();

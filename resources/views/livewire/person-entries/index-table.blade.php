@@ -35,11 +35,17 @@
                 <!-- Actions -->
                 <td>
                     <div class="flex flex-row flex-wrap gap-2 justify-center">
-                        <x-svg.entry-button wire:click="openModal('createEntry', {{ $personEntry->person->id }})"/>
-                        <x-svg.edit-button wire:click="openModal('editEntry', {{ $personEntry->id }})"/>
+                        @can('create', $personEntry)
+                            <x-svg.entry-button wire:click="openModal('createEntry', {{ $personEntry->person->id }})"/>
+                        @endcan
+                        @can('update', $personEntry)
+                            <x-svg.edit-button wire:click="openModal('editEntry', {{ $personEntry->id }})"/>
+                        @endcan
                         <a href="{{ route('person.show', ['id' => $personEntry->person_id]) }}" class="text-white bg-blue-600 text-xl font-serif font-bold px-3 py-[2px] rounded-lg border-2 border-white dark:border-gray-700 hover:ring-4 hover:ring-blue-600 max-h-max transition">
                             i </a>
-                        <x-svg.recycle-bin wire:click="openModal('destroyEntry', {{ $personEntry->id }})" class="w-9 h-9 stroke-red-600 dark:stroke-red-200 bg-red-300 dark:bg-red-800 bg-opacity-40"/>
+                        @can('delete', $personEntry)
+                            <x-svg.recycle-bin wire:click="openModal('destroyEntry', {{ $personEntry->id }})" class="w-9 h-9 stroke-red-600 dark:stroke-red-200 bg-red-300 dark:bg-red-800 bg-opacity-40"/>
+                        @endcan
                     </div>
                 </td>
             </tr>

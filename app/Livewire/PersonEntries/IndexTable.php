@@ -80,11 +80,13 @@ class IndexTable extends Component
         $this->activeModal = $modal;
 
         if ($modal === 'editEntry') {
+            $this->authorize('update', $this->entry);
             $this->entry = PersonEntry::with(['person', 'internalPerson.person'])->find($id);
             $this->loadPersonEntryData();
         }
 
         if ($modal === 'createEntry') {
+            $this->authorize('create', $this->entry);
             $this->person = Person::with(['personEntries' => function ($q) {
                 $q->orderBy('exit_time', 'desc')->first();
             }])->find($id);
@@ -103,6 +105,8 @@ class IndexTable extends Component
 
     public function updatePersonEntry(): void
     {
+        $this->authorize('update', $this->entry);
+
         $this->formRequest = new UpdatePersonEntryRequest();
 
         $validated = $this->validate($this->formRequest->rules());
@@ -118,7 +122,11 @@ class IndexTable extends Component
 
     public function destroyPersonEntry(int $id): void
     {
-        PersonEntry::destroy($id);
+        $personEntry = PersonEntry::findOrFail($id);
+
+        $this->authorize('delete', $personEntry);
+
+        $personEntry->delete();
 
         session()->flash('success', __('messages.person-entry_deleted'));
 
