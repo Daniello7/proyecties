@@ -51,7 +51,7 @@
                                 <button class="w-9 h-9" wire:click="openCommentInput({{ $package->id }})">
                                     <x-svg.edit-comment-icon/>
                                 </button>
-                                <x-svg.recycle-bin wire:click="deletePackage({{ $package->id }})" class="w-9 h-9 stroke-red-600 dark:stroke-red-300 bg-red-300 dark:bg-red-900 bg-opacity-40 dark:bg-opacity-40"/>
+                                <x-svg.recycle-bin wire:click="deletePackage({{ $package->id }})" class="w-9 h-9 stroke-red-600 dark:stroke-red-200 bg-red-300 dark:bg-red-800 bg-opacity-40"/>
                             @endif
                         </div>
                     </td>

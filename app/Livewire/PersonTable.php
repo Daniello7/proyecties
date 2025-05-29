@@ -42,10 +42,15 @@ class PersonTable extends Component
 
         if ($modal === 'editPerson') {
             $this->person = Person::findOrFail($id);
+
+            $this->authorize('update', $this->person);
+
             $this->loadPersonData();
         }
 
         if ($modal === 'createEntry') {
+            $this->authorize('create', PersonEntry::class);
+
             $this->person = Person::with(['personEntries' => function ($q) {
                 $q->orderBy('exit_time', 'desc')->first();
             }])->find($id);
@@ -78,6 +83,8 @@ class PersonTable extends Component
 
     public function storePerson(): void
     {
+        $this->authorize('create', Person::class);
+
         $this->formRequest = new StorePersonRequest();
 
         $validated = $this->validate($this->formRequest->rules());
@@ -91,6 +98,8 @@ class PersonTable extends Component
 
     public function updatePerson(): void
     {
+        $this->authorize('update', $this->person);
+
         $this->formRequest = new UpdatePersonRequest();
 
         $validated = $this->validate($this->formRequest->rules());
@@ -98,6 +107,19 @@ class PersonTable extends Component
         $this->person->update($validated);
 
         session()->flash('person-status', __('messages.person_updated'));
+
+        $this->closeModal();
+    }
+
+    public function deletePerson(): void
+    {
+        $person = Person::findOrFail($this->id);
+
+        $this->authorize('delete', $person);
+
+        $person->delete();
+
+        session()->flash('person-status', __('messages.person_deleted'));
 
         $this->closeModal();
     }

@@ -13,6 +13,7 @@ return [
 
     'person_created' => 'Persona añadida correctamente.',
     'person_updated' => 'Persona actualizada correctamente.',
+    'person_deleted' => 'Persona eliminada correctamente.',
 
     'person-entry_updated' => 'Entrada de persona actualizada',
     'person-entry_exited' => 'Salida de persona actualizada',

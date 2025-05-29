@@ -1,9 +1,12 @@
+@php use App\Models\Person;use App\Models\PersonEntry;use Illuminate\Pagination\LengthAwarePaginator;use Illuminate\Pagination\Paginator; @endphp
 <div class="w-full">
     <x-header :content="__('Person List')">
-        <x-primary-button wire:click="openModal('createPerson')" class="h-max">
-            {{ __('New Person') }}
-            <x-svg.person-icon class="w-6 h-6 ml-2 stroke-white"/>
-        </x-primary-button>
+        @can('create', Person::class)
+            <x-primary-button wire:click="openModal('createPerson')" class="h-max">
+                {{ __('New Person') }}
+                <x-svg.person-icon class="w-6 h-6 ml-2 stroke-white"/>
+            </x-primary-button>
+        @endcan
     </x-header>
     <div class="flex flex-row justify-between px-8 py-2">
         <div>
@@ -31,22 +34,32 @@
                 @foreach(array_slice($personData->toArray(), 1) as $field)
                     <td>{{ $field }}</td>
                 @endforeach
-                <td class="flex flex-row flex-wrap gap-2 justify-center">
-                    <x-svg.edit-button wire:click="openModal('editPerson', {{ $personData->id }})"/>
-                    <x-svg.entry-button wire:click="openModal('createEntry', {{ $personData->id }})"/>
-                    <a href="{{ route('person.show', ['id' => $personData->id]) }}" class="text-white bg-blue-600 text-xl font-serif font-bold px-3 py-[2px] rounded-lg border-2 border-white dark:border-gray-700 hover:ring-4 hover:ring-blue-600 max-h-max transition">
-                        i </a>
+                <td>
+                    <div class="flex flex-row flex-wrap gap-2 justify-center">
+                        @can('create', PersonEntry::class)
+                            <x-svg.entry-button wire:click="openModal('createEntry', {{ $personData->id }})"/>
+                        @endcan
+                        @can('update', $personData)
+                            <x-svg.edit-button wire:click="openModal('editPerson', {{ $personData->id }})"/>
+                        @endcan
+                        <a href="{{ route('person.show', ['id' => $personData->id]) }}" class="text-white bg-blue-600 text-xl font-serif font-bold px-3 py-[2px] rounded-lg border-2 border-white dark:border-gray-700 hover:ring-4 hover:ring-blue-600 max-h-max transition">
+                            i </a>
+                        @can('delete', $personData)
+                            <x-svg.recycle-bin wire:click="openModal('deletePerson',{{ $personData->id }})" class="w-9 h-9 stroke-red-600 dark:stroke-red-200 bg-red-300 dark:bg-red-800 bg-opacity-40"/>
+                        @endcan
+                    </div>
                 </td>
             </tr>
         @endforeach
         </tbody>
     </table>
-    @if($rows instanceof \Illuminate\Pagination\Paginator || $rows instanceof \Illuminate\Pagination\LengthAwarePaginator)
+    @if($rows instanceof Paginator || $rows instanceof LengthAwarePaginator)
         <div class="pt-4 mx-8 [&_*]:text-blue-600 dark:[&_*]:text-pink-500">
             {{ $rows->links() }}
         </div>
     @endif
+    @includeWhen($activeModal == 'createEntry', 'person-entry.create')
     @includeWhen($activeModal == 'createPerson', 'person.create')
     @includeWhen($activeModal == 'editPerson', 'person.edit')
-    @includeWhen($activeModal == 'createEntry', 'person-entry.create')
+    @includeWhen($activeModal == 'deletePerson', 'person.confirm-delete')
 </div>

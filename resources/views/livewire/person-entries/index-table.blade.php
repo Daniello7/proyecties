@@ -1,3 +1,4 @@
+@php use Illuminate\Pagination\LengthAwarePaginator;use Illuminate\Pagination\Paginator; @endphp
 <div id="latest-entries-table" class="w-full transition">
     <x-header :content="__('External Staff').' - '.__('New Entry')"/>
     <div class="flex flex-row justify-between px-8 py-2">
@@ -53,7 +54,7 @@
         </tbody>
     </table>
     <hr class="mx-2 border-blue-600 dark:border-pink-600 opacity-50">
-    @if($rows instanceof \Illuminate\Pagination\Paginator || $rows instanceof \Illuminate\Pagination\LengthAwarePaginator)
+    @if($rows instanceof Paginator || $rows instanceof LengthAwarePaginator)
         <div class="pt-4 mx-8 [&_*]:text-blue-600 dark:[&_*]:text-pink-500">
             {{ $rows->links() }}
         </div>
