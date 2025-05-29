@@ -2,7 +2,6 @@
 
 namespace App\Policies;
 
-use App\Models\Package;
 use App\Models\User;
 use Illuminate\Auth\Access\HandlesAuthorization;
 
@@ -10,14 +9,18 @@ class PackagePolicy
 {
     use HandlesAuthorization;
 
+    public function before(User $user, string $ability): ?bool
+    {
+        if ($user->hasRole('admin') && $ability !== 'create') {
+            return true;
+        }
+
+        return null;
+    }
+
     public function viewAny(User $user): bool
     {
         return $user->hasRole('porter');
-    }
-
-    public function view(User $user, Package $package): bool
-    {
-        return $user->id === $package->internal_person_id;
     }
 
     public function create(User $user): bool
@@ -37,16 +40,16 @@ class PackagePolicy
 
     public function delete(User $user): bool
     {
-        return $user->hasRole('admin');
+        return false;
     }
 
     public function restore(User $user): bool
     {
-        return $user->hasRole(['porter', 'admin']);
+        return $user->hasRole('porter');
     }
 
     public function forceDelete(User $user): bool
     {
-        return $user->hasRole(['porter', 'admin']);
+        return $user->hasRole('porter');
     }
 }

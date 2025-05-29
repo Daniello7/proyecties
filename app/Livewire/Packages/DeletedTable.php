@@ -49,6 +49,9 @@ class DeletedTable extends Component
     public function restore(int $id): void
     {
         $package = Package::onlyTrashed()->findOrFail($id);
+
+        $this->authorize('restore', $package);
+
         $package->restore();
 
         session()->flash('package-status', __('messages.package_restored'));
@@ -59,6 +62,9 @@ class DeletedTable extends Component
     public function deletePackage(int $id): void
     {
         $package = Package::onlyTrashed()->findOrFail($id);
+
+        $this->authorize('force-delete', $package);
+
         $package->forceDelete();
 
         session()->flash('package-status', __('messages.package_deleted'));
@@ -68,13 +74,14 @@ class DeletedTable extends Component
 
     public function deleteAllPackages(): void
     {
+        $this->authorize('force-delete', Package::class);
+
         Package::onlyTrashed()->forceDelete();
 
         session()->flash('package-status', __('messages.package_deleted'));
 
         $this->activeModal = null;
     }
-
 
     public function render()
     {

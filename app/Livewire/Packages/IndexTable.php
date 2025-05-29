@@ -82,11 +82,13 @@ class IndexTable extends Component
 
     public function updatePackage($id): void
     {
+        $package = Package::findorFail($id);
+
+        $this->authorize('update', $package);
+
         $this->formRequest = new UpdatePackageRequest();
 
         $validated = $this->validate($this->formRequest->rules());
-
-        $package = Package::findorFail($id);
 
         $package->update($validated);
 
@@ -98,6 +100,8 @@ class IndexTable extends Component
     public function deletePackage($id): void
     {
         $package = Package::findorFail($id);
+
+        $this->authorize('delete', $package);
 
         $package->delete();
 

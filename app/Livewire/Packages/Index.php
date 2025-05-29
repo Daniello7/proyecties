@@ -27,24 +27,30 @@ class Index extends Component
 
     public function openPackageList(): void
     {
+        $this->authorize('viewAny', Package::class);
+
         $this->closeWindows();
         $this->openedPackageList = true;
     }
 
     public function openPackagesDeleted(): void
     {
+        $this->authorize('cancel', Package::class);
+
         $this->closeWindows();
         $this->openedPackagesDeleted = true;
     }
 
     public function openCreateReception(): void
     {
+        $this->authorize('create', Package::class);
         $this->closeWindows();
         $this->openedCreateReception = true;
     }
 
     public function openCreateShipping(): void
     {
+        $this->authorize('create', Package::class);
         $this->closeWindows();
         $this->openedCreateShipping = true;
     }
@@ -59,6 +65,8 @@ class Index extends Component
 
     public function storePackage($type): void
     {
+        $this->authorize('create', Package::class);
+
         $this->type = $type;
 
         if (!in_array($this->type, ['entry', 'exit'])) abort(404);

@@ -35,6 +35,8 @@ class HomeTable extends Component
     {
         $package = Package::find($id);
 
+        $this->authorize('update', $package);
+
         $package->update(['comment' => $this->packageComment]);
 
         session()->flash('package-status', __('messages.comment_updated'));
@@ -61,6 +63,8 @@ class HomeTable extends Component
     {
         $package = Package::findOrFail($id);
 
+        $this->authorize('update', $package);
+
         $package->update([
             'entry_time' => now(),
             'receiver_user_id' => auth()->user()->id,
@@ -72,6 +76,8 @@ class HomeTable extends Component
     public function deletePackage($id): void
     {
         $package = Package::findorFail($id);
+
+        $this->authorize('cancel', $package);
 
         $package->delete();
 
