@@ -21,7 +21,6 @@ class Index extends Component
     public bool $openedExitKeysTable = true;
     public bool $openedCreateExitKey = false;
     public bool $openedSearchKey = false;
-
     public bool $openedKeyTable = false;
 
     public function openExitKeysTable(): void
@@ -63,6 +62,7 @@ class Index extends Component
 
     public function storeExitKey(): void
     {
+        $this->authorize('create', KeyControl::class);
         $validated = $this->validate();
 
         $validated['exit_time'] = now();

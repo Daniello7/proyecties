@@ -1,19 +1,24 @@
+@php use App\Models\Key;use App\Models\KeyControl; @endphp
 <div class="flex flex-col gap-8 mx-auto sm:px-6 lg:px-8">
     <section class="text-gray-800 dark:text-gray-100 bg-white dark:bg-gray-800 rounded-lg p-2 shadow-lg transition-colors z-10">
         <x-header :content="__('Options')"/>
         <div class="py-6 flex flex-row gap-4 justify-evenly">
-            <x-button-box wire:click="openKeyTable">
-                <x-svg.key-icon class="w-8 h-8 stroke-blue-600"/>
-                {{ __('Keys') }}
-            </x-button-box>
+            @can('view-any', Key::class)
+                <x-button-box wire:click="openKeyTable">
+                    <x-svg.key-icon class="w-8 h-8 stroke-blue-600"/>
+                    {{ __('Keys') }}
+                </x-button-box>
+            @endcan
             <x-button-box wire:click="openExitKeysTable">
                 <x-svg.key-control-icon class="w-8 h-8 fill-blue-600"/>
                 {{ __('Latest Records') }}
             </x-button-box>
-            <x-button-box wire:click="openCreateExitKey">
-                <x-svg.add-key-icon class="w-8 h-8 stroke-blue-600"/>
-                {{ __('New Exit') }}
-            </x-button-box>
+            @can('create', KeyControl::class)
+                <x-button-box wire:click="openCreateExitKey">
+                    <x-svg.add-key-icon class="w-8 h-8 stroke-blue-600"/>
+                    {{ __('New Exit') }}
+                </x-button-box>
+            @endcan
             <x-button-box wire:click="openSearchKey">
                 <x-svg.search-icon class="w-8 h-8 stroke-blue-600"/>
                 {{ __('Search for Key') }}

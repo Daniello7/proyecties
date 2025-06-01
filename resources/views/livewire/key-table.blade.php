@@ -1,9 +1,12 @@
+@php use App\Models\Key; @endphp
 <div class="w-full">
     <x-header :content="__('Key Control').' - '.__('Keys')">
-        <x-primary-button wire:click="openModal('createKey')" class="h-max m-2">
-            {{ __('New Key') }}
-            <x-svg.add-key-icon class="w-6 h-6 ml-2 stroke-white"/>
-        </x-primary-button>
+        @can('create',Key::class)
+            <x-primary-button wire:click="openModal('createKey')" class="h-max m-2">
+                {{ __('New Key') }}
+                <x-svg.add-key-icon class="w-6 h-6 ml-2 stroke-white"/>
+            </x-primary-button>
+        @endcan
     </x-header>
     <div class="flex flex-col justify-between p-2">
         <div class="flex flex-row justify-between">
@@ -37,8 +40,12 @@
                 <!-- Actions -->
                 <td>
                     <div class="flex flex-row flex-wrap gap-2 justify-center">
-                        <x-svg.edit-button wire:click="openModal('editKey',{{ $keyData->id }})"/>
-                        <x-svg.recycle-bin wire:click="openModal('deleteKey',{{ $keyData->id }})" class="w-9 h-9 stroke-red-600 dark:stroke-red-300 bg-red-300 dark:bg-red-900 bg-opacity-40 dark:bg-opacity-40"/>
+                        @can('update', $keyData)
+                            <x-svg.edit-button wire:click="openModal('editKey',{{ $keyData->id }})"/>
+                        @endcan
+                        @can('delete', $keyData)
+                            <x-svg.recycle-bin wire:click="openModal('deleteKey',{{ $keyData->id }})" class="w-9 h-9 stroke-red-600 dark:stroke-red-300 bg-red-300 dark:bg-red-900 bg-opacity-40"/>
+                        @endcan
                     </div>
                 </td>
             </tr>

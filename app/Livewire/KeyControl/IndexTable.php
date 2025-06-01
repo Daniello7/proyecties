@@ -71,7 +71,7 @@ class IndexTable extends Component
             'deliver:id,name',
             'receiver:id,name',
         ];
-        $this->sortColumn = 'entry_time';
+        $this->sortColumn = 'exit_time';
         $this->sortDirection = 'desc';
     }
 
@@ -82,17 +82,21 @@ class IndexTable extends Component
             ->select($this->select)
             ->joinRelations();
 
-        $this->applySearchFilter($query);
 
         if (isset($this->areaId)) {
             $query->where('key.area_id', $this->areaId);
+            $this->sortColumn = 'key.area_id';
+            $this->sortDirection = 'asc';
         }
 
         if (isset($this->keyId)) {
             $query->where('key.id', $this->keyId);
         }
 
+        $this->applySearchFilter($query);
+
         return $query->orderBy($this->sortColumn, $this->sortDirection)
+            ->orderBy('key.area_key_number')
             ->whereNotNull('entry_time')->paginate(20);
     }
 
@@ -100,9 +104,9 @@ class IndexTable extends Component
     {
         $this->activeModal = $modal;
         $this->exitKey_id = $id;
+        $this->exitKey = KeyControl::findOrFail($id);
 
         if ($modal === 'editKeyControl') {
-            $this->exitKey = KeyControl::findOrFail($id);
             $this->loadKeyControlData();
         }
     }
@@ -124,6 +128,8 @@ class IndexTable extends Component
 
     public function updateKeyControl(): void
     {
+        $this->authorize('update', $this->exitKey);
+
         $this->formRequest = new UpdateKeyControlRequest();
 
         $validated = $this->validate($this->formRequest->rules());
@@ -135,13 +141,15 @@ class IndexTable extends Component
         $this->closeModal();
     }
 
-    public function deleteKeyControl($id): void
+    public function deleteKeyControl(): void
     {
-        $keyControl = KeyControl::findorFail($id);
+        $this->authorize('delete', $this->exitKey);
 
-        $keyControl->delete();
+        $this->exitKey->delete();
 
         session()->flash('key-status', __('messages.key-control_deleted'));
+
+        $this->closeModal();
     }
 
     public function render()

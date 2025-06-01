@@ -33,7 +33,12 @@
                 <!-- Actions -->
                 <td>
                     <div class="flex flex-row flex-wrap gap-2 justify-center">
-                        <x-svg.edit-button wire:click="openModal('editKeyControl',{{ $keyControl->id }})"/>
+                        @can('update', $keyControl)
+                            <x-svg.edit-button wire:click="openModal('editKeyControl',{{ $keyControl->id }})"/>
+                        @endcan
+                        @can('delete', $keyControl)
+                            <x-svg.recycle-bin wire:click="openModal('deleteKeyControl',{{ $keyControl->id }})" class="w-9 h-9 stroke-red-600 dark:stroke-red-300 bg-red-300 dark:bg-red-900 bg-opacity-40"/>
+                        @endcan
                     </div>
                 </td>
             </tr>
@@ -45,4 +50,5 @@
         {{ $rows->links() }}
     </div>
     @includeWhen($activeModal == 'editKeyControl', 'key-control.edit')
+    @includeWhen($activeModal == 'deleteKeyControl', 'key-control.confirm-delete')
 </div>

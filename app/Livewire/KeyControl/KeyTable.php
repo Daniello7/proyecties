@@ -72,6 +72,8 @@ class KeyTable extends Component
 
     public function storeKey(): void
     {
+        $this->authorize('create', Key::class);
+
         $validated = $this->validate();
 
         Area::findOrFail($this->area_id)->keys()->create($validated);
@@ -83,9 +85,13 @@ class KeyTable extends Component
 
     public function updateKey(): void
     {
+        $key = Key::findOrFail($this->key_id);
+
+        $this->authorize('update', $key);
+
         $validated = $this->validate();
 
-        Key::findOrFail($this->key_id)->update(['name' => $validated['name']]);
+        $key->update(['name' => $validated['name']]);
 
         session()->flash('key-status', __('messages.key_updated'));
 
@@ -94,7 +100,11 @@ class KeyTable extends Component
 
     public function deleteKey(): void
     {
-        Key::findOrFail($this->key_id)->delete();
+        $key = Key::findOrFail($this->key_id);
+
+        $this->authorize('delete', $key);
+
+        $key->delete();
 
         session()->flash('key-status', __('messages.key_deleted'));
 

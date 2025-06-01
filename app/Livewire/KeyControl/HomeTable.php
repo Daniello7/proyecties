@@ -7,7 +7,7 @@ use App\Traits\HasTableEloquent;
 use Illuminate\Database\Eloquent\Collection;
 use Livewire\Component;
 
-class homeTable extends Component
+class HomeTable extends Component
 {
     use HasTableEloquent;
 
@@ -57,6 +57,8 @@ class homeTable extends Component
     {
         $keyControl = KeyControl::findOrFail($id);
 
+        $this->authorize('update', $keyControl);
+
         $keyControl->update([
             'entry_time' => now(),
             'receiver_user_id' => auth()->user()->id,
@@ -68,6 +70,8 @@ class homeTable extends Component
     public function deleteKeyControlRecord($id): void
     {
         $keyControl = KeyControl::findorFail($id);
+
+        $this->authorize('delete', $keyControl);
 
         $keyControl->delete();
 
