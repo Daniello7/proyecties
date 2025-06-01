@@ -18,7 +18,7 @@ class InternalPersonFactory extends Factory
     public function definition(): array
     {
         return [
-            'person_id' => Person::inRandomOrder()->firstOrFail()->id,
+            'person_id' => Person::inRandomOrder()->first() ?? Person::factory()->create()->id,
             'email' => $this->faker->unique()->safeEmail(),
             'phone' => $this->faker->phoneNumber(),
             'contract_type' => $this->faker->randomElement(['Temporal', 'Indefinido']),

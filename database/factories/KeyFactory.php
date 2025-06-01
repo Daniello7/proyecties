@@ -2,6 +2,7 @@
 
 namespace Database\Factories;
 
+use App\Models\Area;
 use App\Models\Key;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
@@ -18,6 +19,7 @@ class KeyFactory extends Factory
     public function definition(): array
     {
         return [
+            'area_id' => Area::inRandomOrder()->first() ?? Area::factory()->create()->id,
             'name' => $this->faker->streetName(),
         ];
     }

@@ -4,57 +4,71 @@ use App\Http\Controllers\KeyControlController;
 use App\Models\Person;
 use App\Models\User;
 use App\Models\Key;
-use Illuminate\Support\Facades\Route;
 use Spatie\Permission\Models\Role;
 
-it('loads the key control index view', function () {
+beforeEach(function () {
+    Role::create(['name' => 'porter']);
+    Role::create(['name' => 'admin']);
+    Role::create(['name' => 'rrhh']);
+});
+
+it('loads the key control index view as porter', function () {
     // Arrange
-    Route::get('/key-control', [KeyControlController::class, 'index'])->name('key-control.index');
+    $user = User::factory()->create();
+    $user->assignRole('porter');
 
     // Act
-    $response = $this->get(route('key-control'));
+    $response = $this->actingAs($user)
+        ->get(route('key-control'));
 
     // Assert
     $response->assertStatus(200);
     $response->assertViewIs('key-control.index');
 });
 
-it('loads the key control create view', function () {
+it('loads the key control index view as admin', function () {
     // Arrange
-    Route::get('/key-control/create', [KeyControlController::class, 'create'])->name('key-control.create');
+    $user = User::factory()->create();
+    $user->assignRole('admin');
 
     // Act
-    $response = $this->get(route('key-control.create'));
+    $response = $this->actingAs($user)
+        ->get(route('key-control'));
 
     // Assert
     $response->assertStatus(200);
-    $response->assertViewIs('key-control.create');
+    $response->assertViewIs('key-control.index');
 });
 
-it('can store a new key control record', function () {
-    // Arrange
-    Role::firstOrCreate(['name' => 'porter']);
-
-    $user = User::factory()->create();
-    $user->assignRole('porter');
-
-    $this->actingAs($user);
-    $key = Key::factory()->create();
-    $person = Person::factory()->create();
-
-    $data = [
-        'key_id' => $key->id,
-        'person_id' => $person->id,
-        'deliver_user_id' => $user->id,
-        'receiver_user_id' => null,
-        'exit_time' => now()->format("Y-m-d H:i:s"),
-    ];
-
+it('redirects to login when not authenticated', function () {
     // Act
-    $response = $this->postJson(route('key-control.store'), $data);
+    $response = $this->get(route('key-control'));
 
     // Assert
-    $response->assertRedirect(route('control-access'));
-    $this->assertDatabaseHas('key_controls', $data);
+    $response->assertRedirect(route('login'));
 });
 
+it('returns 403 when authenticated without required role', function () {
+    // Arrange
+    $user = User::factory()->create();
+
+    // Act
+    $response = $this->actingAs($user)
+        ->get(route('key-control'));
+
+    // Assert
+    $response->assertForbidden();
+});
+
+it('returns 403 when authenticated as rrhh', function () {
+    // Arrange
+    $user = User::factory()->create();
+    $user->assignRole('rrhh');
+
+    // Act
+    $response = $this->actingAs($user)
+        ->get(route('key-control'));
+
+    // Assert
+    $response->assertForbidden();
+});

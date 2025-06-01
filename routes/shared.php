@@ -2,7 +2,6 @@
 
 use App\Http\Controllers\InternalPersonController;
 use App\Http\Controllers\KeyControlController;
-use App\Http\Controllers\KeyController;
 use App\Http\Controllers\PackageController;
 use App\Http\Controllers\PersonController;
 use App\Http\Controllers\ProfileController;
@@ -18,10 +17,8 @@ Route::middleware(['auth', RoleMiddleware::using(['porter', 'admin', 'rrhh'])])-
     Route::get('/person/{id}', [PersonController::class, 'show'])->name('person.show');
 });
 
-Route::middleware(RoleMiddleware::using(['porter', 'admin']))->group(function () {
+Route::middleware(['auth', RoleMiddleware::using(['porter', 'admin'])])->group(function () {
     Route::get('/packages', [PackageController::class, 'index'])->name('packages');
-
-    Route::get('/key-control/keys', [KeyController::class, 'index'])->name('keys.index');
 
     Route::get('/key-control', [KeyControlController::class, 'index'])->name('key-control');
 });
