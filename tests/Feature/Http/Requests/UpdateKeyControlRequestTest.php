@@ -4,12 +4,25 @@ namespace Tests\Feature\Http\Requests\KeyControl;
 
 use App\Http\Requests\KeyControl\UpdateKeyControlRequest;
 use App\Models\Person;
-use Illuminate\Support\Facades\Validator;
+use Illuminate\Support\Facades\Route;
+
+beforeEach(function () {
+    Route::put('/test-key-control-update', function (UpdateKeyControlRequest $request) {
+        return response()->json(['success' => true]);
+    });
+});
+
+it('authorizes all users to make the request', function () {
+    // Arrange
+    $request = new UpdateKeyControlRequest();
+    
+    // Act & Assert
+    expect($request->authorize())->toBeTrue();
+});
 
 it('passes validation when all fields are correct', function () {
     // Arrange
     $person = Person::factory()->create();
-
     $data = [
         'person_id' => $person->id,
         'comment' => 'Returning the key after use',
@@ -18,98 +31,146 @@ it('passes validation when all fields are correct', function () {
     ];
 
     // Act
-    $validator = Validator::make($data, (new UpdateKeyControlRequest())->rules());
+    $response = $this->putJson('/test-key-control-update', $data);
 
     // Assert
-    expect($validator->fails())->toBeFalse();
+    $response->assertStatus(200);
 });
 
-it('fails validation when person_id is missing', function () {
+it('fails validation when person_id is not an integer', function () {
     // Arrange
     $data = [
-        'comment' => 'No person ID provided',
+        'person_id' => 'not-an-integer',
+        'comment' => 'Invalid person ID format',
         'exit_time' => now()->subHour()->toDateTimeString(),
         'entry_time' => now()->toDateTimeString(),
     ];
 
     // Act
-    $validator = Validator::make($data, (new UpdateKeyControlRequest())->rules());
+    $response = $this->putJson('/test-key-control-update', $data);
 
     // Assert
-    expect($validator->fails())->toBeTrue()
-        ->and($validator->errors()->has('person_id'))->toBeTrue();
+    $response->assertStatus(422)
+        ->assertJsonValidationErrors(['person_id']);
 });
 
-it('fails validation when exit_time is missing', function () {
+it('fails validation when person_id does not exist', function () {
     // Arrange
-    $person = Person::factory()->create();
-
     $data = [
-        'person_id' => $person->id,
-        'comment' => 'Missing exit time',
+        'person_id' => 99999,
+        'comment' => 'Non-existent person',
+        'exit_time' => now()->subHour()->toDateTimeString(),
         'entry_time' => now()->toDateTimeString(),
     ];
 
     // Act
-    $validator = Validator::make($data, (new UpdateKeyControlRequest())->rules());
+    $response = $this->putJson('/test-key-control-update', $data);
 
     // Assert
-    expect($validator->fails())->toBeTrue()
-        ->and($validator->errors()->has('exit_time'))->toBeTrue();
+    $response->assertStatus(422)
+        ->assertJsonValidationErrors(['person_id']);
 });
 
-it('fails validation when entry_time is missing', function () {
+it('validates comment is string when provided', function () {
     // Arrange
     $person = Person::factory()->create();
-
     $data = [
         'person_id' => $person->id,
-        'comment' => 'Missing entry time',
+        'comment' => ['not-a-string'],
         'exit_time' => now()->subHour()->toDateTimeString(),
-    ];
-
-    // Act
-    $validator = Validator::make($data, (new UpdateKeyControlRequest())->rules());
-
-    // Assert
-    expect($validator->fails())->toBeTrue()
-        ->and($validator->errors()->has('entry_time'))->toBeTrue();
-});
-
-it('fails validation when exit_time is not a valid date', function () {
-    // Arrange
-    $person = Person::factory()->create();
-
-    $data = [
-        'person_id' => $person->id,
-        'comment' => 'Invalid exit time',
-        'exit_time' => 'not-a-date',
         'entry_time' => now()->toDateTimeString(),
     ];
 
     // Act
-    $validator = Validator::make($data, (new UpdateKeyControlRequest())->rules());
+    $response = $this->putJson('/test-key-control-update', $data);
 
     // Assert
-    expect($validator->fails())->toBeTrue()
-        ->and($validator->errors()->has('exit_time'))->toBeTrue();
+    $response->assertStatus(422)
+        ->assertJsonValidationErrors(['comment']);
 });
 
-it('fails validation when entry_time is not a valid date', function () {
+it('allows null comment', function () {
     // Arrange
     $person = Person::factory()->create();
-
     $data = [
         'person_id' => $person->id,
-        'comment' => 'Invalid entry time',
+        'comment' => null,
         'exit_time' => now()->subHour()->toDateTimeString(),
-        'entry_time' => 'not-a-date',
+        'entry_time' => now()->toDateTimeString(),
     ];
 
     // Act
-    $validator = Validator::make($data, (new UpdateKeyControlRequest())->rules());
+    $response = $this->putJson('/test-key-control-update', $data);
 
     // Assert
-    expect($validator->fails())->toBeTrue()
-        ->and($validator->errors()->has('entry_time'))->toBeTrue();
+    $response->assertStatus(200);
+});
+
+it('validates exit_time format', function () {
+    // Arrange
+    $person = Person::factory()->create();
+    $data = [
+        'person_id' => $person->id,
+        'comment' => 'Test comment',
+        'exit_time' => 'invalid-date-format',
+        'entry_time' => now()->toDateTimeString(),
+    ];
+
+    // Act
+    $response = $this->putJson('/test-key-control-update', $data);
+
+    // Assert
+    $response->assertStatus(422)
+        ->assertJsonValidationErrors(['exit_time']);
+});
+
+it('validates entry_time format', function () {
+    // Arrange
+    $person = Person::factory()->create();
+    $data = [
+        'person_id' => $person->id,
+        'comment' => 'Test comment',
+        'exit_time' => now()->subHour()->toDateTimeString(),
+        'entry_time' => 'invalid-date-format',
+    ];
+
+    // Act
+    $response = $this->putJson('/test-key-control-update', $data);
+
+    // Assert
+    $response->assertStatus(422)
+        ->assertJsonValidationErrors(['entry_time']);
+});
+
+it('accepts valid date formats for exit_time and entry_time', function () {
+    // Arrange
+    $person = Person::factory()->create();
+    $data = [
+        'person_id' => $person->id,
+        'comment' => 'Test comment',
+        'exit_time' => '2025-06-02 10:00:00',
+        'entry_time' => '2025-06-02 11:00:00',
+    ];
+
+    // Act
+    $response = $this->putJson('/test-key-control-update', $data);
+
+    // Assert
+    $response->assertStatus(200);
+});
+
+it('fails when required fields are missing', function () {
+    // Arrange
+    $data = [];
+
+    // Act
+    $response = $this->putJson('/test-key-control-update', $data);
+
+    // Assert
+    $response->assertStatus(422)
+        ->assertJsonValidationErrors([
+            'person_id',
+            'exit_time',
+            'entry_time'
+        ]);
 });

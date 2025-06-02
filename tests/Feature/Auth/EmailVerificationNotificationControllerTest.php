@@ -1,60 +1,40 @@
 <?php
 
-namespace Tests\Feature\Auth;
-
 use App\Models\User;
 use Illuminate\Auth\Notifications\VerifyEmail;
-use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Support\Facades\Notification;
-use Tests\TestCase;
 
-class EmailVerificationNotificationControllerTest extends TestCase
-{
-    use RefreshDatabase;
+it('can send email verification notification', function () {
+    Notification::fake();
+    
+    $user = User::factory()->unverified()->create();
+    
+    $response = $this->actingAs($user)
+        ->post(route('verification.send'));
 
-    public function test_email_verification_notification_can_be_sent(): void
-    {
-        // Arrange
-        Notification::fake();
-        
-        $user = User::factory()->unverified()->create();
-        
-        // Act
-        $response = $this->actingAs($user)
-            ->post(route('verification.send'));
+    $response->assertSessionHas('status', 'verification-link-sent');
+    $response->assertRedirect();
+    
+    Notification::assertSentTo($user, VerifyEmail::class);
+});
 
-        // Assert
-        $response->assertSessionHas('status', 'verification-link-sent');
-        $response->assertRedirect();
-        
-        Notification::assertSentTo($user, VerifyEmail::class);
-    }
+it('redirects verified users to dashboard', function () {
+    Notification::fake();
+    
+    $user = User::factory()->create([
+        'email_verified_at' => now(),
+    ]);
+    
+    $response = $this->actingAs($user)
+        ->post(route('verification.send'));
 
-    public function test_verified_users_are_redirected_to_dashboard(): void
-    {
-        // Arrange
-        Notification::fake();
-        
-        $user = User::factory()->create([
-            'email_verified_at' => now(),
-        ]);
-        
-        // Act
-        $response = $this->actingAs($user)
-            ->post(route('verification.send'));
+    $response->assertRedirect(route('dashboard'));
+    
+    Notification::assertNothingSent();
+});
 
-        // Assert
-        $response->assertRedirect(route('dashboard'));
-        
-        Notification::assertNothingSent();
-    }
+it('prevents guests from sending verification notification', function () {
+    $response = $this->post(route('verification.send'));
 
-    public function test_guests_cannot_send_verification_notification(): void
-    {
-        // Act
-        $response = $this->post(route('verification.send'));
-
-        // Assert
-        $response->assertRedirect(route('login'));
-    }
-}
+    $response->assertRedirect(route('login'));
+});
