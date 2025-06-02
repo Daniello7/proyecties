@@ -7,14 +7,11 @@ use App\Models\Person;
 use App\Models\PersonEntry;
 use App\Models\User;
 use App\Models\InternalPerson;
-use Carbon\Carbon;
 use Maatwebsite\Excel\Facades\Excel;
-use Tests\TestCase;
-use PhpOffice\PhpSpreadsheet\Worksheet\Worksheet;
 use PhpOffice\PhpSpreadsheet\Spreadsheet;
 
 beforeEach(function() {
-    // Crear datos necesarios
+    // Arrange
     $this->user = User::factory()->create(['name' => 'Portero Test']);
     
     $this->person = Person::factory()->create([
@@ -44,36 +41,41 @@ beforeEach(function() {
 });
 
 it('exports all entries when no ids provided', function() {
+    // Arrange
     $export = new PersonEntryExport();
-    
-    // Obtener la entrada con las relaciones cargadas para comparar
     $expectedEntry = PersonEntry::with(['user', 'person', 'internalPerson.person'])
         ->find($this->personEntry->id);
     
+    // Act
     $collection = $export->collection();
     
+    // Assert
     expect($collection->contains(function($entry) use ($expectedEntry) {
         return $entry->id === $expectedEntry->id;
     }))->toBeTrue();
 });
 
 it('exports only specified entries when ids provided', function() {
+    // Arrange
     $otherEntry = PersonEntry::factory()->create();
     $export = new PersonEntryExport([$this->personEntry->id]);
-    
     $expectedEntry = PersonEntry::with(['user', 'person', 'internalPerson.person'])
         ->find($this->personEntry->id);
     
+    // Act
     $collection = $export->collection();
     
+    // Assert
     expect($collection)
         ->toHaveCount(1)
         ->and($collection->first()->id)->toBe($expectedEntry->id);
 });
 
 it('has correct headings', function() {
+    // Arrange
     $export = new PersonEntryExport();
     
+    // Act & Assert
     expect($export->headings())->toBe([
         'ID',
         __('Porter'),
@@ -88,9 +90,13 @@ it('has correct headings', function() {
 });
 
 it('maps entry data correctly', function() {
+    // Arrange
     $export = new PersonEntryExport();
+    
+    // Act
     $mappedData = $export->map($this->personEntry);
     
+    // Assert
     expect($mappedData)->toBe([
         $this->personEntry->id,
         'Portero Test',
@@ -105,12 +111,15 @@ it('maps entry data correctly', function() {
 });
 
 it('applies correct styles', function() {
+    // Arrange
     $export = new PersonEntryExport();
     $spreadsheet = new Spreadsheet();
     $worksheet = $spreadsheet->getActiveSheet();
     
+    // Act
     $styles = $export->styles($worksheet);
     
+    // Assert
     expect($styles)
         ->toHaveKey(1)
         ->and($styles[1])->toHaveKey('font')
@@ -120,7 +129,12 @@ it('applies correct styles', function() {
 });
 
 it('can be downloaded', function() {
+    // Arrange
     Excel::fake();
+    
+    // Act
     Excel::download(new PersonEntryExport(), 'person-entries.xlsx');
+    
+    // Assert
     Excel::assertDownloaded('person-entries.xlsx');
 });

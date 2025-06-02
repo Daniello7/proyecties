@@ -6,7 +6,7 @@ use Spatie\Permission\Models\Role;
 it('loads the control access view when authenticated as porter', function () {
     // Arrange
     $user = User::factory()->create();
-    $role = Role::create(['name' => 'porter']);
+    Role::create(['name' => 'porter']);
     $user->assignRole('porter');
     
     // Act
