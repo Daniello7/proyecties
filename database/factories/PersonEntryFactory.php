@@ -22,9 +22,9 @@ class PersonEntryFactory extends Factory
     public function definition(): array
     {
         return [
-            'user_id' => User::inRandomOrder()->firstOrFail()->id,
-            'person_id' => Person::doesntHave('internalPerson')->inRandomOrder()->firstOrFail()->id,
-            'internal_person_id' => InternalPerson::inRandomOrder()->firstOrFail()->id,
+            'user_id' => User::inRandomOrder()->first()?->id ?? User::factory()->create()->id,
+            'person_id' => Person::doesntHave('internalPerson')->inRandomOrder()->first()?->id ?? Person::factory()->create()->id,
+            'internal_person_id' => InternalPerson::inRandomOrder()->first()?->id ?? InternalPerson::factory()->create()->id,
             'comment' => $this->faker->randomElement([null, null, $this->faker->realTextBetween(20, 40)]),
             'reason' => $this->faker->randomElement(PersonEntry::REASONS),
             'arrival_time' => $this->faker->dateTime(),

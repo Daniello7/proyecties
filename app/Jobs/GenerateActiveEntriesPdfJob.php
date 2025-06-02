@@ -70,6 +70,5 @@ class GenerateActiveEntriesPdfJob implements ShouldQueue
 
         Storage::disk('public')->put($filePath, $pdf->output());
 
-        event(new GeneratedActiveEntriesPdfEvent($this->user_id));
     }
 }
