@@ -16,8 +16,15 @@ class InternalPerson extends Person
         'person_id',
         'email',
         'contract_type',
-        'hired_at'
+        'hired_at',
+        'phone',
+        'address',
+        'country',
+        'city',
+        'province',
+        'zip_code'
     ];
+
 
     public function person(): BelongsTo
     {

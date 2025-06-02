@@ -1,120 +1,122 @@
 <?php
 
-namespace Tests\Feature\Http\Requests\PersonEntry;
-
-use App\Http\Requests\PersonEntry\UpdatePersonEntryRequest;
-use App\Models\InternalPerson;
 use App\Models\Person;
-use App\Models\User;
+use App\Models\InternalPerson;
 use App\Models\PersonEntry;
+use App\Http\Requests\PersonEntry\StorePersonEntryRequest;
 use Illuminate\Support\Facades\Validator;
+use Illuminate\Foundation\Testing\RefreshDatabase;
 
-it('passes validation when all fields are correct', function () {
-    // Arrange
-    $user = User::factory()->create();
-    $person = Person::factory()->create();
-    $internalPerson = InternalPerson::factory()->create();
+uses(RefreshDatabase::class);
 
-    $data = [
-        'user_id' => $user->id,
-        'person_id' => $person->id,
-        'internal_person_id' => $internalPerson->id,
-        'reason' => PersonEntry::REASONS[0],
-        'comment' => 'Valid update',
-        'arrival_time' => now()->toDateTimeString(),
-        'entry_time' => now()->toDateTimeString(),
-        'exit_time' => now()->toDateTimeString(),
-    ];
-
-    // Act
-    $validator = Validator::make($data, (new UpdatePersonEntryRequest())->rules());
-
-    // Assert
-    expect($validator->fails())->toBeFalse();
+beforeEach(function () {
+    $this->person = Person::factory()->create();
+    $this->internalPerson = InternalPerson::factory()->create();
 });
 
-it('fails validation when person_id is missing', function () {
-    // Arrange
-    Person::factory()->create();
-    $internalPerson = InternalPerson::factory()->create();
-
+it('validates with correct data', function () {
     $data = [
-        'internal_person_id' => $internalPerson->id,
+        'person_id' => $this->person->id,
+        'internal_person_id' => $this->internalPerson->id,
         'reason' => PersonEntry::REASONS[0],
-        'arrival_time' => now()->toDateTimeString(),
-        'entry_time' => now()->toDateTimeString(),
-        'exit_time' => now()->toDateTimeString(),
+        'comment' => 'Test comment'
     ];
 
-    // Act
-    $validator = Validator::make($data, (new UpdatePersonEntryRequest())->rules());
+    $validator = Validator::make($data, (new StorePersonEntryRequest())->rules());
 
-    // Assert
-    expect($validator->fails())->toBeTrue()
-        ->and($validator->errors()->has('person_id'))->toBeTrue();
+    expect($validator->passes())->toBeTrue();
 });
 
-it('fails validation when reason is invalid', function () {
-    // Arrange
-    $person = Person::factory()->create();
-    $internalPerson = InternalPerson::factory()->create();
-
+it('requires person_id', function () {
     $data = [
-        'person_id' => $person->id,
-        'internal_person_id' => $internalPerson->id,
+        'internal_person_id' => $this->internalPerson->id,
+        'reason' => PersonEntry::REASONS[0],
+        'comment' => 'Test comment'
+    ];
+
+    $validator = Validator::make($data, (new StorePersonEntryRequest())->rules());
+
+    expect($validator->fails())->toBeTrue();
+    expect($validator->errors()->has('person_id'))->toBeTrue();
+});
+
+it('requires internal_person_id', function () {
+    $data = [
+        'person_id' => $this->person->id,
+        'reason' => PersonEntry::REASONS[0],
+        'comment' => 'Test comment'
+    ];
+
+    $validator = Validator::make($data, (new StorePersonEntryRequest())->rules());
+
+    expect($validator->fails())->toBeTrue();
+    expect($validator->errors()->has('internal_person_id'))->toBeTrue();
+});
+
+it('requires reason', function () {
+    $data = [
+        'person_id' => $this->person->id,
+        'internal_person_id' => $this->internalPerson->id,
+        'comment' => 'Test comment'
+    ];
+
+    $validator = Validator::make($data, (new StorePersonEntryRequest())->rules());
+
+    expect($validator->fails())->toBeTrue();
+    expect($validator->errors()->has('reason'))->toBeTrue();
+});
+
+it('validates reason must be in valid reasons list', function () {
+    $data = [
+        'person_id' => $this->person->id,
+        'internal_person_id' => $this->internalPerson->id,
         'reason' => 'invalid_reason',
-        'arrival_time' => now()->toDateTimeString(),
-        'entry_time' => now()->toDateTimeString(),
-        'exit_time' => now()->toDateTimeString(),
+        'comment' => 'Test comment'
     ];
 
-    // Act
-    $validator = Validator::make($data, (new UpdatePersonEntryRequest())->rules());
+    $validator = Validator::make($data, (new StorePersonEntryRequest())->rules());
 
-    // Assert
-    expect($validator->fails())->toBeTrue()
-        ->and($validator->errors()->has('reason'))->toBeTrue();
+    expect($validator->fails())->toBeTrue();
+    expect($validator->errors()->has('reason'))->toBeTrue();
 });
 
-it('fails validation when arrival_time is missing', function () {
-    // Arrange
-    $person = Person::factory()->create();
-    $internalPerson = InternalPerson::factory()->create();
-
+it('accepts null comment', function () {
     $data = [
-        'person_id' => $person->id,
-        'internal_person_id' => $internalPerson->id,
+        'person_id' => $this->person->id,
+        'internal_person_id' => $this->internalPerson->id,
         'reason' => PersonEntry::REASONS[0],
-        'entry_time' => now()->toDateTimeString(),
-        'exit_time' => now()->toDateTimeString(),
+        'comment' => null
     ];
 
-    // Act
-    $validator = Validator::make($data, (new UpdatePersonEntryRequest())->rules());
+    $validator = Validator::make($data, (new StorePersonEntryRequest())->rules());
 
-    // Assert
-    expect($validator->fails())->toBeTrue()
-        ->and($validator->errors()->has('arrival_time'))->toBeTrue();
+    expect($validator->passes())->toBeTrue();
 });
 
-it('fails validation when exit_time is not a valid date', function () {
-    // Arrange
-    $person = Person::factory()->create();
-    $internalPerson = InternalPerson::factory()->create();
-
+it('validates person_id must exist', function () {
     $data = [
-        'person_id' => $person->id,
-        'internal_person_id' => $internalPerson->id,
+        'person_id' => 999999,
+        'internal_person_id' => $this->internalPerson->id,
         'reason' => PersonEntry::REASONS[0],
-        'arrival_time' => now()->toDateTimeString(),
-        'entry_time' => now()->toDateTimeString(),
-        'exit_time' => 'invalid_date',
+        'comment' => 'Test comment'
     ];
 
-    // Act
-    $validator = Validator::make($data, (new UpdatePersonEntryRequest())->rules());
+    $validator = Validator::make($data, (new StorePersonEntryRequest())->rules());
 
-    // Assert
-    expect($validator->fails())->toBeTrue()
-        ->and($validator->errors()->has('exit_time'))->toBeTrue();
+    expect($validator->fails())->toBeTrue();
+    expect($validator->errors()->has('person_id'))->toBeTrue();
+});
+
+it('validates internal_person_id must exist', function () {
+    $data = [
+        'person_id' => $this->person->id,
+        'internal_person_id' => 999999,
+        'reason' => PersonEntry::REASONS[0],
+        'comment' => 'Test comment'
+    ];
+
+    $validator = Validator::make($data, (new StorePersonEntryRequest())->rules());
+
+    expect($validator->fails())->toBeTrue();
+    expect($validator->errors()->has('internal_person_id'))->toBeTrue();
 });

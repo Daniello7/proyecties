@@ -20,7 +20,7 @@ class PackageFactory extends Factory
      */
     public function definition(): array
     {
-        $deliver = random_int(0, 30) == 0 ? null : User::inRandomOrder()->firstOrFail()->id;
+        $deliver = random_int(0, 30) == 0 ? null : User::inRandomOrder()->first()?->id ?? User::factory()->create()->id;
 
         return [
             'type' => $this->faker->randomElement(['entry', 'exit']),
@@ -29,7 +29,7 @@ class PackageFactory extends Factory
             'external_entity' => $this->faker->company(),
             'receiver_user_id' => User::inRandomOrder()->firstOrFail()->id,
             'deliver_user_id' => $deliver,
-            'internal_person_id' => InternalPerson::inRandomOrder()->firstOrFail()->id,
+            'internal_person_id' => InternalPerson::inRandomOrder()->first()?->id ?? InternalPerson::factory()->create()->id,
             'retired_by' => $deliver == null ? null : join(' ',
                 InternalPerson::with('person')->inRandomOrder()->firstOrFail()->person->only(['name', 'last_name'])),
             'entry_time' => $this->faker->dateTime(),
