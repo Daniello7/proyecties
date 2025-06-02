@@ -17,8 +17,8 @@ class GuardReportFactory extends Factory
             'entry_time' => $this->faker->dateTime(),
             'exit_time' => $this->faker->dateTime(),
             'incident' => $this->faker->realText(),
-            'guard_id' => Guard::inRandomOrder()->firstOrFail(),
-            'zone_id' => Zone::inRandomOrder()->firstOrFail(),
+            'guard_id' => Guard::inRandomOrder()->first()?->id ?? Guard::factory()->create()->id,
+            'zone_id' => Zone::inRandomOrder()->first()?->id ?? Zone::factory()->create()->id,
         ];
     }
 }

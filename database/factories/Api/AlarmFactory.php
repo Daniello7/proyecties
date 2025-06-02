@@ -13,7 +13,7 @@ class AlarmFactory extends Factory
     public function definition(): array
     {
         return [
-            'zone_id' => Zone::inRandomOrder()->firstOrFail(),
+            'zone_id' => Zone::inRandomOrder()->first()?->id ?? Zone::factory()->create()->id,
             'type' => $this->faker->randomElement([
                 'intrusion',
                 'fire',

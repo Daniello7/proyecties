@@ -211,3 +211,110 @@ it('returns 400 when trying to detach non-assigned zone', function () {
     // Assert
     $response->assertStatus(400);
 });
+
+it('can filter guards by name', function () {
+    // Arrange
+    Guard::factory()->create(['name' => 'John Doe']);
+    Guard::factory()->create(['name' => 'Jane Smith']);
+    
+    // Act
+    $response = $this->getJson('/api/guards?name=John');
+    
+    // Assert
+    $response->assertOk()
+        ->assertJsonCount(1, 'data')
+        ->assertJsonFragment(['name' => 'John Doe']);
+});
+
+it('can filter guards by dni', function () {
+    // Arrange
+    Guard::factory()->create(['dni' => '12345678A']);
+    Guard::factory()->create(['dni' => '87654321B']);
+    
+    // Act
+    $response = $this->getJson('/api/guards?dni=123');
+    
+    // Assert
+    $response->assertOk()
+        ->assertJsonCount(1, 'data')
+        ->assertJsonFragment(['dni' => '12345678A']);
+});
+
+it('returns 403 when listing guards without proper permission', function () {
+    // Arrange
+    Sanctum::actingAs(User::factory()->create(), []);
+    Guard::factory()->create();
+    
+    // Act
+    $response = $this->getJson('/api/guards');
+    
+    // Assert
+    $response->assertForbidden();
+});
+
+it('returns 403 when creating guard without proper permission', function () {
+    // Arrange
+    Sanctum::actingAs(User::factory()->create(), []);
+    $data = [
+        'name' => 'New Guard',
+        'dni' => '123456789'
+    ];
+    
+    // Act
+    $response = $this->postJson('/api/guards', $data);
+    
+    // Assert
+    $response->assertForbidden();
+});
+
+it('returns 403 when updating guard without proper permission', function () {
+    // Arrange
+    $guard = Guard::factory()->create();
+    Sanctum::actingAs(User::factory()->create(), []);
+    
+    // Act
+    $response = $this->putJson("/api/guards/{$guard->id}", [
+        'name' => 'Updated Name',
+        'dni' => '987654321'
+    ]);
+    
+    // Assert
+    $response->assertForbidden();
+});
+
+it('returns 403 when deleting guard without proper permission', function () {
+    // Arrange
+    $guard = Guard::factory()->create();
+    Sanctum::actingAs(User::factory()->create(), []);
+    
+    // Act
+    $response = $this->deleteJson("/api/guards/{$guard->id}");
+    
+    // Assert
+    $response->assertForbidden();
+});
+
+it('can show guard with read-own-guard permission', function () {
+    // Arrange
+    $guard = Guard::factory()->create();
+    Sanctum::actingAs(User::factory()->create(), ['read-own-guard']);
+    
+    // Act
+    $response = $this->getJson("/api/guards/{$guard->id}");
+    
+    // Assert
+    $response->assertOk()
+        ->assertJsonFragment(['id' => $guard->id]);
+});
+
+it('can list guards with read-own-guard permission', function () {
+    // Arrange
+    Guard::factory()->create();
+    Sanctum::actingAs(User::factory()->create(), ['read-own-guard']);
+    
+    // Act
+    $response = $this->getJson('/api/guards');
+    
+    // Assert
+    $response->assertOk();
+});
