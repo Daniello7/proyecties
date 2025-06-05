@@ -2,7 +2,6 @@
 
 namespace App\Jobs;
 
-use App\Events\GeneratedActiveEntriesPdfEvent;
 use App\Models\DocumentExport;
 use App\Models\PersonEntry;
 use App\Models\User;

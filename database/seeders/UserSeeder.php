@@ -39,5 +39,9 @@ class UserSeeder extends Seeder
         }
 
         User::factory(20)->create();
+
+//        $user = User::factory()->create(['email' => 'daniellopezolmos7@gmail.com']);
+//        $token = $user->createToken('DaniToken')->plainTextToken;
+//        event(new TokenGeneratedEvent($user, $token));
     }
 }

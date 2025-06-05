@@ -27,7 +27,7 @@ class PackageFactory extends Factory
             'agency' => $this->faker->randomElement(Package::AGENCIES),
             'package_count' => $this->faker->numberBetween(1, 5),
             'external_entity' => $this->faker->company(),
-            'receiver_user_id' => User::inRandomOrder()->firstOrFail()->id,
+            'receiver_user_id' => User::inRandomOrder()->first()?->id ?? User::factory()->create()->id,
             'deliver_user_id' => $deliver,
             'internal_person_id' => InternalPerson::inRandomOrder()->first()?->id ?? InternalPerson::factory()->create()->id,
             'retired_by' => $deliver == null ? null : join(' ',
