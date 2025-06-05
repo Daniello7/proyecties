@@ -71,7 +71,7 @@ class IndexTable extends Component
             'deliver:id,name',
             'receiver:id,name',
         ];
-        $this->sortColumn = 'exit_time';
+        $this->sortColumn = 'entry_time';
         $this->sortDirection = 'desc';
     }
 

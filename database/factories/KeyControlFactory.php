@@ -20,12 +20,12 @@ class KeyControlFactory extends Factory
      */
     public function definition(): array
     {
-        $receiver = random_int(0, 30) == 0 ? null : User::inRandomOrder()->firstOrFail()->id;
+        $receiver = random_int(0, 30) == 0 ? null : User::inRandomOrder()->first()?->id ?? User::factory()->create()->id;
 
         return [
-            'key_id' => Key::inRandomOrder()->firstOrFail()->id,
-            'person_id' => Person::inRandomOrder()->firstOrFail()->id,
-            'deliver_user_id' => User::inRandomOrder()->firstOrFail()->id,
+            'key_id' => Key::inRandomOrder()->first()?->id ?? Key::factory()->create()->id,
+            'person_id' => Person::inRandomOrder()->first()?->id ?? Person::factory()->create()->id,
+            'deliver_user_id' => User::inRandomOrder()->first()?->id ?? User::factory()->create()->id,
             'receiver_user_id' => $receiver,
             'comment' => $this->faker->randomElement([null, $this->faker->realTextBetween(20, 40)]),
             'exit_time' => $this->faker->dateTime(),

@@ -71,7 +71,7 @@ class HomeTable extends Component
     {
         $keyControl = KeyControl::findorFail($id);
 
-        $this->authorize('delete', $keyControl);
+        $this->authorize('cancel', $keyControl);
 
         $keyControl->delete();
 

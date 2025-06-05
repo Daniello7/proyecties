@@ -1,7 +1,7 @@
 @php use App\Models\Key;use App\Models\KeyControl; @endphp
 <div class="flex flex-col gap-8 mx-auto sm:px-6 lg:px-8">
     <section class="text-gray-800 dark:text-gray-100 bg-white dark:bg-gray-800 rounded-lg p-2 shadow-lg transition-colors z-10">
-        <x-header :content="__('Options')"/>
+        <x-header :content="__('Options')"><x-session-status flash="key-status"/></x-header>
         <div class="py-6 flex flex-row gap-4 justify-evenly">
             @can('view-any', Key::class)
                 <x-button-box wire:click="openKeyTable">
