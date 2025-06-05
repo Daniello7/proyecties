@@ -11,6 +11,10 @@
                     <x-svg.key-icon class="w-8 h-8 stroke-blue-600"/>
                     {{ __('Keys Management') }}
                 </x-link-box>
+                <x-link-box :href="route('coverage.report', 'index.html')" class="z-10">
+                    <x-svg.chart-bar-icon class="w-8 h-8 stroke-blue-600"/>
+                    {{ __('App Coverage') }}
+                </x-link-box>
             </section>
         </div>
     </div>
