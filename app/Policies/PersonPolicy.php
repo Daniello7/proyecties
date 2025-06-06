@@ -19,11 +19,6 @@ class PersonPolicy
         return null;
     }
 
-    public function viewAny(User $user): bool
-    {
-        return $user->hasRole('rrhh');
-    }
-
     public function create(): bool
     {
         return false;

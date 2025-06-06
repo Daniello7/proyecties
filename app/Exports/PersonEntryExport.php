@@ -58,7 +58,7 @@ class PersonEntryExport implements FromCollection, WithHeadings, WithMapping, Wi
             $row->comment,
             Carbon::parse($row->arrival_time)->format('d/m/Y H:i'),
             Carbon::parse($row->entry_time)->format('d/m/Y H:i'),
-            Carbon::parse($row->exit_time)->format('d/m/Y H:i')
+            $row->exit_time ? Carbon::parse($row->exit_time)->format('d/m/Y H:i') : ''
         ];
     }
 

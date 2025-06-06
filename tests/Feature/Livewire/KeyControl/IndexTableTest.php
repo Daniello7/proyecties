@@ -212,7 +212,7 @@ it('closes modal and resets form', function () {
 
 it('shows only key controls with entry time', function () {
     // Arrange
-    $completedControl = KeyControl::factory()->create(['entry_time' => now()]);
+    $completedControl = KeyControl::factory()->create(['entry_time' => now(), 'receiver_user_id' => $this->user->id]);
     $pendingControl = KeyControl::factory()->create(['entry_time' => null]);
 
     // Act & Assert

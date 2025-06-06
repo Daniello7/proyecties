@@ -7,8 +7,10 @@ use App\Models\Person;
 use App\Models\PersonEntry;
 use App\Models\User;
 use App\Models\InternalPerson;
+use Maatwebsite\Excel\Events\AfterSheet;
 use Maatwebsite\Excel\Facades\Excel;
 use PhpOffice\PhpSpreadsheet\Spreadsheet;
+use Storage;
 
 beforeEach(function() {
     // Arrange
@@ -57,7 +59,7 @@ it('exports all entries when no ids provided', function() {
 
 it('exports only specified entries when ids provided', function() {
     // Arrange
-    $otherEntry = PersonEntry::factory()->create();
+    PersonEntry::factory()->create();
     $export = new PersonEntryExport([$this->personEntry->id]);
     $expectedEntry = PersonEntry::with(['user', 'person', 'internalPerson.person'])
         ->find($this->personEntry->id);
@@ -137,4 +139,180 @@ it('can be downloaded', function() {
     
     // Assert
     Excel::assertDownloaded('person-entries.xlsx');
+});
+
+it('verifies border styles are applied correctly', function() {
+    // Arrange
+    $export = new PersonEntryExport();
+    $spreadsheet = new Spreadsheet();
+    $worksheet = $spreadsheet->getActiveSheet();
+
+    // Act
+    $styles = $export->styles($worksheet);
+
+    // Assert
+    expect($styles)
+        ->toHaveKey('A1:I' . $worksheet->getHighestRow())
+        ->and($styles['A1:I' . $worksheet->getHighestRow()]['borders']['allBorders']['borderStyle'])
+        ->toBe('thin');
+});
+
+it('verifies center alignment in header', function() {
+    // Arrange
+    $export = new PersonEntryExport();
+    $spreadsheet = new Spreadsheet();
+    $worksheet = $spreadsheet->getActiveSheet();
+
+    // Act
+    $styles = $export->styles($worksheet);
+
+    // Assert
+    expect($styles[1]['alignment']['horizontal'])->toBe('center');
+});
+
+it('registers aftersheet event', function() {
+    // Arrange
+    $export = new PersonEntryExport();
+
+    // Act
+    $events = $export->registerEvents();
+
+    // Assert
+    expect($events)
+        ->toHaveKey(AfterSheet::class)
+        ->and($events[AfterSheet::class])
+        ->toBeCallable();
+});
+
+it('handles null exit time correctly', function() {
+    // Arrange
+    $personEntry = PersonEntry::factory()->create([
+        'user_id' => $this->user->id,
+        'person_id' => $this->person->id,
+        'internal_person_id' => $this->internalPerson->id,
+        'reason' => 'Visit',
+        'comment' => 'Test comment',
+        'arrival_time' => now(),
+        'entry_time' => now(),
+        'exit_time' => null
+    ]);
+
+    $export = new PersonEntryExport([$personEntry->id]);
+
+    // Act
+    $mappedData = $export->map($personEntry);
+
+    // Assert
+    expect($mappedData[8])->toBe('');
+});
+
+it('exports multiple entries in correct order', function() {
+    // Arrange
+    $entries = PersonEntry::factory()->count(3)->create([
+        'user_id' => $this->user->id,
+        'person_id' => $this->person->id,
+        'internal_person_id' => $this->internalPerson->id,
+    ]);
+
+    $export = new PersonEntryExport();
+
+    // Act
+    $collection = $export->collection();
+
+    // Assert
+    expect($collection)->toHaveCount(4); // 3 nuevos + 1 del beforeEach
+
+    // Verificar que todos los entries están presentes
+    $entryIds = $collection->pluck('id')->toArray();
+    foreach ($entries as $entry) {
+        expect($entryIds)->toContain($entry->id);
+    }
+});
+
+it('loads related models eagerly', function() {
+    // Arrange
+    $export = new PersonEntryExport([$this->personEntry->id]);
+
+    // Act
+    $collection = $export->collection();
+    $entry = $collection->first();
+
+    // Assert
+    expect($entry->relationLoaded('user'))->toBeTrue()
+        ->and($entry->relationLoaded('person'))->toBeTrue()
+        ->and($entry->relationLoaded('internalPerson'))->toBeTrue()
+        ->and($entry->internalPerson->relationLoaded('person'))->toBeTrue();
+});
+
+it('exports file with correct column dimensions', function() {
+    // Arrange
+    $export = new PersonEntryExport([$this->personEntry->id]);
+    $fileName = 'test_export.xlsx';
+
+    // Act
+    Excel::store($export, $fileName, 'local');
+
+    // Assert
+    expect(Storage::disk('local')->exists($fileName))->toBeTrue();
+
+    // Cleanup
+    Storage::disk('local')->delete($fileName);
+});
+
+it('calculates column widths with correct scaling factor', function() {
+    // Arrange
+    $export = new PersonEntryExport([$this->personEntry->id]);
+    Storage::fake('local');
+    $fileName = 'test_export.xlsx';
+
+    // Act
+    Excel::store($export, $fileName, 'local');
+
+    // Leer el archivo exportado
+    $readSpreadsheet = \PhpOffice\PhpSpreadsheet\IOFactory::load(
+        Storage::disk('local')->path($fileName)
+    );
+    $sheet = $readSpreadsheet->getActiveSheet();
+
+    // Assert
+    $columnDimensions = $sheet->getColumnDimensions();
+    foreach ($columnDimensions as $columnId => $dimension) {
+        $width = $dimension->getWidth();
+
+        // Verificamos que el ancho sea un número positivo y razonable
+        expect($width)
+            ->toBeFloat()
+            ->toBeGreaterThan(0)
+            ->toBeLessThan(100); // Un ancho razonable para una columna
+    }
+
+    // Cleanup
+    Storage::disk('local')->delete($fileName);
+});
+
+it('applies auto-size before final width calculation', function() {
+    // Arrange
+    $export = new PersonEntryExport([$this->personEntry->id]);
+    Storage::fake('local');
+    $fileName = 'test_export.xlsx';
+
+    // Act
+    Excel::store($export, $fileName, 'local');
+
+    // Leer el archivo exportado
+    $spreadsheet = \PhpOffice\PhpSpreadsheet\IOFactory::load(
+        Storage::disk('local')->path($fileName)
+    );
+    $sheet = $spreadsheet->getActiveSheet();
+
+    // Assert
+    foreach ($sheet->getColumnDimensions() as $columnId => $dimension) {
+        expect($dimension->getAutoSize())->toBeFalse()
+            ->and($dimension->getWidth())
+            ->toBeFloat()
+            ->toBeGreaterThan(0);
+    }
+
+    // Cleanup
+    Storage::disk('local')->delete($fileName);
 });
