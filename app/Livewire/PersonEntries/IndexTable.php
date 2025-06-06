@@ -80,13 +80,14 @@ class IndexTable extends Component
         $this->activeModal = $modal;
 
         if ($modal === 'editEntry') {
-            $this->authorize('update', $this->entry);
             $this->entry = PersonEntry::with(['person', 'internalPerson.person'])->find($id);
+            $this->authorize('update', $this->entry);
             $this->loadPersonEntryData();
         }
 
         if ($modal === 'createEntry') {
-            $this->authorize('create', $this->entry);
+            $this->authorize('create', PersonEntry::class);
+
             $this->person = Person::with(['personEntries' => function ($q) {
                 $q->orderBy('exit_time', 'desc')->first();
             }])->find($id);

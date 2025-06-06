@@ -2,10 +2,8 @@
 
 namespace App\Livewire;
 
-use App\Events\NotifyContactVisitorEvent;
 use App\Http\Requests\Person\StorePersonRequest;
 use App\Http\Requests\Person\UpdatePersonRequest;
-use App\Http\Requests\PersonEntry\StorePersonEntryRequest;
 use App\Models\Person;
 use App\Models\PersonEntry;
 use App\Traits\HasLoadPersonEntryData;

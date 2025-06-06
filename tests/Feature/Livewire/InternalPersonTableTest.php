@@ -18,7 +18,7 @@ beforeEach(function () {
 it('shows basic columns for porter role', function () {
     $user = User::factory()->create();
     $user->assignRole('porter');
-    
+
     $component = Livewire::actingAs($user)
         ->test(InternalPersonTable::class);
 
@@ -29,7 +29,7 @@ it('shows basic columns for porter role', function () {
 it('shows additional columns for admin role', function () {
     $user = User::factory()->create();
     $user->assignRole('admin');
-    
+
     $component = Livewire::actingAs($user)
         ->test(InternalPersonTable::class);
 
@@ -46,7 +46,7 @@ it('shows additional columns for admin role', function () {
 it('shows additional columns for rrhh role', function () {
     $user = User::factory()->create();
     $user->assignRole('rrhh');
-    
+
     $component = Livewire::actingAs($user)
         ->test(InternalPersonTable::class);
 
@@ -66,7 +66,7 @@ it('filters internal people by search term', function () {
 
     $person1 = Person::factory()->create(['name' => 'John Doe']);
     $person2 = Person::factory()->create(['name' => 'Jane Smith']);
-    
+
     $internalPerson1 = InternalPerson::factory()->create(['person_id' => $person1->id]);
     $internalPerson2 = InternalPerson::factory()->create(['person_id' => $person2->id]);
 
@@ -84,7 +84,7 @@ it('sorts internal people by id', function () {
 
     $person1 = Person::factory()->create(['name' => 'AAA']);
     $person2 = Person::factory()->create(['name' => 'BBB']);
-    
+
     InternalPerson::factory()->create(['person_id' => $person2->id]);
     InternalPerson::factory()->create(['person_id' => $person1->id]);
 
@@ -184,4 +184,86 @@ it('validates required fields when updating', function () {
         'zip_code',
         'contract_type'
     ]);
+});
+
+it('closes modal and resets form data', function () {
+    $user = User::factory()->create();
+    $user->assignRole('admin');
+
+    $person = Person::factory()->create();
+    $internalPerson = InternalPerson::factory()->create([
+        'person_id' => $person->id,
+        'email' => 'test@example.com'
+    ]);
+
+    $component = Livewire::actingAs($user)
+        ->test(InternalPersonTable::class)
+        ->call('openModal', 'editInternalPerson', $internalPerson->id)
+        ->call('closeModal');
+
+    $component->assertSet('activeModal', null)
+        ->assertSet('id', null)
+        ->assertSet('email', null)
+        ->assertSet('phone', null);
+});
+
+it('validates email format when updating', function () {
+    $user = User::factory()->create();
+    $user->assignRole('admin');
+
+    $person = Person::factory()->create();
+    $internalPerson = InternalPerson::factory()->create([
+        'person_id' => $person->id
+    ]);
+
+    $component = Livewire::actingAs($user)
+        ->test(InternalPersonTable::class)
+        ->call('openModal', 'editInternalPerson', $internalPerson->id)
+        ->set('email', 'invalid-email')
+        ->call('updateInternalPerson');
+
+    $component->assertHasErrors(['email']);
+});
+
+it('sorts internal people by name in different directions', function () {
+    $user = User::factory()->create();
+    $user->assignRole('porter');
+
+    $person1 = Person::factory()->create(['name' => 'AAA']);
+    $person2 = Person::factory()->create(['name' => 'BBB']);
+
+    InternalPerson::factory()->create(['person_id' => $person1->id]);
+    InternalPerson::factory()->create(['person_id' => $person2->id]);
+
+    $component = Livewire::actingAs($user)
+        ->test(InternalPersonTable::class)
+        ->call('sortBy', 'person.name');
+
+    $component->assertSeeInOrder(['AAA', 'BBB'])
+        ->call('sortBy', 'person.name')
+        ->assertSeeInOrder(['BBB', 'AAA']);
+});
+
+it('shows session status message after successful update', function () {
+    $user = User::factory()->create();
+    $user->assignRole('admin');
+
+    $person = Person::factory()->create();
+    $internalPerson = InternalPerson::factory()->create([
+        'person_id' => $person->id
+    ]);
+
+    $component = Livewire::actingAs($user)
+        ->test(InternalPersonTable::class)
+        ->call('openModal', 'editInternalPerson', $internalPerson->id)
+        ->set('email', 'new@example.com')
+        ->set('phone', '1234567890')
+        ->set('address', 'Test Address')
+        ->set('country', 'Test Country')
+        ->set('city', 'Test City')
+        ->set('zip_code', '12345')
+        ->set('contract_type', 'Full-time')
+        ->call('updateInternalPerson');
+
+    $component->assertSee(__('messages.person_updated'));
 });

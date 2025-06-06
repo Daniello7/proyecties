@@ -43,24 +43,20 @@ it('can sort columns', function () {
 
 it('can search packages', function () {
     // Arrange
-    $internalPerson = InternalPerson::factory()->create();
-    $package = Package::factory()->create([
-        'agency' => 'SEUR',
-        'internal_person_id' => $internalPerson->id
-    ]);
+    $package = Package::factory()->create(['deliver_user_id' => $this->user->id]);
 
     // Act
     $component = livewire(IndexTable::class)
-        ->set('search', 'SEUR');
+        ->set('search', $package->agency);
 
     // Assert
-    $component->assertSee('SEUR');
+    $component->assertSee($package->agency);
 });
 
 
 it('can open edit modal', function () {
     // Arrange
-    $package = Package::factory()->create();
+    $package = Package::factory()->create(['deliver_user_id' => $this->user->id]);
 
     // Act
     $component = livewire(IndexTable::class)
@@ -93,10 +89,8 @@ it('can update package', function () {
     Role::create(['name' => 'porter']);
     $this->user->assignRole('porter');
 
+    $package = Package::factory()->create(['deliver_user_id' => $this->user->id]);
     $internalPerson = InternalPerson::factory()->create();
-    $package = Package::factory()->create([
-        'internal_person_id' => $internalPerson->id
-    ]);
 
     // Act
     $component = livewire(IndexTable::class)
@@ -128,7 +122,7 @@ it('can delete package', function () {
     Role::create(['name' => 'admin']);
     $this->user->assignRole('admin');
 
-    $package = Package::factory()->create();
+    $package = Package::factory()->create(['deliver_user_id' => $this->user->id]);
 
     // Act
     $component = livewire(IndexTable::class)
@@ -153,8 +147,8 @@ it('paginates results', function () {
 
 it('requires authorization to update package', function () {
     // Arrange
-    $package = Package::factory()->create();
-    
+    $package = Package::factory()->create(['deliver_user_id' => $this->user->id]);
+
     // No asignamos ningún rol al usuario
     // Por defecto no tendrá permisos para actualizar
 
@@ -166,8 +160,8 @@ it('requires authorization to update package', function () {
 
 it('requires authorization to delete package', function () {
     // Arrange
-    $package = Package::factory()->create();
-    
+    $package = Package::factory()->create(['deliver_user_id' => $this->user->id]);
+
     // Incluso con rol 'porter' no debería poder eliminar
     Role::create(['name' => 'porter']);
     $this->user->assignRole('porter');

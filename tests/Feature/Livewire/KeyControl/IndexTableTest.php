@@ -76,13 +76,16 @@ it('filters by key correctly', function () {
     $key1 = Key::factory()->create(['name' => 'Test Key 1']);
     $key2 = Key::factory()->create(['name' => 'Test Key 2']);
 
-    $keyControl1 = KeyControl::factory()->create([
+    KeyControl::factory()->create([
         'key_id' => $key1->id,
-        'entry_time' => now()
+        'entry_time' => now(),
+        'receiver_user_id' => $this->user->id,
     ]);
-    $keyControl2 = KeyControl::factory()->create([
+
+    KeyControl::factory()->create([
         'key_id' => $key2->id,
-        'entry_time' => now()
+        'entry_time' => now(),
+        'receiver_user_id' => $this->user->id,
     ]);
 
     // Act & Assert
@@ -108,9 +111,9 @@ it('applies search filter correctly', function () {
 
     // Act & Assert
     livewire(IndexTable::class)
-        ->set('search', 'Juan Test')
-        ->assertSee('Juan Test')
-        ->assertDontSee('Pedro Test');
+        ->set('search', $person1->name)
+        ->assertSee($person1->name)
+        ->assertDontSee($person2->name);
 });
 
 it('opens edit modal correctly', function () {

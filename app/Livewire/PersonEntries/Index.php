@@ -2,8 +2,6 @@
 
 namespace App\Livewire\PersonEntries;
 
-use App\Http\Requests\Person\StorePersonRequest;
-use App\Models\Person;
 use Livewire\Component;
 
 class Index extends Component

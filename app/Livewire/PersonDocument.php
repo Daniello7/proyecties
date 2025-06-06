@@ -23,7 +23,7 @@ class PersonDocument extends Component
 
     public function deleteDocument($id): void
     {
-        $file = $this->person->documents()->findOrFail($id);
+        $file = $this->person->documents()->find($id);
 
         \Storage::disk('public')->delete($file->path);
         $file->delete();

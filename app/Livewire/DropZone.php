@@ -4,7 +4,6 @@ namespace App\Livewire;
 
 use Livewire\Component;
 use Livewire\WithFileUploads;
-use Str;
 
 class DropZone extends Component
 {
@@ -85,8 +84,7 @@ class DropZone extends Component
         $this->resetExcept(['person', 'person_id']);
     }
 
-    public
-    function render()
+    public function render()
     {
         return view('livewire.drop-zone');
     }

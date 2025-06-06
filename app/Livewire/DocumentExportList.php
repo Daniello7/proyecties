@@ -41,6 +41,8 @@ class DocumentExportList extends Component
     {
         $document = DocumentExport::findOrFail($id);
 
+        $this->type = $document->type;
+
         $document->update(['viewed_at' => now()]);
 
         $this->dispatch('updated-document');
