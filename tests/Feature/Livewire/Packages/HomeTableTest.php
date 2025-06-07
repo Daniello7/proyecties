@@ -36,7 +36,7 @@ it('displays active packages correctly', function () {
     $person = Person::factory()->create(['name' => 'Test Person', 'last_name' => 'Last Name']);
     $internalPerson = InternalPerson::factory()->create(['person_id' => $person->id]);
 
-    $package = Package::factory()->create([
+    Package::factory()->create([
         'internal_person_id' => $internalPerson->id,
         'type' => 'entry',
         'agency' => 'SEUR',
@@ -58,13 +58,13 @@ it('filters packages by search term', function () {
     $person = Person::factory()->create();
     $internalPerson = InternalPerson::factory()->create(['person_id' => $person->id]);
 
-    $package1 = Package::factory()->create([
+    Package::factory()->create([
         'internal_person_id' => $internalPerson->id,
         'external_entity' => 'Unique Package Name',
         'exit_time' => null
     ]);
 
-    $package2 = Package::factory()->create([
+    Package::factory()->create([
         'internal_person_id' => $internalPerson->id,
         'external_entity' => 'Different Package',
         'exit_time' => null
@@ -216,13 +216,13 @@ it('shows only packages without exit time', function () {
     $person = Person::factory()->create();
     $internalPerson = InternalPerson::factory()->create(['person_id' => $person->id]);
 
-    $activePackage = Package::factory()->create([
+    Package::factory()->create([
         'internal_person_id' => $internalPerson->id,
         'external_entity' => 'Active Package',
         'exit_time' => null
     ]);
 
-    $completedPackage = Package::factory()->create([
+    Package::factory()->create([
         'internal_person_id' => $internalPerson->id,
         'external_entity' => 'Completed Package',
         'exit_time' => now()

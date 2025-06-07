@@ -43,16 +43,9 @@ it('can search person entries', function () {
     Role::create(['name' => 'porter']);
     $this->user->assignRole('porter');
 
-    $externalPerson = Person::factory()->create([
-        'name' => 'Juan Test',
-        'company' => 'Test Company'
-    ]);
+    $internalPerson = InternalPerson::factory()->create();
 
-    $internalPerson = InternalPerson::factory()->create([
-        'person_id' => Person::factory()->create([
-            'name' => 'Contact Person'
-        ])->id
-    ]);
+    $externalPerson = Person::factory()->create();
 
     PersonEntry::factory()->create([
         'person_id' => $externalPerson->id,
@@ -63,9 +56,9 @@ it('can search person entries', function () {
 
     // Act & Assert
     livewire(HomeTable::class)
-        ->set('search', 'Juan Test')
-        ->assertSee('Juan Test')
-        ->assertSee('Test Company');
+        ->set('search', $externalPerson->name)
+        ->assertSee($externalPerson->name)
+        ->assertSee($internalPerson->person->name);
 });
 
 it('can update entry time', function () {
@@ -162,7 +155,7 @@ it('can dispatch pdf generation job', function () {
 it('can dispatch excel generation job', function () {
     // Arrange
     Queue::fake();
-    
+
     $internalPerson = InternalPerson::factory()->create();
     $externalPerson = Person::factory()->create();
 
@@ -193,7 +186,7 @@ it('shows only active entries', function () {
         'internal_person_id' => $internalPerson->id,
         'exit_time' => null
     ]);
-    
+
     $inactiveEntry = PersonEntry::factory()->create([
         'person_id' => $externalPerson2->id,
         'internal_person_id' => $internalPerson->id,

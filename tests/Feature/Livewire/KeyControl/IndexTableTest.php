@@ -55,11 +55,13 @@ it('filters by area correctly', function () {
     $key1 = Key::factory()->create(['area_id' => $area1->id]);
     $key2 = Key::factory()->create(['area_id' => $area2->id]);
 
-    $keyControl1 = KeyControl::factory()->create([
+    KeyControl::factory()->create([
+        'receiver_user_id' => $this->user->id,
         'key_id' => $key1->id,
         'entry_time' => now()
     ]);
-    $keyControl2 = KeyControl::factory()->create([
+    KeyControl::factory()->create([
+        'receiver_user_id' => $this->user->id,
         'key_id' => $key2->id,
         'entry_time' => now()
     ]);
