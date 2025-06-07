@@ -6,10 +6,7 @@ use App\Models\Api\Guard;
 use App\Models\Api\Zone;
 use App\Models\User;
 use Laravel\Sanctum\Sanctum;
-use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Http\Response;
-
-uses(RefreshDatabase::class);
 
 beforeEach(function () {
     $user = User::factory()->create();
@@ -317,4 +314,18 @@ it('can list guards with read-own-guard permission', function () {
     
     // Assert
     $response->assertOk();
+});
+
+it('returns 403 when showing guard without any read permission', function () {
+    // Arrange
+    $guard = Guard::factory()->create();
+
+    Sanctum::actingAs(User::factory()->create(), ['some-other-permission']);
+
+    // Act
+    $response = $this->getJson("/api/guards/{$guard->id}");
+
+    // Assert
+    $response->assertForbidden()
+        ->assertJson(['message' => __('Not authorized')]);
 });

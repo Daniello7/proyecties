@@ -222,3 +222,11 @@ it('validates comment maximum length', function () {
     expect($validator->fails())->toBeTrue();
     expect($validator->errors()->has('comment'))->toBeTrue();
 });
+
+it('authorizes request for all users', function () {
+    // Arrange
+    $request = new UpdatePersonEntryRequest();
+
+    // Act & Assert
+    expect($request->authorize())->toBeTrue();
+});

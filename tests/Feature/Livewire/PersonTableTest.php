@@ -3,6 +3,7 @@
 use App\Livewire\PersonTable;
 use App\Models\InternalPerson;
 use App\Models\Person;
+use App\Models\PersonEntry;
 use App\Models\User;
 use Spatie\Permission\Models\Role;
 use function Pest\Livewire\livewire;
@@ -259,4 +260,24 @@ it('excludes internal persons from table', function () {
     livewire(PersonTable::class)
         ->assertSee('External Person')
         ->assertDontSee('Internal Person');
+});
+
+it('loads person entry data when opening create entry modal with existing entry', function () {
+    // Arrange
+    Role::create(['name' => 'porter']);
+    $this->user->assignRole('porter');
+
+    $person = Person::factory()->create();
+    $entry = PersonEntry::factory()->create([
+        'person_id' => $person->id,
+        'exit_time' => now()
+    ]);
+
+    // Act & Assert
+    livewire(PersonTable::class)
+        ->call('openModal', 'createEntry', $person->id)
+        ->assertSet('activeModal', 'createEntry')
+        ->assertSet('person.id', $person->id)
+        ->assertSet('entry.id', $entry->id)
+        ->assertSet('comment', null);
 });
