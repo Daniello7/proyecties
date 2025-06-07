@@ -23,12 +23,9 @@ class BuildAndClearAllCommand extends Command
         $npmCommand = 'npm run build';
 
         $process = Process::fromShellCommandline($npmCommand);
-        $process->setWorkingDirectory(base_path()); // Root location of the project
+        $process->setWorkingDirectory(base_path());
 
-        // It shows NPM Run Build actions
-        $process->run(function ($type, $buffer) {
-            echo $buffer;
-        });
+        $process->run();
 
         if (!$process->isSuccessful()) {
             $this->error('❌ Error executing: ' . $npmCommand);
