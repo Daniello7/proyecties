@@ -30,9 +30,9 @@
         var useCsrf = Boolean();
         var csrfUrl = "/sanctum/csrf-cookie";
     </script>
-    <script src="{{ asset("/vendor/scribe/js/tryitout-5.0.1.js") }}"></script>
+    <script src="{{ asset("/vendor/scribe/js/tryitout-5.2.1.js") }}"></script>
 
-    <script src="{{ asset("/vendor/scribe/js/theme-default-5.0.1.js") }}"></script>
+    <script src="{{ asset("/vendor/scribe/js/theme-default-5.2.1.js") }}"></script>
 
 </head>
 
@@ -163,7 +163,7 @@
     </ul>
 
     <ul class="toc-footer" id="last-updated">
-        <li>Last updated: May 2, 2025</li>
+        <li>Last updated: June 8, 2025</li>
     </ul>
 </div>
 
