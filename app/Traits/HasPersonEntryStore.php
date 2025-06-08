@@ -4,6 +4,7 @@ namespace App\Traits;
 
 use App\Events\NotifyContactVisitorEvent;
 use App\Http\Requests\PersonEntry\StorePersonEntryRequest;
+use App\Models\InternalPerson;
 use App\Models\PersonEntry;
 
 trait HasPersonEntryStore
@@ -34,7 +35,7 @@ trait HasPersonEntryStore
 
         if ($this->enter) $validated['entry_time'] = now();
 
-        PersonEntry::create($validated);
+        $this->entry = PersonEntry::create($validated);
 
         session()->flash('success', __('messages.person-entry_created'));
 
