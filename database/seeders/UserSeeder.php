@@ -2,7 +2,7 @@
 
 namespace Database\Seeders;
 
-use App\Events\TokenGeneratedEvent;
+//use App\Events\TokenGeneratedEvent;
 use App\Models\User;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\Artisan;
@@ -35,13 +35,9 @@ class UserSeeder extends Seeder
 
             $token = $user->createToken($role . '_token', $tokenAbilities)->plainTextToken;
 
-            event(new TokenGeneratedEvent($user, $token));
+//            event(new TokenGeneratedEvent($user, $token));
         }
 
         User::factory(20)->create();
-
-//        $user = User::factory()->create(['email' => 'daniellopezolmos7@gmail.com']);
-//        $token = $user->createToken('DaniToken')->plainTextToken;
-//        event(new TokenGeneratedEvent($user, $token));
     }
 }
